@@ -22,6 +22,11 @@ void DatabaseManager::open() {
 
         throw std::runtime_error(message);
     }
+
+    // SQLite không tự enforce FOREIGN KEY trừ khi bật pragma này cho
+    // từng connection. Bật ngay sau khi mở để mọi FOREIGN KEY khai báo
+    // trong schema (Day 3) thực sự có hiệu lực.
+    execute("PRAGMA foreign_keys = ON;");
 }
 
 void DatabaseManager::close() {

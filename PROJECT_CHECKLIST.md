@@ -145,9 +145,10 @@ Report
 - [ ] FR-REP-004 — Revenue Report (có thể lọc theo thời gian)
 
 ### 2.16. SQLite
-- [ ] `DatabaseManager` — open() / close() / execute()
-- [ ] FR-DATA-001 — Save Data cho toàn bộ entity chính
-- [ ] FR-DATA-002 — Load Data khi khởi động app
+- [x] `DatabaseManager` — open() / close() / execute() (+ PRAGMA foreign_keys = ON)
+- [x] `DatabaseInitializer` — CREATE TABLE IF NOT EXISTS cho 17 bảng, đã build/test
+- [ ] FR-DATA-001 — Save Data cho toàn bộ entity chính (chờ Repository)
+- [ ] FR-DATA-002 — Load Data khi khởi động app (chờ Repository)
 - [ ] FR-DATA-003 — Repository layer (Service không viết SQL trực tiếp)
 
 ### 2.17. Exception Handling
@@ -218,7 +219,8 @@ Center   1 ──── * Hall
 
 - [x] Day 1 — Phân tích Requirements → `PROJECT_CHECKLIST.md`
 - [x] Day 2 — Project Setup + SQLite (`DatabaseManager`, kết nối `trong_dong_palace.db`)
-- [ ] Day 3+ — Exceptions
+- [x] Day 3 — Database Schema (`DatabaseInitializer`, 17 bảng + FK chính)
+- [ ] Day 4+ — Exceptions
 - [ ] Repositories (interface + SQLite implementation)
 - [ ] Customer
 - [ ] Hall

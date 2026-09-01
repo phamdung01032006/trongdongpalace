@@ -1,18 +1,21 @@
 #include <iostream>
-using namespace std;
 
 #include "database/DatabaseManager.h"
+#include "database/DatabaseInitializer.h"
 
-// Entry point. Ở giai đoạn này (Day 2) chỉ xác nhận kết nối SQLite
-// hoạt động; chưa có chức năng nghiệp vụ.
+// Entry point. Ở giai đoạn này (Day 3) xác nhận kết nối SQLite và
+// khởi tạo schema hoạt động đúng; chưa có chức năng nghiệp vụ.
 int main() {
     DatabaseManager db("trong_dong_palace.db");
 
     try {
         db.open();
-        cout << "Database connected successfully." << endl;
-    } catch (const exception& ex) {
-        cout << "Database connection failed: " << ex.what() << endl;
+        std::cout << "Database connected successfully." << std::endl;
+
+        DatabaseInitializer::initialize(db);
+        std::cout << "Database schema initialized successfully." << std::endl;
+    } catch (const std::exception& ex) {
+        std::cout << "Database setup failed: " << ex.what() << std::endl;
         return 1;
     }
 

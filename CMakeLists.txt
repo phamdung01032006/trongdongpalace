@@ -1,17 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
-project(TrongDongPalace VERSION 0.1.0 LANGUAGES CXX)
+# Thêm chữ C vào phần ngôn ngữ
+project(TrongDongPalace VERSION 0.1.0 LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(SQLite3 REQUIRED)
-
-# Từ Step tiếp theo (Exceptions/Repositories/...), thêm file .cpp mới
-# vào danh sách này khi tạo ra.
 add_executable(TrongDongPalace
     src/main.cpp
     src/database/DatabaseManager.cpp
+    src/database/DatabaseInitializer.cpp
+    src/sqlite3.c
 )
 
-target_include_directories(TrongDongPalace PRIVATE src ${SQLite3_INCLUDE_DIRS})
-target_link_libraries(TrongDongPalace PRIVATE ${SQLite3_LIBRARIES})
+# Giúp các file .cpp tìm thấy sqlite3.h dễ dàng hơn
+target_include_directories(TrongDongPalace PRIVATE src)
