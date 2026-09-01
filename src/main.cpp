@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 #include "database/DatabaseManager.h"
 
@@ -9,9 +10,9 @@ int main() {
 
     try {
         db.open();
-        std::cout << "Database connected successfully." << std::endl;
-    } catch (const std::exception& ex) {
-        std::cout << "Database connection failed: " << ex.what() << std::endl;
+        cout << "Database connected successfully." << endl;
+    } catch (const exception& ex) {
+        cout << "Database connection failed: " << ex.what() << endl;
         return 1;
     }
 

@@ -19,12 +19,10 @@ src/
 
 ## Yêu cầu
 
-- CMake >= 3.10
+- CMake >= 3.10 (cài đặt qua installer chính chủ của CMake: https://cmake.org/download/)
 - Trình biên dịch hỗ trợ C++17 (g++, clang++, MSVC)
 - SQLite3 dev library:
-  - Ubuntu/Debian: `sudo apt-get install libsqlite3-dev`
-  - macOS (Homebrew): `brew install sqlite3`
-  - Windows: cài qua vcpkg (`vcpkg install sqlite3`) rồi trỏ CMake tới toolchain file của vcpkg
+  - Windows: cài qua msys2 mingw64 (`pacman -S mingw-w64-x86_64-sqlite3`) rồi trỏ CMake tới toolchain file của vcpkg
 
 ## Build & Run (Linux/macOS)
 
@@ -43,7 +41,7 @@ mkdir build
 cd build
 cmake .. -G "MinGW Makefiles"
 mingw32-make
-TrongDongPalace.exe
+.\TrongDongPalace.exe
 ```
 
 Nếu dùng Visual Studio: mở thư mục project bằng "Open Folder", VS sẽ tự nhận `CMakeLists.txt`.
