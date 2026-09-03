@@ -1,87 +1,90 @@
-Được. Mình sẽ **gộp kế hoạch 8 tuần ban đầu + yêu cầu SQLite cố định** thành một kế hoạch duy nhất. Mình cũng chỉnh lại thứ tự để **SQLite được dựng từ tuần 1 và mỗi module hoàn thành là phải lưu được xuống SQLite ngay**, không để persistence dồn về cuối.
+Đúng. Nếu mục tiêu là **mỗi ngày biết chắc “task hôm nay đã hoàn thành chưa”**, thì kế hoạch nên có thêm **Definition of Done + Test Cases + Expected Result** cho **từng ngày**, chứ không chỉ ghi “implement”.
 
-Kế hoạch này phù hợp với mục tiêu của bạn: **đồ án OOP vừa đủ, code dễ hiểu, đầy đủ requirement, không over-engineering**. Các module và business flow được giữ theo Functional Requirements bạn đã gửi.
+Mình đã đối chiếu lại với Functional Requirements: hệ thống là **C++ Console**, mỗi module có menu riêng, có input validation/error handling, dữ liệu phải được persistence/load, và kiến trúc là `Console → Service → Repository → Data Storage`.
 
-# KẾ HOẠCH 8 TUẦN — TRỐNG ĐỒNG PALACE OOP
-
-## 🎯 Mục tiêu cuối ngày 56
-
-Source code phải có:
-
-```text
-C++ Console Application
-        │
-        ├── Authentication
-        ├── Authorization
-        │
-        ├── Customer
-        ├── Hall
-        ├── Event
-        ├── Booking
-        ├── Availability
-        ├── Package
-        ├── Service
-        ├── Quotation
-        ├── Contract
-        ├── Payment
-        ├── Operations
-        ├── Event Completion
-        └── Reports
-                │
-                ▼
-        Repository Layer
-                │
-                ▼
-          SQLite Database
-```
-
-Về OOP:
-
-```text
-Encapsulation
-Abstraction
-Inheritance
-Polymorphism
-Exception Handling
-```
-
-Trong đó `PaymentMethod` là phần chính để thể hiện inheritance/polymorphism, phù hợp với tài liệu OOP bạn gửi.
+Dưới đây là bản mình khuyên bạn **dùng làm checklist thực tế trong 56 ngày**.
 
 ---
 
-# 🗓️ WEEK 1 — FOUNDATION + SQLITE
+# KẾ HOẠCH 8 TUẦN + TEST CHECKLIST
 
-### Mục tiêu
+## Quy tắc test chung cho mọi ngày
 
-Cuối tuần phải có:
+Mỗi ngày sau khi code xong phải trả lời được 4 câu:
 
 ```text
-✓ Project build được
-✓ SQLite hoạt động
-✓ Database schema
-✓ Models cơ bản
-✓ Exception hierarchy
-✓ Repository structure
-✓ Console skeleton
+1. Code có compile không?
+2. Chức năng chính có chạy không?
+3. Case lỗi có được xử lý không?
+4. Nếu có database thì dữ liệu có thực sự lưu xuống SQLite không?
 ```
+
+Và mỗi task có 3 mức:
+
+```text
+🟢 DONE
+- Code chạy
+- Happy case pass
+- Error case pass
+- SQLite persistence pass nếu task có DB
+
+🟡 PARTIAL
+- Code chạy nhưng còn test fail
+
+🔴 NOT DONE
+- Không compile / chức năng chính chưa chạy
+```
+
+**Không được chuyển sang task tiếp theo nếu task hiện tại chưa đạt 🟢 DONE.**
 
 ---
 
-## DAY 1 — Phân tích Requirements
+# 🟩 WEEK 1 — FOUNDATION + SQLITE + UI FOUNDATION
 
-### Làm
+---
 
-Đọc lại toàn bộ:
+# DAY 1 — Requirements + Console Flow
 
-- Functional Requirements
-    
-- OOP / Inheritance / Polymorphism / Exception Handling
-    
+### Task
 
-Lập checklist:
+Hoàn thành:
+
+```text
+PROJECT_CHECKLIST.md
+UI_FLOW.md
+```
+
+Xác định các module:
+
+```text
+Authentication
+Customer
+Hall
+Event
+Booking
+Availability
+Package
+Service
+Quotation
+Contract
+Payment
+Operations
+Event Completion
+Reports
+Authorization
+```
+
+Functional Requirements cũng xác định đây là scope MVP chính của hệ thống.
+
+### Test
+
+Không cần code.
+
+Kiểm tra checklist có đủ:
 
 ```text
 [ ] Authentication
+[ ] Authorization
 [ ] Customer
 [ ] Hall
 [ ] Event
@@ -96,67 +99,29 @@ Lập checklist:
 [ ] Event Completion
 [ ] Reports
 [ ] SQLite
-[ ] Exception Handling
-[ ] Authorization
+[ ] Console UI
+[ ] Exception
 ```
 
-Xác định flow chính:
+### 🟢 DONE khi
 
-```text
-Login
- ↓
-Customer
- ↓
-Event
- ↓
-Hall
- ↓
-Booking
- ↓
-Package / Service
- ↓
-Quotation
- ↓
-Contract
- ↓
-Payment
- ↓
-Operations
- ↓
-Complete Event
- ↓
-Report
-```
+Bạn có thể mở `PROJECT_CHECKLIST.md` và không còn module nào trong requirement bị bỏ sót.
 
-### Output
+---
+
+# DAY 2 — C++ Project + SQLite + UI Framework
+
+### Task
 
 Tạo:
 
 ```text
-PROJECT_CHECKLIST.md
+DatabaseManager
+ConsoleUI
+MainMenu
+InputHelper
+DisplayHelper
 ```
-
----
-
-# DAY 2 — Project Setup + SQLite
-
-Tạo project C++.
-
-Cấu trúc:
-
-```text
-src/
-├── models/
-├── services/
-├── repositories/
-├── exceptions/
-├── database/
-├── ui/
-├── utils/
-└── main.cpp
-```
-
-Thiết lập SQLite.
 
 Database:
 
@@ -164,33 +129,74 @@ Database:
 trong_dong_palace.db
 ```
 
-Tạo:
+### Test 1 — Compile
 
-```text
-DatabaseManager
+```bash
+g++ ...
 ```
 
-Có khả năng:
+Expected:
 
 ```text
-open()
-close()
-execute()
+Build successful
 ```
 
-### Cuối ngày
+### Test 2 — SQLite
 
-Chương trình chạy được:
+Chạy:
 
 ```text
+Application started.
 Database connected successfully.
+```
+
+### Test 3 — Main Menu
+
+Expected:
+
+```text
+==================================================
+        TRONG DONG PALACE MANAGEMENT
+==================================================
+
+1. Customer
+2. Hall
+3. Event
+...
+4. Exit
+```
+
+### Test 4 — Invalid menu
+
+Nhập:
+
+```text
+99
+```
+
+Expected:
+
+```text
+[ERROR] Invalid choice.
+Please try again.
+```
+
+### 🟢 DONE khi
+
+```text
+Compile ✓
+SQLite connect ✓
+Main menu ✓
+Invalid input ✓
 ```
 
 ---
 
-# DAY 3 — Database Schema
+# DAY 3 — SQLite Schema
 
-Thiết kế SQLite tables:
+### Task
+
+Tạo 17 tables:
 
 ```text
 users
@@ -212,92 +218,172 @@ special_requests
 incidents
 ```
 
-Thiết lập các foreign key quan trọng:
+Functional Requirements yêu cầu persistence cho các entity chính và Repository phải nằm giữa Service và data storage.
+
+### Test 1
+
+Start application.
+
+Expected:
 
 ```text
-events.customer_id
-bookings.event_id
-bookings.hall_id
-quotations.booking_id
-contracts.quotation_id
-payments.contract_id
+Database initialized successfully.
 ```
 
-Tạo:
+### Test 2
 
-```text
-DatabaseInitializer
+Kiểm tra SQLite:
+
+```sql
+SELECT name FROM sqlite_master WHERE type='table';
 ```
 
-để:
+Phải thấy 17 tables.
+
+### Test 3
+
+Restart application.
+
+Expected:
 
 ```text
-CREATE TABLE IF NOT EXISTS
+Không tạo lỗi
+Không mất database
+```
+
+### 🟢 DONE khi
+
+```text
+17 tables ✓
+Foreign keys ✓
+Application restart ✓
 ```
 
 ---
 
-# DAY 4 — Domain Models
+# DAY 4 — Models
 
-Tạo:
+### Task
+
+Tạo các model.
+
+Ví dụ:
 
 ```text
-User
 Customer
-Center
 Hall
 Event
 Booking
-Package
-Service
-Quotation
-Contract
-Payment
-StaffAssignment
-SpecialRequest
-Incident
+...
 ```
 
-Chỉ cần:
+### Test
+
+Tạo object:
+
+```cpp
+Customer c(...);
+```
+
+Sau đó:
+
+```cpp
+std::cout << c.getName();
+```
+
+Expected:
 
 ```text
-private attributes
-constructor
-getter
-setter
+Nguyen Van A
 ```
 
-Không thêm abstraction thừa.
+Test setter:
+
+```cpp
+c.setPhone("0901234567");
+```
+
+Expected:
+
+```text
+0901234567
+```
+
+### 🟢 DONE khi
+
+Mỗi model:
+
+```text
+Constructor ✓
+Getter ✓
+Setter ✓
+Compile ✓
+```
+
+Không cần database ngày này.
 
 ---
 
-# DAY 5 — Exception Hierarchy
+# DAY 5 — Exception
+
+### Task
 
 Tạo:
 
 ```text
 AppException
-├── ValidationException
-├── EntityNotFoundException
-├── DatabaseException
-└── BusinessException
-      ├── BookingConflictException
-      └── PaymentException
+ValidationException
+EntityNotFoundException
+DatabaseException
+BusinessException
+BookingConflictException
+PaymentException
 ```
 
-Test:
+Exception hierarchy này phù hợp với thiết kế OOP đã xác định trong tài liệu.
+
+### Test
 
 ```cpp
 throw ValidationException("Invalid customer name");
 ```
 
-Catch ở UI/main.
+Catch:
+
+```cpp
+catch (const AppException& e)
+```
+
+Expected:
+
+```text
+[ERROR] Invalid customer name
+```
+
+### Test thêm
+
+```text
+BookingConflictException
+PaymentException
+EntityNotFoundException
+```
+
+### 🟢 DONE khi
+
+```text
+Throw ✓
+Catch base class ✓
+Correct message ✓
+Application không crash ✓
+```
 
 ---
 
 # DAY 6 — Repository Foundation
 
-Tạo Repository:
+### Task
+
+Tạo:
 
 ```text
 CustomerRepository
@@ -311,192 +397,329 @@ ContractRepository
 PaymentRepository
 ```
 
-Không cần interface cho mọi thứ nếu không cần.
+### Test
 
-Mỗi repository bắt đầu có:
+Chưa cần full CRUD.
+
+Chỉ cần một repository thử nghiệm:
 
 ```text
+CustomerRepository
+    ↓
 save()
-findById()
-findAll()
-update()
-delete()
+    ↓
+SQLite
 ```
+
+Insert:
+
+```text
+C001
+Nguyen Van A
+```
+
+Sau đó:
+
+```text
+findById("C001")
+```
+
+Expected:
+
+```text
+Customer found:
+C001 - Nguyen Van A
+```
+
+### 🟢 DONE khi
+
+Ít nhất một Repository chứng minh được:
+
+```text
+Repository → SQLite → Repository
+```
+
+và tất cả repository skeleton compile được.
 
 ---
 
-# DAY 7 — Foundation Test
+# DAY 7 — Foundation Integration
 
-Test:
+### Test bắt buộc
+
+Chạy:
 
 ```text
-✓ Build
-✓ SQLite connection
-✓ Create tables
-✓ Insert test record
-✓ Read test record
-✓ Exception works
-✓ Repository works
+Application
+ ↓
+Main Menu
+ ↓
+Repository
+ ↓
+SQLite
+ ↓
+Exception
 ```
 
-### 🚨 Milestone 1
+### Test case
 
-Cuối Day 7 phải có:
+|Test|Expected|
+|---|---|
+|Start app|Success|
+|Connect DB|Success|
+|Create table|Success|
+|Insert record|Success|
+|Read record|Success|
+|Invalid input|Friendly error|
+|Throw exception|Caught|
 
-> **C++ + SQLite + Models + Repository + Exception chạy được.**
+### 🟢 MILESTONE 1
+
+```text
+C++ ✓
+SQLite ✓
+17 Tables ✓
+Models ✓
+Repository ✓
+Exception ✓
+Console skeleton ✓
+```
 
 ---
 
 # 🟩 WEEK 2 — CUSTOMER + HALL
 
-## DAY 8 — Customer Repository + SQLite
+# DAY 8 — CustomerRepository
 
-Implement:
-
-```text
-CustomerRepository
-```
-
-SQL:
+### Test CRUD
 
 ```text
-INSERT
-SELECT
-UPDATE
-DELETE
+Create C001
+View C001
+Update C001
+Delete C001
 ```
 
-Test dữ liệu thực sự nằm trong:
+Expected:
 
 ```text
-trong_dong_palace.db
+Create → found
+Update → new value
+Delete → not found
 ```
+
+### SQLite Test
+
+Exit app → mở lại → kiểm tra Customer.
+
+### 🟢 DONE
+
+CRUD + SQLite persistence pass.
 
 ---
 
-## DAY 9 — CustomerService
+# DAY 9 — CustomerService
 
-Implement:
-
-```text
-createCustomer()
-getAllCustomers()
-searchCustomer()
-updateCustomer()
-deleteCustomer()
-```
-
-Validation:
+### Test valid
 
 ```text
-ID không trùng
-Name không rỗng
-Phone hợp lệ
+ID: C001
+Name: Nguyen Van A
+Phone: 0901234567
 ```
+
+Expected:
+
+```text
+Customer created successfully.
+```
+
+### Test invalid
+
+```text
+Name = ""
+```
+
+Expected:
+
+```text
+[ERROR] Customer name is required.
+```
+
+Duplicate:
+
+```text
+C001
+```
+
+Expected:
+
+```text
+[ERROR] Customer ID already exists.
+```
+
+FR-CUS yêu cầu validate thông tin, kiểm tra ID trùng và xử lý các trường hợp thiếu dữ liệu/số điện thoại không hợp lệ.
+
+### 🟢 DONE
+
+Happy + error + DB pass.
 
 ---
 
-## DAY 10 — Customer Console
+# DAY 10 — CustomerMenu
 
-Menu:
+### Test menu
 
 ```text
-1. Create Customer
-2. View Customers
-3. Search Customer
-4. Update Customer
-5. Delete Customer
+1. Create
+2. View
+3. Search
+4. Update
+5. Delete
 6. Back
 ```
 
+Test từng lựa chọn.
+
+### Test navigation
+
+```text
+MainMenu
+ ↓
+CustomerMenu
+ ↓
+Back
+ ↓
+MainMenu
+```
+
+Expected:
+
+Không crash, quay đúng menu.
+
+### 🟢 DONE
+
+Customer UI gọi Service, **không gọi SQLite trực tiếp**.
+
 ---
 
-## DAY 11 — Customer Testing
+# DAY 11 — Customer Full Test
+
+Chạy scenario:
+
+```text
+Create C001
+ ↓
+View
+ ↓
+Search
+ ↓
+Update
+ ↓
+View
+ ↓
+Delete
+ ↓
+View
+```
+
+### Persistence test
+
+```text
+Create C001
+Exit
+Restart
+View
+```
+
+Expected:
+
+```text
+C001 vẫn tồn tại.
+```
+
+### 🟢 MILESTONE CUSTOMER
+
+---
+
+# DAY 12 — HallRepository
+
+Test:
+
+```text
+Create H001
+View H001
+Update H001
+```
+
+Kiểm tra SQLite.
+
+---
+
+# DAY 13 — HallService
+
+### Test valid
+
+```text
+Capacity = 500
+Status = Active
+```
+
+Expected:
+
+```text
+Hall created successfully.
+```
+
+### Test invalid
+
+```text
+Capacity = -100
+```
+
+Expected:
+
+```text
+[ERROR] Capacity must be greater than 0.
+```
+
+### Business rule
+
+Inactive:
+
+```text
+Hall H001 = Inactive
+```
+
+Booking sau này phải bị reject.
+
+Rule này được xác định trong requirements: Hall phải tồn tại và Active mới được dùng cho Booking.
+
+### 🟢 DONE
+
+---
+
+# DAY 14 — Hall UI + Test
 
 Test:
 
 ```text
 Create
-Read
-Search
+View
 Update
-Delete
-Duplicate ID
-Invalid phone
-Empty name
-```
-
-Restart app:
-
-```text
-Customer vẫn còn
-```
-
-### Customer DONE.
-
----
-
-## DAY 12 — Hall Repository
-
-Implement SQLite:
-
-```text
-save()
-findById()
-findAll()
-update()
-```
-
-Hall:
-
-```text
-Hall ID
-Hall Name
-Center
-Capacity
-Status
-```
-
----
-
-## DAY 13 — HallService
-
-Implement:
-
-```text
-createHall()
-viewHalls()
-updateHall()
-checkAvailability()
-```
-
-Business rule:
-
-```text
-Hall phải Active mới được Booking.
-```
-
----
-
-## DAY 14 — Hall UI + Test
-
-Test:
-
-```text
-Active Hall
-Inactive Hall
+Availability
 Invalid capacity
-Non-existing Hall
-Persistence
+Inactive Hall
 ```
 
-### 🚨 Milestone 2
+### 🟢 MILESTONE 2
 
 ```text
 Customer ✓
+Customer UI ✓
 Hall ✓
+Hall UI ✓
 SQLite ✓
-CRUD ✓
 Validation ✓
 Exception ✓
 ```
@@ -505,270 +728,348 @@ Exception ✓
 
 # 🟨 WEEK 3 — EVENT + BOOKING + AVAILABILITY
 
-Đây là tuần core của hệ thống.
-
----
-
-## DAY 15 — Event Repository
-
-SQLite CRUD:
-
-```text
-EventRepository
-```
-
----
-
-## DAY 16 — EventService
-
-Implement:
-
-```text
-createEvent()
-viewEvents()
-searchEvent()
-updateEvent()
-```
-
-Validation:
-
-```text
-Customer tồn tại
-Guest Count > 0
-Start < End
-```
-
----
-
-## DAY 17 — Event Console + Test
-
-Menu:
-
-```text
-1. Create Event
-2. View Events
-3. Search Event
-4. Update Event
-5. Back
-```
-
-Test invalid input.
-
----
-
-## DAY 18 — Booking Repository
-
-Booking:
-
-```text
-Booking ID
-Event ID
-Hall ID
-Start Time
-End Time
-Status
-```
-
-SQLite table:
-
-```text
-bookings
-```
-
----
-
-## DAY 19 — Booking Conflict
-
-Implement:
-
-```text
-hasConflict()
-```
-
-Rule:
-
-```text
-New Start < Existing End
-AND
-New End > Existing Start
-```
+# DAY 15 — EventRepository
 
 Test:
 
 ```text
-18:00 - 22:00
-20:00 - 23:00
-→ CONFLICT
+Create Event
+Read Event
+Update Event
 ```
 
-và:
+SQLite verification.
+
+---
+
+# DAY 16 — EventService
+
+### Test valid
 
 ```text
-18:00 - 20:00
-20:00 - 22:00
-→ OK
+Start = 18:00
+End   = 22:00
+Guest = 300
+```
+
+Expected:
+
+```text
+Event created successfully.
+```
+
+### Test invalid
+
+```text
+Start = 22:00
+End   = 18:00
+```
+
+Expected:
+
+```text
+[ERROR]
+Start time must be before End time.
+```
+
+Requirements xác định `Event Start Time < End Time`.
+
+---
+
+# DAY 17 — Event UI
+
+Test:
+
+```text
+Create
+View
+Search
+Update
+Back
+```
+
+### 🟢 DONE khi
+
+Toàn bộ thao tác thông qua:
+
+```text
+EventMenu
+ ↓
+EventService
+ ↓
+EventRepository
+ ↓
+SQLite
 ```
 
 ---
 
-## DAY 20 — BookingService
+# DAY 18 — BookingRepository
 
-Flow:
-
-```text
-Event exists?
- ↓
-Hall exists?
- ↓
-Hall Active?
- ↓
-Check Conflict
- ↓
-Create Booking
- ↓
-Save SQLite
-```
-
-Nếu conflict:
+Test:
 
 ```text
-BookingConflictException
+Create B001
+Find B001
+Cancel B001
 ```
+
+SQLite check.
 
 ---
 
-## DAY 21 — Booking Console + Integration
+# DAY 19 — Conflict Logic
+
+Đây là ngày phải test kỹ nhất.
+
+### Test 1 — Overlap
+
+Existing:
+
+```text
+18:00 → 22:00
+```
+
+New:
+
+```text
+20:00 → 23:00
+```
+
+Expected:
+
+```text
+CONFLICT
+```
+
+### Test 2
+
+```text
+16:00 → 19:00
+```
+
+Expected:
+
+```text
+CONFLICT
+```
+
+### Test 3
+
+```text
+22:00 → 23:00
+```
+
+Expected:
+
+```text
+NO CONFLICT
+```
+
+### Test 4
+
+```text
+14:00 → 18:00
+```
+
+Expected:
+
+```text
+NO CONFLICT
+```
+
+### Test 5 — Cancelled
+
+Existing:
+
+```text
+18:00 → 22:00
+Status = Cancelled
+```
+
+New:
+
+```text
+20:00 → 23:00
+```
+
+Expected:
+
+```text
+NO CONFLICT
+```
+
+### 🟢 DONE
+
+Tất cả 5 cases pass.
+
+---
+
+# DAY 20 — BookingService
 
 Test flow:
 
 ```text
-Create Customer
- ↓
-Create Event
- ↓
-Create Hall
- ↓
-Create Booking
+Event tồn tại ✓
+Hall tồn tại ✓
+Hall Active ✓
+Conflict check ✓
+Save ✓
 ```
 
-Sau đó:
+### Test lỗi
 
 ```text
-Create conflicting Booking
+Invalid Event
+Invalid Hall
+Inactive Hall
+Conflict
+Invalid time
 ```
 
-phải bị reject.
+Mỗi lỗi phải tạo exception phù hợp.
 
-### 🚨 Milestone 3
+---
 
-Đến đây phải chạy được:
+# DAY 21 — Booking UI
+
+### Full console test
+
+```text
+Create Booking
+View Booking
+Search Booking
+Cancel Booking
+Check Availability
+```
+
+### E2E
 
 ```text
 Customer
-   ↓
+ ↓
 Event
-   ↓
+ ↓
 Hall
-   ↓
-Availability
-   ↓
+ ↓
 Booking
 ```
 
-và toàn bộ dữ liệu được lưu bằng SQLite.
+### 🟢 MILESTONE 3
 
 ---
 
 # 🟧 WEEK 4 — PACKAGE + SERVICE + QUOTATION
 
-## DAY 22 — Package
+# DAY 22 — Package
 
-Implement:
+### Test
 
 ```text
-Package
-PackageRepository
-PackageService
-PackageMenu
+Create Package
+View Package
+Update Package
+Delete Package
 ```
 
-SQLite CRUD.
+SQLite persistence.
 
 ---
 
-## DAY 23 — Service
+# DAY 23 — Service
 
-Implement:
+### Test
 
 ```text
-Service
-ServiceRepository
-ServiceService
-ServiceMenu
+Create Service
+View Service
+Update Service
+Delete Service
 ```
 
-SQLite CRUD.
-
----
-
-## DAY 24 — Package ↔ Service
-
-Implement:
+Test price:
 
 ```text
-Add Service to Package
-View Package Services
+Unit Price = -1000
 ```
 
-Database:
+Expected:
 
 ```text
-package_services
-```
-
-Relationship:
-
-```text
-Package
- ├── Service
- ├── Service
- └── Service
+[ERROR] Unit price must be valid.
 ```
 
 ---
 
-## DAY 25 — Booking Services
+# DAY 24 — Package ↔ Service
 
-Implement:
-
-```text
-Add Service
-Remove Service
-Change Quantity
-```
-
-Database:
+Test:
 
 ```text
-booking_services
+Package P001
+ ↓
+Add Decoration
+ ↓
+Add Sound
+ ↓
+Add Lighting
 ```
 
-Calculation:
+View:
 
 ```text
-Quantity × Unit Price
+Wedding Premium
+ ├── Decoration
+ ├── Sound
+ └── Lighting
 ```
+
+Kiểm tra `package_services`.
 
 ---
 
-## DAY 26 — Quotation Repository
+# DAY 25 — Booking Services
 
-Tạo:
+Test:
 
 ```text
-Quotation
-QuotationRepository
-QuotationItem
+Booking B001
+ ↓
+Add Sound x2
+```
+
+Expected:
+
+```text
+Amount = 2 × UnitPrice
+```
+
+Test:
+
+```text
+Quantity = 0
+Quantity = -1
+```
+
+Expected:
+
+```text
+[ERROR]
+Quantity must be greater than 0.
+```
+
+Requirements xác định Service trong Booking được tính theo `Quantity × Unit Price`.
+
+---
+
+# DAY 26 — Quotation Repository
+
+Test:
+
+```text
+Create Q001
+Add Item
+View Q001
 ```
 
 SQLite:
@@ -778,53 +1079,71 @@ quotations
 quotation_items
 ```
 
----
-
-## DAY 27 — QuotationService
-
-Implement:
-
-```text
-calculateSubtotal()
-calculateTax()
-calculateTotal()
-```
-
-Công thức:
-
-```text
-Subtotal
-= Package Amount + Service Amount
-
-Total
-= Subtotal - Discount + Tax
-```
-
-Không cho user nhập Total.
+phải có record.
 
 ---
 
-## DAY 28 — Quotation UI + Testing
+# DAY 27 — Quotation Calculation
+
+Dùng dữ liệu:
+
+```text
+Package = 8,000,000
+Decoration = 5,000,000
+Sound = 2,000,000
+Lighting = 1,500,000
+```
+
+Expected:
+
+```text
+Subtotal = 16,500,000
+```
+
+Discount:
+
+```text
+1,000,000
+```
+
+Tax:
+
+```text
+1,550,000
+```
+
+Expected:
+
+```text
+Total = 17,050,000
+```
+
+Đây đúng công thức requirements:
+
+```text
+Subtotal = Package Amount + Service Amount
+Total = Subtotal - Discount + Tax
+```
+
+### Test quan trọng
+
+User nhập:
+
+```text
+Total = 1,000,000
+```
+
+Không được chấp nhận.
+
+Total phải được **system tự tính**.
+
+### 🟢 DONE
+
+---
+
+# DAY 28 — Quotation UI + Integration
 
 Test:
-
-```text
-Package
-Service
-Quantity
-Discount
-Tax
-Total
-Recalculate
-```
-
-Restart application:
-
-```text
-Quotation vẫn tồn tại.
-```
-
-### 🚨 Milestone 4
 
 ```text
 Booking
@@ -835,167 +1154,239 @@ Service
  ↓
 Quotation
  ↓
-Total
+Calculate
+ ↓
+Display
 ```
 
-đã chạy trên SQLite.
+Restart app:
+
+```text
+Quotation vẫn tồn tại.
+```
+
+### 🟢 MILESTONE 4
 
 ---
 
 # 🟥 WEEK 5 — CONTRACT + PAYMENT + OOP
 
-Đây là tuần quan trọng nhất về OOP.
+# DAY 29 — Contract
 
----
-
-## DAY 29 — Contract
-
-Implement:
+Test:
 
 ```text
-Contract
-ContractRepository
-ContractService
-ContractMenu
-```
-
-Flow:
-
-```text
-Quotation
+Quotation Q001
  ↓
 Create Contract
  ↓
-SQLite
+View Contract
 ```
+
+SQLite check.
 
 ---
 
-## DAY 30 — Contract Status
+# DAY 30 — Contract UI + Status
 
-Implement:
+Test:
 
 ```text
 Draft
+ ↓
 Active
+ ↓
 Completed
+```
+
+Test Cancel:
+
+```text
+Active
+ ↓
 Cancelled
 ```
 
-Validation đơn giản.
+Kiểm tra UI hiển thị đúng status.
 
 ---
 
-## DAY 31 — Payment Repository
+# DAY 31 — PaymentRepository
 
-Payment:
-
-```text
-Payment ID
-Contract ID
-Date
-Amount
-Method
-Note
-```
-
-SQLite:
+Test:
 
 ```text
-payments
+Create Payment
+View Payment
+Find by Contract
 ```
+
+SQLite check.
 
 ---
 
-## DAY 32 — Payment Business Rules
+# DAY 32 — Payment Rules
 
-Implement:
+Contract:
 
 ```text
-Payment > Contract Total
-→ Error
+100,000,000
+```
 
-Total Paid > Contract Total
-→ Error
+### Case 1
 
+```text
+Payment = 20M
+```
+
+Expected:
+
+```text
+Paid = 20M
+Outstanding = 80M
+```
+
+### Case 2
+
+```text
+Already Paid = 80M
+New Payment = 20M
+```
+
+Expected:
+
+```text
+Paid = 100M
+Outstanding = 0
+```
+
+### Case 3
+
+```text
+Already Paid = 80M
+New Payment = 30M
+```
+
+Expected:
+
+```text
+PaymentException
+```
+
+### Case 4
+
+```text
 Deposit > Contract Total
-→ Error
 ```
 
-Outstanding:
+Expected:
 
 ```text
-Contract Total - Total Paid
+PaymentException
 ```
+
+Payment requirements yêu cầu tổng payment không vượt Contract Total và Deposit không vượt Contract Total.
 
 ---
 
 # DAY 33 — Payment Polymorphism
 
-Tạo:
+Test runtime polymorphism:
 
 ```text
-PaymentMethod
-      ▲
-      │
- ┌────┼──────────┐
- │    │          │
-Cash  Bank       Card
-```
-
-Classes:
-
-```text
+PaymentMethod*
+       ↓
 CashPayment
-BankTransferPayment
-CardPayment
 ```
 
-Base:
+Call:
 
 ```cpp
-class PaymentMethod {
-public:
-    virtual ~PaymentMethod() = default;
-
-    virtual bool process(double amount) = 0;
-    virtual std::string getName() const = 0;
-};
+process()
 ```
 
-Đây là phần để chứng minh:
+Expected:
 
 ```text
-Abstraction
-Inheritance
-Polymorphism
+Cash payment processed.
 ```
 
----
-
-# DAY 34 — PaymentService
-
-Service làm việc với:
+Sau đó:
 
 ```text
-PaymentMethod
-```
-
-không phụ thuộc trực tiếp vào:
-
-```text
-CashPayment
+PaymentMethod*
+       ↓
 BankTransferPayment
+```
+
+Expected:
+
+```text
+Bank transfer processed.
+```
+
+Sau đó:
+
+```text
+PaymentMethod*
+       ↓
 CardPayment
 ```
 
-Test cả 3 payment methods.
+Expected:
+
+```text
+Card payment processed.
+```
+
+### Test quan trọng
+
+`PaymentService` không được viết kiểu:
+
+```cpp
+if (method == CASH)
+```
+
+cho toàn bộ behavior.
+
+Nó phải gọi:
+
+```cpp
+method.process(amount);
+```
+
+Đây là runtime polymorphism được tài liệu OOP định hướng cho `PaymentMethod`.
 
 ---
 
-# DAY 35 — Payment Console + Integration
+# DAY 34 — PaymentService + Payment UI
 
-Flow:
+### Console test
+
+```text
+Contract ID: CT001
+Amount: 20,000,000
+
+1. Cash
+2. Bank Transfer
+3. Card
+```
+
+Chọn từng loại.
+
+Expected:
+
+```text
+Payment recorded successfully.
+```
+
+Kiểm tra SQLite sau mỗi lần thanh toán.
+
+---
+
+# DAY 35 — Contract + Payment Integration
+
+### Full test
 
 ```text
 Quotation
@@ -1010,83 +1401,110 @@ Outstanding
 Test:
 
 ```text
-Contract = 100M
-Paid = 60M
-Outstanding = 40M
+100M
+ ↓
+60M
+ ↓
+20M
+ ↓
+20M
 ```
 
-Payment thêm 50M:
+Expected:
 
 ```text
-→ Exception
+Total Paid = 100M
+Outstanding = 0
 ```
 
-### 🚨 Milestone 5
-
-Đến đây bạn đã có phần OOP nổi bật:
+### 🟢 MILESTONE 5
 
 ```text
-PaymentMethod
-     ↓
-Cash
-Bank Transfer
-Card
-```
-
-và business flow tài chính hoàn chỉnh.
-
----
-
-# 🟪 WEEK 6 — AUTH + OPERATIONS + REPORT
-
-## DAY 36 — Authentication
-
-Implement:
-
-```text
-User
-UserRepository
-AuthService
-Login
-Logout
-```
-
-SQLite:
-
-```text
-users
+Contract ✓
+Contract UI ✓
+Payment ✓
+Payment UI ✓
+Payment Rules ✓
+Inheritance ✓
+Polymorphism ✓
 ```
 
 ---
 
-## DAY 37 — Authorization
+# 🟪 WEEK 6 — AUTH + OPERATIONS + REPORTS
 
-Role:
+# DAY 36 — Authentication
+
+### Test valid
 
 ```text
-Management
+Username: admin
+Password: correct
+```
+
+Expected:
+
+```text
+Login successful.
+Welcome, Admin.
+```
+
+### Test invalid
+
+```text
+Username: admin
+Password: wrong
+```
+
+Expected:
+
+```text
+Invalid username or password.
+```
+
+FR-AUTH-001 yêu cầu login bằng username/password và xác định role sau khi đăng nhập.
+
+---
+
+# DAY 37 — Authorization
+
+Test từng role:
+
+```text
+Admin
 Sales
 Accountant
 Coordinator
 Operations
-Administrator
+Management
 ```
 
-Kiểm tra quyền trước khi thực hiện action.
+Ví dụ Sales:
+
+```text
+Customer → allowed
+Event → allowed
+Booking → allowed
+Payment CRUD → denied
+```
+
+Expected:
+
+```text
+[ERROR] Access denied.
+```
+
+Permission matrix của requirements phân quyền theo các actor này.
+
+### 🟢 DONE
+
+Không chỉ ẩn menu; nếu user cố gọi action không có quyền thì Service/authorization cũng phải từ chối.
 
 ---
 
-## DAY 38 — Operations
+# DAY 38 — Operations
 
-Implement:
-
-```text
-StaffAssignment
-SpecialRequest
-Incident
-```
-
-Các chức năng:
+Test:
 
 ```text
 Assign Staff
@@ -1095,16 +1513,37 @@ Add Incident
 Update Status
 ```
 
-SQLite đầy đủ.
+Operations status:
+
+```text
+Planned
+Preparing
+In Progress
+Completed
+```
+
+Requirements xác định Operations có các trạng thái này.
 
 ---
 
-## DAY 39 — Event Completion
+# DAY 39 — Event Completion
 
-Implement:
+### Test valid
 
 ```text
-completeEvent()
+Event status = In Progress
+```
+
+Chọn:
+
+```text
+Complete Event
+```
+
+Expected:
+
+```text
+Event completed successfully.
 ```
 
 Lưu:
@@ -1116,17 +1555,31 @@ Incident
 Special Request Result
 ```
 
-Status:
+Các thông tin này nằm trong FR-EOC-002.
+
+### Test invalid
+
+Event:
 
 ```text
-Event → Completed
+Cancelled
 ```
+
+→ Không được Complete.
 
 ---
 
-## DAY 40 — Booking Report
+# DAY 40 — Booking Report
 
-Implement:
+Test data:
+
+```text
+B001 → H001
+B002 → H002
+B003 → H001
+```
+
+Report:
 
 ```text
 Booking Report
@@ -1140,19 +1593,34 @@ Hall
 Status
 ```
 
+Expected:
+
+Kết quả filter đúng dữ liệu.
+
 ---
 
-## DAY 41 — Event + Payment + Revenue Report
+# DAY 41 — Event + Payment + Revenue Report
 
-Implement:
+### Event Report
+
+Kiểm tra:
 
 ```text
-Event Report
-Payment Report
-Revenue Report
+Total Events
+Events by Type
+Events by Hall
+Events by Status
 ```
 
-Revenue:
+### Payment Report
+
+```text
+Contract Total
+Total Paid
+Outstanding
+```
+
+### Revenue Report
 
 ```text
 Total Contract Value
@@ -1160,46 +1628,107 @@ Total Paid
 Total Outstanding
 ```
 
----
-
-## DAY 42 — Main Menu Integration
-
-Ghép tất cả:
-
-```text
-1. Customer
-2. Hall
-3. Event
-4. Booking
-5. Package
-6. Service
-7. Quotation
-8. Contract
-9. Payment
-10. Operations
-11. Reports
-12. Logout
-```
-
-### 🚨 Milestone 6
-
-**Cuối Day 42 phải có tất cả feature chính.**
-
-Từ thời điểm này:
-
-> ❌ Không thêm feature lớn nữa.
+Đây là đúng nhóm Basic Reports được yêu cầu.
 
 ---
 
-# 🟫 WEEK 7 — FULL INTEGRATION + TESTING
+# DAY 42 — FULL CONSOLE UI INTEGRATION
 
-Tuần này **không phát triển tính năng mới**.
-
----
-
-## DAY 43 — Full End-to-End
+Đây là **checkpoint cực kỳ quan trọng**.
 
 Chạy:
+
+```text
+Login
+ ↓
+Main Menu
+ ↓
+Customer Menu
+ ↓
+Hall Menu
+ ↓
+Event Menu
+ ↓
+Booking Menu
+ ↓
+Package Menu
+ ↓
+Service Menu
+ ↓
+Quotation Menu
+ ↓
+Contract Menu
+ ↓
+Payment Menu
+ ↓
+Operations Menu
+ ↓
+Report Menu
+```
+
+### Test
+
+Mỗi menu:
+
+```text
+Open ✓
+Action ✓
+Back ✓
+Invalid choice ✓
+Exception ✓
+```
+
+### Test kiến trúc
+
+Code review:
+
+```text
+Console UI
+    ↓
+Service
+    ↓
+Repository
+    ↓
+SQLite
+```
+
+Không được:
+
+```text
+Console UI
+    ↓
+SQLite
+```
+
+### 🟢 MILESTONE 6
+
+> **Toàn bộ feature chính + Console UI + SQLite đã hoàn thành.**
+
+Từ đây:
+
+# 🚫 NO NEW FEATURES
+
+---
+
+# 🟫 WEEK 7 — INTEGRATION TESTING
+
+Tuần này chuyển từ:
+
+```text
+"Code chức năng"
+```
+
+sang:
+
+```text
+"Chứng minh hệ thống chạy đúng"
+```
+
+---
+
+# DAY 43 — Full E2E Test
+
+Dùng một scenario duy nhất:
 
 ```text
 Login
@@ -1209,6 +1738,440 @@ Customer
 Event
  ↓
 Hall
+ ↓
+Availability
+ ↓
+Booking
+ ↓
+Package
+ ↓
+Service
+ ↓
+Quotation
+ ↓
+Contract
+ ↓
+Payment
+ ↓
+Staff Assignment
+ ↓
+Operations
+ ↓
+Complete Event
+ ↓
+Revenue Report
+```
+
+### 🟢 DONE khi
+
+Chạy từ đầu đến cuối **không sửa database thủ công**.
+
+---
+
+# DAY 44 — SQLite Persistence Test
+
+Test từng entity:
+
+```text
+Create
+ ↓
+Exit
+ ↓
+Restart
+ ↓
+Read
+```
+
+Danh sách:
+
+```text
+User
+Customer
+Hall
+Event
+Booking
+Package
+Service
+Quotation
+Contract
+Payment
+StaffAssignment
+SpecialRequest
+Incident
+```
+
+Requirements yêu cầu hệ thống phải save/load dữ liệu khi khởi động lại.
+
+### 🟢 DONE
+
+Không có entity chính nào mất dữ liệu sau restart.
+
+---
+
+# DAY 45 — Invalid Input Test
+
+Tạo bảng test:
+
+|Input|Expected|
+|---|---|
+|Empty name|Error|
+|Negative number|Error|
+|Invalid ID|Error|
+|Duplicate ID|Error|
+|Invalid date|Error|
+|Invalid time|Error|
+|Invalid menu choice|Error|
+|Quantity = 0|Error|
+
+Requirements yêu cầu Console có input validation.
+
+### 🟢 DONE
+
+Không crash.
+
+---
+
+# DAY 46 — Exception Test
+
+Cố tình trigger:
+
+```text
+ValidationException
+EntityNotFoundException
+BookingConflictException
+PaymentException
+DatabaseException
+```
+
+Expected:
+
+```text
+[ERROR] ...
+```
+
+Không được:
+
+```text
+terminate called...
+Segmentation fault
+Stack trace
+```
+
+FR-CONSOLE yêu cầu lỗi nghiệp vụ phải được hiển thị rõ ràng và application không được kết thúc đột ngột.
+
+---
+
+# DAY 47 — Authorization Test
+
+Tạo matrix:
+
+|Role|Customer|Booking|Payment|Operations|Report|
+|---|--:|--:|--:|--:|--:|
+|Admin|✓|✓|✓|✓|✓|
+|Sales|✓|✓|R|R|R|
+|Accountant|R|R|✓|R|R|
+|Coordinator|R|R|R|✓|R|
+|Operations|R|R|R|✓|R|
+|Management|R|R|R|R|✓|
+
+So sánh với permission matrix trong requirements.
+
+---
+
+# DAY 48 — CRUD Regression
+
+Mỗi module chạy:
+
+```text
+CREATE
+ ↓
+READ
+ ↓
+UPDATE
+ ↓
+READ
+ ↓
+DELETE
+ ↓
+READ
+```
+
+Module:
+
+```text
+Customer
+Hall
+Event
+Booking
+Package
+Service
+Quotation
+Contract
+Payment
+```
+
+### 🟢 DONE
+
+Không có module nào CRUD bị hỏng do code module khác.
+
+---
+
+# DAY 49 — Code Cleanup + Architecture Test
+
+Search source:
+
+```text
+TODO
+DEBUG
+cout << "test"
+temporary
+hard-coded
+```
+
+Sau đó review:
+
+```text
+UI
+ ↓
+Service
+ ↓
+Repository
+ ↓
+SQLite
+```
+
+### 🟢 MILESTONE 7
+
+Không còn lỗi integration nghiêm trọng.
+
+---
+
+# 🟦 WEEK 8 — FINALIZATION
+
+# DAY 50 — Architecture Review
+
+Với **từng module**, tick:
+
+```text
+[ ] Model
+[ ] Repository
+[ ] Service
+[ ] Console UI
+[ ] SQLite
+[ ] Validation
+[ ] Exception
+[ ] Test
+```
+
+Ví dụ Customer:
+
+```text
+[x] Customer
+[x] CustomerRepository
+[x] CustomerService
+[x] CustomerMenu
+[x] SQLite
+[x] Validation
+[x] Exception
+[x] Test
+```
+
+---
+
+# DAY 51 — OOP Test
+
+Không chỉ đọc code — phải **chạy demo OOP**.
+
+### Encapsulation
+
+Chứng minh:
+
+```text
+private data
+ ↓
+getter/setter
+```
+
+### Inheritance
+
+Chứng minh:
+
+```text
+PaymentMethod
+├── CashPayment
+├── BankTransferPayment
+└── CardPayment
+```
+
+### Polymorphism
+
+Chạy:
+
+```text
+PaymentMethod*
+ ↓
+CashPayment
+ ↓
+process()
+```
+
+sau đó:
+
+```text
+PaymentMethod*
+ ↓
+BankTransferPayment
+ ↓
+process()
+```
+
+sau đó:
+
+```text
+PaymentMethod*
+ ↓
+CardPayment
+ ↓
+process()
+```
+
+### Exception
+
+Trigger:
+
+```text
+Booking Conflict
+Payment exceeds outstanding
+Invalid input
+```
+
+### 🟢 DONE
+
+Bạn phải có thể **mở source và chỉ cho giảng viên từng phần OOP**.
+
+---
+
+# DAY 52 — Business Rules Test
+
+Tạo một bảng:
+
+|Rule|Test|Result|
+|---|---|---|
+|Hall Active|Inactive Hall → Booking|PASS|
+|Start < End|22:00 → 18:00|PASS|
+|No overlap|20–23 vs 18–22|PASS|
+|Payment ≤ Total|30M > 20M outstanding|PASS|
+|Deposit ≤ Total|Deposit > Total|PASS|
+
+Các core business rules này được nêu trực tiếp trong requirements.
+
+### 🟢 DONE
+
+**Không có business rule nào chỉ kiểm tra ở UI.**
+
+---
+
+# DAY 53 — Console UI Polish
+
+Test:
+
+```text
+Header
+Menu
+Spacing
+Error
+Success
+Back
+Logout
+```
+
+Ví dụ:
+
+```text
+==================================================
+              CUSTOMER MANAGEMENT
+==================================================
+1. Create Customer
+2. View Customers
+3. Search Customer
+4. Update Customer
+5. Delete Customer
+6. Back
+--------------------------------------------------
+Enter your choice:
+```
+
+Đúng định hướng Console Interface trong requirements: mỗi module có menu riêng và thao tác rõ ràng.
+
+### 🟢 DONE
+
+Không thêm feature.
+
+---
+
+# DAY 54 — Final Bug Fix
+
+Tạo bug list:
+
+```text
+BUG-001
+BUG-002
+BUG-003
+```
+
+Mỗi bug:
+
+```text
+Problem
+ ↓
+Reproduce
+ ↓
+Fix
+ ↓
+Retest
+```
+
+Không được ghi:
+
+```text
+"Probably fixed"
+```
+
+Phải test lại.
+
+---
+
+# DAY 55 — Demo Dataset
+
+Tạo:
+
+```text
+Users
+Customers
+Centers
+Halls
+Packages
+Services
+Events
+Bookings
+Quotations
+Contracts
+Payments
+Staff Assignments
+```
+
+### Demo test
+
+```text
+Login
+ ↓
+Create Customer
+ ↓
+Create Event
+ ↓
+Select Hall
+ ↓
+Check Availability
  ↓
 Booking
  ↓
@@ -1226,511 +2189,247 @@ Operations
  ↓
 Complete Event
  ↓
-Report
-```
-
-Mục tiêu:
-
-> Chạy từ đầu đến cuối mà không cần sửa tay database.
-
----
-
-# DAY 44 — SQLite Persistence
-
-Test:
-
-```text
-Create data
- ↓
-Exit
- ↓
-Restart
- ↓
-Load data
-```
-
-Kiểm tra tất cả entity chính.
-
----
-
-# DAY 45 — Input Validation
-
-Cố tình nhập:
-
-```text
-Empty
-Negative number
-Invalid date
-Invalid time
-Invalid ID
-Duplicate ID
-Invalid menu choice
-```
-
-Mục tiêu:
-
-```text
-Application không crash.
-```
-
----
-
-# DAY 46 — Exception Testing
-
-Test:
-
-```text
-ValidationException
-EntityNotFoundException
-BookingConflictException
-PaymentException
-DatabaseException
-```
-
-Kiểm tra message:
-
-```text
-[ERROR]
-The selected hall is already booked.
-```
-
-thay vì stack trace khó hiểu.
-
----
-
-# DAY 47 — Authorization Testing
-
-Test từng role:
-
-```text
-Admin
-Sales
-Accountant
-Coordinator
-Operations
-Management
-```
-
-Kiểm tra:
-
-```text
-Có quyền
-Không có quyền
-```
-
----
-
-# DAY 48 — CRUD Regression
-
-Test toàn bộ module:
-
-```text
-Customer
-Hall
-Event
-Booking
-Package
-Service
-Quotation
-Contract
-Payment
-```
-
----
-
-# DAY 49 — Source Code Cleanup
-
-Dọn:
-
-```text
-Debug cout
-Unused variables
-Unused imports
-TODO
-Duplicate code
-Test code
-Hard-coded temporary data
-```
-
-Kiểm tra:
-
-```text
-UI → Service → Repository → SQLite
-```
-
-Không để:
-
-```text
-UI → SQLite
-```
-
----
-
-# 🟦 WEEK 8 — FINALIZATION
-
-Tuần cuối là **ổn định source**, không phải xây thêm hệ thống.
-
----
-
-# DAY 50 — Architecture Review
-
-Kiểm tra từng module:
-
-```text
-Model
- ↓
-Service
- ↓
-Repository
- ↓
-SQLite
-```
-
-Service chứa business logic.
-
-Repository chứa SQL.
-
-UI xử lý input/output.
-
----
-
-# DAY 51 — OOP Review
-
-Chuẩn bị chỉ ra trong source:
-
-### Encapsulation
-
-```text
-private attributes
-public methods
-```
-
-### Abstraction
-
-```text
-PaymentMethod
-Repository abstraction
-```
-
-### Inheritance
-
-```text
-PaymentMethod
-├── CashPayment
-├── BankTransferPayment
-└── CardPayment
-```
-
-### Polymorphism
-
-```cpp
-PaymentMethod*
-```
-
-### Exception
-
-```text
-AppException
-├── ValidationException
-├── BusinessException
-├── ...
-```
-
----
-
-# DAY 52 — Business Rules Review
-
-Kiểm tra lại:
-
-```text
-Hall Active
-        ↓
-Booking
-
-Start < End
-        ↓
-Event
-
-No Overlap
-        ↓
-Booking
-
-Payment <= Contract Total
-        ↓
-Payment
-
-Deposit <= Contract Total
-        ↓
-Payment
-```
-
-Các business rules phải được enforce ở service/business layer.
-
----
-
-# DAY 53 — Console Polish
-
-Chỉ chỉnh UI:
-
-```text
-==================================================
-          TRONG DONG PALACE MANAGEMENT
-==================================================
-```
-
-Thêm:
-
-```text
-[SUCCESS]
-[ERROR]
-[WARNING]
-```
-
-Menu dễ nhìn.
-
-**Không dành thời gian làm GUI.**
-
----
-
-# DAY 54 — Final Bug Fix
-
-Chạy lại:
-
-```text
-Customer
-Hall
-Event
-Booking
-Package
-Service
-Quotation
-Contract
-Payment
-Operations
-Report
-```
-
-Ghi:
-
-```text
-BUG-001
-BUG-002
-BUG-003
-```
-
-Fix hết.
-
----
-
-# DAY 55 — Demo Dataset
-
-Tạo dữ liệu demo:
-
-```text
-Users
-Customers
-Centers
-Halls
-Packages
-Services
-Events
-Bookings
-Quotations
-Contracts
-Payments
-Staff
-```
-
-Chuẩn bị một scenario hoàn chỉnh:
-
-```text
-Nguyen Van A
-      ↓
-Wedding Event
-      ↓
-Hall H001
-      ↓
-Wedding Premium
-      ↓
-Decoration + Sound + Lighting
-      ↓
-Quotation
-      ↓
-Contract
-      ↓
-Payment
-      ↓
-Operations
-      ↓
-Completed
-      ↓
 Revenue Report
 ```
 
----
+### 🟢 DONE
 
-# DAY 56 — FINAL RELEASE
-
-Không code thêm.
-
-Chỉ kiểm tra:
-
-```text
-[✓] Build
-[✓] Run
-[✓] SQLite database
-[✓] All tables
-[✓] CRUD
-[✓] Validation
-[✓] Exception
-[✓] Authorization
-[✓] OOP
-[✓] E2E Flow
-[✓] Reports
-[✓] No debug code
-[✓] README
-[✓] Demo data
-```
-
-Đóng băng source:
-
-```text
-v1.0-final
-```
+Có thể chạy demo **không cần sửa database bằng tay**.
 
 ---
 
-# 📊 MILESTONE QUAN TRỌNG
+# DAY 56 — FINAL ACCEPTANCE TEST
 
-|Ngày|Bắt buộc hoàn thành|
-|--:|---|
-|**7**|Project + SQLite + Models + Repository + Exception|
-|**14**|Customer + Hall|
-|**21**|Event + Booking + Availability|
-|**28**|Package + Service + Quotation|
-|**35**|Contract + Payment + Polymorphism|
-|**42**|**Toàn bộ feature chính**|
-|**49**|Full Integration + Testing|
-|**56**|**FINAL SOURCE CODE**|
+Đây là ngày **không code thêm**.
+
+Chạy checklist:
+
+```text
+========================================
+      FINAL ACCEPTANCE TEST
+========================================
+
+[ ] Application starts
+[ ] SQLite connects
+[ ] Login works
+[ ] Authorization works
+
+[ ] Customer works
+[ ] Hall works
+[ ] Event works
+[ ] Availability works
+[ ] Booking works
+
+[ ] Package works
+[ ] Service works
+[ ] Quotation works
+[ ] Contract works
+[ ] Payment works
+
+[ ] Operations works
+[ ] Event Completion works
+[ ] Reports work
+
+[ ] Validation works
+[ ] Exceptions work
+[ ] Persistence works
+[ ] OOP demo works
+[ ] E2E works
+```
+
+### Final E2E
+
+Phải chạy được:
+
+```text
+Login
+  ↓
+Customer
+  ↓
+Event
+  ↓
+Hall
+  ↓
+Availability
+  ↓
+Booking
+  ↓
+Package / Service
+  ↓
+Quotation
+  ↓
+Contract
+  ↓
+Payment
+  ↓
+Operations
+  ↓
+Event Completion
+  ↓
+Reports
+```
+
+Đây cũng chính là flow nghiệp vụ chính của hệ thống trong Functional Requirements.
 
 ---
 
-# 🧱 Cách chia task cho AI Code
+# 📊 BẢNG "NGÀY NÀO PHẢI ĐẠT GÌ?"
 
-Đây là phần mình khuyên bạn **rất nên tuân thủ**.
+Đây là bảng mình khuyên bạn **in ra hoặc đặt cạnh máy khi code**:
 
-Không nói với AI:
-
-> "Hãy code project Trống Đồng Palace hoàn chỉnh."
-
-Thay vào đó, mỗi ngày đưa đúng task của ngày đó.
-
-Ví dụ **Day 19**:
-
-Hôm nay implement Booking Conflict Logic theo Functional Requirements.
-
-Yêu cầu:
-
-- Implement BookingRepository với SQLite.
-    
-- Implement logic kiểm tra conflict giữa các booking cùng Hall.
-    
-- Rule: New Start < Existing End AND New End > Existing Start.
-    
-- Booking Cancelled không được tính là conflict.
-    
-- Nếu conflict thì throw BookingConflictException.
-    
-- Không sửa các module không liên quan.
-    
-- Không thêm design pattern hoặc abstraction không cần thiết.
-    
-- Code phải đơn giản, dễ đọc và dễ giải thích trong đồ án OOP.
-    
-- Sau khi code xong, compile và test các trường hợp overlap/non-overlap.
-    
-
-Ví dụ **Day 33**:
-
-Hôm nay implement Payment Polymorphism.
-
-Yêu cầu:
-
-- Tạo abstract class PaymentMethod.
-    
-- Tạo CashPayment, BankTransferPayment và CardPayment kế thừa PaymentMethod.
-    
-- PaymentMethod phải có virtual function process().
-    
-- PaymentService phải làm việc thông qua PaymentMethod abstraction.
-    
-- Demonstrate runtime polymorphism.
-    
-- Không tạo architecture phức tạp.
-    
-- Không thêm Factory/Strategy framework nếu không thực sự cần.
-    
-- Code phải phù hợp với đồ án OOP sinh viên và dễ giải thích khi bảo vệ.
-    
-
-Ví dụ **Day 43**:
-
-Hôm nay không được thêm feature mới.
-
-Hãy kiểm tra toàn bộ End-to-End Flow:
-
-Login → Customer → Event → Hall → Booking → Package/Service → Quotation → Contract → Payment → Operations → Complete Event → Report.
-
-Mục tiêu:
-
-- Tìm lỗi integration.
-    
-- Sửa lỗi.
-    
-- Đảm bảo dữ liệu được lưu và đọc từ SQLite.
-    
-- Không refactor lớn.
-    
-- Không thêm design pattern.
-    
-- Không thay đổi Functional Requirements.
-    
-- Không thêm feature ngoài scope.
-    
+|Ngày|Task|Điều kiện 🟢 DONE|
+|--:|---|---|
+|1|Requirements|Checklist + UI flow|
+|2|Project + SQLite + UI|Build + DB + Main Menu|
+|3|Schema|17 tables|
+|4|Models|Models compile + getter/setter|
+|5|Exception|Throw/catch pass|
+|6|Repository|Repository → SQLite pass|
+|7|Foundation|Full foundation integration|
+|8|Customer Repo|CRUD + DB|
+|9|Customer Service|Validation + CRUD|
+|10|Customer UI|Menu → Service|
+|11|Customer Test|E2E + persistence|
+|12|Hall Repo|CRUD + DB|
+|13|Hall Service|Validation + rules|
+|14|Hall UI|E2E|
+|15|Event Repo|CRUD|
+|16|Event Service|Validation|
+|17|Event UI|E2E|
+|18|Booking Repo|CRUD|
+|19|Conflict|5 conflict cases PASS|
+|20|Booking Service|All business rules|
+|21|Booking UI|E2E|
+|22|Package|CRUD + UI|
+|23|Service|CRUD + UI|
+|24|Package-Service|Relationship works|
+|25|Booking-Service|Quantity calculation|
+|26|Quotation Repo|DB|
+|27|Quotation|Calculation PASS|
+|28|Quotation UI|E2E|
+|29|Contract|Create/View|
+|30|Contract UI|Status works|
+|31|Payment Repo|CRUD|
+|32|Payment Rules|Overpayment rejected|
+|33|Polymorphism|3 subclasses run|
+|34|Payment UI|Payment E2E|
+|35|Contract-Payment|Full flow|
+|36|Login|Valid/invalid login|
+|37|Authorization|Role matrix PASS|
+|38|Operations|CRUD/actions|
+|39|Completion|Complete Event PASS|
+|40|Booking Report|Filters PASS|
+|41|Reports|4 reports PASS|
+|42|**Full UI**|**All menus work**|
+|43|E2E|Full business flow|
+|44|Persistence|Restart test PASS|
+|45|Input Test|Invalid inputs handled|
+|46|Exception Test|All exceptions handled|
+|47|Auth Test|All roles PASS|
+|48|Regression|CRUD PASS|
+|49|Cleanup|No critical bugs|
+|50|Architecture|Layering correct|
+|51|OOP|Can demonstrate OOP|
+|52|Business Rules|All rules PASS|
+|53|UI Polish|Console consistent|
+|54|Bug Fix|All known bugs fixed|
+|55|Demo|Demo scenario PASS|
+|56|**FINAL**|**Acceptance Test PASS**|
 
 ---
 
-# 🔥 Quy tắc quản lý 8 tuần
+# 🔥 Quan trọng nhất: mỗi ngày phải có "Evidence"
 
-Mình khuyên bạn ghi 4 trạng thái cho từng task:
+Mình khuyên bạn **không đánh dấu DONE chỉ vì code xong**.
 
-```text
-⬜ Not Started
-🔵 In Progress
-🟢 Done
-🔴 Bug
-```
-
-Và đặc biệt:
-
-### Ngày 1–42
+Ví dụ Day 19 phải lưu lại:
 
 ```text
-BUILD
+DAY-19-TEST.txt
+
+[PASS] 18:00-22:00 vs 20:00-23:00 → Conflict
+[PASS] 18:00-22:00 vs 16:00-19:00 → Conflict
+[PASS] 18:00-22:00 vs 22:00-23:00 → No Conflict
+[PASS] 18:00-22:00 vs 14:00-18:00 → No Conflict
+[PASS] Cancelled booking → No Conflict
 ```
 
-### Ngày 43–49
+Day 27:
 
 ```text
-INTEGRATE + TEST
+DAY-27-TEST.txt
+
+Package       = 8,000,000
+Services      = 8,500,000
+Subtotal      = 16,500,000
+Discount      = 1,000,000
+Tax           = 1,550,000
+Expected Total = 17,050,000
+Actual Total   = 17,050,000
+
+[PASS]
 ```
 
-### Ngày 50–56
+Day 33:
 
 ```text
-STABILIZE + PREPARE DEMO
+DAY-33-TEST.txt
+
+[PASS] CashPayment::process()
+[PASS] BankTransferPayment::process()
+[PASS] CardPayment::process()
+
+[PASS] PaymentMethod* runtime polymorphism
 ```
 
-**Không để đến tuần 7 mới nghĩ đến SQLite.** SQLite phải đi cùng từng module ngay từ ngày module đó được xây dựng.
+Day 43:
 
-Với cách này, ngay cả khi bạn bị chậm khoảng **5–7 ngày**, bạn vẫn có một source code có thể chạy được từ giữa/cuối Week 6 và còn Week 7–8 để cứu deadline. Đây là phương án an toàn hơn nhiều cho một đồ án OOP 8 tuần.
+```text
+DAY-43-E2E.txt
+
+[PASS] Login
+[PASS] Customer
+[PASS] Event
+[PASS] Hall
+[PASS] Booking
+[PASS] Package
+[PASS] Service
+[PASS] Quotation
+[PASS] Contract
+[PASS] Payment
+[PASS] Operations
+[PASS] Event Completion
+[PASS] Report
+```
+
+## 🎯 Như vậy tiêu chuẩn của bạn sẽ là:
+
+```text
+CODE
+  ↓
+COMPILE
+  ↓
+RUN
+  ↓
+HAPPY CASE
+  ↓
+ERROR CASE
+  ↓
+DATABASE CHECK
+  ↓
+INTEGRATION CHECK
+  ↓
+🟢 DONE
+```
+
+Chứ **không phải**:
+
+```text
+Code xong
+   ↓
+"Chắc là Done"
+```
+
+Cách này đặc biệt phù hợp với project của bạn vì Functional Requirements đã yêu cầu không chỉ feature, mà còn **CRUD, validation, exception handling, Console UI, persistence/load và business rules**.
+
+Và quan trọng nhất: **từ Day 8 trở đi, mỗi module đều phải có cả Console UI + SQLite test trước khi đánh dấu hoàn thành**. Điều đó giúp bạn luôn có một hệ thống chạy được trong suốt 8 tuần, thay vì đến cuối mới ghép UI.
