@@ -20,9 +20,7 @@ src/
 ## Yêu cầu
 
 - CMake >= 3.10 (cài đặt qua installer chính chủ của CMake: https://cmake.org/download/)
-- Trình biên dịch hỗ trợ C++17 (g++, clang++, MSVC)
-- SQLite3 dev library:
-  - Windows: cài qua msys2 mingw64 (`pacman -S mingw-w64-x86_64-sqlite3`) rồi trỏ CMake tới toolchain file của vcpkg
+- msys2
 
 ## Build & Run (Linux/macOS)
 
