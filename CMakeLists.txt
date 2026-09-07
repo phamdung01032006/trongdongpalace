@@ -9,11 +9,20 @@ add_executable(TrongDongPalace
     src/main.cpp
     src/database/DatabaseManager.cpp
     src/database/DatabaseInitializer.cpp
+    src/repositories/CustomerRepository.cpp
+    src/repositories/HallRepository.cpp
+    src/repositories/EventRepository.cpp
+    src/services/CustomerService.cpp
+    src/services/HallService.cpp
+    src/services/EventService.cpp
     src/sqlite3.c
     src/utils/DisplayHelper.cpp
     src/utils/InputHelper.cpp
     src/ui/MainMenu.cpp
     src/ui/ConsoleUI.cpp
+    src/ui/CustomerMenu.cpp
+    src/ui/HallMenu.cpp
+    src/ui/EventMenu.cpp
 )
 
 # Giúp các file .cpp tìm thấy sqlite3.h dễ dàng hơn

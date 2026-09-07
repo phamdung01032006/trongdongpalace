@@ -1,8 +1,14 @@
 #include "MainMenu.h"
+#include "CustomerMenu.h"
+#include "HallMenu.h"
+#include "EventMenu.h"
 #include "../utils/InputHelper.h"
 #include "../utils/DisplayHelper.h"
 #include <iostream>
 using namespace std;
+
+MainMenu::MainMenu(CustomerService& customerService, HallService& hallService, EventService& eventService)
+    : customerService(customerService), hallService(hallService), eventService(eventService) {}
 
 void MainMenu::show() {
     bool running = true;
@@ -29,8 +35,14 @@ void MainMenu::show() {
 
         switch (choice) {
             case 1:
+                CustomerMenu(customerService).show();
+                break;
             case 2:
+                HallMenu(hallService).show();
+                break;
             case 3:
+                EventMenu(eventService).show();
+                break;
             case 4:
             case 5:
             case 6:
@@ -39,7 +51,6 @@ void MainMenu::show() {
             case 9:
             case 10:
             case 11:
-                // Các module này sẽ được "lắp" logic thật từ Day 8 trở đi
                 cout << "[INFO] This module is not implemented yet.\n";
                 DisplayHelper::pause();
                 break;

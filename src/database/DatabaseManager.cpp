@@ -1,4 +1,5 @@
 #include "DatabaseManager.h"
+#include "../exceptions/AppException.h"
 
 #include <stdexcept>
 #include <utility>
@@ -20,7 +21,7 @@ void DatabaseManager::open() {
         sqlite3_close(connection);
         connection = nullptr;
 
-        throw std::runtime_error(message);
+        throw DatabaseException(message);
     }
 
     // SQLite không tự enforce FOREIGN KEY trừ khi bật pragma này cho
@@ -53,7 +54,7 @@ void DatabaseManager::execute(const std::string& sql) {
 
         sqlite3_free(errorMessage);
 
-        throw std::runtime_error(message);
+        throw DatabaseException(message);
     }
 }
 

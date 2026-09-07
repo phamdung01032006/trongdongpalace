@@ -209,4 +209,8 @@ void DatabaseInitializer::initialize(DatabaseManager& db) {
     for (const auto& sql : statements) {
         db.execute(sql);
     }
+
+    // Day 12 only manages halls; a default center keeps Hall creation usable
+    // while the Center module has not been implemented yet.
+    db.execute("INSERT OR IGNORE INTO centers (id, name, address, phone) VALUES (1, 'Trong Dong Palace', '', '');");
 }
