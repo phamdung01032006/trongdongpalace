@@ -1,20 +1,12 @@
-cmake_minimum_required(VERSION 3.10)
-# Thêm chữ C vào phần ngôn ngữ
-project(TrongDongPalace VERSION 0.1.0 LANGUAGES CXX C)
+cmake_minimum_required(VERSION 3.16)
+
+project(TrongDongPalace LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(TrongDongPalace
-    src/main.cpp
-    src/database/DatabaseManager.cpp
-    src/database/DatabaseInitializer.cpp
-    src/sqlite3.c
-    src/utils/DisplayHelper.cpp
-    src/utils/InputHelper.cpp
-    src/ui/MainMenu.cpp
-    src/ui/ConsoleUI.cpp
-)
+file(GLOB PROJECT_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
 
-# Giúp các file .cpp tìm thấy sqlite3.h dễ dàng hơn
-target_include_directories(TrongDongPalace PRIVATE src)
+add_executable(TrongDongPalace main.cpp ${PROJECT_SOURCES})
+target_include_directories(TrongDongPalace PRIVATE include)

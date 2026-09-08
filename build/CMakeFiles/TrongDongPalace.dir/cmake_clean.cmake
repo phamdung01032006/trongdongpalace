@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/TrongDongPalace.dir/main.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/main.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj.d"
+  "CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj"
+  "CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj.d"
+  "TrongDongPalace.exe"
+  "TrongDongPalace.exe.manifest"
+  "TrongDongPalace.pdb"
+  "libTrongDongPalace.dll.a"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/TrongDongPalace.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
