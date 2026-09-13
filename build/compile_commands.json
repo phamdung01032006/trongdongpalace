@@ -7,6 +7,12 @@
 },
 {
   "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\AuthService.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\AuthService.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/AuthService.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\BirthdayEvent.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\BirthdayEvent.cpp",
   "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/BirthdayEvent.cpp",
   "output": "CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj"
@@ -22,6 +28,24 @@
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\Center.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Center.cpp",
   "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Center.cpp",
   "output": "CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\CenterRepository.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\CenterRepository.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CenterRepository.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\CenterService.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\CenterService.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CenterService.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\ConsoleUI.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\ConsoleUI.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/ConsoleUI.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj"
 },
 {
   "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
@@ -43,6 +67,24 @@
 },
 {
   "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\CustomerRepository.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\CustomerRepository.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CustomerRepository.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\CustomerService.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\CustomerService.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CustomerService.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\DisplayHelper.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\DisplayHelper.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/DisplayHelper.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\Event.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Event.cpp",
   "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Event.cpp",
   "output": "CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj"
@@ -52,6 +94,30 @@
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\Hall.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Hall.cpp",
   "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Hall.cpp",
   "output": "CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\HallRepository.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\HallRepository.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/HallRepository.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\HallService.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\HallService.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/HallService.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\InputHelper.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\InputHelper.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/InputHelper.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\JsonStorage.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\JsonStorage.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/JsonStorage.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj"
 },
 {
   "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
@@ -85,8 +151,176 @@
 },
 {
   "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\UserRepository.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\UserRepository.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/UserRepository.cpp",
+  "output": "CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\TrongDongPalace.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\TrongDongPalace.dir\\src\\WeddingEvent.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\WeddingEvent.cpp",
   "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/WeddingEvent.cpp",
   "output": "CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\tests\\FoundationTests.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\tests\\FoundationTests.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/tests/FoundationTests.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\AuthService.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\AuthService.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/AuthService.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\BirthdayEvent.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\BirthdayEvent.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/BirthdayEvent.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Booking.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Booking.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Booking.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Center.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Center.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Center.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Center.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\CenterRepository.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\CenterRepository.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CenterRepository.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\CenterService.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\CenterService.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CenterService.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\ConsoleUI.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\ConsoleUI.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/ConsoleUI.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Contract.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Contract.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Contract.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\CorporateEvent.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\CorporateEvent.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CorporateEvent.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Customer.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Customer.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Customer.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\CustomerRepository.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\CustomerRepository.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CustomerRepository.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\CustomerService.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\CustomerService.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CustomerService.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\DisplayHelper.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\DisplayHelper.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/DisplayHelper.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Event.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Event.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Event.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Event.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Hall.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Hall.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Hall.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\HallRepository.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\HallRepository.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/HallRepository.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\HallService.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\HallService.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/HallService.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\InputHelper.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\InputHelper.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/InputHelper.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\JsonStorage.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\JsonStorage.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/JsonStorage.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Package.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Package.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Package.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Package.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Payment.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Payment.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Payment.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Quotation.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Quotation.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Quotation.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\Service.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\Service.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Service.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/Service.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\User.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\User.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/User.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/User.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\UserRepository.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\UserRepository.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/UserRepository.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles\\FoundationTests.dir\\includes_CXX.rsp -g -std=c++17 -o CMakeFiles\\FoundationTests.dir\\src\\WeddingEvent.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace\\src\\WeddingEvent.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/WeddingEvent.cpp",
+  "output": "CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj"
 }
 ]

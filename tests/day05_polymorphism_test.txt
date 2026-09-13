@@ -1,0 +1,6 @@
+Feature: Day 5 - Runtime polymorphism integration
+Files tested: Event hierarchy, tests/FoundationTests.cpp
+Input: vector<shared_ptr<Event>> containing WeddingEvent, CorporateEvent and BirthdayEvent.
+Expected: Virtual calls dispatch to the correct type and each base price is different.
+Actual: WEDDING=40,000,000; CORPORATE=29,500,000; BIRTHDAY=22,000,000.
+Result: PASS

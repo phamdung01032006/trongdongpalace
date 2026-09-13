@@ -64,6 +64,16 @@ CMAKE_BINARY_DIR = C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongp
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	"C:\Program Files\CMake\bin\ctest.exe" $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -129,6 +139,383 @@ TrongDongPalace/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/build
 .PHONY : TrongDongPalace/fast
 
+#=============================================================================
+# Target rules for targets named Experimental
+
+# Build rule for target.
+Experimental: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Experimental
+.PHONY : Experimental
+
+# fast build rule for target.
+Experimental/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Experimental.dir\build.make CMakeFiles/Experimental.dir/build
+.PHONY : Experimental/fast
+
+#=============================================================================
+# Target rules for targets named Nightly
+
+# Build rule for target.
+Nightly: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Nightly
+.PHONY : Nightly
+
+# fast build rule for target.
+Nightly/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Nightly.dir\build.make CMakeFiles/Nightly.dir/build
+.PHONY : Nightly/fast
+
+#=============================================================================
+# Target rules for targets named Continuous
+
+# Build rule for target.
+Continuous: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Continuous
+.PHONY : Continuous
+
+# fast build rule for target.
+Continuous/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Continuous.dir\build.make CMakeFiles/Continuous.dir/build
+.PHONY : Continuous/fast
+
+#=============================================================================
+# Target rules for targets named NightlyMemoryCheck
+
+# Build rule for target.
+NightlyMemoryCheck: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyMemoryCheck
+.PHONY : NightlyMemoryCheck
+
+# fast build rule for target.
+NightlyMemoryCheck/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyMemoryCheck.dir\build.make CMakeFiles/NightlyMemoryCheck.dir/build
+.PHONY : NightlyMemoryCheck/fast
+
+#=============================================================================
+# Target rules for targets named NightlyStart
+
+# Build rule for target.
+NightlyStart: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyStart
+.PHONY : NightlyStart
+
+# fast build rule for target.
+NightlyStart/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyStart.dir\build.make CMakeFiles/NightlyStart.dir/build
+.PHONY : NightlyStart/fast
+
+#=============================================================================
+# Target rules for targets named NightlyUpdate
+
+# Build rule for target.
+NightlyUpdate: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyUpdate
+.PHONY : NightlyUpdate
+
+# fast build rule for target.
+NightlyUpdate/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyUpdate.dir\build.make CMakeFiles/NightlyUpdate.dir/build
+.PHONY : NightlyUpdate/fast
+
+#=============================================================================
+# Target rules for targets named NightlyConfigure
+
+# Build rule for target.
+NightlyConfigure: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyConfigure
+.PHONY : NightlyConfigure
+
+# fast build rule for target.
+NightlyConfigure/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyConfigure.dir\build.make CMakeFiles/NightlyConfigure.dir/build
+.PHONY : NightlyConfigure/fast
+
+#=============================================================================
+# Target rules for targets named NightlyBuild
+
+# Build rule for target.
+NightlyBuild: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyBuild
+.PHONY : NightlyBuild
+
+# fast build rule for target.
+NightlyBuild/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyBuild.dir\build.make CMakeFiles/NightlyBuild.dir/build
+.PHONY : NightlyBuild/fast
+
+#=============================================================================
+# Target rules for targets named NightlyTest
+
+# Build rule for target.
+NightlyTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyTest
+.PHONY : NightlyTest
+
+# fast build rule for target.
+NightlyTest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyTest.dir\build.make CMakeFiles/NightlyTest.dir/build
+.PHONY : NightlyTest/fast
+
+#=============================================================================
+# Target rules for targets named NightlyCoverage
+
+# Build rule for target.
+NightlyCoverage: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyCoverage
+.PHONY : NightlyCoverage
+
+# fast build rule for target.
+NightlyCoverage/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyCoverage.dir\build.make CMakeFiles/NightlyCoverage.dir/build
+.PHONY : NightlyCoverage/fast
+
+#=============================================================================
+# Target rules for targets named NightlyMemCheck
+
+# Build rule for target.
+NightlyMemCheck: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlyMemCheck
+.PHONY : NightlyMemCheck
+
+# fast build rule for target.
+NightlyMemCheck/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlyMemCheck.dir\build.make CMakeFiles/NightlyMemCheck.dir/build
+.PHONY : NightlyMemCheck/fast
+
+#=============================================================================
+# Target rules for targets named NightlySubmit
+
+# Build rule for target.
+NightlySubmit: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NightlySubmit
+.PHONY : NightlySubmit
+
+# fast build rule for target.
+NightlySubmit/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NightlySubmit.dir\build.make CMakeFiles/NightlySubmit.dir/build
+.PHONY : NightlySubmit/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalStart
+
+# Build rule for target.
+ExperimentalStart: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalStart
+.PHONY : ExperimentalStart
+
+# fast build rule for target.
+ExperimentalStart/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalStart.dir\build.make CMakeFiles/ExperimentalStart.dir/build
+.PHONY : ExperimentalStart/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalUpdate
+
+# Build rule for target.
+ExperimentalUpdate: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalUpdate
+.PHONY : ExperimentalUpdate
+
+# fast build rule for target.
+ExperimentalUpdate/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalUpdate.dir\build.make CMakeFiles/ExperimentalUpdate.dir/build
+.PHONY : ExperimentalUpdate/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalConfigure
+
+# Build rule for target.
+ExperimentalConfigure: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalConfigure
+.PHONY : ExperimentalConfigure
+
+# fast build rule for target.
+ExperimentalConfigure/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalConfigure.dir\build.make CMakeFiles/ExperimentalConfigure.dir/build
+.PHONY : ExperimentalConfigure/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalBuild
+
+# Build rule for target.
+ExperimentalBuild: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalBuild
+.PHONY : ExperimentalBuild
+
+# fast build rule for target.
+ExperimentalBuild/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalBuild.dir\build.make CMakeFiles/ExperimentalBuild.dir/build
+.PHONY : ExperimentalBuild/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalTest
+
+# Build rule for target.
+ExperimentalTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalTest
+.PHONY : ExperimentalTest
+
+# fast build rule for target.
+ExperimentalTest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalTest.dir\build.make CMakeFiles/ExperimentalTest.dir/build
+.PHONY : ExperimentalTest/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalCoverage
+
+# Build rule for target.
+ExperimentalCoverage: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalCoverage
+.PHONY : ExperimentalCoverage
+
+# fast build rule for target.
+ExperimentalCoverage/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalCoverage.dir\build.make CMakeFiles/ExperimentalCoverage.dir/build
+.PHONY : ExperimentalCoverage/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalMemCheck
+
+# Build rule for target.
+ExperimentalMemCheck: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalMemCheck
+.PHONY : ExperimentalMemCheck
+
+# fast build rule for target.
+ExperimentalMemCheck/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalMemCheck.dir\build.make CMakeFiles/ExperimentalMemCheck.dir/build
+.PHONY : ExperimentalMemCheck/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalSubmit
+
+# Build rule for target.
+ExperimentalSubmit: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ExperimentalSubmit
+.PHONY : ExperimentalSubmit
+
+# fast build rule for target.
+ExperimentalSubmit/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ExperimentalSubmit.dir\build.make CMakeFiles/ExperimentalSubmit.dir/build
+.PHONY : ExperimentalSubmit/fast
+
+#=============================================================================
+# Target rules for targets named ContinuousStart
+
+# Build rule for target.
+ContinuousStart: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousStart
+.PHONY : ContinuousStart
+
+# fast build rule for target.
+ContinuousStart/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousStart.dir\build.make CMakeFiles/ContinuousStart.dir/build
+.PHONY : ContinuousStart/fast
+
+#=============================================================================
+# Target rules for targets named ContinuousUpdate
+
+# Build rule for target.
+ContinuousUpdate: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousUpdate
+.PHONY : ContinuousUpdate
+
+# fast build rule for target.
+ContinuousUpdate/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousUpdate.dir\build.make CMakeFiles/ContinuousUpdate.dir/build
+.PHONY : ContinuousUpdate/fast
+
+#=============================================================================
+# Target rules for targets named ContinuousConfigure
+
+# Build rule for target.
+ContinuousConfigure: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousConfigure
+.PHONY : ContinuousConfigure
+
+# fast build rule for target.
+ContinuousConfigure/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousConfigure.dir\build.make CMakeFiles/ContinuousConfigure.dir/build
+.PHONY : ContinuousConfigure/fast
+
+#=============================================================================
+# Target rules for targets named ContinuousBuild
+
+# Build rule for target.
+ContinuousBuild: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousBuild
+.PHONY : ContinuousBuild
+
+# fast build rule for target.
+ContinuousBuild/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousBuild.dir\build.make CMakeFiles/ContinuousBuild.dir/build
+.PHONY : ContinuousBuild/fast
+
+#=============================================================================
+# Target rules for targets named ContinuousTest
+
+# Build rule for target.
+ContinuousTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousTest
+.PHONY : ContinuousTest
+
+# fast build rule for target.
+ContinuousTest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousTest.dir\build.make CMakeFiles/ContinuousTest.dir/build
+.PHONY : ContinuousTest/fast
+
+#=============================================================================
+# Target rules for targets named ContinuousCoverage
+
+# Build rule for target.
+ContinuousCoverage: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousCoverage
+.PHONY : ContinuousCoverage
+
+# fast build rule for target.
+ContinuousCoverage/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousCoverage.dir\build.make CMakeFiles/ContinuousCoverage.dir/build
+.PHONY : ContinuousCoverage/fast
+
+#=============================================================================
+# Target rules for targets named ContinuousMemCheck
+
+# Build rule for target.
+ContinuousMemCheck: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousMemCheck
+.PHONY : ContinuousMemCheck
+
+# fast build rule for target.
+ContinuousMemCheck/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousMemCheck.dir\build.make CMakeFiles/ContinuousMemCheck.dir/build
+.PHONY : ContinuousMemCheck/fast
+
+#=============================================================================
+# Target rules for targets named ContinuousSubmit
+
+# Build rule for target.
+ContinuousSubmit: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ContinuousSubmit
+.PHONY : ContinuousSubmit
+
+# fast build rule for target.
+ContinuousSubmit/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousSubmit.dir\build.make CMakeFiles/ContinuousSubmit.dir/build
+.PHONY : ContinuousSubmit/fast
+
+#=============================================================================
+# Target rules for targets named FoundationTests
+
+# Build rule for target.
+FoundationTests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 FoundationTests
+.PHONY : FoundationTests
+
+# fast build rule for target.
+FoundationTests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/build
+.PHONY : FoundationTests/fast
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -153,12 +540,40 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/AuthService.obj: src/AuthService.cpp.obj
+.PHONY : src/AuthService.obj
+
+# target to build an object file
+src/AuthService.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj
+.PHONY : src/AuthService.cpp.obj
+
+src/AuthService.i: src/AuthService.cpp.i
+.PHONY : src/AuthService.i
+
+# target to preprocess a source file
+src/AuthService.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/AuthService.cpp.i
+.PHONY : src/AuthService.cpp.i
+
+src/AuthService.s: src/AuthService.cpp.s
+.PHONY : src/AuthService.s
+
+# target to generate assembly for a file
+src/AuthService.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/AuthService.cpp.s
+.PHONY : src/AuthService.cpp.s
+
 src/BirthdayEvent.obj: src/BirthdayEvent.cpp.obj
 .PHONY : src/BirthdayEvent.obj
 
 # target to build an object file
 src/BirthdayEvent.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj
 .PHONY : src/BirthdayEvent.cpp.obj
 
 src/BirthdayEvent.i: src/BirthdayEvent.cpp.i
@@ -167,6 +582,7 @@ src/BirthdayEvent.i: src/BirthdayEvent.cpp.i
 # target to preprocess a source file
 src/BirthdayEvent.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.i
 .PHONY : src/BirthdayEvent.cpp.i
 
 src/BirthdayEvent.s: src/BirthdayEvent.cpp.s
@@ -175,6 +591,7 @@ src/BirthdayEvent.s: src/BirthdayEvent.cpp.s
 # target to generate assembly for a file
 src/BirthdayEvent.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.s
 .PHONY : src/BirthdayEvent.cpp.s
 
 src/Booking.obj: src/Booking.cpp.obj
@@ -183,6 +600,7 @@ src/Booking.obj: src/Booking.cpp.obj
 # target to build an object file
 src/Booking.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj
 .PHONY : src/Booking.cpp.obj
 
 src/Booking.i: src/Booking.cpp.i
@@ -191,6 +609,7 @@ src/Booking.i: src/Booking.cpp.i
 # target to preprocess a source file
 src/Booking.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Booking.cpp.i
 .PHONY : src/Booking.cpp.i
 
 src/Booking.s: src/Booking.cpp.s
@@ -199,6 +618,7 @@ src/Booking.s: src/Booking.cpp.s
 # target to generate assembly for a file
 src/Booking.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Booking.cpp.s
 .PHONY : src/Booking.cpp.s
 
 src/Center.obj: src/Center.cpp.obj
@@ -207,6 +627,7 @@ src/Center.obj: src/Center.cpp.obj
 # target to build an object file
 src/Center.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Center.cpp.obj
 .PHONY : src/Center.cpp.obj
 
 src/Center.i: src/Center.cpp.i
@@ -215,6 +636,7 @@ src/Center.i: src/Center.cpp.i
 # target to preprocess a source file
 src/Center.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Center.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Center.cpp.i
 .PHONY : src/Center.cpp.i
 
 src/Center.s: src/Center.cpp.s
@@ -223,7 +645,89 @@ src/Center.s: src/Center.cpp.s
 # target to generate assembly for a file
 src/Center.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Center.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Center.cpp.s
 .PHONY : src/Center.cpp.s
+
+src/CenterRepository.obj: src/CenterRepository.cpp.obj
+.PHONY : src/CenterRepository.obj
+
+# target to build an object file
+src/CenterRepository.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj
+.PHONY : src/CenterRepository.cpp.obj
+
+src/CenterRepository.i: src/CenterRepository.cpp.i
+.PHONY : src/CenterRepository.i
+
+# target to preprocess a source file
+src/CenterRepository.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.i
+.PHONY : src/CenterRepository.cpp.i
+
+src/CenterRepository.s: src/CenterRepository.cpp.s
+.PHONY : src/CenterRepository.s
+
+# target to generate assembly for a file
+src/CenterRepository.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.s
+.PHONY : src/CenterRepository.cpp.s
+
+src/CenterService.obj: src/CenterService.cpp.obj
+.PHONY : src/CenterService.obj
+
+# target to build an object file
+src/CenterService.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj
+.PHONY : src/CenterService.cpp.obj
+
+src/CenterService.i: src/CenterService.cpp.i
+.PHONY : src/CenterService.i
+
+# target to preprocess a source file
+src/CenterService.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CenterService.cpp.i
+.PHONY : src/CenterService.cpp.i
+
+src/CenterService.s: src/CenterService.cpp.s
+.PHONY : src/CenterService.s
+
+# target to generate assembly for a file
+src/CenterService.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CenterService.cpp.s
+.PHONY : src/CenterService.cpp.s
+
+src/ConsoleUI.obj: src/ConsoleUI.cpp.obj
+.PHONY : src/ConsoleUI.obj
+
+# target to build an object file
+src/ConsoleUI.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj
+.PHONY : src/ConsoleUI.cpp.obj
+
+src/ConsoleUI.i: src/ConsoleUI.cpp.i
+.PHONY : src/ConsoleUI.i
+
+# target to preprocess a source file
+src/ConsoleUI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.i
+.PHONY : src/ConsoleUI.cpp.i
+
+src/ConsoleUI.s: src/ConsoleUI.cpp.s
+.PHONY : src/ConsoleUI.s
+
+# target to generate assembly for a file
+src/ConsoleUI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.s
+.PHONY : src/ConsoleUI.cpp.s
 
 src/Contract.obj: src/Contract.cpp.obj
 .PHONY : src/Contract.obj
@@ -231,6 +735,7 @@ src/Contract.obj: src/Contract.cpp.obj
 # target to build an object file
 src/Contract.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj
 .PHONY : src/Contract.cpp.obj
 
 src/Contract.i: src/Contract.cpp.i
@@ -239,6 +744,7 @@ src/Contract.i: src/Contract.cpp.i
 # target to preprocess a source file
 src/Contract.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Contract.cpp.i
 .PHONY : src/Contract.cpp.i
 
 src/Contract.s: src/Contract.cpp.s
@@ -247,6 +753,7 @@ src/Contract.s: src/Contract.cpp.s
 # target to generate assembly for a file
 src/Contract.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Contract.cpp.s
 .PHONY : src/Contract.cpp.s
 
 src/CorporateEvent.obj: src/CorporateEvent.cpp.obj
@@ -255,6 +762,7 @@ src/CorporateEvent.obj: src/CorporateEvent.cpp.obj
 # target to build an object file
 src/CorporateEvent.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj
 .PHONY : src/CorporateEvent.cpp.obj
 
 src/CorporateEvent.i: src/CorporateEvent.cpp.i
@@ -263,6 +771,7 @@ src/CorporateEvent.i: src/CorporateEvent.cpp.i
 # target to preprocess a source file
 src/CorporateEvent.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.i
 .PHONY : src/CorporateEvent.cpp.i
 
 src/CorporateEvent.s: src/CorporateEvent.cpp.s
@@ -271,6 +780,7 @@ src/CorporateEvent.s: src/CorporateEvent.cpp.s
 # target to generate assembly for a file
 src/CorporateEvent.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.s
 .PHONY : src/CorporateEvent.cpp.s
 
 src/Customer.obj: src/Customer.cpp.obj
@@ -279,6 +789,7 @@ src/Customer.obj: src/Customer.cpp.obj
 # target to build an object file
 src/Customer.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj
 .PHONY : src/Customer.cpp.obj
 
 src/Customer.i: src/Customer.cpp.i
@@ -287,6 +798,7 @@ src/Customer.i: src/Customer.cpp.i
 # target to preprocess a source file
 src/Customer.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Customer.cpp.i
 .PHONY : src/Customer.cpp.i
 
 src/Customer.s: src/Customer.cpp.s
@@ -295,7 +807,89 @@ src/Customer.s: src/Customer.cpp.s
 # target to generate assembly for a file
 src/Customer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Customer.cpp.s
 .PHONY : src/Customer.cpp.s
+
+src/CustomerRepository.obj: src/CustomerRepository.cpp.obj
+.PHONY : src/CustomerRepository.obj
+
+# target to build an object file
+src/CustomerRepository.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj
+.PHONY : src/CustomerRepository.cpp.obj
+
+src/CustomerRepository.i: src/CustomerRepository.cpp.i
+.PHONY : src/CustomerRepository.i
+
+# target to preprocess a source file
+src/CustomerRepository.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.i
+.PHONY : src/CustomerRepository.cpp.i
+
+src/CustomerRepository.s: src/CustomerRepository.cpp.s
+.PHONY : src/CustomerRepository.s
+
+# target to generate assembly for a file
+src/CustomerRepository.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.s
+.PHONY : src/CustomerRepository.cpp.s
+
+src/CustomerService.obj: src/CustomerService.cpp.obj
+.PHONY : src/CustomerService.obj
+
+# target to build an object file
+src/CustomerService.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj
+.PHONY : src/CustomerService.cpp.obj
+
+src/CustomerService.i: src/CustomerService.cpp.i
+.PHONY : src/CustomerService.i
+
+# target to preprocess a source file
+src/CustomerService.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.i
+.PHONY : src/CustomerService.cpp.i
+
+src/CustomerService.s: src/CustomerService.cpp.s
+.PHONY : src/CustomerService.s
+
+# target to generate assembly for a file
+src/CustomerService.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.s
+.PHONY : src/CustomerService.cpp.s
+
+src/DisplayHelper.obj: src/DisplayHelper.cpp.obj
+.PHONY : src/DisplayHelper.obj
+
+# target to build an object file
+src/DisplayHelper.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj
+.PHONY : src/DisplayHelper.cpp.obj
+
+src/DisplayHelper.i: src/DisplayHelper.cpp.i
+.PHONY : src/DisplayHelper.i
+
+# target to preprocess a source file
+src/DisplayHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.i
+.PHONY : src/DisplayHelper.cpp.i
+
+src/DisplayHelper.s: src/DisplayHelper.cpp.s
+.PHONY : src/DisplayHelper.s
+
+# target to generate assembly for a file
+src/DisplayHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.s
+.PHONY : src/DisplayHelper.cpp.s
 
 src/Event.obj: src/Event.cpp.obj
 .PHONY : src/Event.obj
@@ -303,6 +897,7 @@ src/Event.obj: src/Event.cpp.obj
 # target to build an object file
 src/Event.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Event.cpp.obj
 .PHONY : src/Event.cpp.obj
 
 src/Event.i: src/Event.cpp.i
@@ -311,6 +906,7 @@ src/Event.i: src/Event.cpp.i
 # target to preprocess a source file
 src/Event.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Event.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Event.cpp.i
 .PHONY : src/Event.cpp.i
 
 src/Event.s: src/Event.cpp.s
@@ -319,6 +915,7 @@ src/Event.s: src/Event.cpp.s
 # target to generate assembly for a file
 src/Event.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Event.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Event.cpp.s
 .PHONY : src/Event.cpp.s
 
 src/Hall.obj: src/Hall.cpp.obj
@@ -327,6 +924,7 @@ src/Hall.obj: src/Hall.cpp.obj
 # target to build an object file
 src/Hall.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj
 .PHONY : src/Hall.cpp.obj
 
 src/Hall.i: src/Hall.cpp.i
@@ -335,6 +933,7 @@ src/Hall.i: src/Hall.cpp.i
 # target to preprocess a source file
 src/Hall.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Hall.cpp.i
 .PHONY : src/Hall.cpp.i
 
 src/Hall.s: src/Hall.cpp.s
@@ -343,7 +942,116 @@ src/Hall.s: src/Hall.cpp.s
 # target to generate assembly for a file
 src/Hall.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Hall.cpp.s
 .PHONY : src/Hall.cpp.s
+
+src/HallRepository.obj: src/HallRepository.cpp.obj
+.PHONY : src/HallRepository.obj
+
+# target to build an object file
+src/HallRepository.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj
+.PHONY : src/HallRepository.cpp.obj
+
+src/HallRepository.i: src/HallRepository.cpp.i
+.PHONY : src/HallRepository.i
+
+# target to preprocess a source file
+src/HallRepository.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.i
+.PHONY : src/HallRepository.cpp.i
+
+src/HallRepository.s: src/HallRepository.cpp.s
+.PHONY : src/HallRepository.s
+
+# target to generate assembly for a file
+src/HallRepository.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.s
+.PHONY : src/HallRepository.cpp.s
+
+src/HallService.obj: src/HallService.cpp.obj
+.PHONY : src/HallService.obj
+
+# target to build an object file
+src/HallService.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj
+.PHONY : src/HallService.cpp.obj
+
+src/HallService.i: src/HallService.cpp.i
+.PHONY : src/HallService.i
+
+# target to preprocess a source file
+src/HallService.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/HallService.cpp.i
+.PHONY : src/HallService.cpp.i
+
+src/HallService.s: src/HallService.cpp.s
+.PHONY : src/HallService.s
+
+# target to generate assembly for a file
+src/HallService.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/HallService.cpp.s
+.PHONY : src/HallService.cpp.s
+
+src/InputHelper.obj: src/InputHelper.cpp.obj
+.PHONY : src/InputHelper.obj
+
+# target to build an object file
+src/InputHelper.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj
+.PHONY : src/InputHelper.cpp.obj
+
+src/InputHelper.i: src/InputHelper.cpp.i
+.PHONY : src/InputHelper.i
+
+# target to preprocess a source file
+src/InputHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.i
+.PHONY : src/InputHelper.cpp.i
+
+src/InputHelper.s: src/InputHelper.cpp.s
+.PHONY : src/InputHelper.s
+
+# target to generate assembly for a file
+src/InputHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.s
+.PHONY : src/InputHelper.cpp.s
+
+src/JsonStorage.obj: src/JsonStorage.cpp.obj
+.PHONY : src/JsonStorage.obj
+
+# target to build an object file
+src/JsonStorage.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj
+.PHONY : src/JsonStorage.cpp.obj
+
+src/JsonStorage.i: src/JsonStorage.cpp.i
+.PHONY : src/JsonStorage.i
+
+# target to preprocess a source file
+src/JsonStorage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.i
+.PHONY : src/JsonStorage.cpp.i
+
+src/JsonStorage.s: src/JsonStorage.cpp.s
+.PHONY : src/JsonStorage.s
+
+# target to generate assembly for a file
+src/JsonStorage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.s
+.PHONY : src/JsonStorage.cpp.s
 
 src/Package.obj: src/Package.cpp.obj
 .PHONY : src/Package.obj
@@ -351,6 +1059,7 @@ src/Package.obj: src/Package.cpp.obj
 # target to build an object file
 src/Package.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Package.cpp.obj
 .PHONY : src/Package.cpp.obj
 
 src/Package.i: src/Package.cpp.i
@@ -359,6 +1068,7 @@ src/Package.i: src/Package.cpp.i
 # target to preprocess a source file
 src/Package.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Package.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Package.cpp.i
 .PHONY : src/Package.cpp.i
 
 src/Package.s: src/Package.cpp.s
@@ -367,6 +1077,7 @@ src/Package.s: src/Package.cpp.s
 # target to generate assembly for a file
 src/Package.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Package.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Package.cpp.s
 .PHONY : src/Package.cpp.s
 
 src/Payment.obj: src/Payment.cpp.obj
@@ -375,6 +1086,7 @@ src/Payment.obj: src/Payment.cpp.obj
 # target to build an object file
 src/Payment.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj
 .PHONY : src/Payment.cpp.obj
 
 src/Payment.i: src/Payment.cpp.i
@@ -383,6 +1095,7 @@ src/Payment.i: src/Payment.cpp.i
 # target to preprocess a source file
 src/Payment.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Payment.cpp.i
 .PHONY : src/Payment.cpp.i
 
 src/Payment.s: src/Payment.cpp.s
@@ -391,6 +1104,7 @@ src/Payment.s: src/Payment.cpp.s
 # target to generate assembly for a file
 src/Payment.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Payment.cpp.s
 .PHONY : src/Payment.cpp.s
 
 src/Quotation.obj: src/Quotation.cpp.obj
@@ -399,6 +1113,7 @@ src/Quotation.obj: src/Quotation.cpp.obj
 # target to build an object file
 src/Quotation.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj
 .PHONY : src/Quotation.cpp.obj
 
 src/Quotation.i: src/Quotation.cpp.i
@@ -407,6 +1122,7 @@ src/Quotation.i: src/Quotation.cpp.i
 # target to preprocess a source file
 src/Quotation.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Quotation.cpp.i
 .PHONY : src/Quotation.cpp.i
 
 src/Quotation.s: src/Quotation.cpp.s
@@ -415,6 +1131,7 @@ src/Quotation.s: src/Quotation.cpp.s
 # target to generate assembly for a file
 src/Quotation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Quotation.cpp.s
 .PHONY : src/Quotation.cpp.s
 
 src/Service.obj: src/Service.cpp.obj
@@ -423,6 +1140,7 @@ src/Service.obj: src/Service.cpp.obj
 # target to build an object file
 src/Service.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Service.cpp.obj
 .PHONY : src/Service.cpp.obj
 
 src/Service.i: src/Service.cpp.i
@@ -431,6 +1149,7 @@ src/Service.i: src/Service.cpp.i
 # target to preprocess a source file
 src/Service.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Service.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Service.cpp.i
 .PHONY : src/Service.cpp.i
 
 src/Service.s: src/Service.cpp.s
@@ -439,6 +1158,7 @@ src/Service.s: src/Service.cpp.s
 # target to generate assembly for a file
 src/Service.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/Service.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/Service.cpp.s
 .PHONY : src/Service.cpp.s
 
 src/User.obj: src/User.cpp.obj
@@ -447,6 +1167,7 @@ src/User.obj: src/User.cpp.obj
 # target to build an object file
 src/User.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/User.cpp.obj
 .PHONY : src/User.cpp.obj
 
 src/User.i: src/User.cpp.i
@@ -455,6 +1176,7 @@ src/User.i: src/User.cpp.i
 # target to preprocess a source file
 src/User.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/User.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/User.cpp.i
 .PHONY : src/User.cpp.i
 
 src/User.s: src/User.cpp.s
@@ -463,7 +1185,35 @@ src/User.s: src/User.cpp.s
 # target to generate assembly for a file
 src/User.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/User.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/User.cpp.s
 .PHONY : src/User.cpp.s
+
+src/UserRepository.obj: src/UserRepository.cpp.obj
+.PHONY : src/UserRepository.obj
+
+# target to build an object file
+src/UserRepository.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj
+.PHONY : src/UserRepository.cpp.obj
+
+src/UserRepository.i: src/UserRepository.cpp.i
+.PHONY : src/UserRepository.i
+
+# target to preprocess a source file
+src/UserRepository.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.i
+.PHONY : src/UserRepository.cpp.i
+
+src/UserRepository.s: src/UserRepository.cpp.s
+.PHONY : src/UserRepository.s
+
+# target to generate assembly for a file
+src/UserRepository.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.s
+.PHONY : src/UserRepository.cpp.s
 
 src/WeddingEvent.obj: src/WeddingEvent.cpp.obj
 .PHONY : src/WeddingEvent.obj
@@ -471,6 +1221,7 @@ src/WeddingEvent.obj: src/WeddingEvent.cpp.obj
 # target to build an object file
 src/WeddingEvent.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj
 .PHONY : src/WeddingEvent.cpp.obj
 
 src/WeddingEvent.i: src/WeddingEvent.cpp.i
@@ -479,6 +1230,7 @@ src/WeddingEvent.i: src/WeddingEvent.cpp.i
 # target to preprocess a source file
 src/WeddingEvent.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.i
 .PHONY : src/WeddingEvent.cpp.i
 
 src/WeddingEvent.s: src/WeddingEvent.cpp.s
@@ -487,7 +1239,32 @@ src/WeddingEvent.s: src/WeddingEvent.cpp.s
 # target to generate assembly for a file
 src/WeddingEvent.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TrongDongPalace.dir\build.make CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.s
 .PHONY : src/WeddingEvent.cpp.s
+
+tests/FoundationTests.obj: tests/FoundationTests.cpp.obj
+.PHONY : tests/FoundationTests.obj
+
+# target to build an object file
+tests/FoundationTests.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj
+.PHONY : tests/FoundationTests.cpp.obj
+
+tests/FoundationTests.i: tests/FoundationTests.cpp.i
+.PHONY : tests/FoundationTests.i
+
+# target to preprocess a source file
+tests/FoundationTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.i
+.PHONY : tests/FoundationTests.cpp.i
+
+tests/FoundationTests.s: tests/FoundationTests.cpp.s
+.PHONY : tests/FoundationTests.s
+
+# target to generate assembly for a file
+tests/FoundationTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FoundationTests.dir\build.make CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.s
+.PHONY : tests/FoundationTests.cpp.s
 
 # Help Target
 help:
@@ -497,10 +1274,43 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... test
+	@echo ... Continuous
+	@echo ... ContinuousBuild
+	@echo ... ContinuousConfigure
+	@echo ... ContinuousCoverage
+	@echo ... ContinuousMemCheck
+	@echo ... ContinuousStart
+	@echo ... ContinuousSubmit
+	@echo ... ContinuousTest
+	@echo ... ContinuousUpdate
+	@echo ... Experimental
+	@echo ... ExperimentalBuild
+	@echo ... ExperimentalConfigure
+	@echo ... ExperimentalCoverage
+	@echo ... ExperimentalMemCheck
+	@echo ... ExperimentalStart
+	@echo ... ExperimentalSubmit
+	@echo ... ExperimentalTest
+	@echo ... ExperimentalUpdate
+	@echo ... Nightly
+	@echo ... NightlyBuild
+	@echo ... NightlyConfigure
+	@echo ... NightlyCoverage
+	@echo ... NightlyMemCheck
+	@echo ... NightlyMemoryCheck
+	@echo ... NightlyStart
+	@echo ... NightlySubmit
+	@echo ... NightlyTest
+	@echo ... NightlyUpdate
+	@echo ... FoundationTests
 	@echo ... TrongDongPalace
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/AuthService.obj
+	@echo ... src/AuthService.i
+	@echo ... src/AuthService.s
 	@echo ... src/BirthdayEvent.obj
 	@echo ... src/BirthdayEvent.i
 	@echo ... src/BirthdayEvent.s
@@ -510,6 +1320,15 @@ help:
 	@echo ... src/Center.obj
 	@echo ... src/Center.i
 	@echo ... src/Center.s
+	@echo ... src/CenterRepository.obj
+	@echo ... src/CenterRepository.i
+	@echo ... src/CenterRepository.s
+	@echo ... src/CenterService.obj
+	@echo ... src/CenterService.i
+	@echo ... src/CenterService.s
+	@echo ... src/ConsoleUI.obj
+	@echo ... src/ConsoleUI.i
+	@echo ... src/ConsoleUI.s
 	@echo ... src/Contract.obj
 	@echo ... src/Contract.i
 	@echo ... src/Contract.s
@@ -519,12 +1338,33 @@ help:
 	@echo ... src/Customer.obj
 	@echo ... src/Customer.i
 	@echo ... src/Customer.s
+	@echo ... src/CustomerRepository.obj
+	@echo ... src/CustomerRepository.i
+	@echo ... src/CustomerRepository.s
+	@echo ... src/CustomerService.obj
+	@echo ... src/CustomerService.i
+	@echo ... src/CustomerService.s
+	@echo ... src/DisplayHelper.obj
+	@echo ... src/DisplayHelper.i
+	@echo ... src/DisplayHelper.s
 	@echo ... src/Event.obj
 	@echo ... src/Event.i
 	@echo ... src/Event.s
 	@echo ... src/Hall.obj
 	@echo ... src/Hall.i
 	@echo ... src/Hall.s
+	@echo ... src/HallRepository.obj
+	@echo ... src/HallRepository.i
+	@echo ... src/HallRepository.s
+	@echo ... src/HallService.obj
+	@echo ... src/HallService.i
+	@echo ... src/HallService.s
+	@echo ... src/InputHelper.obj
+	@echo ... src/InputHelper.i
+	@echo ... src/InputHelper.s
+	@echo ... src/JsonStorage.obj
+	@echo ... src/JsonStorage.i
+	@echo ... src/JsonStorage.s
 	@echo ... src/Package.obj
 	@echo ... src/Package.i
 	@echo ... src/Package.s
@@ -540,9 +1380,15 @@ help:
 	@echo ... src/User.obj
 	@echo ... src/User.i
 	@echo ... src/User.s
+	@echo ... src/UserRepository.obj
+	@echo ... src/UserRepository.i
+	@echo ... src/UserRepository.s
 	@echo ... src/WeddingEvent.obj
 	@echo ... src/WeddingEvent.i
 	@echo ... src/WeddingEvent.s
+	@echo ... tests/FoundationTests.obj
+	@echo ... tests/FoundationTests.i
+	@echo ... tests/FoundationTests.s
 .PHONY : help
 
 

@@ -1,0 +1,6 @@
+Feature: Day 10 - Authorization and regression
+Files tested: AuthService permission matrix, ConsoleUI main menu
+Input: SALES role requests CUSTOMER CREATE and PAYMENT CREATE.
+Expected: Customer action is allowed; payment management throws AuthenticationException with Access denied.
+Actual: AuthenticationAuthorizationTests passes; full CTest regression is run after implementation.
+Result: PASS

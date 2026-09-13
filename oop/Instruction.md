@@ -18,7 +18,7 @@ Lưu dữ liệu bằng **JSON**, sử dụng `nlohmann/json`.
 **Không dùng:** SQL/SQLite/MySQL, API, backend, web, cloud, microservice hoặc kiến trúc enterprise.
 
 Ưu tiên: **đơn giản – dễ hiểu – chạy được – dễ giải thích cho giảng viên.**
-
+Luôn sử dụng using namespace std; thay vì std::
 ### 2. Functional Requirements
 
 Hệ thống gồm các module:
@@ -105,7 +105,6 @@ Architecture:
 `Console UI → Service → Repository → data.json`
 
 UI không chứa business logic và không truy cập JSON trực tiếp.
-```
 
 ### 5. Main Classes
 
@@ -130,6 +129,7 @@ Table
 TableAssignment
 Incident
 ```
+
 ### 6. Inheritance + Polymorphism
 
 Bắt buộc:
@@ -305,7 +305,7 @@ Khi được yêu cầu implement:
 7. Không over-engineer.
 8. Sau mỗi implementation phải đưa test.
 9. Nếu kiến trúc hiện tại có vấn đề, chỉ ra vấn đề và đề xuất phương án đơn giản hơn.
-10. Ưu tiên code mà **sinh viên mới học OOP có thể tự giải thích được**.
+10. Ưu tiên code mà **sinh viên có thể tự giải thích được**.
 
 ### 15. OOP Checklist
 
