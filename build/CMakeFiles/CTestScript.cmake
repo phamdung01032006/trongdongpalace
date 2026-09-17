@@ -2,11 +2,11 @@
 # If you choose not to use CMake, this file may be hand configured, by
 # filling in the required variables.
 
-cmake_minimum_required(VERSION 4.4.3)
+cmake_minimum_required(VERSION 4.4.2)
 
 # CTest Start Step
-set(CTEST_SOURCE_DIRECTORY "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace")
-set(CTEST_BINARY_DIRECTORY "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build")
+set(CTEST_SOURCE_DIRECTORY "C:/Users/TongSyAnhDuy/trongdongpalace")
+set(CTEST_BINARY_DIRECTORY "C:/Users/TongSyAnhDuy/trongdongpalace/build")
 
 # CTest Update Step
 set(CTEST_UPDATE_COMMAND "C:/Program Files/Git/cmd/git.exe")
@@ -62,7 +62,7 @@ set(CTEST_MEMORYCHECK_SANITIZER_OPTIONS "")
 set(CTEST_MEMORYCHECK_SUPPRESSIONS_FILE "")
 
 # CTest Submit Step
-set(CTEST_SITE "Hotaru")
+set(CTEST_SITE "ANHDUY")
 set(CTEST_BUILD_NAME "Win32-mingw32-make")
 set(CTEST_SUBMIT_URL "http://")
 set(CTEST_SUBMIT_INACTIVITY_TIMEOUT "")

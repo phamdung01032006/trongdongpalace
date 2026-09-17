@@ -1,0 +1,147 @@
+Start testing: Sep 17 22:35 SE Asia Standard Time
+----------------------------------------------------------
+1/9 Testing: FoundationTests
+1/9 Test: FoundationTests
+Command: "C:/Users/TongSyAnhDuy/trongdongpalace/build-verify/FoundationTests.exe"
+Directory: C:/Users/TongSyAnhDuy/trongdongpalace/build-verify
+"FoundationTests" start time: Sep 17 22:35 SE Asia Standard Time
+Output:
+----------------------------------------------------------
+FoundationTests: PASS
+<end of output>
+Test time =   1.32 sec
+----------------------------------------------------------
+Test Passed.
+"FoundationTests" end time: Sep 17 22:35 SE Asia Standard Time
+"FoundationTests" time elapsed: 00:00:01
+----------------------------------------------------------
+
+2/9 Testing: ExceptionHierarchyTests
+2/9 Test: ExceptionHierarchyTests
+Command: "C:/Users/TongSyAnhDuy/trongdongpalace/build-verify/FoundationTests.exe" "exceptions"
+Directory: C:/Users/TongSyAnhDuy/trongdongpalace/build-verify
+"ExceptionHierarchyTests" start time: Sep 17 22:35 SE Asia Standard Time
+Output:
+----------------------------------------------------------
+FoundationTests: PASS
+<end of output>
+Test time =   0.34 sec
+----------------------------------------------------------
+Test Passed.
+"ExceptionHierarchyTests" end time: Sep 17 22:35 SE Asia Standard Time
+"ExceptionHierarchyTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/9 Testing: JsonStorageTests
+3/9 Test: JsonStorageTests
+Command: "C:/Users/TongSyAnhDuy/trongdongpalace/build-verify/FoundationTests.exe" "json"
+Directory: C:/Users/TongSyAnhDuy/trongdongpalace/build-verify
+"JsonStorageTests" start time: Sep 17 22:35 SE Asia Standard Time
+Output:
+----------------------------------------------------------
+FoundationTests: PASS
+<end of output>
+Test time =   0.11 sec
+----------------------------------------------------------
+Test Passed.
+"JsonStorageTests" end time: Sep 17 22:35 SE Asia Standard Time
+"JsonStorageTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/9 Testing: BaseModelTests
+4/9 Test: BaseModelTests
+Command: "C:/Users/TongSyAnhDuy/trongdongpalace/build-verify/FoundationTests.exe" "models"
+Directory: C:/Users/TongSyAnhDuy/trongdongpalace/build-verify
+"BaseModelTests" start time: Sep 17 22:35 SE Asia Standard Time
+Output:
+----------------------------------------------------------
+FoundationTests: PASS
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"BaseModelTests" end time: Sep 17 22:35 SE Asia Standard Time
+"BaseModelTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/9 Testing: EventPolymorphismTests
+5/9 Test: EventPolymorphismTests
+Command: "C:/Users/TongSyAnhDuy/trongdongpalace/build-verify/FoundationTests.exe" "events"
+Directory: C:/Users/TongSyAnhDuy/trongdongpalace/build-verify
+"EventPolymorphismTests" start time: Sep 17 22:35 SE Asia Standard Time
+Output:
+----------------------------------------------------------
+FoundationTests: PASS
+<end of output>
+Test time =   0.16 sec
+----------------------------------------------------------
+Test Passed.
+"EventPolymorphismTests" end time: Sep 17 22:35 SE Asia Standard Time
+"EventPolymorphismTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/9 Testing: CustomerCrudTests
+6/9 Test: CustomerCrudTests
+Command: "C:/Users/TongSyAnhDuy/trongdongpalace/build-verify/FoundationTests.exe" "customer"
+Directory: C:/Users/TongSyAnhDuy/trongdongpalace/build-verify
+"CustomerCrudTests" start time: Sep 17 22:35 SE Asia Standard Time
+Output:
+----------------------------------------------------------
+FoundationTests: PASS
+<end of output>
+Test time =   0.29 sec
+----------------------------------------------------------
+Test Passed.
+"CustomerCrudTests" end time: Sep 17 22:35 SE Asia Standard Time
+"CustomerCrudTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/9 Testing: RepositoryFoundationTests
+7/9 Test: RepositoryFoundationTests
+Command: "C:/Users/TongSyAnhDuy/trongdongpalace/build-verify/FoundationTests.exe" "repository"
+Directory: C:/Users/TongSyAnhDuy/trongdongpalace/build-verify
+"RepositoryFoundationTests" start time: Sep 17 22:35 SE Asia Standard Time
+Output:
+----------------------------------------------------------
+FoundationTests: PASS
+<end of output>
+Test time =   0.57 sec
+----------------------------------------------------------
+Test Passed.
+"RepositoryFoundationTests" end time: Sep 17 22:35 SE Asia Standard Time
+"RepositoryFoundationTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/9 Testing: CenterHallCrudTests
+8/9 Test: CenterHallCrudTests
+Command: "C:/Users/TongSyAnhDuy/trongdongpalace/build-verify/FoundationTests.exe" "centerhall"
+Directory: C:/Users/TongSyAnhDuy/trongdongpalace/build-verify
+"CenterHallCrudTests" start time: Sep 17 22:35 SE Asia Standard Time
+Output:
+----------------------------------------------------------
+FoundationTests: PASS
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"CenterHallCrudTests" end time: Sep 17 22:35 SE Asia Standard Time
+"CenterHallCrudTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/9 Testing: AuthenticationAuthorizationTests
+9/9 Test: AuthenticationAuthorizationTests
+Command: "C:/Users/TongSyAnhDuy/trongdongpalace/build-verify/FoundationTests.exe" "auth"
+Directory: C:/Users/TongSyAnhDuy/trongdongpalace/build-verify
+"AuthenticationAuthorizationTests" start time: Sep 17 22:35 SE Asia Standard Time
+Output:
+----------------------------------------------------------
+FoundationTests: PASS
+<end of output>
+Test time =   0.26 sec
+----------------------------------------------------------
+Test Passed.
+"AuthenticationAuthorizationTests" end time: Sep 17 22:35 SE Asia Standard Time
+"AuthenticationAuthorizationTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 17 22:35 SE Asia Standard Time

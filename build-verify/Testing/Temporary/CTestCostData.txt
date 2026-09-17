@@ -1,0 +1,10 @@
+FoundationTests 5 0.264675
+ExceptionHierarchyTests 5 0.067543
+JsonStorageTests 5 0.0212891
+BaseModelTests 5 0.043832
+EventPolymorphismTests 5 0.0325332
+CustomerCrudTests 5 0.0572169
+RepositoryFoundationTests 5 0.114688
+CenterHallCrudTests 5 0.0302827
+AuthenticationAuthorizationTests 5 0.0521036
+---

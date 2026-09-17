@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\CMake\bin\cmake.exe"
+CMAKE_COMMAND = C:\msys64\ucrt64\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
+RM = C:\msys64\ucrt64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace
+CMAKE_SOURCE_DIR = C:\Users\TongSyAnhDuy\trongdongpalace
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build
+CMAKE_BINARY_DIR = C:\Users\TongSyAnhDuy\trongdongpalace\build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/TrongDongPalace.dir/depend.make
@@ -73,474 +73,593 @@ CMakeFiles/TrongDongPalace.dir/codegen:
 
 CMakeFiles/TrongDongPalace.dir/main.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
 CMakeFiles/TrongDongPalace.dir/main.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/main.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/main.cpp
+CMakeFiles/TrongDongPalace.dir/main.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/main.cpp
 CMakeFiles/TrongDongPalace.dir/main.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TrongDongPalace.dir/main.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/main.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\main.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\main.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TrongDongPalace.dir/main.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/main.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\main.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\main.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\main.cpp
 
 CMakeFiles/TrongDongPalace.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/main.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\main.cpp > CMakeFiles\TrongDongPalace.dir\main.cpp.i
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\main.cpp > CMakeFiles\TrongDongPalace.dir\main.cpp.i
 
 CMakeFiles/TrongDongPalace.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/main.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\main.cpp -o CMakeFiles\TrongDongPalace.dir\main.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/AuthService.cpp
-CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\AuthService.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\AuthService.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\AuthService.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\AuthService.cpp > CMakeFiles\TrongDongPalace.dir\src\AuthService.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\AuthService.cpp -o CMakeFiles\TrongDongPalace.dir\src\AuthService.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/BirthdayEvent.cpp
-CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\BirthdayEvent.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\BirthdayEvent.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\BirthdayEvent.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\BirthdayEvent.cpp > CMakeFiles\TrongDongPalace.dir\src\BirthdayEvent.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\BirthdayEvent.cpp -o CMakeFiles\TrongDongPalace.dir\src\BirthdayEvent.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Booking.cpp
-CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Booking.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Booking.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Booking.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Booking.cpp > CMakeFiles\TrongDongPalace.dir\src\Booking.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Booking.cpp -o CMakeFiles\TrongDongPalace.dir\src\Booking.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Center.cpp
-CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Center.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Center.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Center.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Center.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Center.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Center.cpp > CMakeFiles\TrongDongPalace.dir\src\Center.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Center.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Center.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Center.cpp -o CMakeFiles\TrongDongPalace.dir\src\Center.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CenterRepository.cpp
-CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\CenterRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\CenterRepository.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterRepository.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\CenterRepository.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\CenterRepository.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CenterService.cpp
-CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\CenterService.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\CenterService.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterService.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterService.cpp > CMakeFiles\TrongDongPalace.dir\src\CenterService.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterService.cpp -o CMakeFiles\TrongDongPalace.dir\src\CenterService.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/ConsoleUI.cpp
-CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\ConsoleUI.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\ConsoleUI.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\ConsoleUI.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\ConsoleUI.cpp > CMakeFiles\TrongDongPalace.dir\src\ConsoleUI.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\ConsoleUI.cpp -o CMakeFiles\TrongDongPalace.dir\src\ConsoleUI.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Contract.cpp
-CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Contract.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Contract.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Contract.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Contract.cpp > CMakeFiles\TrongDongPalace.dir\src\Contract.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Contract.cpp -o CMakeFiles\TrongDongPalace.dir\src\Contract.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CorporateEvent.cpp
-CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\CorporateEvent.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\CorporateEvent.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CorporateEvent.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CorporateEvent.cpp > CMakeFiles\TrongDongPalace.dir\src\CorporateEvent.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CorporateEvent.cpp -o CMakeFiles\TrongDongPalace.dir\src\CorporateEvent.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Customer.cpp
-CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Customer.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Customer.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Customer.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Customer.cpp > CMakeFiles\TrongDongPalace.dir\src\Customer.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Customer.cpp -o CMakeFiles\TrongDongPalace.dir\src\Customer.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CustomerRepository.cpp
-CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\CustomerRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\CustomerRepository.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerRepository.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\CustomerRepository.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\CustomerRepository.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CustomerService.cpp
-CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\CustomerService.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\CustomerService.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerService.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerService.cpp > CMakeFiles\TrongDongPalace.dir\src\CustomerService.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerService.cpp -o CMakeFiles\TrongDongPalace.dir\src\CustomerService.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/DisplayHelper.cpp
-CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\DisplayHelper.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\DisplayHelper.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\DisplayHelper.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\DisplayHelper.cpp > CMakeFiles\TrongDongPalace.dir\src\DisplayHelper.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\DisplayHelper.cpp -o CMakeFiles\TrongDongPalace.dir\src\DisplayHelper.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Event.cpp
-CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Event.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Event.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Event.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Event.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Event.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Event.cpp > CMakeFiles\TrongDongPalace.dir\src\Event.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Event.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Event.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Event.cpp -o CMakeFiles\TrongDongPalace.dir\src\Event.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Hall.cpp
-CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Hall.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Hall.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Hall.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Hall.cpp > CMakeFiles\TrongDongPalace.dir\src\Hall.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Hall.cpp -o CMakeFiles\TrongDongPalace.dir\src\Hall.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/HallRepository.cpp
-CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\HallRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\HallRepository.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallRepository.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\HallRepository.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\HallRepository.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/HallService.cpp
-CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\HallService.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\HallService.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallService.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallService.cpp > CMakeFiles\TrongDongPalace.dir\src\HallService.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallService.cpp -o CMakeFiles\TrongDongPalace.dir\src\HallService.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/InputHelper.cpp
-CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\InputHelper.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\InputHelper.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\InputHelper.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\InputHelper.cpp > CMakeFiles\TrongDongPalace.dir\src\InputHelper.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\InputHelper.cpp -o CMakeFiles\TrongDongPalace.dir\src\InputHelper.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/JsonStorage.cpp
-CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\JsonStorage.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\JsonStorage.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\JsonStorage.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\JsonStorage.cpp > CMakeFiles\TrongDongPalace.dir\src\JsonStorage.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\JsonStorage.cpp -o CMakeFiles\TrongDongPalace.dir\src\JsonStorage.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Package.cpp
-CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Package.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Package.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Package.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Package.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Package.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Package.cpp > CMakeFiles\TrongDongPalace.dir\src\Package.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Package.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Package.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Package.cpp -o CMakeFiles\TrongDongPalace.dir\src\Package.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Payment.cpp
-CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Payment.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Payment.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Payment.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Payment.cpp > CMakeFiles\TrongDongPalace.dir\src\Payment.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Payment.cpp -o CMakeFiles\TrongDongPalace.dir\src\Payment.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Quotation.cpp
-CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Quotation.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Quotation.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Quotation.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Quotation.cpp > CMakeFiles\TrongDongPalace.dir\src\Quotation.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Quotation.cpp -o CMakeFiles\TrongDongPalace.dir\src\Quotation.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Service.cpp
-CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\Service.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\Service.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Service.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/Service.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/Service.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Service.cpp > CMakeFiles\TrongDongPalace.dir\src\Service.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/Service.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/Service.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Service.cpp -o CMakeFiles\TrongDongPalace.dir\src\Service.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/User.cpp
-CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\User.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\User.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\User.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/User.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/User.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\User.cpp > CMakeFiles\TrongDongPalace.dir\src\User.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/User.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/User.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\User.cpp -o CMakeFiles\TrongDongPalace.dir\src\User.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/UserRepository.cpp
-CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\UserRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\UserRepository.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\UserRepository.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\UserRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\UserRepository.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\UserRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\UserRepository.cpp.s
-
-CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
-CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
-CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/WeddingEvent.cpp
-CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\WeddingEvent.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\WeddingEvent.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\WeddingEvent.cpp
-
-CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\WeddingEvent.cpp > CMakeFiles\TrongDongPalace.dir\src\WeddingEvent.cpp.i
-
-CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\WeddingEvent.cpp -o CMakeFiles\TrongDongPalace.dir\src\WeddingEvent.cpp.s
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\main.cpp -o CMakeFiles\TrongDongPalace.dir\main.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/common/DisplayHelper.cpp
+CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\common\DisplayHelper.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\common\DisplayHelper.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\common\DisplayHelper.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\common\DisplayHelper.cpp > CMakeFiles\TrongDongPalace.dir\src\common\DisplayHelper.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\common\DisplayHelper.cpp -o CMakeFiles\TrongDongPalace.dir\src\common\DisplayHelper.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/common/InputHelper.cpp
+CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\common\InputHelper.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\common\InputHelper.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\common\InputHelper.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\common\InputHelper.cpp > CMakeFiles\TrongDongPalace.dir\src\common\InputHelper.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\common\InputHelper.cpp -o CMakeFiles\TrongDongPalace.dir\src\common\InputHelper.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/database/JsonStorage.cpp
+CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\database\JsonStorage.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\database\JsonStorage.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\database\JsonStorage.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\database\JsonStorage.cpp > CMakeFiles\TrongDongPalace.dir\src\database\JsonStorage.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\database\JsonStorage.cpp -o CMakeFiles\TrongDongPalace.dir\src\database\JsonStorage.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/BirthdayEvent.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\BirthdayEvent.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\BirthdayEvent.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\BirthdayEvent.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\BirthdayEvent.cpp > CMakeFiles\TrongDongPalace.dir\src\model\BirthdayEvent.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\BirthdayEvent.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\BirthdayEvent.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Booking.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Booking.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Booking.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Booking.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Booking.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Booking.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Booking.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Booking.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Center.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Center.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Center.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Center.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Center.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Center.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Center.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Center.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Contract.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Contract.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Contract.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Contract.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Contract.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Contract.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Contract.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Contract.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/CorporateEvent.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\CorporateEvent.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\CorporateEvent.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\CorporateEvent.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\CorporateEvent.cpp > CMakeFiles\TrongDongPalace.dir\src\model\CorporateEvent.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\CorporateEvent.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\CorporateEvent.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Customer.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Customer.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Customer.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Customer.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Customer.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Customer.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Customer.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Customer.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Event.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Event.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Event.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Event.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Event.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Event.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Event.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Event.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Hall.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Hall.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Hall.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Hall.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Hall.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Hall.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Hall.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Hall.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Package.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Package.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Package.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Package.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Package.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Package.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Package.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Package.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Payment.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Payment.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Payment.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Payment.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Payment.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Payment.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Payment.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Payment.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Quotation.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Quotation.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Quotation.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Quotation.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Quotation.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Quotation.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Quotation.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Quotation.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Service.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\Service.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\Service.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Service.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Service.cpp > CMakeFiles\TrongDongPalace.dir\src\model\Service.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Service.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\Service.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/User.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\User.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\User.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\User.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\User.cpp > CMakeFiles\TrongDongPalace.dir\src\model\User.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\User.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\User.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/WeddingEvent.cpp
+CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\model\WeddingEvent.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\model\WeddingEvent.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\WeddingEvent.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\WeddingEvent.cpp > CMakeFiles\TrongDongPalace.dir\src\model\WeddingEvent.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\WeddingEvent.cpp -o CMakeFiles\TrongDongPalace.dir\src\model\WeddingEvent.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/BookingRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\BookingRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\BookingRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\BookingRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\BookingRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\BookingRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\BookingRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\BookingRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/CenterRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\CenterRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\CenterRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CenterRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CenterRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\CenterRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CenterRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\CenterRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/ContractRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\ContractRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\ContractRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ContractRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ContractRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\ContractRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ContractRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\ContractRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/CustomerRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\CustomerRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\CustomerRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CustomerRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CustomerRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\CustomerRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CustomerRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\CustomerRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/HallRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\HallRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\HallRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\HallRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\HallRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\HallRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\HallRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\HallRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/JsonDocumentRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\JsonDocumentRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\JsonDocumentRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\JsonDocumentRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\JsonDocumentRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\JsonDocumentRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\JsonDocumentRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\JsonDocumentRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/PackageRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\PackageRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\PackageRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PackageRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PackageRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\PackageRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PackageRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\PackageRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/PaymentRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\PaymentRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\PaymentRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PaymentRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PaymentRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\PaymentRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PaymentRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\PaymentRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/QuotationRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\QuotationRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\QuotationRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\QuotationRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\QuotationRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\QuotationRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\QuotationRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\QuotationRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/ServiceRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\ServiceRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\ServiceRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ServiceRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ServiceRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\ServiceRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ServiceRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\ServiceRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/UserRepository.cpp
+CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\repository\UserRepository.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\repository\UserRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\UserRepository.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\UserRepository.cpp > CMakeFiles\TrongDongPalace.dir\src\repository\UserRepository.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\UserRepository.cpp -o CMakeFiles\TrongDongPalace.dir\src\repository\UserRepository.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/service/AuthService.cpp
+CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\service\AuthService.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\service\AuthService.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\service\AuthService.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\service\AuthService.cpp > CMakeFiles\TrongDongPalace.dir\src\service\AuthService.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\service\AuthService.cpp -o CMakeFiles\TrongDongPalace.dir\src\service\AuthService.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/service/CenterService.cpp
+CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\service\CenterService.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\service\CenterService.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CenterService.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CenterService.cpp > CMakeFiles\TrongDongPalace.dir\src\service\CenterService.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CenterService.cpp -o CMakeFiles\TrongDongPalace.dir\src\service\CenterService.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/service/CustomerService.cpp
+CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\service\CustomerService.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\service\CustomerService.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CustomerService.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CustomerService.cpp > CMakeFiles\TrongDongPalace.dir\src\service\CustomerService.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CustomerService.cpp -o CMakeFiles\TrongDongPalace.dir\src\service\CustomerService.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/service/HallService.cpp
+CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\service\HallService.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\service\HallService.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\service\HallService.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\service\HallService.cpp > CMakeFiles\TrongDongPalace.dir\src\service\HallService.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\service\HallService.cpp -o CMakeFiles\TrongDongPalace.dir\src\service\HallService.cpp.s
+
+CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.obj: CMakeFiles/TrongDongPalace.dir/flags.make
+CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.obj: CMakeFiles/TrongDongPalace.dir/includes_CXX.rsp
+CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/ui/ConsoleUI.cpp
+CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.obj: CMakeFiles/TrongDongPalace.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.obj -MF CMakeFiles\TrongDongPalace.dir\src\ui\ConsoleUI.cpp.obj.d -o CMakeFiles\TrongDongPalace.dir\src\ui\ConsoleUI.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\ui\ConsoleUI.cpp
+
+CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\ui\ConsoleUI.cpp > CMakeFiles\TrongDongPalace.dir\src\ui\ConsoleUI.cpp.i
+
+CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\ui\ConsoleUI.cpp -o CMakeFiles\TrongDongPalace.dir\src\ui\ConsoleUI.cpp.s
 
 # Object files for target TrongDongPalace
 TrongDongPalace_OBJECTS = \
 "CMakeFiles/TrongDongPalace.dir/main.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj" \
-"CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj"
+"CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.obj" \
+"CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.obj"
 
 # External object files for target TrongDongPalace
 TrongDongPalace_EXTERNAL_OBJECTS =
 
 TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/main.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/AuthService.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/BirthdayEvent.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Booking.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Center.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/CenterRepository.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/CenterService.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/ConsoleUI.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Contract.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/CorporateEvent.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Customer.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/CustomerRepository.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/CustomerService.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/DisplayHelper.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Event.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Hall.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/HallRepository.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/HallService.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/InputHelper.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/JsonStorage.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Package.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Payment.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Quotation.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/Service.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/User.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/UserRepository.cpp.obj
-TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/WeddingEvent.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/common/DisplayHelper.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/common/InputHelper.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/database/JsonStorage.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/BirthdayEvent.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Booking.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Center.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Contract.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/CorporateEvent.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Customer.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Event.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Hall.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Package.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Payment.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Quotation.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/Service.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/User.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/model/WeddingEvent.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/BookingRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/CenterRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/ContractRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/CustomerRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/HallRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/JsonDocumentRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/PackageRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/PaymentRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/QuotationRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/ServiceRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/repository/UserRepository.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/service/AuthService.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/service/CenterService.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/service/CustomerService.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/service/HallService.cpp.obj
+TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/src/ui/ConsoleUI.cpp.obj
 TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/build.make
 TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/linkLibs.rsp
 TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/objects1.rsp
 TrongDongPalace.exe: CMakeFiles/TrongDongPalace.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Linking CXX executable TrongDongPalace.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Linking CXX executable TrongDongPalace.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\TrongDongPalace.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -552,6 +671,6 @@ CMakeFiles/TrongDongPalace.dir/clean:
 .PHONY : CMakeFiles/TrongDongPalace.dir/clean
 
 CMakeFiles/TrongDongPalace.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles\TrongDongPalace.dir\DependInfo.cmake "--color=$(COLOR)" TrongDongPalace
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\TongSyAnhDuy\trongdongpalace C:\Users\TongSyAnhDuy\trongdongpalace C:\Users\TongSyAnhDuy\trongdongpalace\build C:\Users\TongSyAnhDuy\trongdongpalace\build C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles\TrongDongPalace.dir\DependInfo.cmake "--color=$(COLOR)" TrongDongPalace
 .PHONY : CMakeFiles/TrongDongPalace.dir/depend
 

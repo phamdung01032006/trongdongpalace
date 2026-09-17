@@ -7,6 +7,9 @@
 #include "Customer.h"
 #include "CustomerRepository.h"
 #include "CustomerService.h"
+#include "BookingRepository.h"
+#include "ContractRepository.h"
+#include "EventRepository.h"
 #include "Exceptions.h"
 #include "Hall.h"
 #include "HallRepository.h"
@@ -14,7 +17,11 @@
 #include "InputHelper.h"
 #include "JsonStorage.h"
 #include "Package.h"
+#include "PackageRepository.h"
+#include "PaymentRepository.h"
+#include "QuotationRepository.h"
 #include "Service.h"
+#include "ServiceRepository.h"
 #include "User.h"
 #include "UserRepository.h"
 #include "WeddingEvent.h"
@@ -157,7 +164,14 @@ void testCustomerRepositoryAndService() {
     CustomerRepository repository(storage);
     CustomerService service(repository);
 
-    service.create(Customer("C001", "Nguyen Van A", "0901234567", "a@example.com", "Ha Noi"));
+    // Day 6 persistence contract: add(C001) -> save() -> load() -> findById(C001).
+    repository.add(Customer("C001", "Nguyen Van A", "0901234567"));
+    repository.save();
+    repository.load();
+    expect(repository.findById("C001").getName() == "Nguyen Van A",
+           "Customer add/save/load/findById contract failed.");
+
+    service.update(Customer("C001", "Nguyen Van A", "0901234567", "a@example.com", "Ha Noi"));
     expect(service.findById("C001").getName() == "Nguyen Van A", "Customer create/find failed.");
     expectException<DuplicateException>([&] {
         service.create(Customer("C001", "Duplicate", "0901234568"));
@@ -170,6 +184,42 @@ void testCustomerRepositoryAndService() {
 
     service.remove("C001");
     expectException<NotFoundException>([&] { service.findById("C001"); }, "Customer not found: C001");
+    filesystem::remove_all(directory, error);
+}
+
+void testDocumentRepositories() {
+    const filesystem::path directory = createTestDirectory("trong_dong_document_repository_tests");
+    error_code error;
+    JsonStorage storage(directory / "data.json");
+    EventRepository eventRepository(storage);
+    BookingRepository bookingRepository(storage);
+    PackageRepository packageRepository(storage);
+    ServiceRepository serviceRepository(storage);
+    QuotationRepository quotationRepository(storage);
+    ContractRepository contractRepository(storage);
+    PaymentRepository paymentRepository(storage);
+    eventRepository.add({{"id", "E001"}, {"type", "WEDDING"}});
+    eventRepository.save(); eventRepository.load();
+    expect(eventRepository.findById("E001").at("type") == "WEDDING", "Event repository persistence failed.");
+
+    bookingRepository.add(Booking("B001", "E001", "P001"));
+    packageRepository.add(Package("P001", "Premium", "Dinner", 1000000, 100));
+    serviceRepository.add(Service("S001", "Decoration", "package", 500000));
+    quotationRepository.add(Quotation("Q001", "E001", 1500000));
+    contractRepository.add(Contract("CT001", "Q001", "2026-09-17"));
+    paymentRepository.add(Payment("PM001", "CT001", 500000, "2026-09-17"));
+    bookingRepository.save(); packageRepository.save(); serviceRepository.save();
+    quotationRepository.save(); contractRepository.save(); paymentRepository.save();
+    bookingRepository.load(); packageRepository.load(); serviceRepository.load();
+    quotationRepository.load(); contractRepository.load(); paymentRepository.load();
+    const Booking storedBooking = bookingRepository.findById("B001");
+    expect(storedBooking.getEventId() == "E001", "Booking repository persistence failed.");
+    expect(storedBooking.getStatus() == "PENDING", "Booking repository default status was not persisted.");
+    expect(packageRepository.findById("P001").getName() == "Premium", "Package repository persistence failed.");
+    expect(serviceRepository.findById("S001").getName() == "Decoration", "Service repository persistence failed.");
+    expect(quotationRepository.findById("Q001").getTotal() == 1500000, "Quotation repository persistence failed.");
+    expect(contractRepository.findById("CT001").getQuotationId() == "Q001", "Contract repository persistence failed.");
+    expect(paymentRepository.findById("PM001").getAmount() == 500000, "Payment repository persistence failed.");
     filesystem::remove_all(directory, error);
 }
 
@@ -236,6 +286,7 @@ int main(int argc, char* argv[]) {
         }
         if (selectedTest == "all" || selectedTest == "events") testPolymorphismAndEventValidation();
         if (selectedTest == "all" || selectedTest == "customer") testCustomerRepositoryAndService();
+        if (selectedTest == "all" || selectedTest == "repository") testDocumentRepositories();
         if (selectedTest == "all" || selectedTest == "centerhall") testCenterHallServices();
         if (selectedTest == "all" || selectedTest == "auth") testAuthenticationAndAuthorization();
         cout << "FoundationTests: PASS\n";

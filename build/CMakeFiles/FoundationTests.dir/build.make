@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\CMake\bin\cmake.exe"
+CMAKE_COMMAND = C:\msys64\ucrt64\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
+RM = C:\msys64\ucrt64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace
+CMAKE_SOURCE_DIR = C:\Users\TongSyAnhDuy\trongdongpalace
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build
+CMAKE_BINARY_DIR = C:\Users\TongSyAnhDuy\trongdongpalace\build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/FoundationTests.dir/depend.make
@@ -73,474 +73,593 @@ CMakeFiles/FoundationTests.dir/codegen:
 
 CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
 CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/tests/FoundationTests.cpp
+CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/tests/FoundationTests.cpp
 CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj -MF CMakeFiles\FoundationTests.dir\tests\FoundationTests.cpp.obj.d -o CMakeFiles\FoundationTests.dir\tests\FoundationTests.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\tests\FoundationTests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj -MF CMakeFiles\FoundationTests.dir\tests\FoundationTests.cpp.obj.d -o CMakeFiles\FoundationTests.dir\tests\FoundationTests.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\tests\FoundationTests.cpp
 
 CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\tests\FoundationTests.cpp > CMakeFiles\FoundationTests.dir\tests\FoundationTests.cpp.i
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\tests\FoundationTests.cpp > CMakeFiles\FoundationTests.dir\tests\FoundationTests.cpp.i
 
 CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\tests\FoundationTests.cpp -o CMakeFiles\FoundationTests.dir\tests\FoundationTests.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/AuthService.cpp
-CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\AuthService.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\AuthService.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\AuthService.cpp
-
-CMakeFiles/FoundationTests.dir/src/AuthService.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/AuthService.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\AuthService.cpp > CMakeFiles\FoundationTests.dir\src\AuthService.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/AuthService.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/AuthService.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\AuthService.cpp -o CMakeFiles\FoundationTests.dir\src\AuthService.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/BirthdayEvent.cpp
-CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\BirthdayEvent.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\BirthdayEvent.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\BirthdayEvent.cpp
-
-CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\BirthdayEvent.cpp > CMakeFiles\FoundationTests.dir\src\BirthdayEvent.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\BirthdayEvent.cpp -o CMakeFiles\FoundationTests.dir\src\BirthdayEvent.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Booking.cpp
-CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Booking.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Booking.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Booking.cpp
-
-CMakeFiles/FoundationTests.dir/src/Booking.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Booking.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Booking.cpp > CMakeFiles\FoundationTests.dir\src\Booking.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Booking.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Booking.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Booking.cpp -o CMakeFiles\FoundationTests.dir\src\Booking.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Center.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Center.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Center.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Center.cpp
-CMakeFiles/FoundationTests.dir/src/Center.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FoundationTests.dir/src/Center.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Center.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Center.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Center.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Center.cpp
-
-CMakeFiles/FoundationTests.dir/src/Center.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Center.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Center.cpp > CMakeFiles\FoundationTests.dir\src\Center.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Center.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Center.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Center.cpp -o CMakeFiles\FoundationTests.dir\src\Center.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CenterRepository.cpp
-CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\CenterRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\CenterRepository.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterRepository.cpp
-
-CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterRepository.cpp > CMakeFiles\FoundationTests.dir\src\CenterRepository.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterRepository.cpp -o CMakeFiles\FoundationTests.dir\src\CenterRepository.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CenterService.cpp
-CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\CenterService.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\CenterService.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterService.cpp
-
-CMakeFiles/FoundationTests.dir/src/CenterService.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/CenterService.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterService.cpp > CMakeFiles\FoundationTests.dir\src\CenterService.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/CenterService.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/CenterService.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CenterService.cpp -o CMakeFiles\FoundationTests.dir\src\CenterService.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/ConsoleUI.cpp
-CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\ConsoleUI.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\ConsoleUI.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\ConsoleUI.cpp
-
-CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\ConsoleUI.cpp > CMakeFiles\FoundationTests.dir\src\ConsoleUI.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\ConsoleUI.cpp -o CMakeFiles\FoundationTests.dir\src\ConsoleUI.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Contract.cpp
-CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Contract.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Contract.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Contract.cpp
-
-CMakeFiles/FoundationTests.dir/src/Contract.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Contract.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Contract.cpp > CMakeFiles\FoundationTests.dir\src\Contract.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Contract.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Contract.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Contract.cpp -o CMakeFiles\FoundationTests.dir\src\Contract.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CorporateEvent.cpp
-CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\CorporateEvent.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\CorporateEvent.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CorporateEvent.cpp
-
-CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CorporateEvent.cpp > CMakeFiles\FoundationTests.dir\src\CorporateEvent.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CorporateEvent.cpp -o CMakeFiles\FoundationTests.dir\src\CorporateEvent.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Customer.cpp
-CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Customer.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Customer.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Customer.cpp
-
-CMakeFiles/FoundationTests.dir/src/Customer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Customer.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Customer.cpp > CMakeFiles\FoundationTests.dir\src\Customer.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Customer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Customer.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Customer.cpp -o CMakeFiles\FoundationTests.dir\src\Customer.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CustomerRepository.cpp
-CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\CustomerRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\CustomerRepository.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerRepository.cpp
-
-CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerRepository.cpp > CMakeFiles\FoundationTests.dir\src\CustomerRepository.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerRepository.cpp -o CMakeFiles\FoundationTests.dir\src\CustomerRepository.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/CustomerService.cpp
-CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\CustomerService.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\CustomerService.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerService.cpp
-
-CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerService.cpp > CMakeFiles\FoundationTests.dir\src\CustomerService.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\CustomerService.cpp -o CMakeFiles\FoundationTests.dir\src\CustomerService.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/DisplayHelper.cpp
-CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\DisplayHelper.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\DisplayHelper.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\DisplayHelper.cpp
-
-CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\DisplayHelper.cpp > CMakeFiles\FoundationTests.dir\src\DisplayHelper.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\DisplayHelper.cpp -o CMakeFiles\FoundationTests.dir\src\DisplayHelper.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Event.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Event.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Event.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Event.cpp
-CMakeFiles/FoundationTests.dir/src/Event.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/FoundationTests.dir/src/Event.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Event.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Event.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Event.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Event.cpp
-
-CMakeFiles/FoundationTests.dir/src/Event.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Event.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Event.cpp > CMakeFiles\FoundationTests.dir\src\Event.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Event.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Event.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Event.cpp -o CMakeFiles\FoundationTests.dir\src\Event.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Hall.cpp
-CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Hall.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Hall.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Hall.cpp
-
-CMakeFiles/FoundationTests.dir/src/Hall.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Hall.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Hall.cpp > CMakeFiles\FoundationTests.dir\src\Hall.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Hall.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Hall.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Hall.cpp -o CMakeFiles\FoundationTests.dir\src\Hall.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/HallRepository.cpp
-CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\HallRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\HallRepository.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallRepository.cpp
-
-CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallRepository.cpp > CMakeFiles\FoundationTests.dir\src\HallRepository.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallRepository.cpp -o CMakeFiles\FoundationTests.dir\src\HallRepository.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/HallService.cpp
-CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\HallService.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\HallService.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallService.cpp
-
-CMakeFiles/FoundationTests.dir/src/HallService.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/HallService.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallService.cpp > CMakeFiles\FoundationTests.dir\src\HallService.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/HallService.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/HallService.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\HallService.cpp -o CMakeFiles\FoundationTests.dir\src\HallService.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/InputHelper.cpp
-CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\InputHelper.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\InputHelper.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\InputHelper.cpp
-
-CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\InputHelper.cpp > CMakeFiles\FoundationTests.dir\src\InputHelper.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\InputHelper.cpp -o CMakeFiles\FoundationTests.dir\src\InputHelper.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/JsonStorage.cpp
-CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\JsonStorage.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\JsonStorage.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\JsonStorage.cpp
-
-CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\JsonStorage.cpp > CMakeFiles\FoundationTests.dir\src\JsonStorage.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\JsonStorage.cpp -o CMakeFiles\FoundationTests.dir\src\JsonStorage.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Package.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Package.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Package.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Package.cpp
-CMakeFiles/FoundationTests.dir/src/Package.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/FoundationTests.dir/src/Package.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Package.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Package.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Package.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Package.cpp
-
-CMakeFiles/FoundationTests.dir/src/Package.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Package.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Package.cpp > CMakeFiles\FoundationTests.dir\src\Package.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Package.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Package.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Package.cpp -o CMakeFiles\FoundationTests.dir\src\Package.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Payment.cpp
-CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Payment.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Payment.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Payment.cpp
-
-CMakeFiles/FoundationTests.dir/src/Payment.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Payment.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Payment.cpp > CMakeFiles\FoundationTests.dir\src\Payment.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Payment.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Payment.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Payment.cpp -o CMakeFiles\FoundationTests.dir\src\Payment.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Quotation.cpp
-CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Quotation.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Quotation.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Quotation.cpp
-
-CMakeFiles/FoundationTests.dir/src/Quotation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Quotation.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Quotation.cpp > CMakeFiles\FoundationTests.dir\src\Quotation.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Quotation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Quotation.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Quotation.cpp -o CMakeFiles\FoundationTests.dir\src\Quotation.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/Service.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/Service.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/Service.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/Service.cpp
-CMakeFiles/FoundationTests.dir/src/Service.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/FoundationTests.dir/src/Service.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/Service.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\Service.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\Service.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Service.cpp
-
-CMakeFiles/FoundationTests.dir/src/Service.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/Service.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Service.cpp > CMakeFiles\FoundationTests.dir\src\Service.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/Service.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/Service.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\Service.cpp -o CMakeFiles\FoundationTests.dir\src\Service.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/User.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/User.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/User.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/User.cpp
-CMakeFiles/FoundationTests.dir/src/User.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/FoundationTests.dir/src/User.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/User.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\User.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\User.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\User.cpp
-
-CMakeFiles/FoundationTests.dir/src/User.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/User.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\User.cpp > CMakeFiles\FoundationTests.dir\src\User.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/User.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/User.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\User.cpp -o CMakeFiles\FoundationTests.dir\src\User.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/UserRepository.cpp
-CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\UserRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\UserRepository.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\UserRepository.cpp
-
-CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\UserRepository.cpp > CMakeFiles\FoundationTests.dir\src\UserRepository.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\UserRepository.cpp -o CMakeFiles\FoundationTests.dir\src\UserRepository.cpp.s
-
-CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
-CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
-CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj: C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/src/WeddingEvent.cpp
-CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\WeddingEvent.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\WeddingEvent.cpp.obj -c C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\WeddingEvent.cpp
-
-CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\WeddingEvent.cpp > CMakeFiles\FoundationTests.dir\src\WeddingEvent.cpp.i
-
-CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\src\WeddingEvent.cpp -o CMakeFiles\FoundationTests.dir\src\WeddingEvent.cpp.s
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\tests\FoundationTests.cpp -o CMakeFiles\FoundationTests.dir\tests\FoundationTests.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/common/DisplayHelper.cpp
+CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\common\DisplayHelper.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\common\DisplayHelper.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\common\DisplayHelper.cpp
+
+CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\common\DisplayHelper.cpp > CMakeFiles\FoundationTests.dir\src\common\DisplayHelper.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\common\DisplayHelper.cpp -o CMakeFiles\FoundationTests.dir\src\common\DisplayHelper.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/common/InputHelper.cpp
+CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\common\InputHelper.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\common\InputHelper.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\common\InputHelper.cpp
+
+CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\common\InputHelper.cpp > CMakeFiles\FoundationTests.dir\src\common\InputHelper.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\common\InputHelper.cpp -o CMakeFiles\FoundationTests.dir\src\common\InputHelper.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/database/JsonStorage.cpp
+CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\database\JsonStorage.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\database\JsonStorage.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\database\JsonStorage.cpp
+
+CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\database\JsonStorage.cpp > CMakeFiles\FoundationTests.dir\src\database\JsonStorage.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\database\JsonStorage.cpp -o CMakeFiles\FoundationTests.dir\src\database\JsonStorage.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/BirthdayEvent.cpp
+CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\BirthdayEvent.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\BirthdayEvent.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\BirthdayEvent.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\BirthdayEvent.cpp > CMakeFiles\FoundationTests.dir\src\model\BirthdayEvent.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\BirthdayEvent.cpp -o CMakeFiles\FoundationTests.dir\src\model\BirthdayEvent.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Booking.cpp
+CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Booking.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Booking.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Booking.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Booking.cpp > CMakeFiles\FoundationTests.dir\src\model\Booking.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Booking.cpp -o CMakeFiles\FoundationTests.dir\src\model\Booking.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Center.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Center.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Center.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Center.cpp
+CMakeFiles/FoundationTests.dir/src/model/Center.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Center.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Center.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Center.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Center.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Center.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Center.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Center.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Center.cpp > CMakeFiles\FoundationTests.dir\src\model\Center.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Center.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Center.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Center.cpp -o CMakeFiles\FoundationTests.dir\src\model\Center.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Contract.cpp
+CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Contract.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Contract.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Contract.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Contract.cpp > CMakeFiles\FoundationTests.dir\src\model\Contract.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Contract.cpp -o CMakeFiles\FoundationTests.dir\src\model\Contract.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/CorporateEvent.cpp
+CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\CorporateEvent.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\CorporateEvent.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\CorporateEvent.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\CorporateEvent.cpp > CMakeFiles\FoundationTests.dir\src\model\CorporateEvent.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\CorporateEvent.cpp -o CMakeFiles\FoundationTests.dir\src\model\CorporateEvent.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Customer.cpp
+CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Customer.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Customer.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Customer.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Customer.cpp > CMakeFiles\FoundationTests.dir\src\model\Customer.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Customer.cpp -o CMakeFiles\FoundationTests.dir\src\model\Customer.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Event.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Event.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Event.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Event.cpp
+CMakeFiles/FoundationTests.dir/src/model/Event.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Event.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Event.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Event.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Event.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Event.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Event.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Event.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Event.cpp > CMakeFiles\FoundationTests.dir\src\model\Event.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Event.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Event.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Event.cpp -o CMakeFiles\FoundationTests.dir\src\model\Event.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Hall.cpp
+CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Hall.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Hall.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Hall.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Hall.cpp > CMakeFiles\FoundationTests.dir\src\model\Hall.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Hall.cpp -o CMakeFiles\FoundationTests.dir\src\model\Hall.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Package.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Package.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Package.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Package.cpp
+CMakeFiles/FoundationTests.dir/src/model/Package.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Package.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Package.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Package.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Package.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Package.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Package.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Package.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Package.cpp > CMakeFiles\FoundationTests.dir\src\model\Package.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Package.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Package.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Package.cpp -o CMakeFiles\FoundationTests.dir\src\model\Package.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Payment.cpp
+CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Payment.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Payment.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Payment.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Payment.cpp > CMakeFiles\FoundationTests.dir\src\model\Payment.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Payment.cpp -o CMakeFiles\FoundationTests.dir\src\model\Payment.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Quotation.cpp
+CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Quotation.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Quotation.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Quotation.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Quotation.cpp > CMakeFiles\FoundationTests.dir\src\model\Quotation.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Quotation.cpp -o CMakeFiles\FoundationTests.dir\src\model\Quotation.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/Service.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/Service.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/Service.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/Service.cpp
+CMakeFiles/FoundationTests.dir/src/model/Service.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/Service.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/Service.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\Service.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\Service.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Service.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/Service.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/Service.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Service.cpp > CMakeFiles\FoundationTests.dir\src\model\Service.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/Service.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/Service.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\Service.cpp -o CMakeFiles\FoundationTests.dir\src\model\Service.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/User.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/User.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/User.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/User.cpp
+CMakeFiles/FoundationTests.dir/src/model/User.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/User.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/User.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\User.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\User.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\User.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/User.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/User.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\User.cpp > CMakeFiles\FoundationTests.dir\src\model\User.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/User.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/User.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\User.cpp -o CMakeFiles\FoundationTests.dir\src\model\User.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/model/WeddingEvent.cpp
+CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\model\WeddingEvent.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\model\WeddingEvent.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\model\WeddingEvent.cpp
+
+CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\model\WeddingEvent.cpp > CMakeFiles\FoundationTests.dir\src\model\WeddingEvent.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\model\WeddingEvent.cpp -o CMakeFiles\FoundationTests.dir\src\model\WeddingEvent.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/BookingRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\BookingRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\BookingRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\BookingRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\BookingRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\BookingRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\BookingRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\BookingRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/CenterRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\CenterRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\CenterRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CenterRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CenterRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\CenterRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CenterRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\CenterRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/ContractRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\ContractRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\ContractRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ContractRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ContractRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\ContractRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ContractRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\ContractRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/CustomerRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\CustomerRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\CustomerRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CustomerRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CustomerRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\CustomerRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\CustomerRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\CustomerRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/HallRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\HallRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\HallRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\HallRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\HallRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\HallRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\HallRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\HallRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/JsonDocumentRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\JsonDocumentRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\JsonDocumentRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\JsonDocumentRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\JsonDocumentRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\JsonDocumentRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\JsonDocumentRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\JsonDocumentRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/PackageRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\PackageRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\PackageRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PackageRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PackageRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\PackageRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PackageRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\PackageRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/PaymentRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\PaymentRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\PaymentRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PaymentRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PaymentRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\PaymentRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\PaymentRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\PaymentRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/QuotationRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\QuotationRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\QuotationRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\QuotationRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\QuotationRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\QuotationRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\QuotationRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\QuotationRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/ServiceRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\ServiceRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\ServiceRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ServiceRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ServiceRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\ServiceRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\ServiceRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\ServiceRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/repository/UserRepository.cpp
+CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\repository\UserRepository.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\repository\UserRepository.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\UserRepository.cpp
+
+CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\UserRepository.cpp > CMakeFiles\FoundationTests.dir\src\repository\UserRepository.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\repository\UserRepository.cpp -o CMakeFiles\FoundationTests.dir\src\repository\UserRepository.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/service/AuthService.cpp
+CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\service\AuthService.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\service\AuthService.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\service\AuthService.cpp
+
+CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\service\AuthService.cpp > CMakeFiles\FoundationTests.dir\src\service\AuthService.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\service\AuthService.cpp -o CMakeFiles\FoundationTests.dir\src\service\AuthService.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/service/CenterService.cpp
+CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\service\CenterService.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\service\CenterService.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CenterService.cpp
+
+CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CenterService.cpp > CMakeFiles\FoundationTests.dir\src\service\CenterService.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CenterService.cpp -o CMakeFiles\FoundationTests.dir\src\service\CenterService.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/service/CustomerService.cpp
+CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\service\CustomerService.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\service\CustomerService.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CustomerService.cpp
+
+CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CustomerService.cpp > CMakeFiles\FoundationTests.dir\src\service\CustomerService.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\service\CustomerService.cpp -o CMakeFiles\FoundationTests.dir\src\service\CustomerService.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/service/HallService.cpp
+CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\service\HallService.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\service\HallService.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\service\HallService.cpp
+
+CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\service\HallService.cpp > CMakeFiles\FoundationTests.dir\src\service\HallService.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\service\HallService.cpp -o CMakeFiles\FoundationTests.dir\src\service\HallService.cpp.s
+
+CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.obj: CMakeFiles/FoundationTests.dir/flags.make
+CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.obj: CMakeFiles/FoundationTests.dir/includes_CXX.rsp
+CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.obj: C:/Users/TongSyAnhDuy/trongdongpalace/src/ui/ConsoleUI.cpp
+CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.obj: CMakeFiles/FoundationTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.obj -MF CMakeFiles\FoundationTests.dir\src\ui\ConsoleUI.cpp.obj.d -o CMakeFiles\FoundationTests.dir\src\ui\ConsoleUI.cpp.obj -c C:\Users\TongSyAnhDuy\trongdongpalace\src\ui\ConsoleUI.cpp
+
+CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\TongSyAnhDuy\trongdongpalace\src\ui\ConsoleUI.cpp > CMakeFiles\FoundationTests.dir\src\ui\ConsoleUI.cpp.i
+
+CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\TongSyAnhDuy\trongdongpalace\src\ui\ConsoleUI.cpp -o CMakeFiles\FoundationTests.dir\src\ui\ConsoleUI.cpp.s
 
 # Object files for target FoundationTests
 FoundationTests_OBJECTS = \
 "CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Center.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Event.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Package.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/Service.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/User.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj" \
-"CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj"
+"CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Center.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Event.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Package.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/Service.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/User.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.obj" \
+"CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.obj"
 
 # External object files for target FoundationTests
 FoundationTests_EXTERNAL_OBJECTS =
 
 FoundationTests.exe: CMakeFiles/FoundationTests.dir/tests/FoundationTests.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/AuthService.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/BirthdayEvent.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Booking.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Center.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/CenterRepository.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/CenterService.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/ConsoleUI.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Contract.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/CorporateEvent.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Customer.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/CustomerRepository.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/CustomerService.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/DisplayHelper.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Event.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Hall.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/HallRepository.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/HallService.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/InputHelper.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/JsonStorage.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Package.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Payment.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Quotation.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/Service.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/User.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/UserRepository.cpp.obj
-FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/WeddingEvent.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/common/DisplayHelper.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/common/InputHelper.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/database/JsonStorage.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/BirthdayEvent.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Booking.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Center.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Contract.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/CorporateEvent.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Customer.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Event.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Hall.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Package.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Payment.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Quotation.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/Service.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/User.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/model/WeddingEvent.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/BookingRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/CenterRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/ContractRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/CustomerRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/HallRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/JsonDocumentRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/PackageRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/PaymentRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/QuotationRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/ServiceRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/repository/UserRepository.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/service/AuthService.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/service/CenterService.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/service/CustomerService.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/service/HallService.cpp.obj
+FoundationTests.exe: CMakeFiles/FoundationTests.dir/src/ui/ConsoleUI.cpp.obj
 FoundationTests.exe: CMakeFiles/FoundationTests.dir/build.make
 FoundationTests.exe: CMakeFiles/FoundationTests.dir/linkLibs.rsp
 FoundationTests.exe: CMakeFiles/FoundationTests.dir/objects1.rsp
 FoundationTests.exe: CMakeFiles/FoundationTests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Linking CXX executable FoundationTests.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Linking CXX executable FoundationTests.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\FoundationTests.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -552,6 +671,6 @@ CMakeFiles/FoundationTests.dir/clean:
 .PHONY : CMakeFiles/FoundationTests.dir/clean
 
 CMakeFiles/FoundationTests.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles\FoundationTests.dir\DependInfo.cmake "--color=$(COLOR)" FoundationTests
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\TongSyAnhDuy\trongdongpalace C:\Users\TongSyAnhDuy\trongdongpalace C:\Users\TongSyAnhDuy\trongdongpalace\build C:\Users\TongSyAnhDuy\trongdongpalace\build C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles\FoundationTests.dir\DependInfo.cmake "--color=$(COLOR)" FoundationTests
 .PHONY : CMakeFiles/FoundationTests.dir/depend
 

@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\CMake\bin\cmake.exe"
+CMAKE_COMMAND = C:\msys64\ucrt64\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
+RM = C:\msys64\ucrt64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace
+CMAKE_SOURCE_DIR = C:\Users\TongSyAnhDuy\trongdongpalace
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build
+CMAKE_BINARY_DIR = C:\Users\TongSyAnhDuy\trongdongpalace\build
 
 # Utility rule file for NightlyUpdate.
 
@@ -66,7 +66,7 @@ include CMakeFiles/NightlyUpdate.dir/compiler_depend.make
 include CMakeFiles/NightlyUpdate.dir/progress.make
 
 CMakeFiles/NightlyUpdate:
-	"C:\Program Files\CMake\bin\ctest.exe" -DMODEL=Nightly -DACTIONS=Update -S CMakeFiles/CTestScript.cmake -V
+	C:\msys64\ucrt64\bin\ctest.exe -DMODEL=Nightly -DACTIONS=Update -S CMakeFiles/CTestScript.cmake -V
 
 CMakeFiles/NightlyUpdate.dir/codegen:
 .PHONY : CMakeFiles/NightlyUpdate.dir/codegen
@@ -84,6 +84,6 @@ CMakeFiles/NightlyUpdate.dir/clean:
 .PHONY : CMakeFiles/NightlyUpdate.dir/clean
 
 CMakeFiles/NightlyUpdate.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build C:\Users\Hotaru\Downloads\NEU\nam3\K1N3\OOP\Btnhom\trongdongpalace\build\CMakeFiles\NightlyUpdate.dir\DependInfo.cmake "--color=$(COLOR)" NightlyUpdate
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\TongSyAnhDuy\trongdongpalace C:\Users\TongSyAnhDuy\trongdongpalace C:\Users\TongSyAnhDuy\trongdongpalace\build C:\Users\TongSyAnhDuy\trongdongpalace\build C:\Users\TongSyAnhDuy\trongdongpalace\build\CMakeFiles\NightlyUpdate.dir\DependInfo.cmake "--color=$(COLOR)" NightlyUpdate
 .PHONY : CMakeFiles/NightlyUpdate.dir/depend
 
