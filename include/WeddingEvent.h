@@ -1,18 +1,24 @@
-#pragma once
+#ifndef WEDDINGEVENT_H
+#define WEDDINGEVENT_H
 
 #include "Event.h"
 
+using namespace std;
+
+// =====================================================================
+// Lớp con TIỆC CƯỚI — kế thừa Event (kế thừa + đa hình, FR-02):
+//   - Chuẩn bị trước: 3 giờ, dọn dẹp sau: 2 giờ
+//   - Điều kiện riêng: số khách tối thiểu 50
+// =====================================================================
 class WeddingEvent : public Event {
-private:
-    string ceremonyStyle;
-
 public:
-    WeddingEvent(const string& id, const string& customerId, const string& hallId,
-                 const string& eventDate, const string& startTime, const string& endTime,
-                 int guestCount, const string& ceremonyStyle = "STANDARD");
+    WeddingEvent(const string& maSuKien, const string& tenSuKien,
+                 int soKhach, const ThoiDiem& gioBatDau, const ThoiDiem& gioKetThuc);
 
-    const string& getCeremonyStyle() const;
-    void setCeremonyStyle(const string& ceremonyStyle);
-    string getEventType() const override;
-    double calculateBasePrice() const override;
+    double thoiGianChuanBi() const override;    // 3 giờ
+    double thoiGianDonDep() const override;     // 2 giờ
+    void kiemTraDieuKienRieng() const override; // soKhach >= 50
+    string tenLoai() const override;            // "Tiec cuoi"
 };
+
+#endif // WEDDINGEVENT_H

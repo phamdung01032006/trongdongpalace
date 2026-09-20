@@ -1,37 +1,27 @@
 #include "Hall.h"
-#include "Exceptions.h"
+#include "Utils.h"
 
 using namespace std;
 
-namespace {
-bool validStatus(const string& value) { return value == "ACTIVE" || value == "INACTIVE"; }
-}
+Hall::Hall(const string& maSanh, const string& ten, int sucChua, bool dangHoatDong)
+    : maSanh(maSanh), ten(ten), sucChua(sucChua), dangHoatDong(dangHoatDong) {}
 
-Hall::Hall(const string& id, const string& centerId, const string& name, int capacity,
-           const string& status) : id(id), centerId(centerId) {
-    if (id.empty()) throw ValidationException("Hall ID cannot be empty.");
-    if (centerId.empty()) throw ValidationException("Center ID cannot be empty.");
-    setName(name);
-    setCapacity(capacity);
-    setStatus(status);
-}
+string Hall::getMaSanh() const { return maSanh; }
+string Hall::getTen() const { return ten; }
+int Hall::getSucChua() const { return sucChua; }
+bool Hall::getDangHoatDong() const { return dangHoatDong; }
 
-const string& Hall::getId() const { return id; }
-const string& Hall::getCenterId() const { return centerId; }
-const string& Hall::getName() const { return name; }
-int Hall::getCapacity() const { return capacity; }
-const string& Hall::getStatus() const { return status; }
-bool Hall::isActive() const { return status == "ACTIVE"; }
+void Hall::setTen(const string& tenMoi) { ten = tenMoi; }
+void Hall::setSucChua(int sucChuaMoi) { sucChua = sucChuaMoi; }
+void Hall::setDangHoatDong(bool hoatDong) { dangHoatDong = hoatDong; }
 
-void Hall::setName(const string& value) {
-    if (value.empty()) throw ValidationException("Hall name cannot be empty.");
-    name = value;
-}
-void Hall::setCapacity(int value) {
-    if (value <= 0) throw ValidationException("Hall capacity must be greater than 0.");
-    capacity = value;
-}
-void Hall::setStatus(const string& value) {
-    if (!validStatus(value)) throw ValidationException("Hall status must be ACTIVE or INACTIVE.");
-    status = value;
+void Hall::hienThi(const vector<int>& doRong) const {
+    vector<string> o = {
+        maSanh,
+        ten,
+        to_string(sucChua) + " khach",
+        dangHoatDong ? "Dang hoat dong" : "Ngung hoat dong"
+    };
+    // Cột "Suc chua" canh phải cho số thẳng cột, các cột còn lại canh trái
+    inDongBang(o, doRong, {false, false, true, false});
 }

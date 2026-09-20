@@ -1,6 +1,0 @@
-Feature: Day 2 - Exception hierarchy
-Files tested: include/Exceptions.h, tests/FoundationTests.cpp
-Input: ValidationException, NotFoundException, DuplicateException, BookingConflictException, AuthenticationException, FileException
-Expected: Each type derives from AppException and preserves its message.
-Actual: All six cases are caught by their expected type in FoundationTests.
-Result: PASS

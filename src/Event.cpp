@@ -1,70 +1,36 @@
 #include "Event.h"
 #include "Exceptions.h"
 
-#include <cctype>
-
 using namespace std;
 
-namespace {
-bool validTime(const string& value) {
-    return value.size() == 5 && value[2] == ':' &&
-           isdigit(static_cast<unsigned char>(value[0])) &&
-           isdigit(static_cast<unsigned char>(value[1])) &&
-           isdigit(static_cast<unsigned char>(value[3])) &&
-           isdigit(static_cast<unsigned char>(value[4])) &&
-           stoi(value.substr(0, 2)) < 24 && stoi(value.substr(3, 2)) < 60;
+Event::Event(const string& maSuKien, const string& tenSuKien,
+             int soKhach, const ThoiDiem& gioBatDau, const ThoiDiem& gioKetThuc)
+    : maSuKien(maSuKien), tenSuKien(tenSuKien), soKhach(soKhach),
+      gioBatDau(gioBatDau), gioKetThuc(gioKetThuc) {}
+
+Event::~Event() {}
+
+// ----- Khung giờ "mở rộng" (cộng chuẩn bị trước / dọn dẹp sau) -----
+// Ví dụ: tiệc cưới 17:00-20:00 => khung rộng 14:00-22:00
+// (chuẩn bị 3h trước + dọn dẹp 2h sau).
+ThoiDiem Event::batDauRong() const {
+    long long soPhutChuanBi = (long long)(thoiGianChuanBi() * 60.0 + 0.5); // làm tròn phút
+    return congPhut(gioBatDau, -soPhutChuanBi);
 }
 
-void validateTimeRange(const string& startTime, const string& endTime) {
-    if (!validTime(startTime) || !validTime(endTime)) {
-        throw ValidationException("Time must use HH:MM format.");
-    }
-    if (startTime >= endTime) {
-        throw ValidationException("Start time must be before end time.");
-    }
-}
+ThoiDiem Event::ketThucRong() const {
+    long long soPhutDonDep = (long long)(thoiGianDonDep() * 60.0 + 0.5);
+    return congPhut(gioKetThuc, soPhutDonDep);
 }
 
-Event::Event(const string& id, const string& customerId, const string& hallId,
-             const string& eventDate, const string& startTime, const string& endTime,
-             int guestCount, const string& status)
-    : id(id), customerId(customerId) {
-    if (id.empty()) throw ValidationException("Event ID cannot be empty.");
-    if (customerId.empty()) throw ValidationException("Customer ID cannot be empty.");
-    setHallId(hallId);
-    setEventDate(eventDate);
-    setTimeRange(startTime, endTime);
-    setGuestCount(guestCount);
-    setStatus(status);
-}
+string Event::getMaSuKien() const { return maSuKien; }
+string Event::getTenSuKien() const { return tenSuKien; }
+int Event::getSoKhach() const { return soKhach; }
+ThoiDiem Event::getGioBatDau() const { return gioBatDau; }
+ThoiDiem Event::getGioKetThuc() const { return gioKetThuc; }
 
-const string& Event::getId() const { return id; }
-const string& Event::getCustomerId() const { return customerId; }
-const string& Event::getHallId() const { return hallId; }
-const string& Event::getEventDate() const { return eventDate; }
-const string& Event::getStartTime() const { return startTime; }
-const string& Event::getEndTime() const { return endTime; }
-int Event::getGuestCount() const { return guestCount; }
-const string& Event::getStatus() const { return status; }
-
-void Event::setHallId(const string& value) {
-    if (value.empty()) throw ValidationException("Hall ID cannot be empty.");
-    hallId = value;
-}
-void Event::setEventDate(const string& value) {
-    if (value.empty()) throw ValidationException("Event date cannot be empty.");
-    eventDate = value;
-}
-void Event::setTimeRange(const string& newStartTime, const string& newEndTime) {
-    validateTimeRange(newStartTime, newEndTime);
-    startTime = newStartTime;
-    endTime = newEndTime;
-}
-void Event::setGuestCount(int value) {
-    if (value <= 0) throw ValidationException("Guest count must be greater than 0.");
-    guestCount = value;
-}
-void Event::setStatus(const string& value) {
-    if (value.empty()) throw ValidationException("Event status cannot be empty.");
-    status = value;
+// Dùng cho FR-09 (đổi lịch): chỉ thay khung giờ, giữ nguyên mọi thông tin khác
+void Event::setKhungGio(const ThoiDiem& gioBatDauMoi, const ThoiDiem& gioKetThucMoi) {
+    gioBatDau = gioBatDauMoi;
+    gioKetThuc = gioKetThucMoi;
 }

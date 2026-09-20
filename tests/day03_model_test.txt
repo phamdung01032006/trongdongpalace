@@ -1,6 +1,0 @@
-Feature: Day 3 - Base models and encapsulation
-Files tested: User, Customer, Center, Hall, Package, Service
-Input: Valid model data; invalid phone; zero hall capacity; negative service price; text for integer; empty string; invalid Y/N; invalid/negative double.
-Expected: Getters/setters return valid values; invalid setters throw ValidationException; InputHelper re-prompts until valid input is supplied.
-Actual: Verified by BaseModelTests in CTest.
-Result: PASS

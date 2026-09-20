@@ -1,6 +1,0 @@
-Feature: Day 1 - Project setup, JSON foundation and start menu
-Files tested: CMakeLists.txt, JsonStorage, ConsoleUI, data/data.json
-Input: Missing temporary data file; valid data; malformed JSON { invalid json
-Expected: File is created with the common schema; valid data loads; malformed JSON throws FileException and the application does not crash.
-Actual: JsonStorageTests passed; manual run displayed the menu, rejected option 8, and exited with option 0. A malformed data.json displayed "[ERROR] Failed to parse data.json." and continued safely.
-Result: PASS

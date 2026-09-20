@@ -1,6 +1,0 @@
-Feature: Day 6 - Repository foundation
-Files tested: Repository, CustomerRepository, JsonStorage
-Input: Create customer C001, reload repository from the same JSON file, find C001.
-Expected: Repository exposes load/save/add/update/remove/findById/getAll and persisted C001 reloads correctly.
-Actual: CustomerCrudTests passes persistence and duplicate-ID checks.
-Result: PASS

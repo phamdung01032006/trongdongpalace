@@ -1,0 +1,9 @@
+# File build sinh ra từ CMake — không commit lên Git
+build/
+cmake-build-*/
+out/
+
+# File IDE cá nhân
+.vscode/
+.idea/
+*.user

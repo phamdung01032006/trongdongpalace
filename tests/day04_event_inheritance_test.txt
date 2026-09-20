@@ -1,6 +1,0 @@
-Feature: Day 4 - Event inheritance
-Files tested: Event, WeddingEvent, CorporateEvent, BirthdayEvent
-Input: One valid object of each derived type; an event with 22:00 to 18:00.
-Expected: Event is abstract; each child overrides type and price; invalid time throws ValidationException.
-Actual: Verified by FoundationTests.
-Result: PASS

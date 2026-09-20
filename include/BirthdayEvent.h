@@ -1,18 +1,24 @@
-#pragma once
+#ifndef BIRTHDAYEVENT_H
+#define BIRTHDAYEVENT_H
 
 #include "Event.h"
 
+using namespace std;
+
+// =====================================================================
+// Lớp con TIỆC SINH NHẬT — kế thừa Event (kế thừa + đa hình, FR-02):
+//   - Chuẩn bị trước: 1 giờ, dọn dẹp sau: 0.5 giờ
+//   - Điều kiện riêng: số khách tối đa 100
+// =====================================================================
 class BirthdayEvent : public Event {
-private:
-    int celebrantAge;
-
 public:
-    BirthdayEvent(const string& id, const string& customerId, const string& hallId,
-                  const string& eventDate, const string& startTime, const string& endTime,
-                  int guestCount, int celebrantAge);
+    BirthdayEvent(const string& maSuKien, const string& tenSuKien,
+                  int soKhach, const ThoiDiem& gioBatDau, const ThoiDiem& gioKetThuc);
 
-    int getCelebrantAge() const;
-    void setCelebrantAge(int celebrantAge);
-    string getEventType() const override;
-    double calculateBasePrice() const override;
+    double thoiGianChuanBi() const override;    // 1 giờ
+    double thoiGianDonDep() const override;     // 0.5 giờ
+    void kiemTraDieuKienRieng() const override; // soKhach <= 100
+    string tenLoai() const override;            // "Sinh nhat"
 };
+
+#endif // BIRTHDAYEVENT_H

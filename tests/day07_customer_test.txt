@@ -1,6 +1,0 @@
-Feature: Day 7 - Customer CRUD
-Files tested: CustomerService, CustomerRepository, ConsoleUI customer menu
-Input: Create C001; duplicate C001; update C001; reload; delete C001; find deleted C001.
-Expected: Create/update/delete work; duplicate throws DuplicateException; deleted ID throws NotFoundException; JSON persists update.
-Actual: CustomerCrudTests passes.
-Result: PASS

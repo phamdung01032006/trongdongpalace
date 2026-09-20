@@ -1,6 +1,0 @@
-Feature: Day 9 - User authentication
-Files tested: UserRepository, AuthService, ConsoleUI login
-Input: admin/admin123; sales/wrong; missing/password.
-Expected: Valid login returns ADMIN user; invalid credentials throw AuthenticationException; default users persist in JSON.
-Actual: AuthenticationAuthorizationTests passes.
-Result: PASS

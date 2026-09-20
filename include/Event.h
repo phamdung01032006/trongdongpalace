@@ -1,43 +1,52 @@
-#pragma once
+#ifndef EVENT_H
+#define EVENT_H
 
 #include <string>
+#include "Utils.h"
 
 using namespace std;
 
+// =====================================================================
+// Lớp TRỪU TƯỢNG mô tả một sự kiện sử dụng sảnh (Mục 6, FR-02).
+//
+// KẾ THỪA + ĐA HÌNH: Event là lớp cha, có 3 hàm thuần ảo (pure virtual).
+// Các lớp con WeddingEvent / ConferenceEvent / BirthdayEvent override
+// 3 hàm này theo đặc thù của từng loại sự kiện. Trong FR-04, hệ thống
+// chỉ cần giữ con trỏ Event* và gọi kiemTraDieuKienRieng(),
+// thoiGianChuanBi(), thoiGianDonDep() — phiên bản của lớp con tương
+// ứng sẽ được thực thi đúng lúc chạy (dynamic dispatch).
+// =====================================================================
 class Event {
-private:
-    string id;
-    string customerId;
-    string hallId;
-    string eventDate;
-    string startTime;
-    string endTime;
-    int guestCount;
-    string status;
-
 protected:
-    Event(const string& id, const string& customerId, const string& hallId,
-          const string& eventDate, const string& startTime, const string& endTime,
-          int guestCount, const string& status = "PLANNED");
+    string maSuKien;
+    string tenSuKien;
+    int soKhach;
+    ThoiDiem gioBatDau;  // giờ bắt đầu chính thức (do người yêu cầu nhập)
+    ThoiDiem gioKetThuc; // giờ kết thúc chính thức
 
 public:
-    virtual ~Event() = default;
+    Event(const string& maSuKien, const string& tenSuKien,
+          int soKhach, const ThoiDiem& gioBatDau, const ThoiDiem& gioKetThuc);
+    virtual ~Event();
 
-    const string& getId() const;
-    const string& getCustomerId() const;
-    const string& getHallId() const;
-    const string& getEventDate() const;
-    const string& getStartTime() const;
-    const string& getEndTime() const;
-    int getGuestCount() const;
-    const string& getStatus() const;
+    // ----- Các hàm thuần ảo, bắt buộc lớp con override -----
+    virtual double thoiGianChuanBi() const = 0;    // số giờ chuẩn bị TRƯỚC sự kiện
+    virtual double thoiGianDonDep() const = 0;     // số giờ dọn dẹp SAU sự kiện
+    virtual void kiemTraDieuKienRieng() const = 0; // ném EventConditionViolationException nếu vi phạm
+    virtual string tenLoai() const = 0;            // tên loại sự kiện để hiển thị
 
-    void setHallId(const string& hallId);
-    void setEventDate(const string& eventDate);
-    void setTimeRange(const string& startTime, const string& endTime);
-    void setGuestCount(int guestCount);
-    void setStatus(const string& status);
+    // ----- Hàm dùng chung (kế thừa được từ mọi lớp con) -----
+    // Khung giờ "mở rộng" sau khi cộng thêm thời gian chuẩn bị/dọn dẹp.
+    // Đây chính là khung giờ dùng để kiểm tra trùng lịch (FR-05).
+    ThoiDiem batDauRong() const;
+    ThoiDiem ketThucRong() const;
 
-    virtual string getEventType() const = 0;
-    virtual double calculateBasePrice() const = 0;
+    string getMaSuKien() const;
+    string getTenSuKien() const;
+    int getSoKhach() const;
+    ThoiDiem getGioBatDau() const;
+    ThoiDiem getGioKetThuc() const;
+    void setKhungGio(const ThoiDiem& gioBatDauMoi, const ThoiDiem& gioKetThucMoi); // dùng cho FR-09
 };
+
+#endif // EVENT_H

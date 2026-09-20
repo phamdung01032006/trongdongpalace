@@ -3,19 +3,19 @@
 
 using namespace std;
 
-BirthdayEvent::BirthdayEvent(const string& id, const string& customerId, const string& hallId,
-                             const string& eventDate, const string& startTime,
-                             const string& endTime, int guestCount, int celebrantAge)
-    : Event(id, customerId, hallId, eventDate, startTime, endTime, guestCount) {
-    setCelebrantAge(celebrantAge);
+BirthdayEvent::BirthdayEvent(const string& maSuKien, const string& tenSuKien,
+                             int soKhach, const ThoiDiem& gioBatDau, const ThoiDiem& gioKetThuc)
+    : Event(maSuKien, tenSuKien, soKhach, gioBatDau, gioKetThuc) {}
+
+double BirthdayEvent::thoiGianChuanBi() const { return 1.0; }  // 1 giờ
+double BirthdayEvent::thoiGianDonDep() const { return 0.5; }   // 0.5 giờ
+
+// Điều kiện riêng: tiệc sinh nhật tối đa 100 khách
+void BirthdayEvent::kiemTraDieuKienRieng() const {
+    if (soKhach > 100) {
+        throw EventConditionViolationException(
+            "Tiec sinh nhat chi toi da 100 khach (hien tai " + to_string(soKhach) + " khach)");
+    }
 }
 
-int BirthdayEvent::getCelebrantAge() const { return celebrantAge; }
-void BirthdayEvent::setCelebrantAge(int value) {
-    if (value <= 0) throw ValidationException("Celebrant age must be greater than 0.");
-    celebrantAge = value;
-}
-string BirthdayEvent::getEventType() const { return "BIRTHDAY"; }
-double BirthdayEvent::calculateBasePrice() const {
-    return 2000000.0 + getGuestCount() * 200000.0;
-}
+string BirthdayEvent::tenLoai() const { return "Sinh nhat"; }

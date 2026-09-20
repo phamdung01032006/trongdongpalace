@@ -1,6 +1,0 @@
-Feature: Day 8 - Center and Hall CRUD
-Files tested: CenterService, HallService, repositories, ConsoleUI center/hall menus
-Input: Create CT001 and H001; create H002 with unknown center; update H001 to INACTIVE; reload; delete H001.
-Expected: Hall must reference an existing center; update persists; missing hall throws NotFoundException.
-Actual: CenterHallCrudTests passes.
-Result: PASS
