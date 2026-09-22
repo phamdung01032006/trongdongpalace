@@ -9,6 +9,11 @@
 
 using namespace std;
 
+// Khai báo trước (forward declaration) để Utils.h dùng được tên lớp này
+// mà không cần include Hall.h / BookingRequest.h (tránh include vòng).
+class Hall;
+class BookingRequest;
+
 // =====================================================================
 // Tập hợp các tiện ích dùng chung của hệ thống.
 // Trong đó cấu trúc ThoiDiem hỗ trợ so sánh (<, >=) và cộng/trừ số phút,
@@ -62,6 +67,14 @@ string canLe(const string& s, int rong, bool canPhai = false); // bù khoảng t
 string duongKeBang(const vector<int>& doRong);               // "+------+-----+"
 void inDongBang(const vector<string>& o, const vector<int>& doRong,
                 const vector<bool>& canPhai = vector<bool>()); // "| ... | ... |"
+
+// ---- Lưu / nạp dữ liệu ra file txt (dữ liệu không mất khi chạy lại) ----
+// Tên hàm có tiền tố "luuHeThong"/"napHeThong" để KHÔNG trùng với các method
+// cùng tên của lớp HeThongDatLich (tránh lỗi che khuất tên - name hiding).
+void luuHeThongRaFile(const vector<Hall*>& danhSachSanh,
+                      const vector<BookingRequest*>& danhSachBooking);
+void napHeThongTuFile(vector<Hall*>& danhSachSanh,
+                      vector<BookingRequest*>& danhSachBooking);
 
 // ---------- Tiện ích màn hình console ----------
 // Xóa toàn bộ nội dung màn hình — dùng mỗi khi chuyển sang màn hình/menu mới

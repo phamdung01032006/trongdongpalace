@@ -19,6 +19,7 @@ public:
     double thoiGianDonDep() const override;     // 1 giờ
     void kiemTraDieuKienRieng() const override; // đặt trước >= 3 ngày
     string tenLoai() const override;            // "Hoi nghi"
+    int maLoai() const override;                // 2
 };
 
 #endif // CONFERENCEEVENT_H

@@ -34,6 +34,9 @@ public:
     virtual double thoiGianDonDep() const = 0;     // số giờ dọn dẹp SAU sự kiện
     virtual void kiemTraDieuKienRieng() const = 0; // ném EventConditionViolationException nếu vi phạm
     virtual string tenLoai() const = 0;            // tên loại sự kiện để hiển thị
+    // Mã loại sự kiện (dùng khi lưu/đọc file txt):
+    //   1 = Tiệc cưới, 2 = Hội nghị, 3 = Sinh nhật
+    virtual int maLoai() const = 0;
 
     // ----- Hàm dùng chung (kế thừa được từ mọi lớp con) -----
     // Khung giờ "mở rộng" sau khi cộng thêm thời gian chuẩn bị/dọn dẹp.

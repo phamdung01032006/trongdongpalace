@@ -17,3 +17,10 @@ add_executable(event_scheduling
     src/HeThongDatLich.cpp
     src/Utils.cpp
 )
+
+# Make the MinGW executable easier to distribute to Windows machines.
+if (MINGW)
+    set_target_properties(event_scheduling PROPERTIES
+        LINK_FLAGS "-static -static-libgcc -static-libstdc++"
+    )
+endif()

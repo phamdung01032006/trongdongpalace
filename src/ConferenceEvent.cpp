@@ -21,3 +21,4 @@ void ConferenceEvent::kiemTraDieuKienRieng() const {
 }
 
 string ConferenceEvent::tenLoai() const { return "Hoi nghi"; }
+int ConferenceEvent::maLoai() const { return 2; } // mã loại dùng khi lưu/đọc file

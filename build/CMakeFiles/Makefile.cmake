@@ -125,7 +125,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/CMake/share/cmake-4.4/Modules/Platform/Windows-windres.cmake"
   "C:/Program Files/CMake/share/cmake-4.4/Modules/Platform/Windows.cmake"
   "C:/Program Files/CMake/share/cmake-4.4/Modules/Platform/WindowsPaths.cmake"
-  "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdong/EventScheduling/CMakeLists.txt"
+  "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/CMakeLists.txt"
   "CMakeFiles/4.4.3/CMakeCCompiler.cmake"
   "CMakeFiles/4.4.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/4.4.3/CMakeRCCompiler.cmake"

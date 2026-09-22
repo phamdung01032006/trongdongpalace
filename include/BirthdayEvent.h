@@ -19,6 +19,7 @@ public:
     double thoiGianDonDep() const override;     // 0.5 giờ
     void kiemTraDieuKienRieng() const override; // soKhach <= 100
     string tenLoai() const override;            // "Sinh nhat"
+    int maLoai() const override;                // 3
 };
 
 #endif // BIRTHDAYEVENT_H

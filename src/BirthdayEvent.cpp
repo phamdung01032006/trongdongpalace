@@ -19,3 +19,4 @@ void BirthdayEvent::kiemTraDieuKienRieng() const {
 }
 
 string BirthdayEvent::tenLoai() const { return "Sinh nhat"; }
+int BirthdayEvent::maLoai() const { return 3; } // mã loại dùng khi lưu/đọc file

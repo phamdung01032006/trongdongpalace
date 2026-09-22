@@ -31,6 +31,7 @@ string BookingRequest::getLyDoTuChoi() const { return lyDoTuChoi; }
 
 void BookingRequest::setTrangThai(TrangThai trangThaiMoi) { trangThai = trangThaiMoi; }
 void BookingRequest::setLyDoTuChoi(const string& lyDo) { lyDoTuChoi = lyDo; }
+void BookingRequest::setNgayTao(const ThoiDiem& ngayTaoMoi) { ngayTao = ngayTaoMoi; }
 
 void BookingRequest::hienThi() const {
     cout << "  [" << maBooking << "] " << suKien->tenLoai() << " \"" << suKien->getTenSuKien() << "\""

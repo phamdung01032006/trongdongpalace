@@ -3,6 +3,9 @@ build/
 cmake-build-*/
 out/
 
+# Thư mục dữ liệu chương trình sinh ra khi chạy (danh mục sảnh + booking)
+data/
+
 # File IDE cá nhân
 .vscode/
 .idea/

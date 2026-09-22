@@ -2,6 +2,7 @@
 #include "WeddingEvent.h"
 #include "ConferenceEvent.h"
 #include "BirthdayEvent.h"
+#include "Utils.h"
 #include <algorithm>
 #include <iomanip>
 
@@ -11,9 +12,51 @@ using namespace std;
 HeThongDatLich::HeThongDatLich() : soThuTuSuKien(0), soThuTuBooking(0) {}
 
 HeThongDatLich::~HeThongDatLich() {
+    // Lưu toàn bộ dữ liệu ra file txt trước khi giải phóng bộ nhớ, đảm bảo
+    // dữ liệu không bị mất khi chương trình được chạy lại.
+    ghiDuLieuRaFile();
     // Giải phóng toàn bộ bộ nhớ: booking (tự delete Event bên trong) và sảnh
     for (BookingRequest* b : danhSachBooking) delete b;
     for (Hall* h : danhSachSanh) delete h;
+}
+
+// Nạp dữ liệu đã lưu từ file txt (gọi ngay sau khi tạo đối tượng HeThongDatLich)
+void HeThongDatLich::docDuLieuTuFile() {
+    // Gọi hàm toàn cục trong Utils (tên khác method nên không bị che khuất)
+    napHeThongTuFile(danhSachSanh, danhSachBooking);
+    capNhatSoThuTu(); // tránh sinh mã SK/BK trùng với dữ liệu vừa nạp
+}
+
+// Ghi toàn bộ dữ liệu ra file txt
+void HeThongDatLich::ghiDuLieuRaFile() {
+    luuHeThongRaFile(danhSachSanh, danhSachBooking);
+}
+
+// Khôi phục 2 bộ đếm mã sau khi nạp dữ liệu từ file.
+// Quét mã sự kiện (SK###) và mã booking (BK###), lấy số lớn nhất làm bộ đếm
+// để các mã sinh ra tiếp theo không bị trùng với dữ liệu đã lưu.
+void HeThongDatLich::capNhatSoThuTu() {
+    soThuTuSuKien = 0;
+    soThuTuBooking = 0;
+
+    for (BookingRequest* b : danhSachBooking) {
+        // Mã booking có dạng BK###
+        const string& maBK = b->getMaBooking();
+        if (maBK.size() > 2 && maBK[0] == 'B' && maBK[1] == 'K') {
+            int so = 0;
+            try { so = stoi(maBK.substr(2)); } catch (const exception&) { so = 0; }
+            if (so > soThuTuBooking) soThuTuBooking = so;
+        }
+        // Mã sự kiện có dạng SK###
+        Event* sk = b->getSuKien();
+        if (sk == nullptr) continue;
+        const string& maSK = sk->getMaSuKien();
+        if (maSK.size() > 2 && maSK[0] == 'S' && maSK[1] == 'K') {
+            int so = 0;
+            try { so = stoi(maSK.substr(2)); } catch (const exception&) { so = 0; }
+            if (so > soThuTuSuKien) soThuTuSuKien = so;
+        }
+    }
 }
 
 // Dữ liệu mẫu để demo nhanh (FR-01, FR-02)
@@ -71,6 +114,7 @@ void HeThongDatLich::themSanh(const string& maSanh, const string& ten, int sucCh
         }
     }
     danhSachSanh.push_back(new Hall(maSanh, ten, sucChua, dangHoatDong));
+    ghiDuLieuRaFile(); // tự động lưu ngay để không mất dữ liệu nếu tắt đột ngột
 }
 
 void HeThongDatLich::suaSanh(const string& maSanh, const string& ten, int sucChua, bool dangHoatDong) {
@@ -81,6 +125,7 @@ void HeThongDatLich::suaSanh(const string& maSanh, const string& ten, int sucChu
     h->setTen(ten);
     h->setSucChua(sucChua);
     h->setDangHoatDong(dangHoatDong);
+    ghiDuLieuRaFile(); // tự động lưu sau khi sửa sảnh
 }
 
 void HeThongDatLich::xoaSanh(const string& maSanh) {
@@ -111,6 +156,7 @@ void HeThongDatLich::xoaSanh(const string& maSanh) {
         }
     }
     delete h;
+    ghiDuLieuRaFile(); // tự động lưu sau khi xóa sảnh
 }
 
 void HeThongDatLich::xemDanhSachSanh() const {
@@ -216,6 +262,7 @@ BookingRequest* HeThongDatLich::taoYeuCauDatLich(const string& maSanh, int loaiS
     // 6. Hợp lệ -> tạo booking ở trạng thái Pending (post-condition FR-04)
     BookingRequest* booking = new BookingRequest(taoMaBooking(), sanh, suKien);
     danhSachBooking.push_back(booking);
+    ghiDuLieuRaFile(); // tự động lưu booking mới
     return booking;
 }
 
@@ -231,6 +278,7 @@ void HeThongDatLich::duyetYeuCau(const string& maBooking) {
     Event* sk = b->getSuKien();
     kiemTraTrungLich(b->getSanh(), sk->batDauRong(), sk->ketThucRong(), b->getMaBooking());
     b->setTrangThai(APPROVED);
+    ghiDuLieuRaFile(); // tự động lưu sau khi duyệt
 }
 
 // ================== FR-07: Từ chối yêu cầu ==================
@@ -243,6 +291,7 @@ void HeThongDatLich::tuChoiYeuCau(const string& maBooking, const string& lyDo) {
     }
     b->setLyDoTuChoi(lyDo);
     b->setTrangThai(REJECTED);
+    ghiDuLieuRaFile(); // tự động lưu sau khi từ chối
 }
 
 // ================== FR-08: Hủy lịch đã duyệt ==================
@@ -264,6 +313,7 @@ void HeThongDatLich::huyLichDaDuyet(const string& maBooking) {
             + " con bay gio la " + bayGio.toString());
     }
     b->setTrangThai(CANCELLED); // post-condition: khung giờ được giải phóng
+    ghiDuLieuRaFile();          // tự động lưu sau khi hủy lịch
 }
 
 // ================== FR-09: Đổi lịch (reschedule) ==================
@@ -293,6 +343,7 @@ void HeThongDatLich::doiLich(const string& maBooking, const ThoiDiem& gioBatDauM
         throw;
     }
     // Đổi lịch thành công, giữ nguyên mã booking và lịch sử
+    ghiDuLieuRaFile(); // chỉ lưu khi đổi lịch THÀNH CÔNG (nhánh lỗi ở trên đã throw)
 }
 
 

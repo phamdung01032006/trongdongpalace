@@ -20,3 +20,4 @@ void WeddingEvent::kiemTraDieuKienRieng() const {
 }
 
 string WeddingEvent::tenLoai() const { return "Tiec cuoi"; }
+int WeddingEvent::maLoai() const { return 1; } // mã loại dùng khi lưu/đọc file

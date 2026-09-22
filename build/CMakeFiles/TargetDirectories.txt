@@ -1,3 +1,3 @@
-C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdong/EventScheduling/build/CMakeFiles/event_scheduling.dir
-C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdong/EventScheduling/build/CMakeFiles/edit_cache.dir
-C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdong/EventScheduling/build/CMakeFiles/rebuild_cache.dir
+C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/CMakeFiles/event_scheduling.dir
+C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/CMakeFiles/edit_cache.dir
+C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/CMakeFiles/rebuild_cache.dir

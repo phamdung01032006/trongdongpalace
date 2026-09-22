@@ -52,6 +52,7 @@ public:
 
     void setTrangThai(TrangThai trangThaiMoi);
     void setLyDoTuChoi(const string& lyDo);
+    void setNgayTao(const ThoiDiem& ngayTaoMoi);
 
     void hienThi() const;
 };

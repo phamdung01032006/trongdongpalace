@@ -28,11 +28,17 @@ private:
     BookingRequest* timBooking(const string& maBooking) const; // ném InvalidStateTransitionException nếu không tồn tại
     string taoMaSuKien();
     string taoMaBooking();
+    // Khôi phục lại 2 bộ đếm mã (SK###/BK###) sau khi nạp dữ liệu từ file,
+    // tránh sinh mã trùng với các bản ghi đã lưu.
+    void capNhatSoThuTu();
 
 public:
     HeThongDatLich();
     ~HeThongDatLich();
-    void khoiTaoDuLieuMau(); // dữ liệu mẫu ban đầu cho dễ demo
+
+    void khoiTaoDuLieuMau(); // dữ liệu mẫu ban đầu cho dễ demo (chỉ khi chưa có dữ liệu)
+    void docDuLieuTuFile();  // nạp dữ liệu đã lưu từ file txt (nếu có)
+    void ghiDuLieuRaFile();  // ghi toàn bộ dữ liệu ra file txt
 
     const vector<Hall*>& getDanhSachSanh() const;
     const vector<BookingRequest*>& getDanhSachBooking() const;

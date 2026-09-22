@@ -1,7 +1,21 @@
 #include "Utils.h"
 #include "Exceptions.h"
+#include "Hall.h"
+#include "Event.h"
+#include "WeddingEvent.h"
+#include "ConferenceEvent.h"
+#include "BirthdayEvent.h"
+#include "BookingRequest.h"
 #include <ctime>
 #include <cstdlib>
+#include <fstream>
+#include <sstream>
+#include <unordered_map>
+#ifdef _WIN32
+#include <direct.h>   // _mkdir tren Windows
+#else
+#include <sys/stat.h> // mkdir tren Linux/macOS
+#endif
 
 using namespace std;
 
@@ -261,5 +275,251 @@ void choNhanEnter(const string& thongBao) {
     getline(cin, boQua);
 }
 
+// ================== Luu / nap du lieu ra file txt ==================
+// Toan bo du lieu (sanh + booking) duoc luu thanh file txt trong thu muc
+// `data` nam canh chuong trinh, nho do du lieu KHONG bi mat khi chay lai.
+// Duong dan la tuong doi so voi thu muc lam viec cua tien trinh.
+static const string DU_LIEU_FOLDER = "data";
+static const string FILE_SANH = DU_LIEU_FOLDER + "/sanh.txt";
+static const string FILE_BOOKING = DU_LIEU_FOLDER + "/booking.txt";
 
+// ----- Dong tieu de (header) cua moi file du lieu -----
+// Header duoc ghi o dau file de nguoi doc (mang nguoi cham, mo bang Excel...)
+// de hieu cau truc du lieu; khi doc, cac dong nay duoc bo qua nen khong anh
+// huong den viec nap du lieu. File cu khong co header van doc binh thuong
+// (kiem tra bo qua la "nho" nen khong mat du lieu).
+static const string TIEU_DE_SANH =
+    "MaSanh|TenSanh|SucChua|DangHoatDong";
+static const string TIEU_DE_BOOKING =
+    "MaBooking|MaSanh|LoaiSuKien|MaSuKien|TenSuKien|SoKhach|"
+    "GioBatDau|GioKetThuc|TrangThai|LyDoTuChoi|NgayTao";
 
+// Dong chu thich bat dau bang '#', dong tieu de trung khop voi chuoi header
+static bool laDongChuThich(const string& dong) {
+    return !dong.empty() && dong[0] == '#';
+}
+static bool laDongTieuDe(const string& dong, const string& tieuDe) {
+    return dong == tieuDe;
+}
+
+// Tao thu muc du lieu neu chua co (khac nhau giua Windows va Linux/macOS).
+static void khoiPhucThuMucDuLieu() {
+#ifdef _WIN32
+    _mkdir(DU_LIEU_FOLDER.c_str());        // <direct.h>
+#else
+    mkdir(DU_LIEU_FOLDER.c_str(), 0777);   // <sys/stat.h>
+#endif
+}
+
+// Tach mot dong trong file txt thanh cac truong theo ky tu phan cach '|'
+static vector<string> tachTruong(const string& dong) {
+    vector<string> truong;
+    stringstream ss(dong);
+    string t;
+    while (getline(ss, t, '|')) truong.push_back(t);
+    return truong;
+}
+
+// Lam sach chuoi truoc khi ghi: thay ky tu phan cach '|' va ky tu xuong dong
+// (do nguoi dung co the nhap) bang khoang trang de khong pha cau truc file.
+static string lamSach(const string& s) {
+    string kq = s;
+    for (size_t i = 0; i < kq.size(); ++i) {
+        if (kq[i] == '|' || kq[i] == '\n' || kq[i] == '\r') kq[i] = ' ';
+    }
+    return kq;
+}
+
+// Doc so nguyen an toan: tra ve gia tri mac dinh neu chuoi khong hop le
+// (giup bo qua du lieu hong ma khong lam chet chuong trinh).
+static int docSoAnToan(const string& s, int macDinh) {
+    try {
+        return stoi(s);
+    } catch (const exception&) {
+        return macDinh;
+    }
+}
+
+// ---- Ghi file sanh: moi dong la mot sanh ----
+// Dinh dang: maSanh|ten|sucChua|dangHoatDong(0/1)
+// Dau file co header (chu thich '#' + dong ten cot) de de doc.
+static void ghiFileSanh(const vector<Hall*>& danhSachSanh) {
+    ofstream fout(FILE_SANH.c_str(), ios::trunc);
+    if (!fout) {
+        cerr << "[LOI] Khong the mo file " << FILE_SANH << " de ghi du lieu.\n";
+        return;
+    }
+    // ----- Header cua file -----
+    fout << "# ===== DU LIEU SANH - He thong dat lich su kien =====\n"
+         << "# Dinh dang moi dong du lieu: MaSanh|TenSanh|SucChua|DangHoatDong\n"
+         << "# DangHoatDong: 1 = dang hoat dong, 0 = ngung hoat dong\n"
+         << TIEU_DE_SANH << "\n";
+    for (size_t i = 0; i < danhSachSanh.size(); ++i) {
+        const Hall* h = danhSachSanh[i];
+        fout << lamSach(h->getMaSanh()) << "|"
+             << lamSach(h->getTen()) << "|"
+             << h->getSucChua() << "|"
+             << (h->getDangHoatDong() ? 1 : 0)
+             << "\n";
+    }
+}
+
+// ---- Doc file sanh ----
+static void docFileSanh(vector<Hall*>& danhSachSanh) {
+    ifstream fin(FILE_SANH.c_str());
+    if (!fin) return; // chua co file du lieu -> coi nhu rong (khong phai loi)
+
+    string line;
+    while (getline(fin, line)) {
+        if (line.empty()) continue;
+        if (laDongChuThich(line)) continue;               // bo qua chu thich '#'
+        if (laDongTieuDe(line, TIEU_DE_SANH)) continue;   // bo qua dong header
+        vector<string> t = tachTruong(line);
+        if (t.size() < 4) continue; // dong thieu truong -> bo qua
+        const string& maSanh = t[0];
+        const string& ten = t[1];
+        int sucChua = docSoAnToan(t[2], 0);
+        bool dangHoatDong = (docSoAnToan(t[3], 0) != 0);
+        if (sucChua <= 0) {
+            cerr << "[LOI] Bo qua sanh \"" << maSanh << "\": suc chua khong hop le.\n";
+            continue;
+        }
+        danhSachSanh.push_back(new Hall(maSanh, ten, sucChua, dangHoatDong));
+    }
+}
+
+// ---- Ghi file booking: moi dong la mot booking kem du lieu su kien con ----
+// Dinh dang (11 truong, phan cach '|'):
+//   maBooking|maSanh|loaiSuKien|maSuKien|tenSuKien|soKhach|
+//   gioBatDau|gioKetThuc|trangThai|lyDoTuChoi|ngayTao
+// Trong do:
+//   loaiSuKien : 1 = Tiec cuoi, 2 = Hoi nghi, 3 = Sinh nhat
+//                (lay qua ham ao maLoai() -> the hien tinh DA HINH)
+//   trangThai  : 0 = Pending, 1 = Approved, 2 = Rejected, 3 = Cancelled
+//   thoi diem  : dd/mm/yyyy hh:mm (khop voi ThoiDiem::toString)
+// Dau file co header (chu thich '#' + dong ten cot) de de doc.
+static void ghiFileBooking(const vector<BookingRequest*>& danhSachBooking) {
+    ofstream fout(FILE_BOOKING.c_str(), ios::trunc);
+    if (!fout) {
+        cerr << "[LOI] Khong the mo file " << FILE_BOOKING << " de ghi du lieu.\n";
+        return;
+    }
+    // ----- Header cua file -----
+    fout << "# ===== DU LIEU BOOKING - He thong dat lich su kien =====\n"
+         << "# Dinh dang moi dong du lieu (11 truong, phan cach '|'):\n"
+         << "# " << TIEU_DE_BOOKING << "\n"
+         << "# LoaiSuKien: 1 = Tiec cuoi, 2 = Hoi nghi, 3 = Sinh nhat\n"
+         << "# TrangThai : 0 = Pending, 1 = Approved, 2 = Rejected, 3 = Cancelled\n"
+         << "# Thoi diem ghi dang: dd/mm/yyyy hh:mm\n"
+         << TIEU_DE_BOOKING << "\n";
+    for (size_t i = 0; i < danhSachBooking.size(); ++i) {
+        const BookingRequest* b = danhSachBooking[i];
+        const Hall* h = b->getSanh();
+        const Event* e = b->getSuKien();
+        if (h == nullptr || e == nullptr) continue; // du lieu khong hop le -> bo qua
+        fout << lamSach(b->getMaBooking()) << "|"
+             << lamSach(h->getMaSanh()) << "|"
+             << e->maLoai() << "|"
+             << lamSach(e->getMaSuKien()) << "|"
+             << lamSach(e->getTenSuKien()) << "|"
+             << e->getSoKhach() << "|"
+             << e->getGioBatDau().toString() << "|"
+             << e->getGioKetThuc().toString() << "|"
+             << (int)b->getTrangThai() << "|"
+             << lamSach(b->getLyDoTuChoi()) << "|"
+             << b->getNgayTao().toString()
+             << "\n";
+    }
+}
+
+// ---- Doc file booking ----
+// Khoi phuc dung lop con cua Event nho truong loaiSuKien da luu.
+// Moi dong loi duoc bo qua kem canh bao, khong lam chet chuong trinh.
+static void docFileBooking(vector<BookingRequest*>& danhSachBooking,
+                           const vector<Hall*>& danhSachSanh) {
+    ifstream fin(FILE_BOOKING.c_str());
+    if (!fin) return; // chua co file du lieu -> coi nhu rong (khong phai loi)
+
+    // Bang tra ma sanh -> con tro Hall de gan lai quan he has-a
+    unordered_map<string, Hall*> mapSanh;
+    for (size_t i = 0; i < danhSachSanh.size(); ++i) {
+        mapSanh[danhSachSanh[i]->getMaSanh()] = danhSachSanh[i];
+    }
+
+    string line;
+    while (getline(fin, line)) {
+        if (line.empty()) continue;
+        if (laDongChuThich(line)) continue;                 // bo qua chu thich '#'
+        if (laDongTieuDe(line, TIEU_DE_BOOKING)) continue;  // bo qua dong header
+        vector<string> t = tachTruong(line);
+        if (t.size() < 11) {
+            cerr << "[LOI] Bo qua mot dong booking sai dinh dang (thieu truong).\n";
+            continue;
+        }
+        const string& maBooking = t[0];
+        const string& maSanh = t[1];
+        int loaiSuKien = docSoAnToan(t[2], 0);
+        const string& maSuKien = t[3];
+        const string& tenSuKien = t[4];
+        int soKhach = docSoAnToan(t[5], 0);
+
+        // Gan lai sanh cho booking
+        Hall* sanh = nullptr;
+        unordered_map<string, Hall*>::iterator it = mapSanh.find(maSanh);
+        if (it != mapSanh.end()) sanh = it->second;
+        if (sanh == nullptr) {
+            cerr << "[LOI] Bo qua booking \"" << maBooking
+                 << "\": khong tim thay sanh \"" << maSanh << "\".\n";
+            continue;
+        }
+
+        // Tao dung lop con cua Event theo ma loai da luu
+        Event* suKien = nullptr;
+        try {
+            ThoiDiem bd = phanTichThoiDiem(t[6]);
+            ThoiDiem kt = phanTichThoiDiem(t[7]);
+            switch (loaiSuKien) {
+                case 1: suKien = new WeddingEvent(maSuKien, tenSuKien, soKhach, bd, kt); break;
+                case 2: suKien = new ConferenceEvent(maSuKien, tenSuKien, soKhach, bd, kt); break;
+                case 3: suKien = new BirthdayEvent(maSuKien, tenSuKien, soKhach, bd, kt); break;
+                default:
+                    cerr << "[LOI] Bo qua booking \"" << maBooking
+                         << "\": loai su kien khong hop le (" << loaiSuKien << ").\n";
+                    continue;
+            }
+        } catch (const exception& e) {
+            cerr << "[LOI] Bo qua booking \"" << maBooking
+                 << "\": thoi diem khong hop le (" << e.what() << ").\n";
+            if (suKien != nullptr) delete suKien;
+            continue;
+        }
+
+        BookingRequest* b = new BookingRequest(maBooking, sanh, suKien);
+        int tt = docSoAnToan(t[8], 0);
+        if (tt < 0 || tt > 3) tt = 0; // trang thai la -> coi nhu Pending
+        b->setTrangThai((TrangThai)tt);
+        b->setLyDoTuChoi(t[9]);
+        try {
+            b->setNgayTao(phanTichThoiDiem(t[10]));
+        } catch (const exception&) {
+            b->setNgayTao(hienTai()); // ngay tao hong -> lay thoi diem hien tai
+        }
+        danhSachBooking.push_back(b);
+    }
+}
+
+// ---- Luu toan bo du lieu he thong ra file txt ----
+void luuHeThongRaFile(const vector<Hall*>& danhSachSanh,
+                      const vector<BookingRequest*>& danhSachBooking) {
+    khoiPhucThuMucDuLieu();
+    ghiFileSanh(danhSachSanh);
+    ghiFileBooking(danhSachBooking);
+}
+
+// ---- Nap toan bo du lieu he thong tu file txt ----
+void napHeThongTuFile(vector<Hall*>& danhSachSanh,
+                      vector<BookingRequest*>& danhSachBooking) {
+    khoiPhucThuMucDuLieu();
+    docFileSanh(danhSachSanh);                     // doc sanh truoc
+    docFileBooking(danhSachBooking, danhSachSanh); // roi gan booking vao sanh
+}

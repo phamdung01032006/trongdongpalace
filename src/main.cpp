@@ -307,7 +307,8 @@ int main() {
     system("chcp 65001 > nul"); // hiển thị tiếng Việt đúng trên console Windows
 #endif
     HeThongDatLich ht;
-    ht.khoiTaoDuLieuMau();
+    ht.docDuLieuTuFile();   // nạp dữ liệu đã lưu trong file txt (nếu có)
+    ht.khoiTaoDuLieuMau();  // chỉ sinh dữ liệu mẫu khi hệ thống còn rỗng (lần chạy đầu)
 
     try {
         while (true) {
