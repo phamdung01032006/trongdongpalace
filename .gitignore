@@ -1,7 +1,4 @@
 # File build sinh ra từ CMake — không commit lên Git
-build/
-cmake-build-*/
-out/
 
 # Thư mục dữ liệu chương trình sinh ra khi chạy (danh mục sảnh + booking)
 data/

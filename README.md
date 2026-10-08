@@ -9,19 +9,29 @@ CMake chỉ dùng để **biên dịch** chương trình. Máy người dùng cu
 cài CMake nếu bạn gửi file thực thi đã build. Cần build riêng cho từng hệ điều
 hành; file `.exe` của Windows không chạy trực tiếp trên Linux/macOS.
 
-### Windows (PowerShell + MinGW)
+### Windows
 
-Cài [CMake](https://cmake.org/download/) và MinGW-w64 (khuyến nghị MSYS2
-UCRT64), sau đó mở PowerShell tại thư mục có `CMakeLists.txt`:
+Dùng **MSYS2 UCRT64** để có C++ compiler và CMake cùng một bộ công cụ:
 
-```powershell
-cmake -S . -B build -G "MinGW Makefiles"
-cmake --build build --config Release
-.\build\event_scheduling.exe
+1. Cài [MSYS2](https://www.msys2.org/), sau đó mở ứng dụng **MSYS2 UCRT64**.
+2. Cài các công cụ cần thiết bằng lệnh:
+
+```bash
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-make
 ```
 
-Nếu PowerShell báo không tìm thấy `cmake` hoặc `g++`, hãy thêm thư mục `bin`
-của CMake và MinGW vào biến môi trường `PATH`, rồi mở lại terminal.
+3. Trong cửa sổ MSYS2 UCRT64, chuyển đến thư mục dự án, tức thư mục có
+  `CMakeLists.txt`, rồi chạy:
+
+```bash
+cmake -S . -B build/mingw-ucrt64 -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+cmake --build build/mingw-ucrt64
+./build/mingw-ucrt64/event_scheduling.exe
+```
+
+Dùng đúng thư mục `build/mingw-ucrt64` như trên để không đụng cấu hình cũ
+trong `build/`. CMake không cho đổi compiler hoặc generator trong cùng một
+thư mục build; nếu muốn cấu hình lại, hãy chọn một thư mục build mới.
 
 ### Linux / macOS
 
@@ -31,26 +41,22 @@ cmake --build build --config Release
 ./build/event_scheduling
 ```
 
-### Gửi cho máy Windows khác không cài CMake
+### Chạy chương trình trên máy Windows khác
 
-Sau khi build, chỉ cần gửi thư mục chứa:
+Máy nhận không cần cài CMake hay MSYS2. Gửi file
+`build/mingw-ucrt64/event_scheduling.exe`; nếu muốn giữ dữ liệu hiện có thì gửi
+kèm thư mục `data/`. Cấu hình MinGW trong dự án liên kết tĩnh thư viện GCC/C++,
+nên không cần gửi thêm DLL của MinGW.
+
+Mở PowerShell trong thư mục chứa file `.exe` rồi chạy:
 
 ```text
-event_scheduling.exe
-data/                 (nếu muốn giữ dữ liệu đã có)
-```
-
-Bản MinGW trong cấu hình này liên kết tĩnh thư viện GCC/C++, nên không cần gửi
-thêm `libstdc++-6.dll` hay `libgcc_s_seh-1.dll`. Người dùng chạy bằng cách mở
-PowerShell/cửa sổ lệnh trong thư mục đó và dùng:
-
-```powershell
 .\event_scheduling.exe
 ```
 
-Nếu không gửi `data/`, chương trình sẽ tự tạo dữ liệu mẫu khi khởi động. Dữ
-liệu mới được lưu trong `data/` tương đối với **thư mục hiện hành**, vì vậy nên
-chạy lệnh từ thư mục phát hành chứa file `.exe`.
+Nếu không gửi `data/`, chương trình sẽ tạo dữ liệu mẫu khi khởi động. Dữ liệu
+mới được lưu trong `data/` theo thư mục PowerShell hiện tại, nên hãy chạy lệnh
+khi đang đứng trong thư mục phát hành.
 
 Với Visual Studio / CLion: mở trực tiếp `CMakeLists.txt`, IDE tự đọc cấu hình.
 
