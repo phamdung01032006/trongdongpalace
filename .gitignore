@@ -1,9 +1,7 @@
-# File build sinh ra từ CMake — không commit lên Git
-
-# Thư mục dữ liệu chương trình sinh ra khi chạy (danh mục sảnh + booking)
-data/
-
-# File IDE cá nhân
+build/
 .vscode/
 .idea/
 *.user
+CMakeUserPresets.json
+data/*.tmp
+backups/

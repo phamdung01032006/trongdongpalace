@@ -1,3 +1,60 @@
+# PHẦN MỀM QUẢN LÝ SỰ KIỆN TRỐNG ĐỒNG PALACE (C++ OOP)
+
+Hệ thống quản lý sự kiện và đặt lịch tiệc cưới / hội nghị cho chuỗi trung tâm **Trống Đồng Palace**, được xây dựng bằng C++17 theo mô hình lập trình hướng đối tượng (OOP), giao diện dòng lệnh tương tác TUI (FTXUI) và lưu trữ dữ liệu bền vững bằng JSON (`nlohmann/json`).
+
+---
+
+## 1. Công nghệ & Thư viện sử dụng
+- **Ngôn ngữ**: C++17.
+- **Mô hình lập trình**: OOP (Đóng gói, Kế thừa, Đa hình, Trừu tượng hóa), kiến trúc phân tầng (Models, Storage, Services, UI, Utils).
+- **Giao diện**: FTXUI v5.0.0 (Terminal UI với menu điều hướng, form nhập liệu, bảng tra cứu, phím tắt linh hoạt).
+- **Định dạng dữ liệu**: `nlohmann/json` v3.11.3.
+- **Hệ thống build**: CMake 3.16+.
+- **Bảo mật**: Mật khẩu mã hóa bằng Salt ngẫu nhiên + SHA-256 (không lưu plain-text khi xác thực).
+
+---
+
+## 2. Kiến trúc & Cấu trúc thư mục
+```
+trongdongpalace/
+├── CMakeLists.txt              # Cấu hình biên dịch CMake (FetchContent FTXUI & nlohmann/json)
+├── README.md                   # Tài liệu hướng dẫn sử dụng & báo cáo kỹ thuật
+├── data/                       # Thư mục lưu trữ các file JSON thực tế
+│   ├── users.json              # Tài khoản người dùng & nhật ký kiểm toán (Audit Logs)
+│   ├── customers.json          # Khách hàng & yêu cầu sự kiện
+│   ├── venues.json             # Trung tâm, danh mục sảnh & dịch vụ đi kèm
+│   ├── transactions.json       # Báo giá, Booking, Hợp đồng & Lịch sử thanh toán
+│   └── events.json             # Sự kiện vận hành, danh sách nhiệm vụ & sự cố
+├── backups/                    # Bản sao lưu dữ liệu tự động trước mỗi lần ghi JSON
+├── src/
+│   ├── main.cpp                # Khởi tạo UTF-8 console, nạp Storage, khởi chạy TUI
+│   ├── models/                 # Thực thể dữ liệu C++ OOP
+│   ├── storage/                # Đọc/ghi JSON nguyên tử (atomic rename), backup & seed
+│   ├── services/               # Xử lý business logic, RBAC, kiểm tra trùng lịch
+│   ├── ui/                     # Giao diện FTXUI tương tác
+│   └── utils/                  # DateTime, SHA-256, format tiền tệ VND
+└── tests/
+    └── test_core.cpp           # Bộ 10 nhóm bài kiểm thử tự động toàn diện (130 test cases)
+```
+
+---
+
+## 3. Danh sách tài khoản mẫu & Thay đổi thông tin
+Khi chạy lần đầu và thư mục `data/` chưa có dữ liệu, chương trình tự động tạo các tài khoản mẫu sau với mật khẩu mặc định là **`123456`**:
+
+| Tên đăng nhập | Mật khẩu | Họ và tên | Vai trò | Quyền hạn chính |
+| :--- | :--- | :--- | :--- | :--- |
+| **`admin`** | `123456` | Quản trị viên hệ thống | **Admin** | Toàn quyền cấu hình sảnh, dịch vụ, tài khoản, xem audit |
+| **`kinhdoanh`** | `123456` | Nguyễn Văn Kinh Doanh | **Sales** | Quản lý khách hàng, tiếp nhận yêu cầu, làm báo giá, tạo booking |
+| **`ketoan`** | `123456` | Trần Thị Kế Toán | **Accountant** | Quản lý hợp đồng, ghi nhận thanh toán, theo dõi công nợ |
+| **`dieuphoi`** | `123456` | Lê Văn Điều Phối | **Coordinator**| Điều phối vận hành sự kiện, phân công nhiệm vụ, xử lý sự cố |
+
+> **Cách thay đổi thông tin đăng nhập hoặc mật khẩu**:
+> - Đăng nhập tài khoản `admin` -> Vào mục **"Người dùng (quản trị)"** -> Chọn tài khoản -> Nhập mật khẩu mới -> Nhấn **"Đổi mật khẩu"**.
+> - Hoặc người dùng tự bấm **"Đăng ký tài khoản mới"** ngay tại màn hình đăng nhập ban đầu.
+
+---
+
 # Event Scheduling — Hệ thống Đặt lịch Sự kiện
 
 Đồ án nhóm môn **Lập trình Hướng đối tượng (OOP)**: phần mềm console quản lý

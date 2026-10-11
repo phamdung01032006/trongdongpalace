@@ -1,26 +1,63 @@
-cmake_minimum_required(VERSION 3.10)
-project(EventScheduling)
+cmake_minimum_required(VERSION 3.16)
+project(TrongDongPalace LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-include_directories(include)
+if(MSVC)
+    add_compile_options(/utf-8 /W4)
+else()
+    add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-add_executable(event_scheduling
-    src/main.cpp
-    src/Event.cpp
-    src/WeddingEvent.cpp
-    src/ConferenceEvent.cpp
-    src/BirthdayEvent.cpp
-    src/Hall.cpp
-    src/BookingRequest.cpp
-    src/HeThongDatLich.cpp
-    src/Utils.cpp
+include(FetchContent)
+
+FetchContent_Declare(
+    ftxui
+    GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
+    GIT_TAG        v5.0.0
+)
+FetchContent_Declare(
+    nlohmann_json
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG        v3.11.3
+)
+FetchContent_MakeAvailable(ftxui nlohmann_json)
+
+set(TDP_CORE_SOURCES
+    src/utils/sha256.cpp
+    src/utils/helpers.cpp
+    src/models/entities.cpp
+    src/storage/json_storage.cpp
+    src/services/palace_service.cpp
 )
 
-# Make the MinGW executable easier to distribute to Windows machines.
-if (MINGW)
-    set_target_properties(event_scheduling PROPERTIES
-        LINK_FLAGS "-static -static-libgcc -static-libstdc++"
-    )
+add_executable(trongdongpalace
+    src/main.cpp
+    src/ui/app_ui.cpp
+    ${TDP_CORE_SOURCES}
+)
+
+target_include_directories(trongdongpalace PRIVATE src)
+target_link_libraries(trongdongpalace PRIVATE
+    ftxui::screen
+    ftxui::dom
+    ftxui::component
+    nlohmann_json::nlohmann_json
+)
+
+add_executable(tdp_tests
+    tests/test_core.cpp
+    ${TDP_CORE_SOURCES}
+)
+target_include_directories(tdp_tests PRIVATE src)
+target_link_libraries(tdp_tests PRIVATE nlohmann_json::nlohmann_json)
+
+if(MINGW)
+    foreach(tgt trongdongpalace tdp_tests)
+        set_target_properties(${tgt} PROPERTIES
+            LINK_FLAGS "-static -static-libgcc -static-libstdc++"
+        )
+    endforeach()
 endif()
