@@ -6,6 +6,7 @@
 #include "ConferenceEvent.h"
 #include "BirthdayEvent.h"
 #include "BookingRequest.h"
+#include "User.h"
 #include <ctime>
 #include <cstdlib>
 #include <fstream>
@@ -128,6 +129,7 @@ string docChuoi(const string& tieuDe) {
         cout << tieuDe;
         string s;
         getline(cin, s);
+        if (!s.empty() && s.back() == '\r') s.pop_back();
         if (!s.empty()) return s;
         cout << "  Khong duoc de trong, vui long nhap lai!\n";
     }
@@ -139,6 +141,7 @@ int docSoNguyen(const string& tieuDe) {
         cout << tieuDe;
         string s;
         getline(cin, s);
+        if (!s.empty() && s.back() == '\r') s.pop_back();
         try {
             return stoi(s);
         } catch (const exception&) {
@@ -213,6 +216,7 @@ bool docCoKhong(const string& tieuDe) {
         cout << tieuDe << " (y/n): ";
         string s;
         getline(cin, s);
+        if (!s.empty() && s.back() == '\r') s.pop_back();
         if (s == "y" || s == "Y") return true;
         if (s == "n" || s == "N") return false;
         cout << "  Vui long chi nhap y hoac n.\n";
@@ -273,6 +277,7 @@ void choNhanEnter(const string& thongBao) {
     cout << thongBao;
     string boQua;
     getline(cin, boQua);
+    if (!boQua.empty() && boQua.back() == '\r') boQua.pop_back();
 }
 
 // ================== Luu / nap du lieu ra file txt ==================
@@ -282,6 +287,7 @@ void choNhanEnter(const string& thongBao) {
 static const string DU_LIEU_FOLDER = "data";
 static const string FILE_SANH = DU_LIEU_FOLDER + "/sanh.txt";
 static const string FILE_BOOKING = DU_LIEU_FOLDER + "/booking.txt";
+static const string FILE_USER = DU_LIEU_FOLDER + "/user.txt";
 
 // ----- Dong tieu de (header) cua moi file du lieu -----
 // Header duoc ghi o dau file de nguoi doc (mang nguoi cham, mo bang Excel...)
@@ -293,6 +299,8 @@ static const string TIEU_DE_SANH =
 static const string TIEU_DE_BOOKING =
     "MaBooking|MaSanh|LoaiSuKien|MaSuKien|TenSuKien|SoKhach|"
     "GioBatDau|GioKetThuc|TrangThai|LyDoTuChoi|NgayTao";
+static const string TIEU_DE_USER =
+    "TenDangNhap|MatKhau|VaiTro|HoTen";
 
 // Dong chu thich bat dau bang '#', dong tieu de trung khop voi chuoi header
 static bool laDongChuThich(const string& dong) {
@@ -316,7 +324,10 @@ static vector<string> tachTruong(const string& dong) {
     vector<string> truong;
     stringstream ss(dong);
     string t;
-    while (getline(ss, t, '|')) truong.push_back(t);
+    while (getline(ss, t, '|')) {
+        if (!t.empty() && t.back() == '\r') t.pop_back();
+        truong.push_back(t);
+    }
     return truong;
 }
 
@@ -522,4 +533,80 @@ void napHeThongTuFile(vector<Hall*>& danhSachSanh,
     khoiPhucThuMucDuLieu();
     docFileSanh(danhSachSanh);                     // doc sanh truoc
     docFileBooking(danhSachBooking, danhSachSanh); // roi gan booking vao sanh
+}
+
+// ---- Khoi tao danh sach tai khoan mac dinh ----
+void khoiTaoUserMacDinh(vector<User*>& danhSachUser) {
+    if (!danhSachUser.empty()) return;
+    danhSachUser.push_back(new User("admin", "admin123", VAI_TRO_QUAN_LY, "Quan tri vien he thong"));
+    danhSachUser.push_back(new User("quanly", "123456", VAI_TRO_QUAN_LY, "Nguyen Van Quan Ly"));
+    danhSachUser.push_back(new User("khachhang", "123456", VAI_TRO_NGUOI_YEU_CAU, "Tran Thi Khach Hang"));
+    danhSachUser.push_back(new User("nhanvien", "123456", VAI_TRO_NGUOI_YEU_CAU, "Le Van Nhan Vien"));
+}
+
+// ---- Ghi file user: moi dong la mot tai khoan ----
+void luuUserRaFile(const vector<User*>& danhSachUser) {
+    khoiPhucThuMucDuLieu();
+    ofstream fout(FILE_USER.c_str(), ios::trunc);
+    if (!fout) {
+        cerr << "[LOI] Khong the mo file " << FILE_USER << " de ghi du lieu.\n";
+        return;
+    }
+    // ----- Header cua file -----
+    fout << "# ===== DU LIEU NGUOI DUNG - He thong dat lich su kien =====\n"
+         << "# Dinh dang moi dong du lieu (4 truong, phan cach '|'):\n"
+         << "# " << TIEU_DE_USER << "\n"
+         << "# Quy uoc VaiTro:\n"
+         << "#   1 hoac NGUOI_YEU_CAU : Nguoi yeu cau (khach hang / nhan vien tiep nhan)\n"
+         << "#   2 hoac QUAN_LY       : Quan ly sanh / Quan tri vien\n"
+         << "# Chu y: He thong chi ho tro dang nhap, khong co chuc nang dang ky tren giao dien.\n"
+         << "#        Quan tri vien them tai khoan moi bang cach them dong truc tiep vao file nay.\n"
+         << TIEU_DE_USER << "\n";
+    for (size_t i = 0; i < danhSachUser.size(); ++i) {
+        const User* u = danhSachUser[i];
+        if (u == nullptr) continue;
+        fout << lamSach(u->getTenDangNhap()) << "|"
+             << lamSach(u->getMatKhau()) << "|"
+             << vaiTroThanhMa(u->getVaiTro()) << "|"
+             << lamSach(u->getHoTen())
+             << "\n";
+    }
+}
+
+// ---- Doc file user: nap tai khoan vao he thong ----
+void napUserTuFile(vector<User*>& danhSachUser) {
+    khoiPhucThuMucDuLieu();
+    ifstream fin(FILE_USER.c_str());
+    if (!fin) {
+        // Neu file chua ton tai -> tao mac dinh va luu ra file
+        khoiTaoUserMacDinh(danhSachUser);
+        luuUserRaFile(danhSachUser);
+        return;
+    }
+
+    string line;
+    while (getline(fin, line)) {
+        if (line.empty()) continue;
+        if (laDongChuThich(line)) continue;               // bo qua chu thich '#'
+        if (laDongTieuDe(line, TIEU_DE_USER)) continue;   // bo qua dong header
+        vector<string> t = tachTruong(line);
+        if (t.size() < 3) continue; // thieu truong (toi thieu phai co username, pass, role)
+        const string& username = t[0];
+        const string& password = t[1];
+        VaiTro vt;
+        try {
+            vt = phanTichVaiTro(t[2]);
+        } catch (const exception&) {
+            cerr << "[LOI] Bo qua user \"" << username << "\": vai tro khong hop le (" << t[2] << ").\n";
+            continue;
+        }
+        string hoTen = (t.size() >= 4) ? t[3] : username;
+        danhSachUser.push_back(new User(username, password, vt, hoTen));
+    }
+
+    // Neu file ton tai nhung chua co user nao hop le -> tao mac dinh
+    if (danhSachUser.empty()) {
+        khoiTaoUserMacDinh(danhSachUser);
+        luuUserRaFile(danhSachUser);
+    }
 }

@@ -7,6 +7,7 @@
 #include "Event.h"
 #include "BookingRequest.h"
 #include "Exceptions.h"
+#include "User.h"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ class HeThongDatLich {
 private:
     vector<Hall*> danhSachSanh;
     vector<BookingRequest*> danhSachBooking;
+    vector<User*> danhSachUser;
     int soThuTuSuKien;  // dùng sinh mã sự kiện tự tăng (SK001, SK002, ...)
     int soThuTuBooking; // dùng sinh mã booking tự tăng (BK001, BK002, ...)
 
@@ -42,6 +44,13 @@ public:
 
     const vector<Hall*>& getDanhSachSanh() const;
     const vector<BookingRequest*>& getDanhSachBooking() const;
+    const vector<User*>& getDanhSachUser() const;
+
+    // ----- Quản lý người dùng & Đăng nhập -----
+    void docDanhSachUserTuFile();
+    void khoiTaoUserMacDinh();
+    User* dangNhap(const string& tenDangNhap, const string& matKhau);
+    User* timUser(const string& tenDangNhap) const;
 
     // ----- FR-01: quản lý danh mục sảnh -----
     void themSanh(const string& maSanh, const string& ten, int sucChua, bool dangHoatDong);

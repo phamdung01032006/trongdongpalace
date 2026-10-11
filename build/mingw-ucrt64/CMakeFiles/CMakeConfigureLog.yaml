@@ -27,8 +27,6 @@ events:
     names:
       - "mingw32-make.exe"
     candidate_directories:
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -52,10 +50,6 @@ events:
       - "/MinGW/bin/"
       - "/REGISTRY-NOTFOUND/MinGW/bin/"
     searched_directories:
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/mingw32-make.exe.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/mingw32-make.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/mingw32-make.exe.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/mingw32-make.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/mingw32-make.exe.com"
       - "C:/Program Files/Rockwell Software/RSCommon/mingw32-make.exe"
       - "C:/Windows/System32/mingw32-make.exe.com"
@@ -82,8 +76,6 @@ events:
     found: "C:/msys64/mingw64/bin/mingw32-make.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -100,7 +92,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -128,8 +122,6 @@ events:
       - "icx"
       - "clang"
     candidate_directories:
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -149,48 +141,6 @@ events:
       - "C:/Users/Hotaru/AppData/Local/Programs/Microsoft VS Code/bin/"
       - "C:/Users/Hotaru/AppData/Roaming/npm/"
     searched_directories:
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/cc.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/cc.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/cc"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/cl.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/cl.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/cl"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/bcc.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/bcc.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/bcc"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/xlc.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/xlc.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/xlc"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/icx.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/icx.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/icx"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/clang.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/clang.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/clang"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/cc.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/cc.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/cc"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/cl.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/cl.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/cl"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/bcc.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/bcc.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/bcc"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/xlc.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/xlc.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/xlc"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/icx.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/icx.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/icx"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/clang.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/clang.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/clang"
       - "C:/Program Files/Rockwell Software/RSCommon/cc.com"
       - "C:/Program Files/Rockwell Software/RSCommon/cc.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/cc"
@@ -321,8 +271,6 @@ events:
     found: "C:/msys64/ucrt64/bin/cc.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -339,7 +287,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -368,8 +318,6 @@ events:
     found: "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeCCompilerId.c.in"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -386,7 +334,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "message-v1"
@@ -431,8 +381,6 @@ events:
       - "ar"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -455,8 +403,6 @@ events:
     found: "C:/msys64/ucrt64/bin/ar.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -473,7 +419,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -496,8 +444,6 @@ events:
       - "ranlib"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -520,8 +466,6 @@ events:
     found: "C:/msys64/ucrt64/bin/ranlib.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -538,7 +482,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -561,8 +507,6 @@ events:
       - "strip"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -585,8 +529,6 @@ events:
     found: "C:/msys64/ucrt64/bin/strip.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -603,7 +545,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -626,8 +570,6 @@ events:
       - "ld"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -650,8 +592,6 @@ events:
     found: "C:/msys64/ucrt64/bin/ld.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -668,7 +608,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -691,8 +633,6 @@ events:
       - "nm"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -715,8 +655,6 @@ events:
     found: "C:/msys64/ucrt64/bin/nm.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -733,7 +671,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -756,8 +696,6 @@ events:
       - "objdump"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -780,8 +718,6 @@ events:
     found: "C:/msys64/ucrt64/bin/objdump.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -798,7 +734,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -821,8 +759,6 @@ events:
       - "objcopy"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -845,8 +781,6 @@ events:
     found: "C:/msys64/ucrt64/bin/objcopy.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -863,7 +797,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -886,8 +822,6 @@ events:
       - "readelf"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -910,8 +844,6 @@ events:
     found: "C:/msys64/ucrt64/bin/readelf.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -928,7 +860,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -951,8 +885,6 @@ events:
       - "dlltool"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -975,8 +907,6 @@ events:
     found: "C:/msys64/ucrt64/bin/dlltool.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -993,7 +923,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -1016,8 +948,6 @@ events:
       - "addr2line"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -1040,8 +970,6 @@ events:
     found: "C:/msys64/ucrt64/bin/addr2line.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -1058,7 +986,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -1081,8 +1011,6 @@ events:
       - "tapi"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -1104,12 +1032,6 @@ events:
       - "C:/msys64/ucrt64/bin/tapi.com"
       - "C:/msys64/ucrt64/bin/tapi.exe"
       - "C:/msys64/ucrt64/bin/tapi"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/tapi.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/tapi.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/tapi"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/tapi.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/tapi.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/tapi"
       - "C:/Program Files/Rockwell Software/RSCommon/tapi.com"
       - "C:/Program Files/Rockwell Software/RSCommon/tapi.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/tapi"
@@ -1164,8 +1086,6 @@ events:
     found: false
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -1182,7 +1102,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -1208,8 +1130,6 @@ events:
       - "gcc-ar"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -1231,12 +1151,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ar-16.2.com"
       - "C:/msys64/ucrt64/bin/gcc-ar-16.2.exe"
       - "C:/msys64/ucrt64/bin/gcc-ar-16.2"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.2.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.2.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.2"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.2.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.2.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.2"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.2.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.2.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.2"
@@ -1291,12 +1205,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ar-16.com"
       - "C:/msys64/ucrt64/bin/gcc-ar-16.exe"
       - "C:/msys64/ucrt64/bin/gcc-ar-16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16"
@@ -1351,12 +1259,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ar16.com"
       - "C:/msys64/ucrt64/bin/gcc-ar16.exe"
       - "C:/msys64/ucrt64/bin/gcc-ar16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar16"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar16.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar16.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar16"
@@ -1412,8 +1314,6 @@ events:
     found: "C:/msys64/ucrt64/bin/gcc-ar.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -1430,7 +1330,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -1456,8 +1358,6 @@ events:
       - "gcc-ranlib"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -1479,12 +1379,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.2.com"
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.2.exe"
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.2"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.2.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.2.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.2"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.2.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.2.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.2"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.2.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.2.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.2"
@@ -1539,12 +1433,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.com"
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.exe"
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16"
@@ -1599,12 +1487,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ranlib16.com"
       - "C:/msys64/ucrt64/bin/gcc-ranlib16.exe"
       - "C:/msys64/ucrt64/bin/gcc-ranlib16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib16"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib16.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib16.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib16"
@@ -1660,8 +1542,6 @@ events:
     found: "C:/msys64/ucrt64/bin/gcc-ranlib.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -1678,7 +1558,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -1711,8 +1593,6 @@ events:
     found: "C:/msys64/ucrt64/bin/c++.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -1729,7 +1609,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -1758,8 +1640,6 @@ events:
     found: "C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -1776,7 +1656,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "message-v1"
@@ -1824,8 +1706,6 @@ events:
       - "gcc-ar"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -1847,12 +1727,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ar-16.2.com"
       - "C:/msys64/ucrt64/bin/gcc-ar-16.2.exe"
       - "C:/msys64/ucrt64/bin/gcc-ar-16.2"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.2.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.2.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.2"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.2.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.2.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.2"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.2.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.2.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.2"
@@ -1907,12 +1781,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ar-16.com"
       - "C:/msys64/ucrt64/bin/gcc-ar-16.exe"
       - "C:/msys64/ucrt64/bin/gcc-ar-16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar-16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar-16"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar-16"
@@ -1967,12 +1835,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ar16.com"
       - "C:/msys64/ucrt64/bin/gcc-ar16.exe"
       - "C:/msys64/ucrt64/bin/gcc-ar16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ar16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ar16"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar16.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar16.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ar16"
@@ -2028,8 +1890,6 @@ events:
     found: "C:/msys64/ucrt64/bin/gcc-ar.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -2046,7 +1906,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -2072,8 +1934,6 @@ events:
       - "gcc-ranlib"
     candidate_directories:
       - "C:/msys64/ucrt64/bin/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -2095,12 +1955,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.2.com"
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.2.exe"
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.2"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.2.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.2.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.2"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.2.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.2.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.2"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.2.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.2.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.2"
@@ -2155,12 +2009,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.com"
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16.exe"
       - "C:/msys64/ucrt64/bin/gcc-ranlib-16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib-16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib-16"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib-16"
@@ -2215,12 +2063,6 @@ events:
       - "C:/msys64/ucrt64/bin/gcc-ranlib16.com"
       - "C:/msys64/ucrt64/bin/gcc-ranlib16.exe"
       - "C:/msys64/ucrt64/bin/gcc-ranlib16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/gcc-ranlib16"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib16.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib16.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/gcc-ranlib16"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib16.com"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib16.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/gcc-ranlib16"
@@ -2276,8 +2118,6 @@ events:
     found: "C:/msys64/ucrt64/bin/gcc-ranlib.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -2294,7 +2134,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
   -
     kind: "find-v1"
@@ -2319,8 +2161,6 @@ events:
       - "windres"
       - "windres"
     candidate_directories:
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
       - "C:/Program Files/Rockwell Software/RSCommon/"
       - "C:/Windows/System32/"
       - "C:/Windows/"
@@ -2352,12 +2192,6 @@ events:
       - "C:/Program Files (x86)/EventScheduling/sbin/"
       - "C:/Program Files (x86)/EventScheduling/"
     searched_directories:
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/windres.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/windres.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/windres"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/windres.com"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/windres.exe"
-      - "C:/Users/Hotaru/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/windres"
       - "C:/Program Files/Rockwell Software/RSCommon/windres.com"
       - "C:/Program Files/Rockwell Software/RSCommon/windres.exe"
       - "C:/Program Files/Rockwell Software/RSCommon/windres"
@@ -2380,8 +2214,6 @@ events:
     found: "C:/msys64/ucrt64/bin/windres.exe"
     search_context:
       ENV{PATH}:
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
-        - "c:\\Users\\Hotaru\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
         - "C:\\Program Files\\Rockwell Software\\RSCommon"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
@@ -2398,7 +2230,9 @@ events:
         - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\msys64\\ucrt64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\msys64\\mingw64\\bin"
         - "C:\\Users\\Hotaru\\AppData\\Roaming\\npm"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/EventScheduling"
       CMAKE_SYSTEM_PREFIX_PATH:
@@ -2415,8 +2249,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-5c6rns"
-      binary: "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-5c6rns"
+      source: "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-xq5jo1"
+      binary: "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-xq5jo1"
     cmakeVariables:
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
       CMAKE_C_FLAGS: ""
@@ -2426,13 +2260,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: false
       stdout: |
-        Change Dir: 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-5c6rns'
+        Change Dir: 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-xq5jo1'
         
-        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_617e3/fast
-        C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_617e3.dir\\build.make CMakeFiles/cmTC_617e3.dir/build
-        mingw32-make[1]: Entering directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-5c6rns'
-        Building C object CMakeFiles/cmTC_617e3.dir/CMakeCCompilerABI.c.obj
-        C:\\msys64\\ucrt64\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCCompilerABI.c"
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_d2438/fast
+        C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_d2438.dir\\build.make CMakeFiles/cmTC_d2438.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-xq5jo1'
+        Building C object CMakeFiles/cmTC_d2438.dir/CMakeCCompilerABI.c.obj
+        C:\\msys64\\ucrt64\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCCompilerABI.c"
         Using built-in specs.
         COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\cc.exe
         Target: x86_64-w64-mingw32
@@ -2440,8 +2274,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 16.2.0 (Rev3, Built by MSYS2 project) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_617e3.dir\\'
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/cc1.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/ -isysroot C:/msys64/ucrt64/bin/../../ucrt64 -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_617e3.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=nocona -version -o C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccP8KSka.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_d2438.dir\\'
+         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/cc1.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/ -isysroot C:/msys64/ucrt64/bin/../../ucrt64 -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_d2438.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=nocona -version -o C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccxloLXW.s
         GNU C23 (Rev3, Built by MSYS2 project) version 16.2.0 (x86_64-w64-mingw32)
         	compiled by GNU C version 16.2.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.4.1, isl version isl-0.28-GMP
         
@@ -2458,14 +2292,14 @@ events:
          C:/msys64/ucrt64/bin/../../ucrt64/include
         End of search list.
         Compiler executable checksum: dc8db4a0d728e21bba4222783def37fe
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_617e3.dir\\'
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccP8KSka.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_d2438.dir\\'
+         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccxloLXW.s
         GNU assembler version 2.47 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.47.20260726
         COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/
         LIBRARY_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/;C:/msys64/ucrt64/bin/../../ucrt64/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../;C:/msys64/ucrt64/bin/../../ucrt64/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.'
-        Linking C executable cmTC_617e3.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_617e3.dir\\link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.'
+        Linking C executable cmTC_d2438.exe
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_d2438.dir\\link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\cc.exe
         COLLECT_LTO_WRAPPER=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe
@@ -2476,16 +2310,16 @@ events:
         gcc version 16.2.0 (Rev3, Built by MSYS2 project) 
         COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/
         LIBRARY_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/;C:/msys64/ucrt64/bin/../../ucrt64/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../;C:/msys64/ucrt64/bin/../../ucrt64/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_617e3.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_617e3.'
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc85T6wj.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_617e3.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_617e3.dir/objects.a --no-whole-archive --out-implib libcmTC_617e3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d2438.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_d2438.'
+         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccf4IrM7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_d2438.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_d2438.dir/objects.a --no-whole-archive --out-implib libcmTC_d2438.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o
         collect2 version 16.2.0
-        C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc85T6wj.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_617e3.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_617e3.dir/objects.a --no-whole-archive --out-implib libcmTC_617e3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o
+        C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccf4IrM7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_d2438.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_d2438.dir/objects.a --no-whole-archive --out-implib libcmTC_d2438.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o
         GNU ld (GNU Binutils) 2.47.20260726
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_617e3.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_617e3.'
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_617e3.dir/objects.a
-        C:\\msys64\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_617e3.dir/objects.a @CMakeFiles\\cmTC_617e3.dir\\objects1.rsp
-        C:\\msys64\\ucrt64\\bin\\cc.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_617e3.dir/objects.a -Wl,--no-whole-archive -o cmTC_617e3.exe -Wl,--out-implib,libcmTC_617e3.dll.a -Wl,--major-image-version,0,--minor-image-version,0
-        mingw32-make[1]: Leaving directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-5c6rns'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d2438.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_d2438.'
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_d2438.dir/objects.a
+        C:\\msys64\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_d2438.dir/objects.a @CMakeFiles\\cmTC_d2438.dir\\objects1.rsp
+        C:\\msys64\\ucrt64\\bin\\cc.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_d2438.dir/objects.a -Wl,--no-whole-archive -o cmTC_d2438.exe -Wl,--out-implib,libcmTC_d2438.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-xq5jo1'
         
       exitCode: 0
   -
@@ -2518,13 +2352,13 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|wild|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|wild))("|,| |$)]
-        ignore line: [Change Dir: 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-5c6rns']
+        ignore line: [Change Dir: 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-xq5jo1']
         ignore line: []
-        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_617e3/fast]
-        ignore line: [C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_617e3.dir\\build.make CMakeFiles/cmTC_617e3.dir/build]
-        ignore line: [mingw32-make[1]: Entering directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-5c6rns']
-        ignore line: [Building C object CMakeFiles/cmTC_617e3.dir/CMakeCCompilerABI.c.obj]
-        ignore line: [C:\\msys64\\ucrt64\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCCompilerABI.c"]
+        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_d2438/fast]
+        ignore line: [C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_d2438.dir\\build.make CMakeFiles/cmTC_d2438.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-xq5jo1']
+        ignore line: [Building C object CMakeFiles/cmTC_d2438.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [C:\\msys64\\ucrt64\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCCompilerABI.c"]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\cc.exe]
         ignore line: [Target: x86_64-w64-mingw32]
@@ -2532,8 +2366,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 16.2.0 (Rev3  Built by MSYS2 project) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_617e3.dir\\']
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/cc1.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/ -isysroot C:/msys64/ucrt64/bin/../../ucrt64 -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_617e3.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=nocona -version -o C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccP8KSka.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_d2438.dir\\']
+        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/cc1.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/ -isysroot C:/msys64/ucrt64/bin/../../ucrt64 -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_d2438.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=nocona -version -o C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccxloLXW.s]
         ignore line: [GNU C23 (Rev3  Built by MSYS2 project) version 16.2.0 (x86_64-w64-mingw32)]
         ignore line: [	compiled by GNU C version 16.2.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.4.1  isl version isl-0.28-GMP]
         ignore line: []
@@ -2550,8 +2384,8 @@ events:
         ignore line: [ C:/msys64/ucrt64/bin/../../ucrt64/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: dc8db4a0d728e21bba4222783def37fe]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_617e3.dir\\']
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccP8KSka.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_d2438.dir\\']
+        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccxloLXW.s]
         ignore line: [GNU assembler version 2.47 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.47.20260726]
         ignore line: [COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/]
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/]
@@ -2564,9 +2398,9 @@ events:
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/]
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../]
         ignore line: [C:/msys64/ucrt64/bin/../../ucrt64/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_617e3.dir\\CMakeCCompilerABI.c.']
-        ignore line: [Linking C executable cmTC_617e3.exe]
-        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_617e3.dir\\link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_d2438.dir\\CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_d2438.exe]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_d2438.dir\\link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\cc.exe]
         ignore line: [COLLECT_LTO_WRAPPER=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe]
@@ -2586,13 +2420,13 @@ events:
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/]
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../]
         ignore line: [C:/msys64/ucrt64/bin/../../ucrt64/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_617e3.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_617e3.']
-        link line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc85T6wj.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_617e3.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_617e3.dir/objects.a --no-whole-archive --out-implib libcmTC_617e3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d2438.exe' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_d2438.']
+        link line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccf4IrM7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_d2438.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_d2438.dir/objects.a --no-whole-archive --out-implib libcmTC_d2438.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe] ==> ignore
           arg [-plugin] ==> ignore
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll] ==> ignore
           arg [-plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe] ==> ignore
-          arg [-plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc85T6wj.res] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccf4IrM7.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_eh] ==> ignore
@@ -2615,7 +2449,7 @@ events:
           arg [i386pep] ==> ignore
           arg [-Bdynamic] ==> search dynamic
           arg [-o] ==> ignore
-          arg [cmTC_617e3.exe] ==> ignore
+          arg [cmTC_d2438.exe] ==> ignore
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o]
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o]
           arg [-LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0] ==> dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0]
@@ -2628,10 +2462,10 @@ events:
           arg [-LC:/msys64/ucrt64/bin/../../ucrt64/lib] ==> dir [C:/msys64/ucrt64/bin/../../ucrt64/lib]
           arg [-v] ==> ignore
           arg [--whole-archive] ==> ignore
-          arg [CMakeFiles\\cmTC_617e3.dir/objects.a] ==> ignore
+          arg [CMakeFiles\\cmTC_d2438.dir/objects.a] ==> ignore
           arg [--no-whole-archive] ==> ignore
           arg [--out-implib] ==> ignore
-          arg [libcmTC_617e3.dll.a] ==> ignore
+          arg [libcmTC_d2438.dll.a] ==> ignore
           arg [--major-image-version] ==> ignore
           arg [0] ==> ignore
           arg [--minor-image-version] ==> ignore
@@ -2656,9 +2490,9 @@ events:
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o]
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
         ignore line: [collect2 version 16.2.0]
-        link line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc85T6wj.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_617e3.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_617e3.dir/objects.a --no-whole-archive --out-implib libcmTC_617e3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> linker [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe]
-        link line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc85T6wj.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_617e3.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_617e3.dir/objects.a --no-whole-archive --out-implib libcmTC_617e3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> linker architecture flags [-m;i386pep]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc85T6wj.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_617e3.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_617e3.dir/objects.a --no-whole-archive --out-implib libcmTC_617e3.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
+        link line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccf4IrM7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_d2438.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_d2438.dir/objects.a --no-whole-archive --out-implib libcmTC_d2438.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> linker [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe]
+        link line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccf4IrM7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_d2438.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_d2438.dir/objects.a --no-whole-archive --out-implib libcmTC_d2438.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> linker architecture flags [-m;i386pep]
+        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccf4IrM7.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_d2438.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_d2438.dir/objects.a --no-whole-archive --out-implib libcmTC_d2438.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
         linker tool for 'C': C:/msys64/ucrt64/x86_64-w64-mingw32/bin/ld.exe -m;i386pep
         remove lib [gcc_eh]
         remove lib [msvcrt]
@@ -2701,8 +2535,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-01zrue"
-      binary: "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-01zrue"
+      source: "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-pg5zeo"
+      binary: "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-pg5zeo"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -2713,13 +2547,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: false
       stdout: |
-        Change Dir: 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-01zrue'
+        Change Dir: 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-pg5zeo'
         
-        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_3ff14/fast
-        C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_3ff14.dir\\build.make CMakeFiles/cmTC_3ff14.dir/build
-        mingw32-make[1]: Entering directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-01zrue'
-        Building CXX object CMakeFiles/cmTC_3ff14.dir/CMakeCXXCompilerABI.cpp.obj
-        C:\\msys64\\ucrt64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_aeb16/fast
+        C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_aeb16.dir\\build.make CMakeFiles/cmTC_aeb16.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-pg5zeo'
+        Building CXX object CMakeFiles/cmTC_aeb16.dir/CMakeCXXCompilerABI.cpp.obj
+        C:\\msys64\\ucrt64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"
         Using built-in specs.
         COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\c++.exe
         Target: x86_64-w64-mingw32
@@ -2727,8 +2561,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 16.2.0 (Rev3, Built by MSYS2 project) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3ff14.dir\\'
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/ -isysroot C:/msys64/ucrt64/bin/../../ucrt64 -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_3ff14.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccsOPx1W.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_aeb16.dir\\'
+         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/ -isysroot C:/msys64/ucrt64/bin/../../ucrt64 -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_aeb16.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6ypm4s.s
         GNU C++20 (Rev3, Built by MSYS2 project) version 16.2.0 (x86_64-w64-mingw32)
         	compiled by GNU C version 16.2.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.4.1, isl version isl-0.28-GMP
         
@@ -2751,14 +2585,14 @@ events:
          C:/msys64/ucrt64/bin/../../ucrt64/include
         End of search list.
         Compiler executable checksum: 65e9ecbaf27bf5dd79794e6f0ffce751
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3ff14.dir\\'
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccsOPx1W.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_aeb16.dir\\'
+         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6ypm4s.s
         GNU assembler version 2.47 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.47.20260726
         COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/
         LIBRARY_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/;C:/msys64/ucrt64/bin/../../ucrt64/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../;C:/msys64/ucrt64/bin/../../ucrt64/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_3ff14.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_3ff14.dir\\link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_aeb16.exe
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_aeb16.dir\\link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\c++.exe
         COLLECT_LTO_WRAPPER=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe
@@ -2769,16 +2603,16 @@ events:
         gcc version 16.2.0 (Rev3, Built by MSYS2 project) 
         COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/
         LIBRARY_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/;C:/msys64/ucrt64/bin/../lib/gcc/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/;C:/msys64/ucrt64/bin/../../ucrt64/lib/../lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/;C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../;C:/msys64/ucrt64/bin/../../ucrt64/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3ff14.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_3ff14.'
-         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccSXzcca.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_3ff14.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_3ff14.dir/objects.a --no-whole-archive --out-implib libcmTC_3ff14.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_aeb16.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_aeb16.'
+         C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6cyAFH.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_aeb16.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_aeb16.dir/objects.a --no-whole-archive --out-implib libcmTC_aeb16.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o
         collect2 version 16.2.0
-        C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccSXzcca.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_3ff14.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_3ff14.dir/objects.a --no-whole-archive --out-implib libcmTC_3ff14.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o
+        C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6cyAFH.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_aeb16.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_aeb16.dir/objects.a --no-whole-archive --out-implib libcmTC_aeb16.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o
         GNU ld (GNU Binutils) 2.47.20260726
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3ff14.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_3ff14.'
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_3ff14.dir/objects.a
-        C:\\msys64\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_3ff14.dir/objects.a @CMakeFiles\\cmTC_3ff14.dir\\objects1.rsp
-        C:\\msys64\\ucrt64\\bin\\c++.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_3ff14.dir/objects.a -Wl,--no-whole-archive -o cmTC_3ff14.exe -Wl,--out-implib,libcmTC_3ff14.dll.a -Wl,--major-image-version,0,--minor-image-version,0
-        mingw32-make[1]: Leaving directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-01zrue'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_aeb16.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_aeb16.'
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_aeb16.dir/objects.a
+        C:\\msys64\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_aeb16.dir/objects.a @CMakeFiles\\cmTC_aeb16.dir\\objects1.rsp
+        C:\\msys64\\ucrt64\\bin\\c++.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_aeb16.dir/objects.a -Wl,--no-whole-archive -o cmTC_aeb16.exe -Wl,--out-implib,libcmTC_aeb16.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        mingw32-make[1]: Leaving directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-pg5zeo'
         
       exitCode: 0
   -
@@ -2817,13 +2651,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|wild|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|wild))("|,| |$)]
-        ignore line: [Change Dir: 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-01zrue']
+        ignore line: [Change Dir: 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-pg5zeo']
         ignore line: []
-        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_3ff14/fast]
-        ignore line: [C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_3ff14.dir\\build.make CMakeFiles/cmTC_3ff14.dir/build]
-        ignore line: [mingw32-make[1]: Entering directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-01zrue']
-        ignore line: [Building CXX object CMakeFiles/cmTC_3ff14.dir/CMakeCXXCompilerABI.cpp.obj]
-        ignore line: [C:\\msys64\\ucrt64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"]
+        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_aeb16/fast]
+        ignore line: [C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_aeb16.dir\\build.make CMakeFiles/cmTC_aeb16.dir/build]
+        ignore line: [mingw32-make[1]: Entering directory 'C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/CMakeScratch/TryCompile-pg5zeo']
+        ignore line: [Building CXX object CMakeFiles/cmTC_aeb16.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [C:\\msys64\\ucrt64\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp"]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\c++.exe]
         ignore line: [Target: x86_64-w64-mingw32]
@@ -2831,8 +2665,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 16.2.0 (Rev3  Built by MSYS2 project) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3ff14.dir\\']
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/ -isysroot C:/msys64/ucrt64/bin/../../ucrt64 -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_3ff14.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccsOPx1W.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_aeb16.dir\\']
+        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/cc1plus.exe -quiet -v -iprefix C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/ -isysroot C:/msys64/ucrt64/bin/../../ucrt64 -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.4\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_aeb16.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=nocona -version -o C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6ypm4s.s]
         ignore line: [GNU C++20 (Rev3  Built by MSYS2 project) version 16.2.0 (x86_64-w64-mingw32)]
         ignore line: [	compiled by GNU C version 16.2.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.4.1  isl version isl-0.28-GMP]
         ignore line: []
@@ -2855,8 +2689,8 @@ events:
         ignore line: [ C:/msys64/ucrt64/bin/../../ucrt64/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 65e9ecbaf27bf5dd79794e6f0ffce751]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3ff14.dir\\']
-        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccsOPx1W.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_aeb16.dir\\']
+        ignore line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/as.exe -v -o CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6ypm4s.s]
         ignore line: [GNU assembler version 2.47 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.47.20260726]
         ignore line: [COMPILER_PATH=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/]
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/]
@@ -2869,9 +2703,9 @@ events:
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/]
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../]
         ignore line: [C:/msys64/ucrt64/bin/../../ucrt64/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_3ff14.dir\\CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_3ff14.exe]
-        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_3ff14.dir\\link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'CMakeFiles\\cmTC_aeb16.dir\\CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_aeb16.exe]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_aeb16.dir\\link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\msys64\\ucrt64\\bin\\c++.exe]
         ignore line: [COLLECT_LTO_WRAPPER=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe]
@@ -2891,13 +2725,13 @@ events:
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/]
         ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../]
         ignore line: [C:/msys64/ucrt64/bin/../../ucrt64/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3ff14.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_3ff14.']
-        link line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccSXzcca.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_3ff14.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_3ff14.dir/objects.a --no-whole-archive --out-implib libcmTC_3ff14.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_aeb16.exe' '-shared-libgcc' '-mtune=generic' '-march=nocona' '-dumpdir' 'cmTC_aeb16.']
+        link line: [ C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6cyAFH.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_aeb16.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_aeb16.dir/objects.a --no-whole-archive --out-implib libcmTC_aeb16.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/collect2.exe] ==> ignore
           arg [-plugin] ==> ignore
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll] ==> ignore
           arg [-plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe] ==> ignore
-          arg [-plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccSXzcca.res] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6cyAFH.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
@@ -2920,7 +2754,7 @@ events:
           arg [i386pep] ==> ignore
           arg [-Bdynamic] ==> search dynamic
           arg [-o] ==> ignore
-          arg [cmTC_3ff14.exe] ==> ignore
+          arg [cmTC_aeb16.exe] ==> ignore
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o]
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o]
           arg [-LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0] ==> dir [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0]
@@ -2933,10 +2767,10 @@ events:
           arg [-LC:/msys64/ucrt64/bin/../../ucrt64/lib] ==> dir [C:/msys64/ucrt64/bin/../../ucrt64/lib]
           arg [-v] ==> ignore
           arg [--whole-archive] ==> ignore
-          arg [CMakeFiles\\cmTC_3ff14.dir/objects.a] ==> ignore
+          arg [CMakeFiles\\cmTC_aeb16.dir/objects.a] ==> ignore
           arg [--no-whole-archive] ==> ignore
           arg [--out-implib] ==> ignore
-          arg [libcmTC_3ff14.dll.a] ==> ignore
+          arg [libcmTC_aeb16.dll.a] ==> ignore
           arg [--major-image-version] ==> ignore
           arg [0] ==> ignore
           arg [--minor-image-version] ==> ignore
@@ -2962,9 +2796,9 @@ events:
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o]
           arg [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> obj [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
         ignore line: [collect2 version 16.2.0]
-        link line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccSXzcca.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_3ff14.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_3ff14.dir/objects.a --no-whole-archive --out-implib libcmTC_3ff14.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> linker [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe]
-        link line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccSXzcca.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_3ff14.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_3ff14.dir/objects.a --no-whole-archive --out-implib libcmTC_3ff14.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> linker architecture flags [-m;i386pep]
-        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\ccSXzcca.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_3ff14.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_3ff14.dir/objects.a --no-whole-archive --out-implib libcmTC_3ff14.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
+        link line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6cyAFH.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_aeb16.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_aeb16.dir/objects.a --no-whole-archive --out-implib libcmTC_aeb16.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> linker [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe]
+        link line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6cyAFH.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_aeb16.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_aeb16.dir/objects.a --no-whole-archive --out-implib libcmTC_aeb16.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o] ==> linker architecture flags [-m;i386pep]
+        ignore line: [C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe -plugin C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/liblto_plugin.dll -plugin-opt=C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Hotaru\\AppData\\Local\\Temp\\cc6cyAFH.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 --sysroot=C:/msys64/ucrt64/bin/../../ucrt64 -m i386pep -Bdynamic -o cmTC_aeb16.exe C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/crt2.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtbegin.o -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0 -LC:/msys64/ucrt64/bin/../lib/gcc -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib -LC:/msys64/ucrt64/bin/../../ucrt64/lib/../lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../.. -LC:/msys64/ucrt64/bin/../../ucrt64/lib -v --whole-archive CMakeFiles\\cmTC_aeb16.dir/objects.a --no-whole-archive --out-implib libcmTC_aeb16.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s -lgcc -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../lib/default-manifest.o C:/msys64/ucrt64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/crtend.o]
         linker tool for 'CXX': C:/msys64/ucrt64/x86_64-w64-mingw32/bin/ld.exe -m;i386pep
         remove lib [msvcrt]
         remove lib [msvcrt]

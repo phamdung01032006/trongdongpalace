@@ -70,4 +70,10 @@ public:
     explicit HallInUseException(const string& msg) : BaseException(msg) {}
 };
 
+// Sai tài khoản hoặc mật khẩu khi đăng nhập
+class AuthenticationException : public BaseException {
+public:
+    explicit AuthenticationException(const string& msg) : BaseException(msg) {}
+};
+
 #endif // EXCEPTIONS_H

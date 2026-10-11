@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/event_scheduling.dir/src/Hall.cpp.obj.d"
   "CMakeFiles/event_scheduling.dir/src/HeThongDatLich.cpp.obj"
   "CMakeFiles/event_scheduling.dir/src/HeThongDatLich.cpp.obj.d"
+  "CMakeFiles/event_scheduling.dir/src/User.cpp.obj"
+  "CMakeFiles/event_scheduling.dir/src/User.cpp.obj.d"
   "CMakeFiles/event_scheduling.dir/src/Utils.cpp.obj"
   "CMakeFiles/event_scheduling.dir/src/Utils.cpp.obj.d"
   "CMakeFiles/event_scheduling.dir/src/WeddingEvent.cpp.obj"

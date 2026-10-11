@@ -272,6 +272,30 @@ src/HeThongDatLich.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\event_scheduling.dir\build.make CMakeFiles/event_scheduling.dir/src/HeThongDatLich.cpp.s
 .PHONY : src/HeThongDatLich.cpp.s
 
+src/User.obj: src/User.cpp.obj
+.PHONY : src/User.obj
+
+# target to build an object file
+src/User.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\event_scheduling.dir\build.make CMakeFiles/event_scheduling.dir/src/User.cpp.obj
+.PHONY : src/User.cpp.obj
+
+src/User.i: src/User.cpp.i
+.PHONY : src/User.i
+
+# target to preprocess a source file
+src/User.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\event_scheduling.dir\build.make CMakeFiles/event_scheduling.dir/src/User.cpp.i
+.PHONY : src/User.cpp.i
+
+src/User.s: src/User.cpp.s
+.PHONY : src/User.s
+
+# target to generate assembly for a file
+src/User.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\event_scheduling.dir\build.make CMakeFiles/event_scheduling.dir/src/User.cpp.s
+.PHONY : src/User.cpp.s
+
 src/Utils.obj: src/Utils.cpp.obj
 .PHONY : src/Utils.obj
 
@@ -371,6 +395,9 @@ help:
 	@echo ... src/HeThongDatLich.obj
 	@echo ... src/HeThongDatLich.i
 	@echo ... src/HeThongDatLich.s
+	@echo ... src/User.obj
+	@echo ... src/User.i
+	@echo ... src/User.s
 	@echo ... src/Utils.obj
 	@echo ... src/Utils.i
 	@echo ... src/Utils.s

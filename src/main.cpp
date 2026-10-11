@@ -1,19 +1,29 @@
 // =====================================================================
 // main.cpp — Giao diện console (CLI) của Hệ thống Đặt lịch Sự kiện.
 //
-// Chương trình chạy theo vai trò (actor) được chọn từ menu:
+// Chương trình chạy theo vai trò (actor) được xác thực qua màn hình đăng nhập:
 //   1) NGƯỜI YÊU CẦU  : xem lịch trống, tạo/hủy/đổi booking, tra cứu
 //   2) QUẢN LÝ SẢNH   : quản lý danh mục sảnh, duyệt/từ chối booking
+//
+// Dữ liệu tài khoản người dùng được lưu trong data/user.txt (không có đăng ký
+// trực tiếp, quản trị viên tự thêm tài khoản trong file).
 //
 // Toàn bộ nghiệp vụ nằm trong lớp HeThongDatLich; file này chỉ vẽ
 // menu, thu thập dữ liệu nhập và BẮT NGOẠI LỆ (FR-11) để hiển thị.
 // =====================================================================
+
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
+#endif
 
 #include <iostream>
 #include <iomanip>
 #include "HeThongDatLich.h"
 #include "Exceptions.h"
 #include "Utils.h"
+#include "User.h"
 
 using namespace std;
 
@@ -133,19 +143,22 @@ void doiLichUI(HeThongDatLich& ht) {
 }
 
 // ================== Menu NGUOI YEU CAU ==================
-void menuNguoiYeuCau(HeThongDatLich& ht) {
+void menuNguoiYeuCau(HeThongDatLich& ht, const User* user) {
     while (true) {
         xoaManHinh(); // bắt đầu một màn hình mới: xóa nội dung màn hình cũ
         cout << "=========== NGUOI YEU CAU (Khach hang / Nhan vien tiep nhan) ===========\n"
+             << "  Tai khoan: " << (user ? user->getHoTen() : "") << " ("
+             << (user ? user->getTenDangNhap() : "") << ")\n"
+             << "------------------------------------------------------------------------\n"
              << "  1. Xem danh sach sanh\n"
              << "  2. Xem lich trong cua sanh theo ngay (FR-03)\n"
              << "  3. Tao yeu cau dat lich (FR-04)\n"
              << "  4. Huy lich da duyet (FR-08)\n"
              << "  5. Doi lich - reschedule (FR-09)\n"
              << "  6. Tra cuu danh sach lich (FR-10)\n"
-             << "  0. Quay lai menu chinh\n";
+             << "  0. Dang xuat\n";
         int chon = docSoNguyen("  Lua chon: ");
-        if (chon == 0) return; // thoát menu: không dừng màn hình
+        if (chon == 0) return; // đăng xuất: quay lại màn hình đăng nhập
 
         try {
             // Mỗi chức năng là một màn hình riêng: xóa màn hình cũ, hiển thị
@@ -237,18 +250,21 @@ void menuQuanLySanh(HeThongDatLich& ht) {
 }
 
 // ================== Menu QUAN LY SANH ==================
-void menuQuanLy(HeThongDatLich& ht) {
+void menuQuanLy(HeThongDatLich& ht, const User* user) {
     while (true) {
         xoaManHinh(); // bắt đầu một màn hình mới: xóa nội dung màn hình cũ
         cout << "===================== QUAN LY SANH =====================\n"
+             << "  Tai khoan: " << (user ? user->getHoTen() : "") << " ("
+             << (user ? user->getTenDangNhap() : "") << ")\n"
+             << "--------------------------------------------------------\n"
              << "  1. Quan ly danh muc sanh (FR-01)\n"
              << "  2. Duyet yeu cau dat lich (FR-06)\n"
              << "  3. Tu choi yeu cau dat lich (FR-07)\n"
              << "  4. Xem toan bo booking / Tra cuu (FR-10)\n"
              << "  5. Xem lich trong cua sanh (FR-03)\n"
-             << "  0. Quay lai menu chinh\n";
+             << "  0. Dang xuat\n";
         int chon = docSoNguyen("  Lua chon: ");
-        if (chon == 0) return; // thoát menu: không dừng màn hình
+        if (chon == 0) return; // đăng xuất: quay lại màn hình đăng nhập
 
         try {
             // Mỗi chức năng là một màn hình riêng: xóa màn hình cũ, hiển thị
@@ -304,7 +320,8 @@ void menuQuanLy(HeThongDatLich& ht) {
 // ================== Chuong trinh chinh ==================
 int main() {
 #ifdef _WIN32
-    system("chcp 65001 > nul"); // hiển thị tiếng Việt đúng trên console Windows
+    SetConsoleOutputCP(CP_UTF8); // hiển thị tiếng Việt đúng trên console Windows
+    SetConsoleCP(CP_UTF8);
 #endif
     HeThongDatLich ht;
     ht.docDuLieuTuFile();   // nạp dữ liệu đã lưu trong file txt (nếu có)
@@ -312,25 +329,47 @@ int main() {
 
     try {
         while (true) {
-            xoaManHinh(); // về menu chính = màn hình mới, xóa nội dung cũ
+            xoaManHinh(); // về menu đăng nhập = màn hình mới, xóa nội dung cũ
             cout << "=============================================================\n"
                  << "   HE THONG DAT LICH SU KIEN - Trung tam Tiec cuoi & Su kien\n"
                  << "   Do an mon Lap trinh Huong doi tuong (OOP)\n"
                  << "=============================================================\n"
-                 << "\n======================== MENU CHINH ========================\n"
-                 << "  Chon vai tro:\n"
-                 << "  1. Nguoi yeu cau (khach hang / nhan vien tiep nhan)\n"
-                 << "  2. Quan ly sanh\n"
+                 << "\n========================= DANG NHAP =========================\n"
+                 << "  1. Dang nhap\n"
                  << "  0. Thoat chuong trinh\n";
             int chon = docSoNguyen("  Lua chon: ");
             if (chon == 0) break;
-            switch (chon) {
-                // Các menu con tự lo việc xóa màn hình và dừng màn hình của nó
-                case 1: menuNguoiYeuCau(ht); break;
-                case 2: menuQuanLy(ht); break;
-                default:
-                    cout << "  Lua chon khong hop le.\n";
+            if (chon != 1) {
+                cout << "  Lua chon khong hop le.\n";
+                choNhanEnter();
+                continue;
+            }
+
+            cout << "\n  --- THONG TIN DANG NHAP ---\n"
+                 << "  (Nhap '0' o Ten dang nhap de quay lai)\n";
+            string tenDangNhap = docChuoi("  Ten dang nhap: ");
+            if (tenDangNhap == "0") continue;
+
+            string matKhau = docChuoi("  Mat khau: ");
+
+            try {
+                User* user = ht.dangNhap(tenDangNhap, matKhau);
+                cout << "\n  [THANH CONG] Dang nhap thanh cong!\n"
+                     << "  Xin chao: " << user->getHoTen() << " (" << user->getTenDangNhap()
+                     << ") - Vai tro: " << user->getTenVaiTro() << "\n";
+                choNhanEnter("  Nhan Enter de vao he thong...");
+
+                if (user->getVaiTro() == VAI_TRO_QUAN_LY) {
+                    menuQuanLy(ht, user);
+                } else if (user->getVaiTro() == VAI_TRO_NGUOI_YEU_CAU) {
+                    menuNguoiYeuCau(ht, user);
+                } else {
+                    cout << "  [LOI] Tai khoan nay chua duoc phan vai tro hop le!\n";
                     choNhanEnter();
+                }
+            } catch (const exception& e) {
+                inLoi(e);
+                choNhanEnter("  Nhan Enter de thu lai...");
             }
         }
     } catch (const exception& e) {

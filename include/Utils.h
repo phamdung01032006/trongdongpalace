@@ -13,6 +13,7 @@ using namespace std;
 // mà không cần include Hall.h / BookingRequest.h (tránh include vòng).
 class Hall;
 class BookingRequest;
+class User;
 
 // =====================================================================
 // Tập hợp các tiện ích dùng chung của hệ thống.
@@ -75,6 +76,9 @@ void luuHeThongRaFile(const vector<Hall*>& danhSachSanh,
                       const vector<BookingRequest*>& danhSachBooking);
 void napHeThongTuFile(vector<Hall*>& danhSachSanh,
                       vector<BookingRequest*>& danhSachBooking);
+void luuUserRaFile(const vector<User*>& danhSachUser);
+void napUserTuFile(vector<User*>& danhSachUser);
+void khoiTaoUserMacDinh(vector<User*>& danhSachUser);
 
 // ---------- Tiện ích màn hình console ----------
 // Xóa toàn bộ nội dung màn hình — dùng mỗi khi chuyển sang màn hình/menu mới

@@ -15,9 +15,10 @@ HeThongDatLich::~HeThongDatLich() {
     // Lưu toàn bộ dữ liệu ra file txt trước khi giải phóng bộ nhớ, đảm bảo
     // dữ liệu không bị mất khi chương trình được chạy lại.
     ghiDuLieuRaFile();
-    // Giải phóng toàn bộ bộ nhớ: booking (tự delete Event bên trong) và sảnh
+    // Giải phóng toàn bộ bộ nhớ: booking (tự delete Event bên trong), sảnh và người dùng
     for (BookingRequest* b : danhSachBooking) delete b;
     for (Hall* h : danhSachSanh) delete h;
+    for (User* u : danhSachUser) delete u;
 }
 
 // Nạp dữ liệu đã lưu từ file txt (gọi ngay sau khi tạo đối tượng HeThongDatLich)
@@ -25,6 +26,7 @@ void HeThongDatLich::docDuLieuTuFile() {
     // Gọi hàm toàn cục trong Utils (tên khác method nên không bị che khuất)
     napHeThongTuFile(danhSachSanh, danhSachBooking);
     capNhatSoThuTu(); // tránh sinh mã SK/BK trùng với dữ liệu vừa nạp
+    docDanhSachUserTuFile(); // nạp danh sách tài khoản người dùng từ data/user.txt
 }
 
 // Ghi toàn bộ dữ liệu ra file txt
@@ -61,11 +63,15 @@ void HeThongDatLich::capNhatSoThuTu() {
 
 // Dữ liệu mẫu để demo nhanh (FR-01, FR-02)
 void HeThongDatLich::khoiTaoDuLieuMau() {
-    if (!danhSachSanh.empty()) return;
-    themSanh("S01", "Sanh Kim Tuyet", 500, true);
-    themSanh("S02", "Sanh Hoa Hong", 200, true);
-    themSanh("S03", "Sanh Phong Ca", 80, true);
-    themSanh("S04", "Sanh Nguyen Phong", 300, false); // sảnh ngừng hoạt động
+    if (danhSachSanh.empty()) {
+        themSanh("S01", "Sanh Kim Tuyet", 500, true);
+        themSanh("S02", "Sanh Hoa Hong", 200, true);
+        themSanh("S03", "Sanh Phong Ca", 80, true);
+        themSanh("S04", "Sanh Nguyen Phong", 300, false); // sảnh ngừng hoạt động
+    }
+    if (danhSachUser.empty()) {
+        khoiTaoUserMacDinh();
+    }
 }
 
 // ================== Sinh mã tự động ==================
@@ -101,6 +107,37 @@ BookingRequest* HeThongDatLich::timBooking(const string& maBooking) const {
 
 const vector<Hall*>& HeThongDatLich::getDanhSachSanh() const { return danhSachSanh; }
 const vector<BookingRequest*>& HeThongDatLich::getDanhSachBooking() const { return danhSachBooking; }
+const vector<User*>& HeThongDatLich::getDanhSachUser() const { return danhSachUser; }
+
+// ================== Quản lý người dùng & Đăng nhập ==================
+void HeThongDatLich::docDanhSachUserTuFile() {
+    for (User* u : danhSachUser) delete u;
+    danhSachUser.clear();
+    napUserTuFile(danhSachUser);
+}
+
+void HeThongDatLich::khoiTaoUserMacDinh() {
+    ::khoiTaoUserMacDinh(danhSachUser);
+    luuUserRaFile(danhSachUser);
+}
+
+User* HeThongDatLich::timUser(const string& tenDangNhap) const {
+    for (User* u : danhSachUser) {
+        if (u->getTenDangNhap() == tenDangNhap) return u;
+    }
+    return nullptr;
+}
+
+User* HeThongDatLich::dangNhap(const string& tenDangNhap, const string& matKhau) {
+    // Tải lại danh sách user từ file để nhận ngay tài khoản vừa được admin thêm
+    docDanhSachUserTuFile();
+    for (User* u : danhSachUser) {
+        if (u->getTenDangNhap() == tenDangNhap && u->kiemTraMatKhau(matKhau)) {
+            return u;
+        }
+    }
+    throw AuthenticationException("Sai ten dang nhap hoac mat khau!");
+}
 
 // ================== FR-01: Quản lý danh mục sảnh ==================
 void HeThongDatLich::themSanh(const string& maSanh, const string& ten, int sucChua, bool dangHoatDong) {

@@ -71,21 +71,24 @@ trongdongpalace/
 │   ├── BirthdayEvent.h     # Lớp con Sinh nhật (kế thừa Event)
 │   ├── Hall.h              # Lớp sảnh
 │   ├── BookingRequest.h    # Lớp yêu cầu đặt lịch (has-a Hall*, has-a Event*)
+│   ├── User.h              # Lớp tài khoản người dùng và xác thực vai trò
 │   ├── HeThongDatLich.h    # Lớp trung tâm điều phối nghiệp vụ
 │   ├── Exceptions.h        # Các lớp ngoại lệ kế thừa std::exception
 │   └── Utils.h             # ThoiDiem + tiện ích nhập liệu, in bảng, màn hình
 ├── src/                # Cài đặt (.cpp) tương ứng từng header
-│   └── main.cpp            # Menu console, bắt exception hiển thị (FR-11)
+│   ├── main.cpp            # Màn hình đăng nhập, menu console, bắt exception (FR-11)
+│   ├── User.cpp            # Cài đặt lớp User và ánh xạ vai trò
+│   └── ...                 # Các file .cpp của từng lớp
 ├── docs/               # Tài liệu FR
-├── data/               # File dữ liệu txt sinh ra khi chạy (không commit)
+├── data/               # File dữ liệu txt: sanh.txt, booking.txt, user.txt
 ├── build/              # Thư mục build CMake (không commit)
 ├── CMakeLists.txt
 └── README.md
 ```
 
-## Lưu trữ dữ liệu
+## Lưu trữ dữ liệu & Xác thực người dùng
 
-Toàn bộ dữ liệu (sảnh + booking) được **tự động lưu ra file txt** trong thư mục
+Toàn bộ dữ liệu (sảnh + booking + tài khoản người dùng) được **lưu ra file txt** trong thư mục
 `data/` nằm cạnh chương trình chạy, nên dữ liệu **không bị mất khi tắt rồi chạy lại**.
 
 > Đường dẫn `data/` là **tương đối theo thư mục làm việc**. Nếu chạy
@@ -93,18 +96,33 @@ Toàn bộ dữ liệu (sảnh + booking) được **tự động lưu ra file t
 
 | File | Nội dung | Định dạng mỗi dòng |
 |------|----------|--------------------|
+| `data/user.txt` | Danh sách tài khoản người dùng | `tenDangNhap\|matKhau\|vaiTro\|hoTen` |
 | `data/sanh.txt` | Danh mục sảnh | `maSanh\|ten\|sucChua\|dangHoatDong(0/1)` |
 | `data/booking.txt` | Danh sách booking | `maBooking\|maSanh\|loaiSuKien\|maSuKien\|tenSuKien\|soKhach\|gioBatDau\|gioKetThuc\|trangThai\|lyDoTuChoi\|ngayTao` |
 
+### Cơ chế Đăng nhập & Quản lý tài khoản
+
+- **Màn hình đăng nhập**: Thay thế cho màn hình chọn vai trò trước đây. Khi mở chương trình, người dùng đăng nhập bằng tài khoản và mật khẩu; hệ thống tự động nhận diện vai trò và điều hướng vào menu tương ứng (`Quản lý sảnh` hoặc `Người yêu cầu`).
+- **Không có chức năng đăng ký**: Hệ thống chỉ hỗ trợ đăng nhập, không có đăng ký tự do trên giao diện để đảm bảo an ninh phân quyền.
+- **Quản trị viên tự thêm tài khoản**: Khi cần cấp tài khoản mới, Quản trị hệ thống (Admin) trực tiếp thêm dòng tài khoản vào file `data/user.txt` (theo cấu trúc `TenDangNhap|MatKhau|VaiTro|HoTen`) và thông báo lại cho người dùng. Dữ liệu được nạp lại tự động khi đăng nhập, không cần khởi động lại phần mềm.
+- **Tài khoản mẫu có sẵn**:
+  | Tên đăng nhập | Mật khẩu | Vai trò | Tên hiển thị |
+  |---------------|----------|---------|--------------|
+  | `admin` | `admin123` | `QUAN_LY` (Quản lý sảnh) | Quản trị viên hệ thống |
+  | `quanly` | `123456` | `QUAN_LY` (Quản lý sảnh) | Nguyễn Văn Quản Lý |
+  | `khachhang` | `123456` | `NGUOI_YEU_CAU` (Khách hàng) | Trần Thị Khách Hàng |
+  | `nhanvien` | `123456` | `NGUOI_YEU_CAU` (Nhân viên) | Lê Văn Nhân Viên |
+
 **Đầu mỗi file đều có header** giúp người đọc hiểu cấu trúc: các dòng chú thích
 bắt đầu bằng `#` (giải thích ý nghĩa từng cột, các quy ước giá trị) và một dòng
-tên cột (ví dụ `MaSanh|TenSanh|SucChua|DangHoatDong`). Khi nạp dữ liệu, các dòng
+tên cột (ví dụ `MaSanh|TenSanh|SucChua|DangHoatDong` hoặc `TenDangNhap|MatKhau|VaiTro|HoTen`). Khi nạp dữ liệu, các dòng
 này được **tự động bỏ qua**, nên file cũ (không có header) vẫn đọc bình thường.
 Tất cả dữ liệu — từ dữ liệu mẫu cho đến dữ liệu người dùng tạo sau này — đều
 được ghi vào file txt theo cùng một định dạng.
 
 Quy ước giá trị:
 
+- `vaiTro`: `1` hoặc `NGUOI_YEU_CAU` (Người yêu cầu), `2` hoặc `QUAN_LY` (Quản lý sảnh).
 - `loaiSuKien`: `1` = Tiệc cưới, `2` = Hội nghị, `3` = Sinh nhật
   (lấy qua hàm ảo `Event::maLoai()` — thể hiện tính đa hình).
 - `trangThai`: `0` = Pending, `1` = Approved, `2` = Rejected, `3` = Cancelled.
@@ -112,7 +130,7 @@ Quy ước giá trị:
 
 Cơ chế hoạt động:
 
-- **Khi khởi động**: `main()` gọi `ht.docDuLieuTuFile()` để nạp dữ liệu đã lưu;
+- **Khi khởi động**: `main()` gọi `ht.docDuLieuTuFile()` để nạp dữ liệu đã lưu (sảnh, booking, user);
   chỉ khi hệ thống còn rỗng mới sinh dữ liệu mẫu (`khoiTaoDuLieuMau()`).
 - **Khi có thay đổi**: mỗi thao tác thêm/sửa/xóa sảnh và tạo/duyệt/từ chối/hủy/đổi
   lịch đều gọi `ghiDuLieuRaFile()` để lưu ngay (chống mất dữ liệu khi tắt đột ngột);
@@ -140,13 +158,14 @@ Cơ chế hoạt động:
 
 ## Áp dụng nguyên lý OOP (bảng ánh xạ Mục 9)
 
-- **Thiết kế lớp & đối tượng**: `Event`, `Hall`, `BookingRequest`, `HeThongDatLich`.
+- **Thiết kế lớp & đối tượng**: `Event`, `Hall`, `BookingRequest`, `User`, `HeThongDatLich`.
+- **Đóng gói**: Lớp `User` đóng gói thông tin đăng nhập, vai trò và phương thức `kiemTraMatKhau()`.
 - **Kế thừa**: `WeddingEvent`/`ConferenceEvent`/`BirthdayEvent` kế thừa `Event`;
   các exception kế thừa `std::exception` (qua `BaseException`).
 - **Đa hình**: khi tạo/duyệt booking, hệ thống chỉ giữ `Event*` và gọi
   `thoiGianChuanBi()`, `thoiGianDonDep()`, `kiemTraDieuKienRieng()` —
   phiên bản của lớp con tương ứng được chạy lúc runtime.
-- **Xử lý ngoại lệ**: 8 lớp exception tùy chỉnh theo Mục 7, mọi thao tác
+- **Xử lý ngoại lệ**: 9 lớp exception tùy chỉnh theo Mục 7 (bao gồm `AuthenticationException`), mọi thao tác
   nhập liệu đều được bọc `try/catch`.
 
 ## Ghi chú nhóm

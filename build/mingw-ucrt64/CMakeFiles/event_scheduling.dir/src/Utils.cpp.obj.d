@@ -180,6 +180,7 @@ CMakeFiles/event_scheduling.dir/src/Utils.cpp.obj: \
  C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/include/BirthdayEvent.h \
  C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/include/BookingRequest.h \
  C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/include/Hall.h \
+ C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/include/User.h \
  C:/msys64/ucrt64/include/c++/16.2.0/fstream \
  C:/msys64/ucrt64/include/c++/16.2.0/x86_64-w64-mingw32/bits/basic_file.h \
  C:/msys64/ucrt64/include/c++/16.2.0/x86_64-w64-mingw32/bits/c++io.h \

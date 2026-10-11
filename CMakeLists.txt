@@ -16,6 +16,7 @@ add_executable(event_scheduling
     src/BookingRequest.cpp
     src/HeThongDatLich.cpp
     src/Utils.cpp
+    src/User.cpp
 )
 
 # Make the MinGW executable easier to distribute to Windows machines.
