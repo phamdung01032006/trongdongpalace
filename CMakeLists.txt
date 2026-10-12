@@ -28,7 +28,21 @@ FetchContent_MakeAvailable(ftxui nlohmann_json)
 set(TDP_CORE_SOURCES
     src/utils/sha256.cpp
     src/utils/helpers.cpp
-    src/models/entities.cpp
+    src/models/Enums.cpp
+    src/models/User.cpp
+    src/models/Customer.cpp
+    src/models/EventRequest.cpp
+    src/models/Center.cpp
+    src/models/Hall.cpp
+    src/models/ServiceItem.cpp
+    src/models/Quotation.cpp
+    src/models/Booking.cpp
+    src/models/Contract.cpp
+    src/models/Payment.cpp
+    src/models/Event.cpp
+    src/models/OperationTask.cpp
+    src/models/Incident.cpp
+    src/models/AuditLog.cpp
     src/storage/json_storage.cpp
     src/services/palace_service.cpp
 )
