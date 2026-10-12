@@ -1,0 +1,61 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-b5805d5c08fd3d92def4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "EventScheduling",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "event_scheduling::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-event_scheduling-Debug-d25dec7e2e5dcacea47f.json",
+					"name" : "event_scheduling",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build",
+		"source" : "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 11
+	}
+}
