@@ -20,11 +20,11 @@ trongdongpalace/
 ├── CMakeLists.txt              # Cấu hình biên dịch CMake (Qt 6 Widgets & nlohmann/json)
 ├── README.md                   # Tài liệu hướng dẫn sử dụng & báo cáo kỹ thuật
 ├── data/                       # Thư mục lưu trữ các file JSON thực tế
-│   ├── users.json              # Tài khoản người dùng & nhật ký kiểm toán (Audit Logs)
-│   ├── customers.json          # Khách hàng & yêu cầu sự kiện
-│   ├── venues.json             # Trung tâm, danh mục sảnh & dịch vụ đi kèm
-│   ├── transactions.json       # Báo giá, Booking, Hợp đồng & Lịch sử thanh toán
-│   └── events.json             # Sự kiện vận hành, danh sách nhiệm vụ & sự cố
+│   ├── users.json              # Tài khoản người dùng (4 vai trò đặc tả)
+│   ├── customers.json          # Khách hàng & yêu cầu sự kiện (kèm dòng dịch vụ đã chốt giá)
+│   ├── venues.json             # Sảnh VEN (giá thuê) & danh mục dịch vụ FOD/DEC/MED/AV/HR/EXT
+│   ├── transactions.json       # Booking (giữ chỗ 72h) & lịch sử thanh toán
+│   └── events.json             # Sự kiện vận hành (trạng thái tự tính theo thời gian)
 ├── backups/                    # Bản sao lưu dữ liệu tự động trước mỗi lần ghi JSON
 ├── src/
 │   ├── main.cpp                # Nạp Storage và khởi chạy ứng dụng
@@ -44,14 +44,14 @@ Khi chạy lần đầu và thư mục `data/` chưa có dữ liệu, chương t
 
 | Tên đăng nhập | Mật khẩu | Họ và tên | Vai trò | Quyền hạn chính |
 | :--- | :--- | :--- | :--- | :--- |
-| **`admin`** | `123456` | Quản trị viên hệ thống | **Admin** | Toàn quyền cấu hình sảnh, dịch vụ, tài khoản, xem audit |
-| **`kinhdoanh`** | `123456` | Nguyễn Văn Kinh Doanh | **Sales** | Quản lý khách hàng, tiếp nhận yêu cầu, làm báo giá, tạo booking |
-| **`ketoan`** | `123456` | Trần Thị Kế Toán | **Accountant** | Quản lý hợp đồng, ghi nhận thanh toán, theo dõi công nợ |
-| **`dieuphoi`** | `123456` | Lê Văn Điều Phối | **Coordinator**| Điều phối vận hành sự kiện, phân công nhiệm vụ, xử lý sự cố |
+| **`admin`** | `123456` | Quản trị viên hệ thống | **Quản lý** | Toàn quyền: sảnh, dịch vụ, booking, duyệt chiết khấu, tài khoản |
+| **`kinhdoanh`** | `123456` | Nguyễn Văn Kinh Doanh | **Nhân viên kinh doanh** | Yêu cầu, booking (giữ chỗ 72h), ghi nhận thanh toán, tra cứu sảnh |
+| **`vanhanh`** | `123456` | Lê Văn Vận Hành | **Vận hành** | Xem danh sách sự kiện (trạng thái tự tính theo thời gian) |
+| **`khachhang`** | `123456` | Nguyễn Văn An | **Khách hàng** | Chỉ tạo yêu cầu sự kiện, xem yêu cầu đã gửi và đặt lịch của mình |
 
 > **Cách thay đổi thông tin đăng nhập hoặc mật khẩu**:
 > - Đăng nhập tài khoản `admin` -> Vào mục **"Người dùng (quản trị)"** -> Chọn tài khoản -> Nhập mật khẩu mới -> Nhấn **"Đổi mật khẩu"**.
-> - Hoặc người dùng tự bấm **"Đăng ký tài khoản mới"** ngay tại màn hình đăng nhập ban đầu.
+> - Hoặc khách hàng tự bấm **"Đăng ký tài khoản khách hàng"** ngay tại màn hình đăng nhập ban đầu.
 
 ---
 

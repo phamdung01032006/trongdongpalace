@@ -72,8 +72,24 @@ string DateTime::toString() const {
     return oss.str();
 }
 
-DateTime DateTime::now() {
-    auto t = chrono::system_clock::to_time_t(chrono::system_clock::now());
+DateTime DateTime::plusHours(int hours) const {
+    time_t t = static_cast<time_t>(toMinutes() * 60) + static_cast<time_t>(hours) * 3600;
+    tm tm{};
+#ifdef _WIN32
+    gmtime_s(&tm, &t);
+#else
+    gmtime_r(&t, &tm);
+#endif
+    DateTime d;
+    d.year = tm.tm_year + 1900;
+    d.month = tm.tm_mon + 1;
+    d.day = tm.tm_mday;
+    d.hour = tm.tm_hour;
+    d.minute = tm.tm_min;
+    return d;
+}
+
+DateTime DateTime::now() {    auto t = chrono::system_clock::to_time_t(chrono::system_clock::now());
     tm tm{};
 #ifdef _WIN32
     localtime_s(&tm, &t);

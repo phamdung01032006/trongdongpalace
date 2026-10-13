@@ -19,6 +19,7 @@ struct DateTime {
     static DateTime now();
     static optional<DateTime> parse(const string& text);
     string toString() const;
+    DateTime plusHours(int hours) const;
     int64_t toMinutes() const;
     bool valid() const;
 };

@@ -5,7 +5,9 @@
 #include "utils/helpers.hpp"
 
 #include <QApplication>
+#include <QCheckBox>
 #include <QComboBox>
+#include <QDateTimeEdit>
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QFormLayout>
@@ -13,15 +15,19 @@
 #include <QHeaderView>
 #include <QLabel>
 #include <QLineEdit>
+#include <QListWidget>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QSpinBox>
 #include <QStackedWidget>
 #include <QStatusBar>
 #include <QTableWidget>
+#include <QTextEdit>
 #include <QVBoxLayout>
 #include <QWidget>
 
+#include <algorithm>
 #include <functional>
 #include <initializer_list>
 #include <optional>
@@ -44,14 +50,6 @@ QString qstr(const string& value)
 void appendRow(Rows& rows, initializer_list<string> row)
 {
     rows.emplace_back(row);
-}
-
-bool isOneOf(const QString& value, initializer_list<const char*> choices)
-{
-    for (const char* choice : choices) {
-        if (value == QLatin1String(choice)) return true;
-    }
-    return false;
 }
 
 QTableWidget* makeTable(const QStringList& headers, const Rows& rows, QWidget* parent)
@@ -121,27 +119,74 @@ optional<QStringList> promptFields(QWidget* parent, const QString& title,
     return result;
 }
 
+// Dropdown (Form 1/2/3: loai su kien, sanh, trang thai, loai/hinh thuc thanh toan).
+optional<QString> promptCombo(QWidget* parent, const QString& title, const QString& label,
+                              const QStringList& items, const QString& current = {})
+{
+    QDialog dialog(parent);
+    dialog.setWindowTitle(title);
+    dialog.setMinimumWidth(400);
+    auto* layout = new QVBoxLayout(&dialog);
+    auto* form = new QFormLayout;
+    auto* combo = new QComboBox(&dialog);
+    combo->addItems(items);
+    if (!current.isEmpty()) {
+        const int idx = combo->findText(current);
+        if (idx >= 0) combo->setCurrentIndex(idx);
+    }
+    form->addRow(label, combo);
+    layout->addLayout(form);
+    auto* buttons = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel, &dialog);
+    QObject::connect(buttons, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+    QObject::connect(buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+    layout->addWidget(buttons);
+    if (dialog.exec() != QDialog::Accepted) return nullopt;
+    return combo->currentText();
+}
+
+// Date-picker (Form 1: ngay dien ra chi tuong lai; Form 3: mac dinh hom nay).
+optional<DateTime> promptDateTime(QWidget* parent, const QString& title, const QString& label,
+                                  DateTime initial, bool calendarPopup = true)
+{
+    QDialog dialog(parent);
+    dialog.setWindowTitle(title);
+    dialog.setMinimumWidth(400);
+    auto* layout = new QVBoxLayout(&dialog);
+    auto* form = new QFormLayout;
+    auto* edit = new QDateTimeEdit(&dialog);
+    edit->setDisplayFormat("yyyy-MM-dd HH:mm");
+    edit->setCalendarPopup(calendarPopup);
+    edit->setDateTime(QDateTime(QDate(initial.year, initial.month, initial.day),
+                                QTime(initial.hour, initial.minute)));
+    form->addRow(label, edit);
+    layout->addLayout(form);
+    auto* buttons = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel, &dialog);
+    QObject::connect(buttons, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+    QObject::connect(buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+    layout->addWidget(buttons);
+    if (dialog.exec() != QDialog::Accepted) return nullopt;
+    const QDateTime qdt = edit->dateTime();
+    DateTime d;
+    d.year = qdt.date().year();
+    d.month = qdt.date().month();
+    d.day = qdt.date().day();
+    d.hour = qdt.time().hour();
+    d.minute = qdt.time().minute();
+    return d;
+}
+
+DateTime parseDateTimeText(const QString& text, bool& ok)
+{
+    auto parsed = DateTime::parse(text.toStdString());
+    ok = parsed.has_value();
+    return ok ? *parsed : DateTime{};
+}
+
 struct NavigationEntry {
     Action action;
     QString label;
     QString screen;
 };
-
-const vector<NavigationEntry>& navigationEntries()
-{
-    static const vector<NavigationEntry> entries{
-        {Action::ManageCustomers, "Khách hàng", "customers"},
-        {Action::ManageRequests, "Yêu cầu sự kiện", "requests"},
-        {Action::ManageVenues, "Sảnh", "halls"},
-        {Action::ManageVenues, "Dịch vụ", "services"},
-        {Action::LookupHalls, "Tra cứu sảnh trống", "lookup"},
-        {Action::ManageBookings, "Booking", "bookings"},
-        {Action::ManagePayments, "Thanh toán", "payments"},
-        {Action::ManageOperations, "Sự kiện vận hành", "events"},
-        {Action::ManageUsers, "Người dùng", "users"},
-    };
-    return entries;
-}
 
 class MainWindow final : public QMainWindow {
 public:
@@ -178,12 +223,20 @@ private:
     void notify(const OpResult& result)
     {
         statusBar()->showMessage(qstr(result.message), result.ok ? 5000 : 10000);
-        if (result.ok) refreshTable();
+        if (result.ok) {
+            loadNavigation();
+            refreshTable();
+        }
     }
 
     void showError(const QString& message)
     {
         QMessageBox::warning(this, "Dữ liệu chưa hợp lệ", message);
+    }
+
+    void showInfo(const QString& title, const QString& message)
+    {
+        QMessageBox::information(this, title, message);
     }
 
     QString selectedValue(int column = 0) const
@@ -194,18 +247,16 @@ private:
         return item ? item->text() : QString{};
     }
 
-    bool parseDateFields(const QString& startText, const QString& endText,
-                         DateTime& start, DateTime& end)
+    bool isCustomer() const
     {
-        const auto parsedStart = DateTime::parse(startText.toStdString());
-        const auto parsedEnd = DateTime::parse(endText.toStdString());
-        if (!parsedStart || !parsedEnd) {
-            showError("Thời gian không hợp lệ. Dùng định dạng YYYY-MM-DD HH:MM.");
-            return false;
-        }
-        start = *parsedStart;
-        end = *parsedEnd;
-        return true;
+        const User* u = service_.currentUser();
+        return u && u->role() == Role::Customer;
+    }
+
+    bool isManager() const
+    {
+        const User* u = service_.currentUser();
+        return u && u->role() == Role::Manager;
     }
 
     QWidget* buildLoginPage()
@@ -241,7 +292,7 @@ private:
 
         auto* login = new QPushButton("Đăng nhập", card);
         login->setDefault(true);
-        auto* registerButton = new QPushButton("Đăng ký tài khoản mới", card);
+        auto* registerButton = new QPushButton("Đăng ký tài khoản khách hàng", card);
         auto* quit = new QPushButton("Thoát", card);
         login->setMinimumHeight(40);
         registerButton->setMinimumHeight(40);
@@ -278,19 +329,13 @@ private:
         connect(password, &QLineEdit::returnPressed, this, doLogin);
         connect(registerButton, &QPushButton::clicked, this, [this, username, status]() {
             const auto fields = promptFields(
-                this, "Đăng ký tài khoản",
-                {"Tên đăng nhập", "Họ và tên", "Mật khẩu (ít nhất 4 ký tự)",
-                 "Nhập lại mật khẩu", "Vai trò"},
-                {"", "", "", "", "Sales"}, {2, 3});
+                this, "Đăng ký tài khoản khách hàng",
+                {"Tên đăng nhập", "Họ và tên", "Mật khẩu (ít nhất 4 ký tự)", "Nhập lại mật khẩu"},
+                {"", "", "", ""}, {2, 3});
             if (!fields) return;
-            if (!isOneOf((*fields)[4], {"Sales", "Accountant", "Coordinator", "Admin"})) {
-                status->setText("Vai trò không hợp lệ.");
-                return;
-            }
-            const Role role = roleFromString((*fields)[4].toStdString());
             const OpResult result = service_.registerUser(
                 (*fields)[0].toStdString(), (*fields)[2].toStdString(),
-                (*fields)[3].toStdString(), (*fields)[1].toStdString(), role);
+                (*fields)[3].toStdString(), (*fields)[1].toStdString());
             status->setText(qstr(result.message));
             if (result.ok) username->setText((*fields)[0]);
         });
@@ -369,13 +414,48 @@ private:
         return page;
     }
 
+    // Dieu huong theo Actor (dac ta muc 1).
+    vector<NavigationEntry> navigationEntries() const
+    {
+        const User* u = service_.currentUser();
+        if (!u) return {};
+        if (u->role() == Role::Customer) {
+            return {{Action::ManageRequests, "Yêu cầu đã gửi", "requests"},
+                    {Action::ManageRequests, "Đặt lịch của tôi", "mybookings"},
+                    {Action::LookupHalls, "Sảnh & dịch vụ", "halls"}};
+        }
+        if (u->role() == Role::Operation) {
+            return {{Action::ManageEvents, "Danh sách sự kiện", "events"}};
+        }
+        vector<NavigationEntry> entries{
+            {Action::ManageRequests, "Yêu cầu sự kiện", "requests"},
+            {Action::ManageBookings, "Booking", "bookings"},
+            {Action::ManagePayments, "Thanh toán", "payments"},
+            {Action::ManageVenues, "Sảnh & địa điểm", "halls"},
+            {Action::ManageVenues, "Dịch vụ", "services"},
+            {Action::LookupHalls, "Tra cứu sảnh trống", "lookup"},
+            {Action::ManageCustomers, "Khách hàng", "customers"},
+            {Action::ManageEvents, "Sự kiện", "events"},
+        };
+        if (u->role() == Role::Manager) {
+            entries.push_back({Action::ManageUsers, "Người dùng", "users"});
+        }
+        return entries;
+    }
+
     void loadNavigation()
     {
         navigation_->blockSignals(true);
         navigation_->clear();
         for (const NavigationEntry& entry : navigationEntries()) {
             if (service_.can(entry.action)) {
-                navigation_->addItem(entry.label, entry.screen);
+                QString label = entry.label;
+                // Thong bao yeu cau moi cho sales (dac ta B.1).
+                if (entry.screen == "requests" && !isCustomer()) {
+                    const size_t n = service_.countNewRequests();
+                    if (n > 0) label += QString(" (%1 mới)").arg(n);
+                }
+                navigation_->addItem(label, entry.screen);
             }
         }
         const User* user = service_.currentUser();
@@ -401,15 +481,33 @@ private:
     QStringList tableHeaders() const
     {
         if (screen_ == "customers") return {"Mã", "Tên", "Điện thoại", "Email", "Địa chỉ"};
-        if (screen_ == "requests") return {"Mã", "Khách hàng", "Loại", "Tiêu đề", "Bắt đầu", "Số khách", "Trạng thái"};
-        if (screen_ == "halls") return {"Mã sảnh", "Tên sảnh", "Sức chứa", "Hoạt động"};
-        if (screen_ == "services") return {"Mã dịch vụ", "Tên dịch vụ", "Đơn vị", "Đơn giá", "Nhóm", "Hoạt động"};
-        if (screen_ == "lookup") return {"Mã sảnh", "Tên sảnh", "Sức chứa"};
-        if (screen_ == "bookings") return {"Mã", "Sảnh", "Bắt đầu", "Kết thúc", "Số khách", "Trạng thái"};
-        if (screen_ == "payments") return {"Mã", "Booking", "Số tiền", "Thời điểm", "Hình thức", "Ghi chú"};
-        if (screen_ == "events") return {"Mã sự kiện", "Booking", "Sảnh", "Khách hàng", "Bắt đầu", "Kết thúc", "Trạng thái", "Ghi chú"};
+        if (screen_ == "requests") {
+            if (isCustomer())
+                return {"Mã", "Loại sự kiện", "Tên sự kiện", "Bắt đầu", "Số khách", "Chi phí dự kiến",
+                        "Trạng thái"};
+            return {"Mã", "Khách hàng", "Loại", "Tên sự kiện", "Sảnh", "Bắt đầu", "Số khách",
+                    "Chi phí dự kiến", "Trạng thái"};
+        }
+        if (screen_ == "mybookings")
+            return {"Mã", "Sảnh", "Bắt đầu", "Kết thúc", "Tổng booking", "Đã thu", "Trạng thái"};
+        if (screen_ == "halls") return {"Mã", "Tên sảnh", "Sức chứa", "Giá thuê", "Trạng thái"};
+        if (screen_ == "services") return {"Mã", "Tên dịch vụ", "Đơn vị", "Đơn giá", "Nhóm"};
+        if (screen_ == "lookup") return {"Mã sảnh", "Tên sảnh", "Giá thuê", "Sức chứa"};
+        if (screen_ == "bookings")
+            return {"Mã", "Yêu cầu", "Sảnh", "Bắt đầu", "Tổng", "Giảm giá", "Trạng thái", "NV phụ trách"};
+        if (screen_ == "payments")
+            return {"Mã", "Booking", "Loại", "Số tiền", "Ngày thu", "Hình thức", "Trạng thái", "Ghi chú"};
+        if (screen_ == "events")
+            return {"Mã sự kiện", "Booking", "Sảnh", "Khách hàng", "Bắt đầu", "Kết thúc", "Trạng thái"};
         if (screen_ == "users") return {"Mã", "Tài khoản", "Họ tên", "Vai trò", "Hoạt động"};
         return {};
+    }
+
+    vector<EventRequest> visibleRequests() const
+    {
+        const User* u = service_.currentUser();
+        if (u && u->role() == Role::Customer) return service_.requestsForCustomer(u->customerId());
+        return vector<EventRequest>(service_.db().requests.begin(), service_.db().requests.end());
     }
 
     Rows getRows()
@@ -418,44 +516,78 @@ private:
         const Database& db = service_.db();
         if (screen_ == "customers") {
             for (const Customer& customer : service_.searchCustomers(search_->text().toStdString())) {
-                appendRow(rows, {customer.id(), customer.name(), customer.phone(), customer.email(), customer.address()});
+                appendRow(rows, {customer.id(), customer.name(), customer.phone(), customer.email(),
+                                 customer.address()});
             }
         } else if (screen_ == "requests") {
-            for (const EventRequest& request : db.requests) {
+            for (const EventRequest& request : visibleRequests()) {
                 const Customer* customer = service_.findCustomer(request.customerId());
-                appendRow(rows, {request.id(), customer ? customer->name() : request.customerId(),
-                                 toString(request.type()), request.title(), request.start().toString(),
-                                 to_string(request.guestCount()), toString(request.status())});
+                const Hall* hall = request.hallId().empty() ? nullptr : service_.findHall(request.hallId());
+                const string cost = formatMoney(service_.estimateRequest(request));
+                const string status = isCustomer() ? customerViewOfRequest(request.status())
+                                                   : toString(request.status());
+                if (isCustomer()) {
+                    appendRow(rows, {request.id(), toString(request.type()), request.title(),
+                                     request.start().toString(), to_string(request.guestCount()), cost,
+                                     status});
+                } else {
+                    appendRow(rows, {request.id(), customer ? customer->name() : request.customerId(),
+                                     toString(request.type()), request.title(),
+                                     hall ? hall->name() : "Chưa xác định", request.start().toString(),
+                                     to_string(request.guestCount()), cost, status});
+                }
+            }
+        } else if (screen_ == "mybookings") {
+            const User* u = service_.currentUser();
+            if (u) {
+                for (const Booking& booking : service_.bookingsForCustomer(u->customerId())) {
+                    const Hall* hall = service_.findHall(booking.hallId());
+                    appendRow(rows, {booking.id(), hall ? hall->name() : booking.hallId(),
+                                     booking.start().toString(), booking.end().toString(),
+                                     formatMoney(booking.finalTotal()),
+                                     formatMoney(service_.paidAmount(booking.id())),
+                                     toString(booking.status())});
+                }
             }
         } else if (screen_ == "halls") {
             for (const Hall& hall : db.halls) {
-                appendRow(rows, {hall.id(), hall.name(),
-                                 to_string(hall.capacity()), hall.active() ? "Có" : "Không"});
+                appendRow(rows, {hall.id(), hall.name(), to_string(hall.capacity()),
+                                 formatMoney(hall.rentalPrice()), toString(hall.status())});
             }
         } else if (screen_ == "services") {
             for (const ServiceItem& item : db.services) {
-                appendRow(rows, {item.id(), item.name(), item.unit(), formatMoney(item.unitPrice()),
-                                 item.category(), item.active() ? "Có" : "Không"});
+                if (!item.active() && !isManager()) continue;
+                appendRow(rows, {item.code(), item.name(), item.unit(), formatMoney(item.unitPrice()),
+                                 item.category()});
             }
         } else if (screen_ == "lookup") {
             // Results are populated only after an explicit availability search.
         } else if (screen_ == "bookings") {
             for (const Booking& booking : db.bookings) {
-                appendRow(rows, {booking.id(), booking.hallId(), booking.start().toString(), booking.end().toString(),
-                                 to_string(booking.guestCount()), toString(booking.status())});
+                string discount = "-";
+                if (booking.discountPercent() > 0 || booking.discountAmount() > 0) {
+                    discount = to_string(booking.discountPercent()) + "% (-" +
+                               formatMoney(booking.discountAmount()) + ")" +
+                               (booking.discountNeedsApproval() && !booking.discountApproved() ? " [chờ duyệt]"
+                                                                                               : "");
+                }
+                appendRow(rows, {booking.id(), booking.requestId(), booking.hallId(),
+                                 booking.start().toString(), formatMoney(booking.finalTotal()), discount,
+                                 toString(booking.status()), booking.salesUsername()});
             }
         } else if (screen_ == "payments") {
             for (const Payment& payment : db.payments) {
-                appendRow(rows, {payment.id(), payment.bookingId(), formatMoney(payment.amount()),
-                                 payment.paidAt().toString(), toString(payment.method()), payment.note()});
+                appendRow(rows, {payment.id(), payment.bookingId(), toString(payment.type()),
+                                 payment.amount() > 0 ? formatMoney(payment.amount()) : "(chưa nhập)",
+                                 payment.paidAt().toString(), toString(payment.method()),
+                                 toString(payment.status()), payment.note()});
             }
         } else if (screen_ == "events") {
-            for (const Event& event : db.events) {
+            for (const Event& event : service_.allEvents()) {
                 const Customer* customer = service_.findCustomer(event.customerId());
                 appendRow(rows, {event.id(), event.bookingId(), event.hallId(),
-                                 customer ? customer->name() : event.customerId(),
-                                 event.start().toString(), event.end().toString(),
-                                 toString(event.status()), event.specialNotes()});
+                                 customer ? customer->name() : event.customerId(), event.start().toString(),
+                                 event.end().toString(), toString(event.status())});
             }
         } else if (screen_ == "users") {
             for (const User& user : db.users) {
@@ -496,27 +628,44 @@ private:
             addActionButton(layout, "Thêm khách hàng", [this]() { addCustomer(); });
             addActionButton(layout, "Sửa khách hàng", [this]() { editCustomer(); });
         } else if (screen_ == "requests") {
-            addActionButton(layout, "Tiếp nhận yêu cầu", [this]() { addRequest(); });
-            addActionButton(layout, "Đánh dấu đã báo giá", [this]() { setRequestStatus(RequestStatus::DaBaoGia); });
-            addActionButton(layout, "Hủy yêu cầu", [this]() { setRequestStatus(RequestStatus::Huy); });
+            addActionButton(layout, "Tạo yêu cầu", [this]() { addRequest(); });
+            if (!isCustomer()) {
+                addActionButton(layout, "Sửa yêu cầu", [this]() { editRequest(); });
+                addActionButton(layout, "Chờ", [this]() { setRequestStatus(RequestStatus::Cho); });
+                addActionButton(layout, "Đang tư vấn",
+                                [this]() { setRequestStatus(RequestStatus::DangTuVan); });
+                addActionButton(layout, "Hoàn thành → Booking",
+                                [this]() { setRequestStatus(RequestStatus::HoanThanh); });
+                addActionButton(layout, "Tạo Booking", [this]() { createBooking(); });
+                addActionButton(layout, "Hủy yêu cầu",
+                                [this]() { setRequestStatus(RequestStatus::BiHuy); });
+            } else {
+                addActionButton(layout, "Hủy yêu cầu", [this]() { cancelOwnRequest(); });
+            }
+        } else if (screen_ == "mybookings") {
+            addActionButton(layout, "Xem phiếu thu", [this]() { viewReceipts(); });
         } else if (screen_ == "halls") {
-            addActionButton(layout, "Thêm sảnh", [this]() { addHall(); });
-            addActionButton(layout, "Sửa sảnh", [this]() { editHall(); });
-            addActionButton(layout, "Bật / tắt sảnh", [this]() { toggleHall(); });
+            if (isManager()) {
+                addActionButton(layout, "Thêm sảnh", [this]() { addHall(); });
+                addActionButton(layout, "Sửa sảnh", [this]() { editHall(); });
+            }
         } else if (screen_ == "services") {
-            addActionButton(layout, "Thêm dịch vụ", [this]() { addService(); });
-            addActionButton(layout, "Sửa dịch vụ", [this]() { editService(); });
-            addActionButton(layout, "Bật / tắt dịch vụ", [this]() { toggleService(); });
+            if (isManager()) {
+                addActionButton(layout, "Thêm dịch vụ", [this]() { addService(); });
+                addActionButton(layout, "Sửa dịch vụ", [this]() { editService(); });
+            }
         } else if (screen_ == "lookup") {
             addActionButton(layout, "Tra cứu theo thời gian", [this]() { lookupHalls(); });
         } else if (screen_ == "bookings") {
             addActionButton(layout, "Tạo booking", [this]() { createBooking(); });
-            addActionButton(layout, "Xác nhận booking", [this]() { changeBookingStatus(true); });
+            addActionButton(layout, "Hoàn tất booking", [this]() { changeBookingStatus(true); });
             addActionButton(layout, "Hủy booking", [this]() { changeBookingStatus(false); });
+            if (isManager()) {
+                addActionButton(layout, "Duyệt chiết khấu", [this]() { approveDiscount(); });
+            }
         } else if (screen_ == "payments") {
             addActionButton(layout, "Ghi nhận thanh toán", [this]() { recordPayment(); });
-        } else if (screen_ == "events") {
-            addActionButton(layout, "Cập nhật sự kiện", [this]() { operateOnSelection(); });
+            addActionButton(layout, "Xem / in phiếu thu", [this]() { viewReceipts(); });
         } else if (screen_ == "users") {
             addActionButton(layout, "Tạo người dùng", [this]() { createUser(); });
             addActionButton(layout, "Khóa / mở khóa", [this]() { toggleUser(); });
@@ -525,10 +674,382 @@ private:
         layout->addStretch();
     }
 
+    // ---- Form 1: tao yeu cau (dropdown loai/sanh, date-picker, dich vu tich chon) ----
+
+    struct RequestFormResult {
+        string customerId;
+        EventType type = EventType::TiecCuoi;
+        string title, customerName, customerPhone, hallId, notes;
+        DateTime start, end;
+        int guestCount = 100;
+        vector<string> serviceIds;
+    };
+
+    optional<RequestFormResult> promptRequestForm(const QString& title, const RequestFormResult& preset,
+                                                 bool pickCustomer)
+    {
+        QDialog dialog(this);
+        dialog.setWindowTitle(title);
+        dialog.setMinimumWidth(560);
+        auto* layout = new QVBoxLayout(&dialog);
+        auto* form = new QFormLayout;
+        form->setSpacing(8);
+
+        QComboBox* customerCombo = nullptr;
+        if (pickCustomer) {
+            customerCombo = new QComboBox(&dialog);
+            for (const Customer& c : service_.db().customers) {
+                customerCombo->addItem(qstr(c.id() + " - " + c.name()), qstr(c.id()));
+            }
+            const int idx = customerCombo->findData(qstr(preset.customerId));
+            if (idx >= 0) customerCombo->setCurrentIndex(idx);
+            form->addRow("Khách hàng", customerCombo);
+        }
+        auto* typeCombo = new QComboBox(&dialog);
+        for (int i = 0; i <= static_cast<int>(EventType::VanHoa); ++i) {
+            const EventType t = static_cast<EventType>(i);
+            typeCombo->addItem(qstr(eventTypeMeta(t).code + string(" - ") + toString(t)));
+        }
+        typeCombo->setCurrentIndex(static_cast<int>(preset.type));
+        form->addRow("Loại sự kiện", typeCombo);
+
+        auto* titleEdit = new QLineEdit(qstr(preset.title), &dialog);
+        titleEdit->setPlaceholderText("Tên sự kiện");
+        form->addRow("Tên sự kiện", titleEdit);
+        auto* nameEdit = new QLineEdit(qstr(preset.customerName), &dialog);
+        nameEdit->setPlaceholderText("Họ tên khách hàng");
+        form->addRow("Họ tên khách hàng", nameEdit);
+        auto* phoneEdit = new QLineEdit(qstr(preset.customerPhone), &dialog);
+        phoneEdit->setPlaceholderText("Số điện thoại");
+        form->addRow("Số điện thoại", phoneEdit);
+
+        auto* hallCombo = new QComboBox(&dialog);
+        hallCombo->addItem("Chưa xác định - Cần tư vấn", "");
+        for (const Hall& h : service_.db().halls) {
+            if (h.status() != HallStatus::KhaDung) continue;
+            hallCombo->addItem(qstr(h.name() + " (" + to_string(h.capacity()) + " khách, " +
+                                    formatMoney(h.rentalPrice()) + ")"),
+                               qstr(h.id()));
+        }
+        const int hallIdx = hallCombo->findData(qstr(preset.hallId));
+        if (hallIdx >= 0) hallCombo->setCurrentIndex(hallIdx);
+        form->addRow("Sảnh mong muốn", hallCombo);
+
+        auto* startEdit = new QDateTimeEdit(&dialog);
+        startEdit->setDisplayFormat("yyyy-MM-dd HH:mm");
+        startEdit->setCalendarPopup(true);
+        startEdit->setDateTime(QDateTime(QDate(preset.start.year, preset.start.month, preset.start.day),
+                                         QTime(preset.start.hour, preset.start.minute)));
+        form->addRow("Bắt đầu", startEdit);
+        auto* endEdit = new QDateTimeEdit(&dialog);
+        endEdit->setDisplayFormat("yyyy-MM-dd HH:mm");
+        endEdit->setCalendarPopup(true);
+        endEdit->setDateTime(QDateTime(QDate(preset.end.year, preset.end.month, preset.end.day),
+                                       QTime(preset.end.hour, preset.end.minute)));
+        form->addRow("Kết thúc", endEdit);
+
+        auto* guestsSpin = new QSpinBox(&dialog);
+        guestsSpin->setRange(10, service_.maxHallCapacity());
+        guestsSpin->setValue(preset.guestCount);
+        form->addRow("Số lượng khách", guestsSpin);
+
+        auto* serviceList = new QListWidget(&dialog);
+        serviceList->setSelectionMode(QAbstractItemView::NoSelection);
+        serviceList->setMinimumHeight(180);
+        for (const ServiceItem& s : service_.db().services) {
+            if (!s.active()) continue;
+            auto* item = new QListWidgetItem(
+                qstr(s.code() + " - " + s.name() + " (" + formatMoney(s.unitPrice()) + " " + s.unit() +
+                     ") [" + s.category() + "]"),
+                serviceList);
+            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+            const bool checked = std::find(preset.serviceIds.begin(), preset.serviceIds.end(), s.id()) !=
+                                 preset.serviceIds.end();
+            item->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
+            item->setData(Qt::UserRole, qstr(s.id()));
+        }
+        layout->addLayout(form);
+        layout->addWidget(new QLabel("Dịch vụ (tích chọn):", &dialog));
+        layout->addWidget(serviceList, 1);
+
+        auto* notesEdit = new QTextEdit(qstr(preset.notes), &dialog);
+        notesEdit->setPlaceholderText("Ghi chú thêm");
+        notesEdit->setMaximumHeight(70);
+        layout->addWidget(new QLabel("Ghi chú:", &dialog));
+        layout->addWidget(notesEdit);
+
+        auto* buttons = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel, &dialog);
+        QObject::connect(buttons, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+        QObject::connect(buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+        layout->addWidget(buttons);
+
+        if (dialog.exec() != QDialog::Accepted) return nullopt;
+        RequestFormResult out;
+        if (customerCombo) out.customerId = customerCombo->currentData().toString().toStdString();
+        out.type = static_cast<EventType>(typeCombo->currentIndex());
+        out.title = titleEdit->text().trimmed().toStdString();
+        out.customerName = nameEdit->text().trimmed().toStdString();
+        out.customerPhone = phoneEdit->text().trimmed().toStdString();
+        out.hallId = hallCombo->currentData().toString().toStdString();
+        const QDateTime qs = startEdit->dateTime(), qe = endEdit->dateTime();
+        out.start = {qs.date().year(), qs.date().month(), qs.date().day(), qs.time().hour(),
+                     qs.time().minute()};
+        out.end = {qe.date().year(), qe.date().month(), qe.date().day(), qe.time().hour(),
+                   qe.time().minute()};
+        out.guestCount = guestsSpin->value();
+        for (int i = 0; i < serviceList->count(); ++i) {
+            QListWidgetItem* item = serviceList->item(i);
+            if (item->checkState() == Qt::Checked) {
+                out.serviceIds.push_back(item->data(Qt::UserRole).toString().toStdString());
+            }
+        }
+        out.notes = notesEdit->toPlainText().toStdString();
+        return out;
+    }
+
+    void addRequest()
+    {
+        const User* u = service_.currentUser();
+        RequestFormResult preset;
+        preset.start = DateTime::now().plusHours(24);
+        preset.end = preset.start.plusHours(4);
+        preset.guestCount = 100;
+        if (u && u->role() == Role::Customer) {
+            preset.customerId = u->customerId();
+            if (const Customer* c = service_.findCustomer(preset.customerId)) {
+                preset.customerName = c->name();
+                preset.customerPhone = c->phone();
+            }
+        }
+        const auto form = promptRequestForm("Tạo yêu cầu sự kiện", preset, !isCustomer());
+        if (!form) return;
+        vector<ServiceLineInput> lines;
+        for (const string& sid : form->serviceIds) lines.push_back({sid, 0});
+        notify(service_.addRequest(form->customerId, form->type, form->title, form->customerName,
+                                   form->customerPhone, form->hallId, form->start, form->end,
+                                   form->guestCount, form->notes, lines));
+    }
+
+    void editRequest()
+    {
+        const QString id = selectedValue();
+        const EventRequest* req = service_.findRequest(id.toStdString());
+        if (!req) {
+            showError("Hãy chọn một yêu cầu trong bảng.");
+            return;
+        }
+        RequestFormResult preset;
+        preset.customerId = req->customerId();
+        preset.type = req->type();
+        preset.title = req->title();
+        preset.customerName = req->customerName();
+        preset.customerPhone = req->customerPhone();
+        preset.hallId = req->hallId();
+        preset.start = req->start();
+        preset.end = req->end();
+        preset.guestCount = req->guestCount();
+        preset.notes = req->notes();
+        for (const auto& l : req->lines()) preset.serviceIds.push_back(l.serviceId());
+        const auto form = promptRequestForm("Sửa yêu cầu " + id, preset, true);
+        if (!form) return;
+        vector<ServiceLineInput> lines;
+        for (const string& sid : form->serviceIds) lines.push_back({sid, 0});
+        notify(service_.updateRequest(id.toStdString(), form->type, form->title, form->customerName,
+                                      form->customerPhone, form->hallId, form->start, form->end,
+                                      form->guestCount, form->notes, lines));
+    }
+
+    void setRequestStatus(RequestStatus status)
+    {
+        const QString id = selectedValue();
+        if (id.isEmpty()) {
+            showError("Hãy chọn một yêu cầu trong bảng.");
+            return;
+        }
+        notify(service_.updateRequestStatus(id.toStdString(), status));
+    }
+
+    void cancelOwnRequest()
+    {
+        const QString id = selectedValue();
+        if (id.isEmpty()) {
+            showError("Hãy chọn một yêu cầu trong bảng.");
+            return;
+        }
+        notify(service_.cancelOwnRequest(id.toStdString()));
+    }
+
+    // ---- Form 2: booking ----
+
+    void createBooking()
+    {
+        QString reqId = selectedValue();
+        const EventRequest* presetReq = service_.findRequest(reqId.toStdString());
+        if (screen_ != "requests" || !presetReq) {
+            const auto picked = promptCombo(this, "Tạo Booking", "Mã yêu cầu (tìm theo mã)",
+                                            requestOptions(), reqId);
+            if (!picked) return;
+            reqId = picked->split(" - ").first();
+            presetReq = service_.findRequest(reqId.toStdString());
+        }
+        if (!presetReq) {
+            showError("Không tìm thấy yêu cầu.");
+            return;
+        }
+        const auto hallPicked = promptCombo(this, "Tạo Booking", "Sảnh chốt",
+                                            hallOptions(presetReq->start(), presetReq->end(),
+                                                        presetReq->guestCount()),
+                                            qstr(presetReq->hallId()));
+        if (!hallPicked) return;
+        const string hallId = hallPicked->split(" - ").first().toStdString();
+        const auto fields = promptFields(
+            this, "Tạo Booking " + reqId,
+            {"Bắt đầu (YYYY-MM-DD HH:MM)", "Kết thúc (YYYY-MM-DD HH:MM)", "Số lượng khách",
+             "Chiết khấu % (0 nếu không)", "Giảm giá VNĐ (0 nếu không)"},
+            {qstr(presetReq->start().toString()), qstr(presetReq->end().toString()),
+             QString::number(presetReq->guestCount()), "0", "0"});
+        if (!fields) return;
+        bool okStart = false, okEnd = false;
+        const DateTime start = parseDateTimeText((*fields)[0], okStart);
+        const DateTime end = parseDateTimeText((*fields)[1], okEnd);
+        if (!okStart || !okEnd) {
+            showError("Thời gian không hợp lệ. Dùng định dạng YYYY-MM-DD HH:MM.");
+            return;
+        }
+        const auto guests = parseInt((*fields)[2].toStdString());
+        const auto pct = parseInt((*fields)[3].toStdString());
+        const auto amt = parseMoney((*fields)[4].toStdString());
+        if (!guests || !pct || !amt) {
+            showError("Số lượng khách / chiết khấu không hợp lệ.");
+            return;
+        }
+        notify(service_.createBooking(reqId.toStdString(), hallId, start, end, *guests, *pct, *amt));
+    }
+
+    QStringList requestOptions() const
+    {
+        QStringList out;
+        for (const EventRequest& r : service_.db().requests) {
+            if (r.status() == RequestStatus::BiHuy || r.status() == RequestStatus::DaChot) continue;
+            out.push_back(qstr(r.id() + " - " + r.title()));
+        }
+        return out;
+    }
+
+    QStringList hallOptions(DateTime start, DateTime end, int guests) const
+    {
+        QStringList out;
+        for (const Hall& h : service_.findAvailableHalls(start, end, guests, "")) {
+            out.push_back(qstr(h.id() + " - " + h.name()));
+        }
+        if (out.isEmpty()) {
+            for (const Hall& h : service_.db().halls) {
+                if (h.status() == HallStatus::KhaDung) out.push_back(qstr(h.id() + " - " + h.name()));
+            }
+        }
+        return out;
+    }
+
+    void changeBookingStatus(bool complete)
+    {
+        const QString id = selectedValue();
+        if (id.isEmpty()) {
+            showError("Hãy chọn booking trong bảng.");
+            return;
+        }
+        if (complete) {
+            notify(service_.setBookingStatus(id.toStdString(), BookingStatus::HoanTat));
+            return;
+        }
+        const auto values = promptFields(this, "Hủy booking", {"Lý do"}, {"Hủy từ màn hình booking"});
+        if (!values) return;
+        notify(service_.cancelBooking(id.toStdString(), (*values)[0].toStdString()));
+    }
+
+    void approveDiscount()
+    {
+        const QString id = selectedValue();
+        if (id.isEmpty()) {
+            showError("Hãy chọn booking trong bảng.");
+            return;
+        }
+        notify(service_.approveDiscount(id.toStdString()));
+    }
+
+    // ---- Form 3: thanh toan ----
+
+    void recordPayment()
+    {
+        QString bookingId;
+        if (screen_ == "bookings")
+            bookingId = selectedValue(0);
+        else if (screen_ == "payments")
+            bookingId = selectedValue(1);
+        const auto bookingPicked =
+            promptCombo(this, "Ghi nhận thanh toán", "Mã Booking", bookingOptions(), bookingId);
+        if (!bookingPicked) return;
+        bookingId = bookingPicked->split(" - ").first();
+        const auto typePicked =
+            promptCombo(this, "Ghi nhận thanh toán", "Loại thanh toán",
+                        {"Đặt cọc lần 1", "Đặt cọc lần 2", "Tất toán"}, "Đặt cọc lần 1");
+        if (!typePicked) return;
+        const auto fields = promptFields(this, "Ghi nhận thanh toán " + bookingId,
+                                         {"Số tiền (VND)", "Ghi chú (bắt buộc)"}, {"10000000", ""});
+        if (!fields) return;
+        const auto amount = parseMoney((*fields)[0].toStdString());
+        if (!amount) {
+            showError("Số tiền không hợp lệ.");
+            return;
+        }
+        const auto methodPicked = promptCombo(this, "Ghi nhận thanh toán", "Phương thức",
+                                              {"Tiền mặt", "Chuyển khoản", "Thẻ tín dụng"}, "Chuyển khoản");
+        if (!methodPicked) return;
+        const auto paidAt = promptDateTime(this, "Ghi nhận thanh toán", "Ngày thanh toán (mặc định hôm nay)",
+                                           DateTime::now());
+        if (!paidAt) return;
+        notify(service_.recordPayment(bookingId.toStdString(),
+                                      paymentTypeFromString(typePicked->toStdString()), *amount,
+                                      paymentMethodFromString(methodPicked->toStdString()), *paidAt,
+                                      (*fields)[1].toStdString()));
+    }
+
+    QStringList bookingOptions() const
+    {
+        QStringList out;
+        for (const Booking& b : service_.db().bookings) {
+            if (b.status() == BookingStatus::DaHuy) continue;
+            out.push_back(qstr(b.id() + " - " + toString(b.status())));
+        }
+        return out;
+    }
+
+    void viewReceipts()
+    {
+        QString bookingId = selectedValue();
+        if (screen_ == "payments") bookingId = selectedValue(1);
+        if (screen_ == "mybookings") bookingId = selectedValue();
+        const vector<Payment> pays = service_.paymentsOf(bookingId.toStdString());
+        if (pays.empty()) {
+            showError("Booking này chưa có khoản thanh toán nào.");
+            return;
+        }
+        QStringList options;
+        for (const Payment& p : pays) {
+            options.push_back(qstr(p.id() + " - " + toString(p.type()) + " - " + toString(p.status())));
+        }
+        const auto picked = promptCombo(this, "Phiếu thu", "Chọn khoản thu", options, options.front());
+        if (!picked) return;
+        const string pid = picked->split(" - ").first().toStdString();
+        showInfo("Phiếu thu", qstr(service_.paymentReceipt(pid)));
+    }
+
+    // ---- Khach hang / sanh / dich vu / nguoi dung ----
+
     void addCustomer()
     {
-        const auto values = promptFields(this, "Thêm khách hàng",
-            {"Họ tên / Tên công ty", "Số điện thoại", "Email", "Địa chỉ", "Ghi chú"});
+        const auto values =
+            promptFields(this, "Thêm khách hàng", {"Họ tên / Tên công ty", "Số điện thoại", "Email",
+                                                   "Địa chỉ", "Ghi chú"});
         if (!values) return;
         notify(service_.addCustomer((*values)[0].toStdString(), (*values)[1].toStdString(),
                                     (*values)[2].toStdString(), (*values)[3].toStdString(),
@@ -539,128 +1060,142 @@ private:
     {
         const QString id = selectedValue();
         const Customer* customer = service_.findCustomer(id.toStdString());
-        if (!customer) { showError("Hãy chọn một khách hàng trong bảng."); return; }
+        if (!customer) {
+            showError("Hãy chọn một khách hàng trong bảng.");
+            return;
+        }
         const auto values = promptFields(this, "Sửa khách hàng",
-            {"Họ tên / Tên công ty", "Số điện thoại", "Email", "Địa chỉ", "Ghi chú"},
-            {qstr(customer->name()), qstr(customer->phone()), qstr(customer->email()),
-             qstr(customer->address()), qstr(customer->notes())});
+                                         {"Họ tên / Tên công ty", "Số điện thoại", "Email", "Địa chỉ",
+                                          "Ghi chú"},
+                                         {qstr(customer->name()), qstr(customer->phone()),
+                                          qstr(customer->email()), qstr(customer->address()),
+                                          qstr(customer->notes())});
         if (!values) return;
         notify(service_.updateCustomer(id.toStdString(), (*values)[0].toStdString(),
                                        (*values)[1].toStdString(), (*values)[2].toStdString(),
                                        (*values)[3].toStdString(), (*values)[4].toStdString()));
     }
 
-    void addRequest()
-    {
-        const auto values = promptFields(this, "Tiếp nhận yêu cầu sự kiện",
-            {"Mã khách hàng", "Loại (TiecCuoi/HoiNghi/SinhNhat/SuKienDoanhNghiep/Khac)",
-             "Tiêu đề", "Bắt đầu (YYYY-MM-DD HH:MM)", "Kết thúc (YYYY-MM-DD HH:MM)",
-             "Số lượng khách", "Yêu cầu đặc biệt"},
-            {"", "TiecCuoi", "", "2026-12-20 18:00", "2026-12-20 22:00", "100", ""});
-        if (!values) return;
-        if (!isOneOf((*values)[1], {"TiecCuoi", "HoiNghi", "SinhNhat", "SuKienDoanhNghiep", "Khac"})) {
-            showError("Loại sự kiện không hợp lệ.");
-            return;
-        }
-        DateTime start, end;
-        if (!parseDateFields((*values)[3], (*values)[4], start, end)) return;
-        const auto guests = parseInt((*values)[5].toStdString());
-        if (!guests) { showError("Số lượng khách không hợp lệ."); return; }
-        notify(service_.addRequest((*values)[0].toStdString(),
-            eventTypeFromString((*values)[1].toStdString()), (*values)[2].toStdString(),
-            start, end, *guests, (*values)[6].toStdString()));
-    }
-
-    void setRequestStatus(RequestStatus status)
-    {
-        const QString id = selectedValue();
-        if (id.isEmpty()) { showError("Hãy chọn một yêu cầu trong bảng."); return; }
-        notify(service_.updateRequestStatus(id.toStdString(), status));
-    }
-
     void addHall()
     {
-        const auto values = promptFields(this, "Thêm sảnh", {"Tên sảnh", "Sức chứa"},
-                                         {"", "200"});
+        const auto values = promptFields(this, "Thêm sảnh (mã tự động)",
+                                         {"Tên sảnh", "Sức chứa", "Giá thuê (VNĐ/sự kiện)"},
+                                         {"", "200", "12000000"});
         if (!values) return;
         const auto capacity = parseInt((*values)[1].toStdString());
-        if (!capacity) { showError("Sức chứa không hợp lệ."); return; }
-        notify(service_.addHall((*values)[0].toStdString(), *capacity));
-    }
-
-    void addService()
-    {
-        const auto values = promptFields(this, "Thêm dịch vụ",
-            {"Tên dịch vụ", "Đơn vị", "Đơn giá (VND)", "Nhóm"},
-            {"", "gói", "1000000", "Dịch vụ"});
-        if (!values) return;
         const auto price = parseMoney((*values)[2].toStdString());
-        if (!price) { showError("Đơn giá không hợp lệ."); return; }
-        notify(service_.addService((*values)[0].toStdString(), (*values)[1].toStdString(),
-                                   *price, (*values)[3].toStdString()));
+        if (!capacity || !price) {
+            showError("Sức chứa / giá thuê không hợp lệ.");
+            return;
+        }
+        notify(service_.addHall((*values)[0].toStdString(), *capacity, *price));
     }
 
     void editHall()
     {
         const QString id = selectedValue();
         const Hall* hall = service_.findHall(id.toStdString());
-        if (!hall) { showError("Hãy chọn sảnh trong bảng."); return; }
-        const auto values = promptFields(this, "Cập nhật sảnh",
-            {"Tên sảnh", "Sức chứa"},
-            {qstr(hall->name()), QString::number(hall->capacity())});
+        if (!hall) {
+            showError("Hãy chọn sảnh trong bảng.");
+            return;
+        }
+        const auto values = promptFields(this, "Sửa sảnh",
+                                         {"Tên sảnh", "Sức chứa", "Giá thuê (VNĐ/sự kiện)"},
+                                         {qstr(hall->name()), QString::number(hall->capacity()),
+                                          QString::number(hall->rentalPrice())});
         if (!values) return;
         const auto capacity = parseInt((*values)[1].toStdString());
-        if (!capacity) { showError("Sức chứa không hợp lệ."); return; }
-        notify(service_.updateHall(hall->id(), (*values)[0].toStdString(), *capacity, hall->active()));
+        const auto price = parseMoney((*values)[2].toStdString());
+        if (!capacity || !price) {
+            showError("Sức chứa / giá thuê không hợp lệ.");
+            return;
+        }
+        const auto statusPicked =
+            promptCombo(this, "Sửa sảnh", "Trạng thái (checkbox trạng thái sảnh)",
+                        {"Khả dụng", "Bảo trì", "Không khả dụng"}, qstr(toString(hall->status())));
+        if (!statusPicked) return;
+        notify(service_.updateHall(hall->id(), (*values)[0].toStdString(), *capacity, *price,
+                                   hallStatusFromString(statusPicked->toStdString())));
+    }
+
+    void addService()
+    {
+        const auto values = promptFields(this, "Thêm dịch vụ",
+                                         {"Mã gói (VD FOD01-P)", "Tên dịch vụ", "Đơn vị", "Đơn giá (VND)"},
+                                         {"", "", "VNĐ/gói", "1000000"});
+        if (!values) return;
+        const auto price = parseMoney((*values)[3].toStdString());
+        if (!price) {
+            showError("Đơn giá không hợp lệ.");
+            return;
+        }
+        const auto catPicked = promptCombo(this, "Thêm dịch vụ", "Tab danh mục",
+                                           {"Ẩm thực", "Trang trí", "Chụp ảnh & quay phim",
+                                            "Âm thanh & ánh sáng", "Nhân sự & dịch vụ bổ sung"},
+                                           "Ẩm thực");
+        if (!catPicked) return;
+        notify(service_.addService((*values)[0].toStdString(), (*values)[1].toStdString(),
+                                   (*values)[2].toStdString(), *price,
+                                   catPicked->toStdString()));
     }
 
     void editService()
     {
         const QString id = selectedValue();
-        const ServiceItem* item = service_.findService(id.toStdString());
-        if (!item) { showError("Hãy chọn dịch vụ trong bảng."); return; }
-        const auto values = promptFields(this, "Cập nhật dịch vụ",
-            {"Tên dịch vụ", "Đơn vị", "Đơn giá (VND)", "Nhóm"},
-            {qstr(item->name()), qstr(item->unit()), QString::number(item->unitPrice()),
-             qstr(item->category())});
+        const ServiceItem* item = nullptr;
+        for (const ServiceItem& s : service_.db().services) {
+            if (s.code() == id.toStdString() || s.id() == id.toStdString()) {
+                item = &s;
+                break;
+            }
+        }
+        if (!item) {
+            showError("Hãy chọn dịch vụ trong bảng.");
+            return;
+        }
+        const auto values = promptFields(this, "Sửa dịch vụ",
+                                         {"Mã gói", "Tên dịch vụ", "Đơn vị", "Đơn giá (VND)"},
+                                         {qstr(item->code()), qstr(item->name()), qstr(item->unit()),
+                                          QString::number(item->unitPrice())});
         if (!values) return;
-        const auto price = parseMoney((*values)[2].toStdString());
-        if (!price) { showError("Đơn giá không hợp lệ."); return; }
+        const auto price = parseMoney((*values)[3].toStdString());
+        if (!price) {
+            showError("Đơn giá không hợp lệ.");
+            return;
+        }
+        const auto catPicked = promptCombo(this, "Sửa dịch vụ", "Tab danh mục",
+                                           {"Ẩm thực", "Trang trí", "Chụp ảnh & quay phim",
+                                            "Âm thanh & ánh sáng", "Nhân sự & dịch vụ bổ sung"},
+                                           qstr(item->category()));
+        if (!catPicked) return;
+        const auto activePicked =
+            promptCombo(this, "Sửa dịch vụ", "Đang cung cấp", {"Có", "Không"},
+                        item->active() ? "Có" : "Không");
+        if (!activePicked) return;
         notify(service_.updateService(item->id(), (*values)[0].toStdString(),
-                                      (*values)[1].toStdString(), *price,
-                                      (*values)[3].toStdString(), item->active()));
-    }
-
-    void toggleHall()
-    {
-        const QString id = selectedValue();
-        const Hall* hall = service_.findHall(id.toStdString());
-        if (!hall) { showError("Hãy chọn sảnh trong bảng."); return; }
-        notify(service_.updateHall(hall->id(), hall->name(), hall->capacity(), !hall->active()));
-    }
-
-    void toggleService()
-    {
-        const QString id = selectedValue();
-        const ServiceItem* item = service_.findService(id.toStdString());
-        if (!item) { showError("Hãy chọn dịch vụ trong bảng."); return; }
-        notify(service_.updateService(item->id(), item->name(), item->unit(), item->unitPrice(),
-                                      item->category(), !item->active()));
+                                      (*values)[1].toStdString(), (*values)[2].toStdString(), *price,
+                                      catPicked->toStdString(), *activePicked == "Có"));
     }
 
     void lookupHalls()
     {
-        const auto values = promptFields(this, "Tra cứu sảnh trống",
-            {"Bắt đầu (YYYY-MM-DD HH:MM)", "Kết thúc (YYYY-MM-DD HH:MM)", "Số lượng khách"},
-            {"2026-12-20 18:00", "2026-12-20 22:00", "200"});
-        if (!values) return;
-        DateTime start, end;
-        if (!parseDateFields((*values)[0], (*values)[1], start, end)) return;
-        const auto guests = parseInt((*values)[2].toStdString());
-        if (!guests) { showError("Số lượng khách không hợp lệ."); return; }
+        const auto startPicked =
+            promptDateTime(this, "Tra cứu sảnh trống", "Bắt đầu", DateTime::now().plusHours(24));
+        if (!startPicked) return;
+        const auto endPicked =
+            promptDateTime(this, "Tra cứu sảnh trống", "Kết thúc", startPicked->plusHours(4));
+        if (!endPicked) return;
+        const auto guestsStr = promptFields(this, "Tra cứu sảnh trống", {"Số lượng khách"}, {"200"});
+        if (!guestsStr) return;
+        const auto guests = parseInt((*guestsStr)[0].toStdString());
+        if (!guests) {
+            showError("Số lượng khách không hợp lệ.");
+            return;
+        }
         Rows rows;
-        for (const Hall& hall : service_.findAvailableHalls(start, end, *guests, "")) {
-            appendRow(rows, {hall.id(), hall.name(), to_string(hall.capacity())});
+        for (const Hall& hall : service_.findAvailableHalls(*startPicked, *endPicked, *guests, "")) {
+            appendRow(rows, {hall.id(), hall.name(), formatMoney(hall.rentalPrice()),
+                             to_string(hall.capacity())});
         }
         QTableWidget* replacement = makeTable(tableHeaders(), rows, workspacePage_);
         auto* layout = qobject_cast<QVBoxLayout*>(workspacePage_->layout());
@@ -670,93 +1205,28 @@ private:
         statusBar()->showMessage(QString("Tìm thấy %1 sảnh phù hợp").arg(rows.size()), 5000);
     }
 
-    void createBooking()
-    {
-        const auto values = promptFields(this, "Tạo booking từ yêu cầu",
-            {"Mã yêu cầu", "Mã sảnh", "Bắt đầu (YYYY-MM-DD HH:MM)",
-             "Kết thúc (YYYY-MM-DD HH:MM)", "Số lượng khách"},
-            {"", "", "2026-12-20 18:00", "2026-12-20 22:00", "100"});
-        if (!values) return;
-        DateTime start, end;
-        if (!parseDateFields((*values)[2], (*values)[3], start, end)) return;
-        const auto guests = parseInt((*values)[4].toStdString());
-        if (!guests) { showError("Số lượng khách không hợp lệ."); return; }
-        notify(service_.createBooking((*values)[0].toStdString(), (*values)[1].toStdString(),
-                                      start, end, *guests));
-    }
-
-    void changeBookingStatus(bool confirm)
-    {
-        const QString id = selectedValue();
-        if (id.isEmpty()) { showError("Hãy chọn booking trong bảng."); return; }
-        if (confirm) {
-            notify(service_.confirmBooking(id.toStdString()));
-            return;
-        }
-        const auto values = promptFields(this, "Hủy booking", {"Lý do"}, {"Hủy từ màn hình booking"});
-        if (!values) return;
-        notify(service_.cancelBooking(id.toStdString(), (*values)[0].toStdString()));
-    }
-
-    void recordPayment()
-    {
-        const auto values = promptFields(this, "Ghi nhận thanh toán",
-            {"Mã booking", "Số tiền (VND)", "Hình thức (TienMat/ChuyenKhoan/The)", "Ghi chú"},
-            {"", "1000000", "ChuyenKhoan", ""});
-        if (!values) return;
-        if (!isOneOf((*values)[2], {"TienMat", "ChuyenKhoan", "The"})) {
-            showError("Hình thức thanh toán không hợp lệ.");
-            return;
-        }
-        const auto amount = parseMoney((*values)[1].toStdString());
-        if (!amount) { showError("Số tiền không hợp lệ."); return; }
-        notify(service_.recordPayment((*values)[0].toStdString(), *amount,
-            paymentMethodFromString((*values)[2].toStdString()), (*values)[3].toStdString()));
-    }
-
-    void operateOnSelection()
-    {
-        const QString id = selectedValue();
-        if (id.isEmpty()) { showError("Hãy chọn một mục trong bảng."); return; }
-        if (screen_ == "events") {
-            const auto values = promptFields(this, "Cập nhật sự kiện",
-                {"Trạng thái (ChuanBi/DangDienRa/HoanTat/Huy)", "Ghi chú"},
-                {"DangDienRa", ""});
-            if (!values) return;
-            const string status = (*values)[0].toStdString();
-            if (!isOneOf((*values)[0], {"ChuanBi", "DangDienRa", "HoanTat", "Huy"})) {
-                showError("Trạng thái sự kiện không hợp lệ.");
-                return;
-            }
-            OpResult result = status == "HoanTat"
-                                  ? service_.completeEvent(id.toStdString())
-                                  : service_.updateEventStatus(id.toStdString(), eventStatusFromString(status));
-            if (result.ok && !(*values)[1].isEmpty()) {
-                result = service_.setEventNotes(id.toStdString(), (*values)[1].toStdString());
-            }
-            notify(result);
-        }
-    }
-
     void createUser()
     {
         const auto values = promptFields(this, "Tạo người dùng",
-            {"Tên đăng nhập", "Mật khẩu", "Họ tên", "Vai trò (Admin/Sales/Accountant/Coordinator)"},
-            {"", "", "", "Sales"}, {1});
+                                         {"Tên đăng nhập", "Mật khẩu", "Họ tên"},
+                                         {"", "", ""}, {1});
         if (!values) return;
-        if (!isOneOf((*values)[3], {"Admin", "Sales", "Accountant", "Coordinator"})) {
-            showError("Vai trò không hợp lệ.");
-            return;
-        }
+        const auto rolePicked =
+            promptCombo(this, "Tạo người dùng", "Vai trò",
+                        {"Khách hàng", "Nhân viên kinh doanh", "Quản lý", "Vận hành"}, "Nhân viên kinh doanh");
+        if (!rolePicked) return;
         notify(service_.createUser((*values)[0].toStdString(), (*values)[1].toStdString(),
                                    (*values)[2].toStdString(),
-                                   roleFromString((*values)[3].toStdString())));
+                                   roleFromString(rolePicked->toStdString())));
     }
 
     void toggleUser()
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) { showError("Hãy chọn người dùng trong bảng."); return; }
+        if (id.isEmpty()) {
+            showError("Hãy chọn người dùng trong bảng.");
+            return;
+        }
         for (const User& user : service_.db().users) {
             if (user.id() == id.toStdString()) {
                 notify(service_.setUserActive(user.id(), !user.active()));
@@ -769,7 +1239,10 @@ private:
     void changePassword()
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) { showError("Hãy chọn người dùng trong bảng."); return; }
+        if (id.isEmpty()) {
+            showError("Hãy chọn người dùng trong bảng.");
+            return;
+        }
         const auto values = promptFields(this, "Đổi mật khẩu", {"Mật khẩu mới"}, {}, {0});
         if (!values) return;
         notify(service_.changePassword(id.toStdString(), (*values)[0].toStdString()));

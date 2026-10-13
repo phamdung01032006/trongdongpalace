@@ -2,6 +2,8 @@
 
 #include "utils/sha256.hpp"
 
+#include <algorithm>
+
 using namespace std;
 
 namespace tdp {
@@ -9,25 +11,27 @@ namespace tdp {
 namespace {
 
 bool roleAllows(Role role, Action action) {
-    if (role == Role::Admin) return true;
+    if (role == Role::Manager) return true;
     switch (action) {
         case Action::ManageUsers:
         case Action::ManageVenues:
             return false;
         case Action::ManageCustomers:
-        case Action::ManageRequests:
         case Action::ManageBookings:
-            return role == Role::Sales;
         case Action::ManagePayments:
-            // Dac ta B.3: nhan vien kinh doanh ghi nhan cac khoan thu.
-            return role == Role::Sales || role == Role::Accountant;
-        case Action::ManageOperations:
-            return role == Role::Coordinator;
+            return role == Role::Sales;
+        case Action::ManageRequests:
+            // Khach hang tao/huy yeu cau cua chinh minh (dac ta A).
+            return role == Role::Sales || role == Role::Customer;
         case Action::LookupHalls:
-            return true;
+            return role == Role::Sales || role == Role::Customer;
+        case Action::ManageEvents:
+            return role == Role::Operation;
     }
     return false;
 }
+
+int64_t discountLimitFor(int64_t total) { return total * kDiscountApprovalPercent / 100; }
 
 }  // namespace
 
@@ -80,6 +84,12 @@ OpResult PalaceService::login(const string& username, const string& password) {
         if (!user.active()) return OpResult::fail("Tài khoản đã bị khóa.");
         if (!verifyPassword(password, user.salt(), user.passwordHash())) return OpResult::fail("Sai mật khẩu.");
         currentUserId_ = user.id();
+        sweepExpiredHolds(DateTime::now());
+        refreshEventStatuses(DateTime::now());
+        try {
+            storage_.save();
+        } catch (...) {
+        }
         return OpResult::success("Xin chào " + user.fullName(), user.id());
     }
     return OpResult::fail("Không tìm thấy tài khoản.");
@@ -88,19 +98,18 @@ OpResult PalaceService::login(const string& username, const string& password) {
 void PalaceService::logout() { currentUserId_.clear(); }
 
 OpResult PalaceService::registerUser(const string& username, const string& password,
-                                     const string& confirmPassword, const string& fullName, Role role) {
+                                     const string& confirmPassword, const string& fullName) {
     if (trim(username).empty()) return OpResult::fail("Tên đăng nhập không được để trống.");
     if (password.size() < 4) return OpResult::fail("Mật khẩu tối thiểu 4 ký tự.");
     if (password != confirmPassword) return OpResult::fail("Mật khẩu nhập lại không khớp.");
     if (!uniqueUsername(trim(username), "")) return OpResult::fail("Tên đăng nhập đã tồn tại.");
-    auto ids = userIds();
-    string id = nextId("USR-", ids);
+    string id = nextId("USR-", userIds());
     string salt = randomSaltHex();
     User u(id, trim(username), salt, hashPassword(password, salt),
-           trim(fullName).empty() ? trim(username) : trim(fullName), role, true);
+           trim(fullName).empty() ? trim(username) : trim(fullName), Role::Customer, true);
     u.setDemoPassword(password);
     mut().users.push_back(move(u));
-    return persist("Đã tạo tài khoản " + id + ". Bạn có thể đăng nhập ngay.", id);
+    return persist("Đã tạo tài khoản khách hàng " + id + ". Bạn có thể đăng nhập ngay.", id);
 }
 
 bool PalaceService::uniqueUsername(const string& username, const string& exceptId) const {
@@ -121,8 +130,7 @@ OpResult PalaceService::createUser(const string& username, const string& passwor
     if (trim(username).empty() || password.size() < 4 || trim(fullName).empty())
         return OpResult::fail("Tên đăng nhập, họ tên bắt buộc; mật khẩu tối thiểu 4 ký tự.");
     if (!uniqueUsername(trim(username), "")) return OpResult::fail("Tên đăng nhập đã tồn tại.");
-    auto ids = userIds();
-    string id = nextId("USR-", ids);
+    string id = nextId("USR-", userIds());
     string salt = randomSaltHex();
     User u(id, trim(username), salt, hashPassword(password, salt), trim(fullName), role, true);
     u.setDemoPassword(password);
@@ -155,9 +163,17 @@ OpResult PalaceService::changePassword(const string& userId, const string& newPa
 const Customer* PalaceService::findCustomer(const string& id) const { return findById(data().customers, id); }
 const EventRequest* PalaceService::findRequest(const string& id) const { return findById(data().requests, id); }
 const Hall* PalaceService::findHall(const string& id) const { return findById(data().halls, id); }
-const ServiceItem* PalaceService::findService(const string& id) const { return findById(data().services, id); }
+const ServiceItem* PalaceService::findService(const string& id) const {
+    return findById(data().services, id);
+}
+const ServiceItem* PalaceService::findServiceByCode(const string& code) const {
+    for (const auto& s : data().services)
+        if (s.code() == code) return &s;
+    return nullptr;
+}
 const Booking* PalaceService::findBooking(const string& id) const { return findById(data().bookings, id); }
 const Event* PalaceService::findEvent(const string& id) const { return findById(data().events, id); }
+const Payment* PalaceService::findPayment(const string& id) const { return findById(data().payments, id); }
 
 const Event* PalaceService::findEventByBooking(const string& bookingId) const {
     for (const auto& e : data().events)
@@ -185,7 +201,8 @@ OpResult PalaceService::addCustomer(const string& name, const string& phone, con
     if (!looksLikeEmail(trim(email))) return OpResult::fail("Email không đúng định dạng.");
     if (!uniquePhone(trim(phone), "")) return OpResult::fail("Số điện thoại đã tồn tại.");
     string id = nextId("CUS-", customerIds());
-    mut().customers.push_back(Customer(id, trim(name), trim(phone), trim(email), trim(address), trim(notes), DateTime::now()));
+    mut().customers.push_back(Customer(id, trim(name), trim(phone), trim(email), trim(address), trim(notes),
+                                       DateTime::now()));
     return persist("Đã thêm khách hàng " + id, id);
 }
 
@@ -217,21 +234,126 @@ vector<Customer> PalaceService::searchCustomers(const string& keyword) const {
     return out;
 }
 
-OpResult PalaceService::addRequest(const string& customerId, EventType type, const string& title, DateTime start,
-                                   DateTime end, int guestCount, const string& special) {
+// ---- Yeu cau ----
+
+int PalaceService::resolveQuantity(const ServiceItem& svc, int guestCount, int qty) const {
+    if (qty > 0) return qty;
+    if (svc.unit().find("/bàn") != string::npos) return (guestCount + 9) / 10;
+    if (svc.unit().find("/khách") != string::npos) return guestCount;
+    return 1;
+}
+
+OpResult PalaceService::buildLines(int guestCount, const vector<ServiceLineInput>& in,
+                                   vector<RequestServiceLine>& out) const {
+    out.clear();
+    for (const auto& li : in) {
+        const ServiceItem* svc = findService(li.serviceId);
+        if (!svc) svc = findServiceByCode(li.serviceId);
+        if (!svc) return OpResult::fail("Dịch vụ không tồn tại: " + li.serviceId);
+        if (!svc->active()) return OpResult::fail("Dịch vụ đã ngừng cung cấp: " + svc->name());
+        out.push_back(RequestServiceLine(svc->id(), svc->name(), svc->unit(),
+                                         resolveQuantity(*svc, guestCount, li.quantity),
+                                         svc->unitPrice()));
+    }
+    return OpResult::success();
+}
+
+int PalaceService::maxHallCapacity() const {
+    int m = 0;
+    for (const auto& h : data().halls) m = max(m, h.capacity());
+    return m > 0 ? m : 800;
+}
+
+static bool validRequestWindow(DateTime start, DateTime end, int guestCount, int maxCap, string& err) {
+    if (!start.valid() || !end.valid()) {
+        err = "Ngày giờ không hợp lệ.";
+        return false;
+    }
+    if (!(start < end)) {
+        err = "Thời gian bắt đầu phải sớm hơn thời gian kết thúc.";
+        return false;
+    }
+    if (start < DateTime::now().plusHours(-1)) {
+        err = "Ngày diễn ra phải trong tương lai (từ ngày mai trở đi).";
+        return false;
+    }
+    if (guestCount < 10 || guestCount > maxCap) {
+        err = "Số lượng khách từ 10 đến " + to_string(maxCap) + ".";
+        return false;
+    }
+    return true;
+}
+
+OpResult PalaceService::addRequest(const string& customerId, EventType type, const string& title,
+                                   const string& customerName, const string& customerPhone,
+                                   const string& hallId, DateTime start, DateTime end, int guestCount,
+                                   const string& notes, const vector<ServiceLineInput>& services) {
     auto r = require(Action::ManageRequests);
     if (!r.ok) return r;
-    if (!findCustomer(customerId)) return OpResult::fail("Khách hàng không tồn tại.");
-    if (trim(title).empty()) return OpResult::fail("Tên/tiêu đề sự kiện là bắt buộc.");
-    if (!start.valid() || !end.valid()) return OpResult::fail("Ngày giờ không hợp lệ.");
-    if (!(start < end)) return OpResult::fail("Thời gian bắt đầu phải sớm hơn thời gian kết thúc.");
-    if (guestCount <= 0) return OpResult::fail("Số lượng khách phải lớn hơn 0.");
+    // Khach hang chi tao yeu cau cho chinh minh; ten/SDT tu dien tu ho so (Form 1).
+    const User* u = currentUser();
+    string cid = customerId;
+    string cname = trim(customerName), cphone = trim(customerPhone);
+    if (u && u->role() == Role::Customer) {
+        if (u->customerId().empty()) return OpResult::fail("Tài khoản chưa gắn hồ sơ khách hàng.");
+        cid = u->customerId();
+        if (const Customer* self = findCustomer(cid)) {
+            if (cname.empty()) cname = self->name();
+            if (cphone.empty()) cphone = self->phone();
+        }
+    }
+    if (!findCustomer(cid)) return OpResult::fail("Khách hàng không tồn tại.");
+    if (trim(title).empty()) return OpResult::fail("Tên sự kiện là bắt buộc.");
+    if (cname.empty()) return OpResult::fail("Họ tên khách hàng là bắt buộc.");
+    if (!looksLikePhone(cphone)) return OpResult::fail("Số điện thoại không hợp lệ.");
+    if (!hallId.empty() && !findHall(hallId)) return OpResult::fail("Sảnh mong muốn không tồn tại.");
+    string err;
+    if (!validRequestWindow(start, end, guestCount, maxHallCapacity(), err)) return OpResult::fail(err);
+    vector<RequestServiceLine> lines;
+    OpResult rl = buildLines(guestCount, services, lines);
+    if (!rl.ok) return rl;
     vector<string> ids;
     for (const auto& x : data().requests) ids.push_back(x.id());
     string id = nextId("REQ-", ids);
-    mut().requests.push_back(EventRequest(id, customerId, type, trim(title), start, end, guestCount, trim(special),
-                                          RequestStatus::TiepNhan));
-    return persist("Đã tiếp nhận yêu cầu " + id, id);
+    EventRequest req(id, cid, type, trim(title), cname, cphone, hallId, start, end, guestCount,
+                     trim(notes), RequestStatus::Cho);
+    req.lines() = move(lines);
+    req.setCreatedAt(DateTime::now());
+    mut().requests.push_back(move(req));
+    return persist("Đã gửi yêu cầu " + id + ". Chi phí dự kiến: " + formatMoney(estimateRequest(*findRequest(id))),
+                   id);
+}
+
+OpResult PalaceService::updateRequest(const string& id, EventType type, const string& title,
+                                      const string& customerName, const string& customerPhone,
+                                      const string& hallId, DateTime start, DateTime end, int guestCount,
+                                      const string& notes, const vector<ServiceLineInput>& services) {
+    auto r = require(Action::ManageRequests);
+    if (!r.ok) return r;
+    auto* req = findById(mut().requests, id);
+    if (!req) return OpResult::fail("Không tìm thấy yêu cầu.");
+    if (req->status() == RequestStatus::DaChot || req->status() == RequestStatus::BiHuy)
+        return OpResult::fail("Yêu cầu đã chốt/hủy, không cập nhật.");
+    if (trim(title).empty()) return OpResult::fail("Tên sự kiện là bắt buộc.");
+    if (!looksLikePhone(trim(customerPhone))) return OpResult::fail("Số điện thoại không hợp lệ.");
+    if (!hallId.empty() && !findHall(hallId)) return OpResult::fail("Sảnh mong muốn không tồn tại.");
+    string err;
+    if (!validRequestWindow(start, end, guestCount, maxHallCapacity(), err)) return OpResult::fail(err);
+    vector<RequestServiceLine> lines;
+    OpResult rl = buildLines(guestCount, services, lines);
+    if (!rl.ok) return rl;
+    req->setType(type);
+    req->setTitle(trim(title));
+    req->setCustomerName(trim(customerName));
+    req->setCustomerPhone(trim(customerPhone));
+    req->setHallId(hallId);
+    req->setStart(start);
+    req->setEnd(end);
+    req->setGuestCount(guestCount);
+    req->setNotes(trim(notes));
+    req->lines() = move(lines);
+    return persist("Đã cập nhật yêu cầu " + id + ". Chi phí dự kiến: " + formatMoney(estimateRequest(*req)),
+                   id);
 }
 
 OpResult PalaceService::updateRequestStatus(const string& id, RequestStatus status) {
@@ -239,37 +361,115 @@ OpResult PalaceService::updateRequestStatus(const string& id, RequestStatus stat
     if (!r.ok) return r;
     auto* req = findById(mut().requests, id);
     if (!req) return OpResult::fail("Không tìm thấy yêu cầu.");
-    if (req->status() == RequestStatus::DaChuyenBooking && status != RequestStatus::DaChuyenBooking)
-        return OpResult::fail("Yêu cầu đã chuyển thành booking, không đổi trạng thái này.");
-    req->setStatus(status);
-    return persist("Đã cập nhật trạng thái yêu cầu.", id);
+    const User* u = currentUser();
+    // Khach hang chi duoc huy yeu cau cua minh.
+    if (u && u->role() == Role::Customer) {
+        if (req->customerId() != u->customerId()) return OpResult::fail("Bạn chỉ xử lý yêu cầu của mình.");
+        if (status != RequestStatus::BiHuy) return OpResult::fail("Khách hàng chỉ được hủy yêu cầu.");
+        if (req->status() == RequestStatus::DaChot || req->status() == RequestStatus::BiHuy)
+            return OpResult::fail("Yêu cầu đã kết thúc, không thể hủy.");
+        req->setStatus(RequestStatus::BiHuy);
+        return persist("Đã hủy yêu cầu " + id, id);
+    }
+    if (req->status() == RequestStatus::DaChot || req->status() == RequestStatus::BiHuy)
+        return OpResult::fail("Yêu cầu đã chốt/hủy, không đổi trạng thái.");
+    if (status == RequestStatus::Cho || status == RequestStatus::DangTuVan) {
+        req->setStatus(status);
+        return persist("Đã cập nhật trạng thái yêu cầu.", id);
+    }
+    if (status == RequestStatus::BiHuy) {
+        req->setStatus(RequestStatus::BiHuy);
+        return persist("Đã hủy yêu cầu.", id);
+    }
+    if (status == RequestStatus::HoanThanh || status == RequestStatus::DaChot) {
+        // Yeu cau Hoan thanh -> tu dong sang tab Booking (dac ta B.2).
+        string bookingId;
+        const Hall* hall = req->hallId().empty() ? nullptr : findHall(req->hallId());
+        if (!hall) {
+            auto avail = findAvailableHalls(req->start(), req->end(), req->guestCount(), "");
+            if (avail.empty()) return OpResult::fail("Không còn sảnh trống, cần tư vấn lại với khách.");
+            hall = findHall(avail.front().id());
+        }
+        OpResult br = applyBookingFromRequest(req->id(), hall->id(), req->start(), req->end(),
+                                              req->guestCount(), 0, 0, bookingId);
+        if (!br.ok) return br;
+        return persist("Yêu cầu hoàn thành, đã chuyển sang Booking " + bookingId + ".", bookingId);
+    }
+    return OpResult::fail("Trạng thái không hợp lệ.");
 }
 
+OpResult PalaceService::cancelOwnRequest(const string& id) {
+    return updateRequestStatus(id, RequestStatus::BiHuy);
+}
 
-OpResult PalaceService::addHall(const string& name, int capacity) {
+int64_t PalaceService::estimateRequest(const EventRequest& req) const {
+    int64_t total = req.servicesTotal();
+    if (!req.hallId().empty()) {
+        if (const Hall* h = findHall(req.hallId())) total += h->rentalPrice();
+    }
+    return total;
+}
+
+vector<EventRequest> PalaceService::requestHistory(size_t limit) const {
+    vector<EventRequest> out;
+    for (const auto& r : data().requests) {
+        if (r.status() == RequestStatus::BiHuy || r.status() == RequestStatus::DaChot ||
+            r.status() == RequestStatus::HoanThanh)
+            out.push_back(r);
+    }
+    sort(out.begin(), out.end(),
+         [](const EventRequest& a, const EventRequest& b) { return b.createdAt() < a.createdAt(); });
+    if (out.size() > limit) out.resize(limit);
+    return out;
+}
+
+size_t PalaceService::countNewRequests() const {
+    size_t n = 0;
+    for (const auto& r : data().requests)
+        if (r.status() == RequestStatus::Cho) ++n;
+    return n;
+}
+
+vector<EventRequest> PalaceService::requestsForCustomer(const string& customerId) const {
+    vector<EventRequest> out;
+    for (const auto& r : data().requests)
+        if (r.customerId() == customerId) out.push_back(r);
+    sort(out.begin(), out.end(),
+         [](const EventRequest& a, const EventRequest& b) { return b.createdAt() < a.createdAt(); });
+    return out;
+}
+
+// ---- Sanh & dich vu ----
+
+OpResult PalaceService::addHall(const string& name, int capacity, int64_t rentalPrice) {
     auto r = require(Action::ManageVenues);
     if (!r.ok) return r;
     if (trim(name).empty()) return OpResult::fail("Tên sảnh là bắt buộc.");
     if (capacity <= 0) return OpResult::fail("Sức chứa phải lớn hơn 0.");
+    if (rentalPrice < 0) return OpResult::fail("Giá thuê không âm.");
     vector<string> ids;
     for (const auto& x : data().halls) ids.push_back(x.id());
     string id = nextId("HAL-", ids);
-    mut().halls.push_back(Hall(id, trim(name), capacity, true));
-    return persist("Đã thêm sảnh.", id);
+    mut().halls.push_back(Hall(id, trim(name), capacity, rentalPrice, HallStatus::KhaDung));
+    return persist("Đã thêm sảnh " + id + ".", id);
 }
-OpResult PalaceService::updateHall(const string& id, const string& name, int capacity, bool active) {
+
+OpResult PalaceService::updateHall(const string& id, const string& name, int capacity, int64_t rentalPrice,
+                                   HallStatus status) {
     auto r = require(Action::ManageVenues);
     if (!r.ok) return r;
     auto* h = findById(mut().halls, id);
     if (!h) return OpResult::fail("Không tìm thấy sảnh.");
     if (trim(name).empty() || capacity <= 0) return OpResult::fail("Tên sảnh và sức chứa không hợp lệ.");
+    if (rentalPrice < 0) return OpResult::fail("Giá thuê không âm.");
     h->setName(trim(name));
     h->setCapacity(capacity);
-    h->setActive(active);
+    h->setRentalPrice(rentalPrice);
+    h->setStatus(status);
     return persist("Đã cập nhật sảnh.", id);
 }
 
-OpResult PalaceService::addService(const string& name, const string& unit, int64_t price,
+OpResult PalaceService::addService(const string& code, const string& name, const string& unit, int64_t price,
                                    const string& category) {
     auto r = require(Action::ManageVenues);
     if (!r.ok) return r;
@@ -277,23 +477,35 @@ OpResult PalaceService::addService(const string& name, const string& unit, int64
     vector<string> ids;
     for (const auto& x : data().services) ids.push_back(x.id());
     string id = nextId("SVC-", ids);
-    mut().services.push_back(ServiceItem(id, trim(name), trim(unit).empty() ? "lần" : trim(unit), price,
-                                         trim(category).empty() ? "Khac" : trim(category), true));
+    mut().services.push_back(ServiceItem(id, trim(code).empty() ? id : trim(code), trim(name),
+                                         trim(unit).empty() ? "VNĐ/gói" : trim(unit), price,
+                                         trim(category).empty() ? "Khác" : trim(category), true));
     return persist("Đã thêm dịch vụ.", id);
 }
-OpResult PalaceService::updateService(const string& id, const string& name, const string& unit, int64_t price,
-                                      const string& category, bool active) {
+
+OpResult PalaceService::updateService(const string& id, const string& code, const string& name,
+                                      const string& unit, int64_t price, const string& category,
+                                      bool active) {
     auto r = require(Action::ManageVenues);
     if (!r.ok) return r;
     auto* s = findById(mut().services, id);
     if (!s) return OpResult::fail("Không tìm thấy dịch vụ.");
     if (trim(name).empty() || price < 0) return OpResult::fail("Dữ liệu dịch vụ không hợp lệ.");
+    s->setCode(trim(code).empty() ? s->id() : trim(code));
     s->setName(trim(name));
     s->setUnit(trim(unit));
     s->setUnitPrice(price);
     s->setCategory(trim(category));
     s->setActive(active);
-    return persist("Đã cập nhật dịch vụ (lịch sử báo giá cũ vẫn giữ đơn giá đã chốt).", id);
+    return persist("Đã cập nhật dịch vụ (đơn đã chốt vẫn giữ đơn giá cũ).", id);
+}
+
+vector<string> PalaceService::serviceCategories() const {
+    vector<string> cats;
+    for (const auto& s : data().services) {
+        if (find(cats.begin(), cats.end(), s.category()) == cats.end()) cats.push_back(s.category());
+    }
+    return cats;
 }
 
 bool PalaceService::hallAvailable(const string& hallId, DateTime start, DateTime end,
@@ -303,8 +515,8 @@ bool PalaceService::hallAvailable(const string& hallId, DateTime start, DateTime
         reason = "Sảnh không tồn tại.";
         return false;
     }
-    if (!hall->active()) {
-        reason = "Sảnh đang ngừng hoạt động.";
+    if (hall->status() != HallStatus::KhaDung) {
+        reason = "Sảnh '" + hall->name() + "' hiện ở trạng thái " + toString(hall->status()) + ".";
         return false;
     }
     if (!(start < end)) {
@@ -325,7 +537,7 @@ bool PalaceService::hallAvailable(const string& hallId, DateTime start, DateTime
 }
 
 vector<Hall> PalaceService::findAvailableHalls(DateTime start, DateTime end, int guestCount,
-                                                    const string& ignoreBookingId) const {
+                                              const string& ignoreBookingId) const {
     vector<Hall> out;
     string reason;
     for (const auto& h : data().halls) {
@@ -335,62 +547,99 @@ vector<Hall> PalaceService::findAvailableHalls(DateTime start, DateTime end, int
     return out;
 }
 
+// ---- Booking ----
 
-
-
-
-
-OpResult PalaceService::createBooking(const string& requestId, const string& hallId, DateTime start,
-                                      DateTime end, int guestCount) {
-    auto r = require(Action::ManageBookings);
-    if (!r.ok) return r;
+OpResult PalaceService::applyBookingFromRequest(const string& requestId, const string& hallId, DateTime start,
+                                                DateTime end, int guestCount, int discountPercent,
+                                                int64_t discountAmount, string& bookingId) {
     auto* req = findById(mut().requests, requestId);
     if (!req) return OpResult::fail("Yêu cầu sự kiện không tồn tại.");
-    if (req->status() == RequestStatus::Huy || req->status() == RequestStatus::TuChoi)
-        return OpResult::fail("Không tạo booking từ yêu cầu đã hủy/từ chối.");
-    if (!findCustomer(req->customerId())) return OpResult::fail("Khách hàng không tồn tại.");
+    if (req->status() == RequestStatus::BiHuy || req->status() == RequestStatus::DaChot)
+        return OpResult::fail("Yêu cầu đã hủy/chốt, không tạo booking.");
     const Hall* hall = findHall(hallId);
-    if (!hall) return OpResult::fail("Sảnh không tồn tại.");
+    if (!hall) return OpResult::fail("Sảnh chốt không tồn tại.");
     if (guestCount <= 0) return OpResult::fail("Số khách phải lớn hơn 0.");
     if (guestCount > hall->capacity()) return OpResult::fail("Số khách vượt sức chứa sảnh.");
     string reason;
     if (!hallAvailable(hallId, start, end, "", reason)) return OpResult::fail(reason);
+
+    int64_t total = hall->rentalPrice() + req->servicesTotal();
+    bool needsApproval = false;
+    const User* actor = currentUser();
+    bool isManager = actor && actor->role() == Role::Manager;
+    if (discountPercent > 0 || discountAmount > 0) {
+        if (discountPercent < 0 || discountAmount < 0) return OpResult::fail("Chiết khấu không âm.");
+        if (discountPercent > 100) return OpResult::fail("Chiết khấu % tối đa 100.");
+        if (discountAmount > total) return OpResult::fail("Giảm giá vượt tổng chi phí.");
+        if ((discountPercent > kDiscountApprovalPercent ||
+             discountAmount > discountLimitFor(total)) &&
+            !isManager) {
+            needsApproval = true;
+        }
+    }
+
     vector<string> ids;
     for (const auto& x : data().bookings) ids.push_back(x.id());
     string id = nextId("BKG-", ids);
-    mut().bookings.push_back(Booking(id, requestId, req->customerId(), hallId, start, end, guestCount,
-                                     BookingStatus::Nhat));
-    req->setStatus(RequestStatus::DaChuyenBooking);
-    return persist("Đã tạo booking " + id + " từ yêu cầu " + requestId, id);
+    Booking b(id, requestId, req->customerId(), hallId, start, end, guestCount, total, BookingStatus::ChoCoc);
+    DateTime now = DateTime::now();
+    b.setCreatedAt(now);
+    b.setHoldUntil(now.plusHours(kHoldHours));
+    b.setSalesUsername(actor ? actor->username() : "");
+    b.setDiscount(discountPercent, discountAmount, needsApproval);
+    mut().bookings.push_back(move(b));
+    req->setStatus(RequestStatus::DaChot);
+
+    // Khoan dat coc tu dong tao, gia tri de trong (dac ta B.3).
+    vector<string> pids;
+    for (const auto& x : data().payments) pids.push_back(x.id());
+    string pid = nextId("PAY-", pids);
+    mut().payments.push_back(Payment(pid, id, PaymentType::DatCoc1, 0, now, PaymentMethod::ChuyenKhoan,
+                                     PaymentStatus::ChuaThanhToan, "Tiền đặt cọc giữ chỗ",
+                                     actor ? actor->username() : ""));
+
+    // Su kien tu dong tao tu Booking (dac ta D).
+    vector<string> eids;
+    for (const auto& x : data().events) eids.push_back(x.id());
+    string eid = nextId("EVT-", eids);
+    mut().events.push_back(Event(eid, id, req->customerId(), hallId, start, end, EventStatus::SapDienRa,
+                                 req->notes()));
+    bookingId = id;
+    if (needsApproval)
+        return persist("Đã tạo booking " + id + " (giữ chỗ " + to_string(kHoldHours) +
+                           "h). Chiết khấu vượt " + to_string(kDiscountApprovalPercent) +
+                           "% cần Quản lý duyệt.",
+                       id);
+    return persist("Đã tạo booking " + id + " từ yêu cầu " + requestId + " (giữ chỗ " +
+                       to_string(kHoldHours) + "h chờ đặt cọc).",
+                   id);
 }
 
+OpResult PalaceService::createBooking(const string& requestId, const string& hallId, DateTime start,
+                                      DateTime end, int guestCount, int discountPercent,
+                                      int64_t discountAmount) {
+    auto r = require(Action::ManageBookings);
+    if (!r.ok) return r;
+    string bookingId;
+    OpResult br = applyBookingFromRequest(requestId, hallId, start, end, guestCount, discountPercent,
+                                          discountAmount, bookingId);
+    if (!br.ok) return br;
+    return br;
+}
 
-OpResult PalaceService::confirmBooking(const string& bookingId) {
+OpResult PalaceService::setBookingStatus(const string& bookingId, BookingStatus status) {
     auto r = require(Action::ManageBookings);
     if (!r.ok) return r;
     auto* b = findById(mut().bookings, bookingId);
     if (!b) return OpResult::fail("Không tìm thấy booking.");
-    if (b->status() == BookingStatus::DaHuy) return OpResult::fail("Không xác nhận booking đã hủy.");
-    if (b->status() == BookingStatus::DaXacNhan) return OpResult::fail("Booking đã được xác nhận.");
-    if (!findCustomer(b->customerId()) || !findRequest(b->requestId()))
-        return OpResult::fail("Booking thiếu liên kết khách hàng/yêu cầu hợp lệ.");
-    const Hall* hall = findHall(b->hallId());
-    if (!hall) return OpResult::fail("Sảnh không tồn tại.");
-    if (b->guestCount() > hall->capacity()) return OpResult::fail("Số khách vượt sức chứa.");
-    string reason;
-    if (!hallAvailable(b->hallId(), b->start(), b->end(), b->id(), reason)) return OpResult::fail(reason);
-    b->setStatus(BookingStatus::DaXacNhan);
-    if (auto* req = findById(mut().requests, b->requestId())) req->setStatus(RequestStatus::DaChuyenBooking);
-    if (!findEventByBooking(b->id())) {
-        vector<string> ids;
-        for (const auto& x : data().events) ids.push_back(x.id());
-        string eid = nextId("EVT-", ids);
-        mut().events.push_back(Event(eid, b->id(), b->customerId(), b->hallId(), b->start(), b->end(),
-                                     EventStatus::ChuanBi, findRequest(b->requestId())->specialRequests()));
-    }
-    return persist("Đã xác nhận đặt sảnh " + bookingId, bookingId);
+    if (b->status() == BookingStatus::DaHuy) return OpResult::fail("Booking đã hủy.");
+    if (status == BookingStatus::ChoCoc || status == BookingStatus::DaCoc)
+        return OpResult::fail("Trạng thái Đã đặt cọc do hệ thống tự cập nhật khi thu tiền.");
+    if (status == BookingStatus::HoanTat && b->status() != BookingStatus::DaCoc)
+        return OpResult::fail("Chỉ hoàn tất booking đã đặt cọc.");
+    b->setStatus(status);
+    return persist("Đã cập nhật trạng thái booking.", bookingId);
 }
-
 
 OpResult PalaceService::cancelBooking(const string& bookingId, const string& reason) {
     auto r = require(Action::ManageBookings);
@@ -406,65 +655,153 @@ OpResult PalaceService::cancelBooking(const string& bookingId, const string& rea
     return persist("Đã hủy booking. Sảnh được giải phóng lịch.", bookingId);
 }
 
+OpResult PalaceService::approveDiscount(const string& bookingId) {
+    auto r = require(Action::ManageVenues);
+    if (!r.ok) return r;
+    auto* b = findById(mut().bookings, bookingId);
+    if (!b) return OpResult::fail("Không tìm thấy booking.");
+    if (!b->discountNeedsApproval()) return OpResult::fail("Booking không cần duyệt chiết khấu.");
+    b->setDiscountApproved(true);
+    return persist("Quản lý đã duyệt chiết khấu cho booking " + bookingId + ".", bookingId);
+}
+
+vector<Booking> PalaceService::bookingsForCustomer(const string& customerId) const {
+    vector<Booking> out;
+    for (const auto& b : data().bookings)
+        if (b.customerId() == customerId) out.push_back(b);
+    return out;
+}
+
+int PalaceService::sweepExpiredHolds(DateTime now) {
+    int n = 0;
+    for (auto& b : mut().bookings) {
+        if (b.status() != BookingStatus::ChoCoc) continue;
+        if (!(b.holdUntil() < now)) continue;
+        bool deposited = false;
+        for (const auto& p : data().payments) {
+            if (p.bookingId() == b.id() && p.status() == PaymentStatus::DaThanhToan &&
+                (p.type() == PaymentType::DatCoc1 || p.type() == PaymentType::DatCoc2)) {
+                deposited = true;
+                break;
+            }
+        }
+        if (!deposited) {
+            b.setStatus(BookingStatus::DaHuy);
+            b.setCancelReason("Quá hạn giữ chỗ " + to_string(kHoldHours) + "h chưa đặt cọc.");
+            for (auto& ev : mut().events) {
+                if (ev.bookingId() == b.id()) ev.setStatus(EventStatus::Huy);
+            }
+            ++n;
+        }
+    }
+    return n;
+}
+
+int PalaceService::refreshEventStatuses(DateTime now) {
+    int n = 0;
+    for (auto& e : mut().events) {
+        if (e.status() == EventStatus::Huy) continue;
+        EventStatus want = eventTimeStatus(e.start(), e.end(), now);
+        if (want != e.status()) {
+            e.setStatus(want);
+            ++n;
+        }
+    }
+    return n;
+}
+
+// ---- Thanh toan ----
+
+OpResult PalaceService::recordPayment(const string& bookingId, PaymentType type, int64_t amount,
+                                      PaymentMethod method, DateTime paidAt, const string& note) {
+    auto r = require(Action::ManagePayments);
+    if (!r.ok) return r;
+    const Booking* b = findBooking(bookingId);
+    if (!b) return OpResult::fail("Booking không tồn tại.");
+    if (b->status() == BookingStatus::DaHuy) return OpResult::fail("Không thu tiền cho booking đã hủy.");
+    if (amount <= 0) return OpResult::fail("Nhân viên phải nhập giá trị khoản thanh toán (> 0).");
+    if (trim(note).empty()) return OpResult::fail("Ghi chú thanh toán là bắt buộc.");
+    if (!paidAt.valid()) return OpResult::fail("Ngày thanh toán không hợp lệ.");
+    if (DateTime::now() < paidAt)
+        return OpResult::fail("Ngày thanh toán không được trong tương lai.");
+    const User* actor = currentUser();
+    auto* slot = (Payment*)nullptr;
+    for (auto& p : mut().payments) {
+        if (p.bookingId() == bookingId && p.type() == type && p.status() == PaymentStatus::ChuaThanhToan) {
+            slot = &p;
+            break;
+        }
+    }
+    string id;
+    if (slot) {
+        slot->setAmount(amount);
+        slot->setMethod(method);
+        slot->setPaidAt(paidAt);
+        slot->setNote(trim(note));
+        slot->setStatus(PaymentStatus::DaThanhToan);
+        id = slot->id();
+    } else {
+        vector<string> ids;
+        for (const auto& x : data().payments) ids.push_back(x.id());
+        id = nextId("PAY-", ids);
+        mut().payments.push_back(Payment(id, bookingId, type, amount, paidAt, method,
+                                         PaymentStatus::DaThanhToan, trim(note),
+                                         actor ? actor->username() : ""));
+    }
+    // Booking chuyen Da coc khi tien coc hoan thanh (dac ta B.2 + 3.3).
+    if (auto* bb = findById(mut().bookings, bookingId)) {
+        if ((type == PaymentType::DatCoc1 || type == PaymentType::DatCoc2) &&
+            bb->status() == BookingStatus::ChoCoc) {
+            bb->setStatus(BookingStatus::DaCoc);
+        }
+        if (type == PaymentType::TatToan && bb->status() == BookingStatus::DaCoc) {
+            bb->setStatus(BookingStatus::HoanTat);
+        }
+    }
+    return persist("Đã ghi nhận " + toString(type) + " " + formatMoney(amount) + " cho booking " + bookingId +
+                       ".",
+                   id);
+}
 
 int64_t PalaceService::paidAmount(const string& bookingId) const {
     int64_t sum = 0;
     for (const auto& p : data().payments)
-        if (p.bookingId() == bookingId && p.amount() > 0) sum += p.amount();
+        if (p.bookingId() == bookingId && p.status() == PaymentStatus::DaThanhToan && p.amount() > 0)
+            sum += p.amount();
     return sum;
-}vector<Payment> PalaceService::paymentsOf(const string& bookingId) const {
+}
+
+vector<Payment> PalaceService::paymentsOf(const string& bookingId) const {
     vector<Payment> out;
     for (const auto& p : data().payments)
         if (p.bookingId() == bookingId) out.push_back(p);
     return out;
 }
 
-OpResult PalaceService::recordPayment(const string& bookingId, int64_t amount, PaymentMethod method,
-                                      const string& note) {
-    auto r = require(Action::ManagePayments);
-    if (!r.ok) return r;
-    const Booking* b = findBooking(bookingId);
-    if (!b) return OpResult::fail("Booking không tồn tại.");
-    if (b->status() == BookingStatus::DaHuy) return OpResult::fail("Không thu tiền cho booking đã hủy.");
-    if (amount <= 0) return OpResult::fail("Số tiền thanh toán phải lớn hơn 0.");
-    if (trim(note).empty()) return OpResult::fail("Ghi chú thanh toán là bắt buộc.");
-    vector<string> ids;
-    for (const auto& x : data().payments) ids.push_back(x.id());
-    string id = nextId("PAY-", ids);
-    const User* actor = currentUser();
-    mut().payments.push_back(Payment(id, bookingId, amount, DateTime::now(), method, trim(note),
-                                     actor ? actor->username() : ""));
-    return persist("Đã ghi nhận thanh toán " + formatMoney(amount) + " cho booking " + bookingId, id);
+string PalaceService::paymentReceipt(const string& paymentId) const {
+    const Payment* p = findPayment(paymentId);
+    if (!p) return "Không tìm thấy phiếu thu.";
+    const Booking* b = findBooking(p->bookingId());
+    const Customer* c = b ? findCustomer(b->customerId()) : nullptr;
+    const Hall* h = b ? findHall(b->hallId()) : nullptr;
+    ostringstream ss;
+    ss << "========== PHIẾU THU ==========\n";
+    ss << "Số phiếu: " << p->id() << "\n";
+    ss << "Booking: " << p->bookingId() << "\n";
+    if (c) ss << "Khách hàng: " << c->name() << " - " << c->phone() << "\n";
+    if (h) ss << "Sảnh: " << h->name() << "\n";
+    if (b) ss << "Tổng booking: " << formatMoney(b->finalTotal()) << "\n";
+    ss << "Khoản thu: " << toString(p->type()) << "\n";
+    ss << "Số tiền: " << formatMoney(p->amount()) << "\n";
+    ss << "Hình thức: " << toString(p->method()) << "\n";
+    ss << "Ngày thu: " << p->paidAt().toString() << "\n";
+    ss << "Trạng thái: " << toString(p->status()) << "\n";
+    ss << "Ghi chú: " << p->note() << "\n";
+    ss << "Người thu: " << p->recordedBy() << "\n";
+    ss << "==============================";
+    return ss.str();
 }
 
-
-OpResult PalaceService::updateEventStatus(const string& eventId, EventStatus status) {
-    auto r = require(Action::ManageOperations);
-    if (!r.ok) return r;
-    if (status == EventStatus::HoanTat) return completeEvent(eventId);
-    auto* e = findById(mut().events, eventId);
-    if (!e) return OpResult::fail("Không tìm thấy sự kiện.");
-    e->setStatus(status);
-    return persist("Đã cập nhật trạng thái sự kiện.", eventId);
-}
-
-OpResult PalaceService::completeEvent(const string& eventId) {
-    auto r = require(Action::ManageOperations);
-    if (!r.ok) return r;
-    auto* e = findById(mut().events, eventId);
-    if (!e) return OpResult::fail("Không tìm thấy sự kiện.");
-    if (e->status() == EventStatus::Huy) return OpResult::fail("Sự kiện đã hủy.");
-    e->setStatus(EventStatus::HoanTat);
-    return persist("Đã xác nhận hoàn tất sự kiện.", eventId);
-}
-
-OpResult PalaceService::setEventNotes(const string& eventId, const string& notes) {
-    auto r = require(Action::ManageOperations);
-    if (!r.ok) return r;
-    auto* e = findById(mut().events, eventId);
-    if (!e) return OpResult::fail("Không tìm thấy sự kiện.");
-    e->setSpecialNotes(trim(notes));
-    return persist("Đã cập nhật ghi chú sự kiện.", eventId);
-}
+vector<Event> PalaceService::allEvents() const { return data().events; }
 
 }  // namespace tdp

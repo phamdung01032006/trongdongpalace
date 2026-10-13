@@ -33,7 +33,7 @@ public:
 private:
     string id_, bookingId_, customerId_, hallId_, specialNotes_;
     DateTime start_, end_;
-    EventStatus status_ = EventStatus::ChuanBi;
+    EventStatus status_ = EventStatus::SapDienRa;
 };
 
 }  // namespace tdp

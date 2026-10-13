@@ -29,7 +29,7 @@ nlohmann::json Event::toJson() const {
 Event Event::fromJson(const nlohmann::json& j) {
     return Event(j.at("id").get<string>(), j.at("bookingId").get<string>(),
                  j.at("customerId").get<string>(), j.at("hallId").get<string>(), dateFromJson(j.at("start")),
-                 dateFromJson(j.at("end")), eventStatusFromString(j.value("status", "ChuanBi")),
+                 dateFromJson(j.at("end")), eventStatusFromString(j.value("status", "Sắp diễn ra")),
                  j.value("specialNotes", ""));
 }
 

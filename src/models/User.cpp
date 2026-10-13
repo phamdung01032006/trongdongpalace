@@ -21,6 +21,7 @@ nlohmann::json User::toJson() const {
             {"passwordHash", passwordHash_},
             {"demoPassword", demoPassword_},
             {"fullName", fullName_},
+            {"customerId", customerId_},
             {"role", toString(role_)},
             {"active", active_}};
 }
@@ -28,8 +29,9 @@ nlohmann::json User::toJson() const {
 User User::fromJson(const nlohmann::json& j) {
     User u(j.at("id").get<string>(), j.at("username").get<string>(), j.at("salt").get<string>(),
            j.at("passwordHash").get<string>(), j.value("fullName", ""),
-           roleFromString(j.value("role", "Sales")), j.value("active", true));
+           roleFromString(j.value("role", "Khách hàng")), j.value("active", true));
     u.setDemoPassword(j.value("demoPassword", ""));
+    u.setCustomerId(j.value("customerId", ""));
     return u;
 }
 
