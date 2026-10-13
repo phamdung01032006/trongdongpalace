@@ -1,4 +1,4 @@
-// Kiß╗âm thß╗¡ l├╡i nghiß╗çp vß╗Ñ TrongDongPalace (kh├┤ng cß║ºn Qt Widgets).
+// Kiểm thử lõi nghiệp vụ TrongDongPalace (không cần Qt Widgets).
 #include "services/palace_service.hpp"
 #include "storage/json_storage.hpp"
 #include "utils/helpers.hpp"
@@ -23,7 +23,7 @@ static int g_failed = 0, g_total = 0;
             cout << "  OK  " << #cond << "\n";                              \
         } else {                                                                 \
             ++g_failed;                                                          \
-            cout << "  FAIL " << #cond << " (d├▓ng " << __LINE__ << ")\n";   \
+            cout << "  FAIL " << #cond << " (dòng " << __LINE__ << ")\n";   \
         }                                                                        \
     } while (0)
 
@@ -36,8 +36,8 @@ static fs::path makeTempDir(const string& tag) {
 
 static DateTime dt(const string& s) { return *DateTime::parse(s); }
 
-// Quy tr├¼nh ─æß║ºy ─æß╗º: kh├ích h├áng -> y├¬u cß║ºu -> b├ío gi├í -> booking -> hß╗úp ─æß╗ông ->
-// thanh to├ín -> vß║¡n h├ánh -> ho├án tß║Ñt. Trß║ú vß╗ü c├íc id ─æß╗â test t├íi sß╗¡ dß╗Ñng.
+// Quy trình đầy đủ: khách hàng -> yêu cầu -> báo giá -> booking -> hợp đồng ->
+// thanh toán -> vận hành -> hoàn tất. Trả về các id để test tái sử dụng.
 struct Flow {
     string customerId, requestId, quotationId, bookingId, contractId, eventId;
 };
@@ -48,10 +48,10 @@ static Flow runFullFlow(PalaceService& svc, const string& tag, const string& hal
     Flow f;
     auto r1 = svc.login("kinhdoanh", "123456");
     assert(r1.ok);
-    f.customerId = svc.addCustomer("Kh├ích " + tag, "09" + to_string(++phoneSeq),
-                                   "kh" + tag + "@test.com", "H├á Nß╗Öi", "").id;
+    f.customerId = svc.addCustomer("Khách " + tag, "09" + to_string(++phoneSeq),
+                                   "kh" + tag + "@test.com", "Hà Nội", "").id;
     CHECK(!f.customerId.empty());
-    f.requestId = svc.addRequest(f.customerId, EventType::TiecCuoi, "Tiß╗çc " + tag, s, e, 200, "").id;
+    f.requestId = svc.addRequest(f.customerId, EventType::TiecCuoi, "Tiệc " + tag, s, e, 200, "").id;
     CHECK(!f.requestId.empty());
     f.quotationId = svc.createQuotation(f.requestId, "").id;
     CHECK(!f.quotationId.empty());
@@ -67,7 +67,7 @@ static Flow runFullFlow(PalaceService& svc, const string& tag, const string& hal
 }
 
 int main() {
-    cout << "== 1. L╞░u v├á ─æß╗ìc lß║íi JSON ==\n";
+    cout << "== 1. Lưu và đọc lại JSON ==\n";
     {
         auto dir = makeTempDir("persist");
         JsonStorage storage(dir / "data", dir / "backup");
@@ -77,7 +77,7 @@ int main() {
             PalaceService svc(storage);
             f = runFullFlow(svc, "P1", "HAL-0001");
         }
-        // Mß╗ƒ lß║íi "ch╞░╞íng tr├¼nh" mß╗¢i: dß╗» liß╗çu phß║úi c├▓n nguy├¬n.
+        // Mở lại "chương trình" mới: dữ liệu phải còn nguyên.
         JsonStorage storage2(dir / "data", dir / "backup");
         storage2.load();
         PalaceService svc2(storage2);
@@ -94,21 +94,21 @@ int main() {
         CHECK(fs::exists(dir / "data" / "transactions.json"));
     }
 
-    cout << "== 2. Sß╗¡a dß╗» liß╗çu ─æ╞░ß╗úc ghi xuß╗æng file ==\n";
+    cout << "== 2. Sửa dữ liệu được ghi xuống file ==\n";
     {
         auto dir = makeTempDir("update");
         JsonStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         svc.login("kinhdoanh", "123456");
-        string id = svc.addCustomer("T├¬n c┼⌐", "0912111222", "", "", "").id;
-        CHECK(svc.updateCustomer(id, "T├¬n mß╗¢i", "0912111222", "x@y.com", "", "").ok);
+        string id = svc.addCustomer("Tên cũ", "0912111222", "", "", "").id;
+        CHECK(svc.updateCustomer(id, "Tên mới", "0912111222", "x@y.com", "", "").ok);
         ifstream in(dir / "data" / "customers.json");
         stringstream ss; ss << in.rdbuf();
-        CHECK(ss.str().find("T├¬n mß╗¢i") != string::npos);
+        CHECK(ss.str().find("Tên mới") != string::npos);
     }
 
-    cout << "== 3. ID tr├╣ng bß╗ï tß╗½ chß╗æi ==\n";
+    cout << "== 3. ID trùng bị từ chối ==\n";
     {
         auto dir = makeTempDir("dup");
         JsonStorage storage(dir / "data", dir / "backup");
@@ -116,10 +116,10 @@ int main() {
         PalaceService svc(storage);
         auto id1 = svc.addCustomer("A", "0999000001", "", "", "");
         auto id2 = svc.addCustomer("B", "0999000001", "", "", "");
-        CHECK(!id2.ok);  // tr├╣ng sß╗æ ─æiß╗çn thoß║íi
+        CHECK(!id2.ok);  // trùng số điện thoại
     }
 
-    cout << "== 4. Booking tr├╣ng sß║únh chß╗ông lß║Ñn thß╗¥i gian ==\n";
+    cout << "== 4. Booking trùng sảnh chồng lấn thời gian ==\n";
     {
         auto dir = makeTempDir("overlap");
         JsonStorage storage(dir / "data", dir / "backup");
@@ -127,24 +127,24 @@ int main() {
         PalaceService svc(storage);
         DateTime s = dt("2027-06-01 18:00"), e = dt("2027-06-01 22:00");
         auto b1 = runFullFlow(svc, "O1", "HAL-0001", s, e);
-        // C├╣ng sß║únh, c├╣ng giß╗¥ -> phß║úi thß║Ñt bß║íi.
-        auto r = svc.addRequest(b1.customerId, EventType::HoiNghi, "Tr├╣ng", s, e, 50, "");
+        // Cùng sảnh, cùng giờ -> phải thất bại.
+        auto r = svc.addRequest(b1.customerId, EventType::HoiNghi, "Trùng", s, e, 50, "");
         CHECK(r.ok);
         auto q = svc.createQuotation(r.id, "");
         CHECK(q.ok);
         CHECK(svc.addQuotationLine(q.id, "SVC-0003", 50).ok);
         auto bk = svc.createBooking(q.id, "HAL-0001", s, e, 50);
         CHECK(!bk.ok);
-        // Sß║únh kh├íc th├¼ ─æ╞░ß╗úc.
+        // Sảnh khác thì được.
         auto bk2 = svc.createBooking(q.id, "HAL-0002", s, e, 50);
         CHECK(bk2.ok);
-        // Hß╗ºy booking 1 th├¼ sß║únh 1 lß║íi trß╗æng.
+        // Hủy booking 1 thì sảnh 1 lại trống.
         CHECK(svc.cancelBooking(b1.bookingId, "test").ok);
         auto bk3 = svc.createBooking(q.id, "HAL-0001", s, e, 50);
         CHECK(bk3.ok);
     }
 
-    cout << "== 5. T├¡nh to├ín b├ío gi├í v├á chiß║┐t khß║Ñu ==\n";
+    cout << "== 5. Tính toán báo giá và chiết khấu ==\n";
     {
         auto dir = makeTempDir("quote");
         JsonStorage storage(dir / "data", dir / "backup");
@@ -164,13 +164,13 @@ int main() {
         CHECK(quo->discountPercent() == expectDisc);
         int64_t expectTotal = quo->subtotal() - quo->discountAmount();
         CHECK(quo->total() == expectTotal);
-        // Cß║¡p nhß║¡t sß╗æ l╞░ß╗úng phß║úi t├¡nh lß║íi tß╗òng.
+        // Cập nhật số lượng phải tính lại tổng.
         CHECK(svc.updateQuotationLine(q, 1, 200).ok);
         quo = svc.findQuotation(q);
         CHECK(quo->subtotal() == 25'000'000 + 90'000'000);
     }
 
-    cout << "== 6. Thanh to├ín v╞░ß╗út c├┤ng nß╗ú bß╗ï tß╗½ chß╗æi ==\n";
+    cout << "== 6. Thanh toán vượt công nợ bị từ chối ==\n";
     {
         auto dir = makeTempDir("pay");
         JsonStorage storage(dir / "data", dir / "backup");
@@ -182,66 +182,66 @@ int main() {
         const Contract* c = svc.findContract(f.contractId);
         CHECK(c != nullptr);
         CHECK(svc.recordPayment(f.contractId, c->totalAmount(), PaymentMethod::ChuyenKhoan, "").ok);
-        CHECK(!svc.recordPayment(f.contractId, 1, PaymentMethod::TienMat, "").ok);  // v╞░ß╗út sß╗æ d╞░
+        CHECK(!svc.recordPayment(f.contractId, 1, PaymentMethod::TienMat, "").ok);  // vượt số dư
         CHECK(svc.paidAmount(f.contractId) == c->totalAmount());
         CHECK(svc.outstanding(f.contractId) == 0);
-        // Sß╗æ tiß╗ün <= 0 bß╗ï tß╗½ chß╗æi.
+        // Số tiền <= 0 bị từ chối.
         string c2 = runFullFlow(svc, "PAY2", "HAL-0002").contractId;
         CHECK(!svc.recordPayment(c2, 0, PaymentMethod::TienMat, "").ok);
         CHECK(!svc.recordPayment(c2, -5000, PaymentMethod::TienMat, "").ok);
     }
 
-    cout << "== 7. Chuyß╗ân trß║íng th├íi nghiß╗çp vß╗Ñ ==\n";
+    cout << "== 7. Chuyển trạng thái nghiệp vụ ==\n";
     {
         auto dir = makeTempDir("state");
         JsonStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         auto f = runFullFlow(svc, "ST", "HAL-0001");
-        // Hß╗úp ─æß╗ông tß╗½ booking ─æ├ú hß╗ºy phß║úi thß║Ñt bß║íi.
+        // Hợp đồng từ booking đã hủy phải thất bại.
         string req2 = svc.addRequest(f.customerId, EventType::Khac, "T2", dt("2027-09-01 18:00"),
                                           dt("2027-09-01 22:00"), 100, "").id;
         string q2 = svc.createQuotation(req2, "").id;
         CHECK(svc.addQuotationLine(q2, "SVC-0001", 1).ok);
         auto bk2 = svc.createBooking(q2, "HAL-0002", dt("2027-09-01 18:00"), dt("2027-09-01 22:00"), 100);
         CHECK(bk2.ok);
-        CHECK(svc.cancelBooking(bk2.id, "kh├ích ─æß╗òi ├╜").ok);
+        CHECK(svc.cancelBooking(bk2.id, "khách đổi ý").ok);
         CHECK(!svc.createContract(bk2.id).ok);
-        // Booking ch╞░a x├íc nhß║¡n th├¼ kh├┤ng lß║¡p ─æ╞░ß╗úc hß╗úp ─æß╗ông.
+        // Booking chưa xác nhận thì không lập được hợp đồng.
         auto bk3 = svc.createBooking(q2, "HAL-0003", dt("2027-09-02 18:00"), dt("2027-09-02 22:00"), 100);
         if (bk3.ok) {
-            CHECK(!svc.createContract(bk3.id).ok);  // ch╞░a x├íc nhß║¡n
+            CHECK(!svc.createContract(bk3.id).ok);  // chưa xác nhận
             CHECK(svc.confirmBooking(bk3.id).ok);
             CHECK(svc.createContract(bk3.id).ok);
         }
     }
 
-    cout << "== 8. Ph├ón quyß╗ün ==\n";
+    cout << "== 8. Phân quyền ==\n";
     {
         auto dir = makeTempDir("perm");
         JsonStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
-        CHECK(!svc.can(Action::ManageCustomers));  // ch╞░a ─æ─âng nhß║¡p
+        CHECK(!svc.can(Action::ManageCustomers));  // chưa đăng nhập
         CHECK(svc.login("kinhdoanh", "123456").ok);
         CHECK(svc.can(Action::ManageCustomers));
         CHECK(!svc.can(Action::ManagePayments));
         CHECK(!svc.can(Action::ManageUsers));
-        CHECK(svc.addCustomer("X", "0988123456", "", "", "").ok);  // kinhdoanh ─æ╞░ß╗úc ph├⌐p
+        CHECK(svc.addCustomer("X", "0988123456", "", "", "").ok);  // kinhdoanh được phép
         svc.logout();
         CHECK(svc.login("ketoan", "123456").ok);
         CHECK(!svc.can(Action::ManageCustomers));
         CHECK(svc.can(Action::ManagePayments));
-        CHECK(!svc.addCustomer("Y", "0988123457", "", "", "").ok);  // kß║┐ to├ín kh├┤ng ─æ╞░ß╗úc th├¬m kh├ích
+        CHECK(!svc.addCustomer("Y", "0988123457", "", "", "").ok);  // kế toán không được thêm khách
         CHECK(svc.login("dieuphoi", "123456").ok);
         svc.logout();
         CHECK(!svc.can(Action::ManagePayments));
         CHECK(!svc.login("dieuphoi", "saimatkhau").ok);
-        // Chß╗ë kiß╗âm tra quyß╗ün ß╗ƒ tß║ºng service, kß╗â cß║ú khi UI cß╗æ gß╗ìi trß╗▒c tiß║┐p.
+        // Chỉ kiểm tra quyền ở tầng service, kể cả khi UI cố gọi trực tiếp.
         CHECK(svc.require(Action::ManagePayments).ok == false);
     }
 
-    cout << "== 9. Ho├án tß║Ñt sß╗▒ kiß╗çn khi c├▓n sß╗▒ cß╗æ ==\n";
+    cout << "== 9. Hoàn tất sự kiện khi còn sự cố ==\n";
     {
         auto dir = makeTempDir("ops");
         JsonStorage storage(dir / "data", dir / "backup");
@@ -252,16 +252,16 @@ int main() {
         CHECK(svc.login("dieuphoi", "123456").ok);
         const Event* ev = svc.findEventByBooking(f.bookingId);
         CHECK(ev != nullptr);
-        string taskId = svc.addTask(ev->id(), "Chuß║⌐n bß╗ï sß║únh", "Anh B├¼nh", dt("2027-03-19 17:00")).id;
+        string taskId = svc.addTask(ev->id(), "Chuẩn bị sảnh", "Anh Bình", dt("2027-03-19 17:00")).id;
         CHECK(!taskId.empty());
-        string inc = svc.addIncident(ev->id(), "Mß║Ñt ─æiß╗çn thß╗¡ nghiß╗çm").id;
+        string inc = svc.addIncident(ev->id(), "Mất điện thử nghiệm").id;
         CHECK(!inc.empty());
-        CHECK(!svc.completeEvent(ev->id()).ok);  // c├▓n sß╗▒ cß╗æ mß╗ƒ
-        CHECK(svc.resolveIncident(inc, "─É├ú chuyß╗ân ─æiß╗çn dß╗▒ ph├▓ng", IncidentStatus::DaXuLy).ok);
+        CHECK(!svc.completeEvent(ev->id()).ok);  // còn sự cố mở
+        CHECK(svc.resolveIncident(inc, "Đã chuyển điện dự phòng", IncidentStatus::DaXuLy).ok);
         CHECK(svc.completeEvent(ev->id()).ok);
     }
 
-    cout << "== 10. JSON sai ─æß╗ïnh dß║íng kh├┤ng l├ám mß║Ñt dß╗» liß╗çu ==\n";
+    cout << "== 10. JSON sai định dạng không làm mất dữ liệu ==\n";
     {
         auto dir = makeTempDir("corrupt");
         JsonStorage storage(dir / "data", dir / "backup");
@@ -270,8 +270,8 @@ int main() {
             PalaceService svc(storage);
             runFullFlow(svc, "CORRUPT", "HAL-0001");
         }
-        // Ph├í file customers.json.
-        { ofstream out(dir / "data" / "customers.json"); out << "{ json hß╗Ång !!!"; }
+        // Phá file customers.json.
+        { ofstream out(dir / "data" / "customers.json"); out << "{ json hỏng !!!"; }
         JsonStorage storage2(dir / "data", dir / "backup");
         bool threw = false;
         try {
@@ -279,15 +279,15 @@ int main() {
         } catch (const StorageError&) {
             threw = true;
         }
-        CHECK(threw);  // phß║úi n├⌐m lß╗ùi thay v├¼ ghi ─æ├¿/x├│a
-        // File hß╗Ång vß║½n c├▓n nguy├¬n ─æß╗â phß╗Ñc hß╗ôi thß╗º c├┤ng.
+        CHECK(threw);  // phải ném lỗi thay vì ghi đè/xóa
+        // File hỏng vẫn còn nguyên để phục hồi thủ công.
         ifstream in(dir / "data" / "customers.json");
         stringstream ss; ss << in.rdbuf();
-        CHECK(ss.str().find("json hß╗Ång") != string::npos);
+        CHECK(ss.str().find("json hỏng") != string::npos);
     }
 
     cout << "\n========================================\n";
-    cout << "Tß╗òng: " << g_total << " | ─Éß║ít: " << (g_total - g_failed) << " | Lß╗ùi: " << g_failed << "\n";
+    cout << "Tổng: " << g_total << " | Đạt: " << (g_total - g_failed) << " | Lỗi: " << g_failed << "\n";
     cout << "========================================\n";
     return g_failed == 0 ? 0 : 1;
 }

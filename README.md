@@ -1,84 +1,84 @@
-# PHß║ªN Mß╗ÇM QUß║óN L├¥ Sß╗░ KIß╗åN TRß╗ÉNG ─Éß╗ÆNG PALACE (C++ OOP)
+# PHẦN MỀM QUẢN LÝ SỰ KIỆN TRỐNG ĐỒNG PALACE (C++ OOP)
 
-Hß╗ç thß╗æng quß║ún l├╜ sß╗▒ kiß╗çn v├á ─æß║╖t lß╗ïch tiß╗çc c╞░ß╗¢i / hß╗Öi nghß╗ï cho chuß╗ùi trung t├óm **Trß╗æng ─Éß╗ông Palace**, ─æ╞░ß╗úc x├óy dß╗▒ng bß║▒ng C++17 theo m├┤ h├¼nh lß║¡p tr├¼nh h╞░ß╗¢ng ─æß╗æi t╞░ß╗úng (OOP), giao diß╗çn desktop Qt Widgets v├á l╞░u trß╗» dß╗» liß╗çu bß╗ün vß╗»ng bß║▒ng JSON (`nlohmann/json`).
-
----
-
-## 1. C├┤ng nghß╗ç & Th╞░ viß╗çn sß╗¡ dß╗Ñng
-- **Ng├┤n ngß╗»**: C++17.
-- **M├┤ h├¼nh lß║¡p tr├¼nh**: OOP (─É├│ng g├│i, Kß║┐ thß╗½a, ─Éa h├¼nh, Trß╗½u t╞░ß╗úng h├│a), kiß║┐n tr├║c ph├ón tß║ºng (Models, Storage, Services, UI, Utils).
-- **Giao diß╗çn**: Qt 6 Widgets (bß║úng dß╗» liß╗çu, biß╗âu mß║½u v├á ─æiß╗üu h╞░ß╗¢ng theo quyß╗ün).
-- **─Éß╗ïnh dß║íng dß╗» liß╗çu**: `nlohmann/json` v3.11.3.
-- **Hß╗ç thß╗æng build**: CMake 3.16+.
-- **Bß║úo mß║¡t**: Mß║¡t khß║⌐u m├ú h├│a bß║▒ng Salt ngß║½u nhi├¬n + SHA-256 (kh├┤ng l╞░u plain-text khi x├íc thß╗▒c).
+Hệ thống quản lý sự kiện và đặt lịch tiệc cưới / hội nghị cho chuỗi trung tâm **Trống Đồng Palace**, được xây dựng bằng C++17 theo mô hình lập trình hướng đối tượng (OOP), giao diện desktop Qt Widgets và lưu trữ dữ liệu bền vững bằng JSON (`nlohmann/json`).
 
 ---
 
-## 2. Kiß║┐n tr├║c & Cß║Ñu tr├║c th╞░ mß╗Ñc
+## 1. Công nghệ & Thư viện sử dụng
+- **Ngôn ngữ**: C++17.
+- **Mô hình lập trình**: OOP (Đóng gói, Kế thừa, Đa hình, Trừu tượng hóa), kiến trúc phân tầng (Models, Storage, Services, UI, Utils).
+- **Giao diện**: Qt 6 Widgets (bảng dữ liệu, biểu mẫu và điều hướng theo quyền).
+- **Định dạng dữ liệu**: `nlohmann/json` v3.11.3.
+- **Hệ thống build**: CMake 3.16+.
+- **Bảo mật**: Mật khẩu mã hóa bằng Salt ngẫu nhiên + SHA-256 (không lưu plain-text khi xác thực).
+
+---
+
+## 2. Kiến trúc & Cấu trúc thư mục
 ```
 trongdongpalace/
-Γö£ΓöÇΓöÇ CMakeLists.txt              # Cß║Ñu h├¼nh bi├¬n dß╗ïch CMake (Qt 6 Widgets & nlohmann/json)
-Γö£ΓöÇΓöÇ README.md                   # T├ái liß╗çu h╞░ß╗¢ng dß║½n sß╗¡ dß╗Ñng & b├ío c├ío kß╗╣ thuß║¡t
-Γö£ΓöÇΓöÇ data/                       # Th╞░ mß╗Ñc l╞░u trß╗» c├íc file JSON thß╗▒c tß║┐
-Γöé   Γö£ΓöÇΓöÇ users.json              # T├ái khoß║ún ng╞░ß╗¥i d├╣ng & nhß║¡t k├╜ kiß╗âm to├ín (Audit Logs)
-Γöé   Γö£ΓöÇΓöÇ customers.json          # Kh├ích h├áng & y├¬u cß║ºu sß╗▒ kiß╗çn
-Γöé   Γö£ΓöÇΓöÇ venues.json             # Trung t├óm, danh mß╗Ñc sß║únh & dß╗ïch vß╗Ñ ─æi k├¿m
-Γöé   Γö£ΓöÇΓöÇ transactions.json       # B├ío gi├í, Booking, Hß╗úp ─æß╗ông & Lß╗ïch sß╗¡ thanh to├ín
-Γöé   ΓööΓöÇΓöÇ events.json             # Sß╗▒ kiß╗çn vß║¡n h├ánh, danh s├ích nhiß╗çm vß╗Ñ & sß╗▒ cß╗æ
-Γö£ΓöÇΓöÇ backups/                    # Bß║ún sao l╞░u dß╗» liß╗çu tß╗▒ ─æß╗Öng tr╞░ß╗¢c mß╗ùi lß║ºn ghi JSON
-Γö£ΓöÇΓöÇ src/
-Γöé   Γö£ΓöÇΓöÇ main.cpp                # Nß║íp Storage v├á khß╗ƒi chß║íy ß╗⌐ng dß╗Ñng
-Γöé   Γö£ΓöÇΓöÇ models/                 # Thß╗▒c thß╗â dß╗» liß╗çu C++ OOP
-Γöé   Γö£ΓöÇΓöÇ storage/                # ─Éß╗ìc/ghi JSON nguy├¬n tß╗¡ (atomic rename), backup & seed
-Γöé   Γö£ΓöÇΓöÇ services/               # Xß╗¡ l├╜ business logic, RBAC, kiß╗âm tra tr├╣ng lß╗ïch
-Γöé   Γö£ΓöÇΓöÇ ui/                     # Giao diß╗çn Qt Widgets
-Γöé   ΓööΓöÇΓöÇ utils/                  # DateTime, SHA-256, format tiß╗ün tß╗ç VND
-ΓööΓöÇΓöÇ tests/
-    ΓööΓöÇΓöÇ test_core.cpp           # Bß╗Ö 10 nh├│m b├ái kiß╗âm thß╗¡ tß╗▒ ─æß╗Öng to├án diß╗çn (130 test cases)
+├── CMakeLists.txt              # Cấu hình biên dịch CMake (Qt 6 Widgets & nlohmann/json)
+├── README.md                   # Tài liệu hướng dẫn sử dụng & báo cáo kỹ thuật
+├── data/                       # Thư mục lưu trữ các file JSON thực tế
+│   ├── users.json              # Tài khoản người dùng & nhật ký kiểm toán (Audit Logs)
+│   ├── customers.json          # Khách hàng & yêu cầu sự kiện
+│   ├── venues.json             # Trung tâm, danh mục sảnh & dịch vụ đi kèm
+│   ├── transactions.json       # Báo giá, Booking, Hợp đồng & Lịch sử thanh toán
+│   └── events.json             # Sự kiện vận hành, danh sách nhiệm vụ & sự cố
+├── backups/                    # Bản sao lưu dữ liệu tự động trước mỗi lần ghi JSON
+├── src/
+│   ├── main.cpp                # Nạp Storage và khởi chạy ứng dụng
+│   ├── models/                 # Thực thể dữ liệu C++ OOP
+│   ├── storage/                # Đọc/ghi JSON nguyên tử (atomic rename), backup & seed
+│   ├── services/               # Xử lý business logic, RBAC, kiểm tra trùng lịch
+│   ├── ui/                     # Giao diện Qt Widgets
+│   └── utils/                  # DateTime, SHA-256, format tiền tệ VND
+└── tests/
+    └── test_core.cpp           # Bộ 10 nhóm bài kiểm thử tự động toàn diện (130 test cases)
 ```
 
 ---
 
-## 3. Danh s├ích t├ái khoß║ún mß║½u & Thay ─æß╗òi th├┤ng tin
-Khi chß║íy lß║ºn ─æß║ºu v├á th╞░ mß╗Ñc `data/` ch╞░a c├│ dß╗» liß╗çu, ch╞░╞íng tr├¼nh tß╗▒ ─æß╗Öng tß║ío c├íc t├ái khoß║ún mß║½u sau vß╗¢i mß║¡t khß║⌐u mß║╖c ─æß╗ïnh l├á **`123456`**:
+## 3. Danh sách tài khoản mẫu & Thay đổi thông tin
+Khi chạy lần đầu và thư mục `data/` chưa có dữ liệu, chương trình tự động tạo các tài khoản mẫu sau với mật khẩu mặc định là **`123456`**:
 
-| T├¬n ─æ─âng nhß║¡p | Mß║¡t khß║⌐u | Hß╗ì v├á t├¬n | Vai tr├▓ | Quyß╗ün hß║ín ch├¡nh |
+| Tên đăng nhập | Mật khẩu | Họ và tên | Vai trò | Quyền hạn chính |
 | :--- | :--- | :--- | :--- | :--- |
-| **`admin`** | `123456` | Quß║ún trß╗ï vi├¬n hß╗ç thß╗æng | **Admin** | To├án quyß╗ün cß║Ñu h├¼nh sß║únh, dß╗ïch vß╗Ñ, t├ái khoß║ún, xem audit |
-| **`kinhdoanh`** | `123456` | Nguyß╗àn V─ân Kinh Doanh | **Sales** | Quß║ún l├╜ kh├ích h├áng, tiß║┐p nhß║¡n y├¬u cß║ºu, l├ám b├ío gi├í, tß║ío booking |
-| **`ketoan`** | `123456` | Trß║ºn Thß╗ï Kß║┐ To├ín | **Accountant** | Quß║ún l├╜ hß╗úp ─æß╗ông, ghi nhß║¡n thanh to├ín, theo d├╡i c├┤ng nß╗ú |
-| **`dieuphoi`** | `123456` | L├¬ V─ân ─Éiß╗üu Phß╗æi | **Coordinator**| ─Éiß╗üu phß╗æi vß║¡n h├ánh sß╗▒ kiß╗çn, ph├ón c├┤ng nhiß╗çm vß╗Ñ, xß╗¡ l├╜ sß╗▒ cß╗æ |
+| **`admin`** | `123456` | Quản trị viên hệ thống | **Admin** | Toàn quyền cấu hình sảnh, dịch vụ, tài khoản, xem audit |
+| **`kinhdoanh`** | `123456` | Nguyễn Văn Kinh Doanh | **Sales** | Quản lý khách hàng, tiếp nhận yêu cầu, làm báo giá, tạo booking |
+| **`ketoan`** | `123456` | Trần Thị Kế Toán | **Accountant** | Quản lý hợp đồng, ghi nhận thanh toán, theo dõi công nợ |
+| **`dieuphoi`** | `123456` | Lê Văn Điều Phối | **Coordinator**| Điều phối vận hành sự kiện, phân công nhiệm vụ, xử lý sự cố |
 
-> **C├ích thay ─æß╗òi th├┤ng tin ─æ─âng nhß║¡p hoß║╖c mß║¡t khß║⌐u**:
-> - ─É─âng nhß║¡p t├ái khoß║ún `admin` -> V├áo mß╗Ñc **"Ng╞░ß╗¥i d├╣ng (quß║ún trß╗ï)"** -> Chß╗ìn t├ái khoß║ún -> Nhß║¡p mß║¡t khß║⌐u mß╗¢i -> Nhß║Ñn **"─Éß╗òi mß║¡t khß║⌐u"**.
-> - Hoß║╖c ng╞░ß╗¥i d├╣ng tß╗▒ bß║Ñm **"─É─âng k├╜ t├ái khoß║ún mß╗¢i"** ngay tß║íi m├án h├¼nh ─æ─âng nhß║¡p ban ─æß║ºu.
+> **Cách thay đổi thông tin đăng nhập hoặc mật khẩu**:
+> - Đăng nhập tài khoản `admin` -> Vào mục **"Người dùng (quản trị)"** -> Chọn tài khoản -> Nhập mật khẩu mới -> Nhấn **"Đổi mật khẩu"**.
+> - Hoặc người dùng tự bấm **"Đăng ký tài khoản mới"** ngay tại màn hình đăng nhập ban đầu.
 
 ---
 
-# Event Scheduling ΓÇö Hß╗ç thß╗æng ─Éß║╖t lß╗ïch Sß╗▒ kiß╗çn
+# Event Scheduling — Hệ thống Đặt lịch Sự kiện
 
-─Éß╗ô ├ín nh├│m m├┤n **Lß║¡p tr├¼nh H╞░ß╗¢ng ─æß╗æi t╞░ß╗úng (OOP)**: ß╗⌐ng dß╗Ñng Qt Widgets quß║ún l├╜
-viß╗çc ─æß║╖t/duyß╗çt/hß╗ºy/─æß╗òi lß╗ïch sß╗¡ dß╗Ñng sß║únh cho Trung t├óm Tiß╗çc c╞░ß╗¢i & Sß╗▒ kiß╗çn.
+Đồ án nhóm môn **Lập trình Hướng đối tượng (OOP)**: ứng dụng Qt Widgets quản lý
+việc đặt/duyệt/hủy/đổi lịch sử dụng sảnh cho Trung tâm Tiệc cưới & Sự kiện.
 
-## C├ích build & chß║íy
+## Cách build & chạy
 
-CMake chß╗ë d├╣ng ─æß╗â **bi├¬n dß╗ïch** ch╞░╞íng tr├¼nh. M├íy ng╞░ß╗¥i d├╣ng cuß╗æi kh├┤ng cß║ºn
-c├ái CMake nß║┐u bß║ín gß╗¡i file thß╗▒c thi ─æ├ú build. Cß║ºn build ri├¬ng cho tß╗½ng hß╗ç ─æiß╗üu
-h├ánh; file `.exe` cß╗ºa Windows kh├┤ng chß║íy trß╗▒c tiß║┐p tr├¬n Linux/macOS.
+CMake chỉ dùng để **biên dịch** chương trình. Máy người dùng cuối không cần
+cài CMake nếu bạn gửi file thực thi đã build. Cần build riêng cho từng hệ điều
+hành; file `.exe` của Windows không chạy trực tiếp trên Linux/macOS.
 
 ### Windows
 
-D├╣ng **MSYS2 UCRT64** ─æß╗â c├│ C++ compiler v├á CMake c├╣ng mß╗Öt bß╗Ö c├┤ng cß╗Ñ:
+Dùng **MSYS2 UCRT64** để có C++ compiler và CMake cùng một bộ công cụ:
 
-1. C├ái [MSYS2](https://www.msys2.org/), sau ─æ├│ mß╗ƒ ß╗⌐ng dß╗Ñng **MSYS2 UCRT64**.
-2. C├ái c├íc c├┤ng cß╗Ñ cß║ºn thiß║┐t bß║▒ng lß╗çnh:
+1. Cài [MSYS2](https://www.msys2.org/), sau đó mở ứng dụng **MSYS2 UCRT64**.
+2. Cài các công cụ cần thiết bằng lệnh:
 
 ```bash
 pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-make mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-nlohmann-json
 ```
 
-3. Trong cß╗¡a sß╗ò MSYS2 UCRT64, chuyß╗ân ─æß║┐n th╞░ mß╗Ñc dß╗▒ ├ín, tß╗⌐c th╞░ mß╗Ñc c├│
-  `CMakeLists.txt`, rß╗ôi chß║íy:
+3. Trong cửa sổ MSYS2 UCRT64, chuyển đến thư mục dự án, tức thư mục có
+  `CMakeLists.txt`, rồi chạy:
 
 ```bash
 cmake -S . -B build/qt-ucrt64 -G "MinGW Makefiles" \
@@ -90,23 +90,23 @@ cmake --build build/qt-ucrt64
 ./build/qt-ucrt64/trongdongpalace.exe
 ```
 
-Qt 6 Widgets c┼⌐ng cß║ºn ─æ╞░ß╗úc c├ái tr├¬n m├íy chß║íy ß╗⌐ng dß╗Ñng. Khi ─æ├│ng g├│i, d├╣ng
-`windeployqt` cß╗ºa MSYS2 UCRT64 ─æß╗â chuß║⌐n bß╗ï c├íc th╞░ viß╗çn Qt ─æi k├¿m.
+Qt 6 Widgets cũng cần được cài trên máy chạy ứng dụng. Khi đóng gói, dùng
+`windeployqt` của MSYS2 UCRT64 để chuẩn bị các thư viện Qt đi kèm.
 
-D├╣ng ─æ├║ng th╞░ mß╗Ñc `build/qt-ucrt64` nh╞░ tr├¬n ─æß╗â kh├┤ng ─æß╗Ñng cß║Ñu h├¼nh c┼⌐
-trong `build/`. CMake kh├┤ng cho ─æß╗òi compiler hoß║╖c generator trong c├╣ng mß╗Öt
-th╞░ mß╗Ñc build; nß║┐u muß╗æn cß║Ñu h├¼nh lß║íi, h├úy chß╗ìn mß╗Öt th╞░ mß╗Ñc build mß╗¢i.
+Dùng đúng thư mục `build/qt-ucrt64` như trên để không đụng cấu hình cũ
+trong `build/`. CMake không cho đổi compiler hoặc generator trong cùng một
+thư mục build; nếu muốn cấu hình lại, hãy chọn một thư mục build mới.
 
 #### VS Code
 
-Mß╗ƒ th╞░ mß╗Ñc dß╗▒ ├ín bß║▒ng VS Code v├á chß╗ìn preset **Qt 6 Widgets (MSYS2 UCRT64)**
-nß║┐u ─æ╞░ß╗úc hß╗Åi. `.vscode/settings.json` sß║╜ y├¬u cß║ºu CMake Tools cß║Ñu h├¼nh preset
-n├áy v├á cung cß║Ñp compile flags cho IntelliSense, bao gß╗ôm Qt include paths.
-Preset y├¬u cß║ºu CMake 3.20 trß╗ƒ l├¬n v├á MSYS2 ─æ╞░ß╗úc c├ái ß╗ƒ `C:/msys64`.
+Mở thư mục dự án bằng VS Code và chọn preset **Qt 6 Widgets (MSYS2 UCRT64)**
+nếu được hỏi. `.vscode/settings.json` sẽ yêu cầu CMake Tools cấu hình preset
+này và cung cấp compile flags cho IntelliSense, bao gồm Qt include paths.
+Preset yêu cầu CMake 3.20 trở lên và MSYS2 được cài ở `C:/msys64`.
 
 ### Linux / macOS
 
-C├ái Qt 6 Widgets v├á CMake bß║▒ng tr├¼nh quß║ún l├╜ g├│i cß╗ºa hß╗ç ─æiß╗üu h├ánh, sau ─æ├│ chß║íy:
+Cài Qt 6 Widgets và CMake bằng trình quản lý gói của hệ điều hành, sau đó chạy:
 
 ```bash
 cmake -S . -B build
@@ -114,123 +114,123 @@ cmake --build build --config Release
 ./build/trongdongpalace
 ```
 
-### Chß║íy ch╞░╞íng tr├¼nh tr├¬n m├íy Windows kh├íc
+### Chạy chương trình trên máy Windows khác
 
-M├íy nhß║¡n kh├┤ng cß║ºn c├ái CMake hay MSYS2. Tr╞░ß╗¢c khi gß╗¡i ß╗⌐ng dß╗Ñng, chß║íy `windeployqt`
-trong MSYS2 UCRT64 ─æß╗â ch├⌐p c├íc th╞░ viß╗çn Qt v├á plugin cß║ºn thiß║┐t v├áo th╞░ mß╗Ñc build:
+Máy nhận không cần cài CMake hay MSYS2. Trước khi gửi ứng dụng, chạy `windeployqt`
+trong MSYS2 UCRT64 để chép các thư viện Qt và plugin cần thiết vào thư mục build:
 
 ```bash
 windeployqt build/qt-ucrt64/trongdongpalace.exe
 ```
 
-Gß╗¡i file `build/qt-ucrt64/trongdongpalace.exe` c├╣ng c├íc th╞░ viß╗çn/plugin Qt
-do `windeployqt` tß║ío ra; nß║┐u muß╗æn giß╗» dß╗» liß╗çu hiß╗çn c├│ th├¼ gß╗¡i k├¿m th╞░ mß╗Ñc `data/`.
-C├íc th╞░ viß╗çn GCC/C++ vß║½n ─æ╞░ß╗úc li├¬n kß║┐t t─⌐nh.
+Gửi file `build/qt-ucrt64/trongdongpalace.exe` cùng các thư viện/plugin Qt
+do `windeployqt` tạo ra; nếu muốn giữ dữ liệu hiện có thì gửi kèm thư mục `data/`.
+Các thư viện GCC/C++ vẫn được liên kết tĩnh.
 
-Mß╗ƒ PowerShell trong th╞░ mß╗Ñc chß╗⌐a file `.exe` rß╗ôi chß║íy:
+Mở PowerShell trong thư mục chứa file `.exe` rồi chạy:
 
 ```text
 .\trongdongpalace.exe
 ```
 
-Nß║┐u kh├┤ng gß╗¡i `data/`, ch╞░╞íng tr├¼nh sß║╜ tß║ío dß╗» liß╗çu mß║½u khi khß╗ƒi ─æß╗Öng. Dß╗» liß╗çu
-mß╗¢i ─æ╞░ß╗úc l╞░u trong `data/` theo th╞░ mß╗Ñc PowerShell hiß╗çn tß║íi, n├¬n h├úy chß║íy lß╗çnh
-khi ─æang ─æß╗⌐ng trong th╞░ mß╗Ñc ph├ít h├ánh.
+Nếu không gửi `data/`, chương trình sẽ tạo dữ liệu mẫu khi khởi động. Dữ liệu
+mới được lưu trong `data/` theo thư mục PowerShell hiện tại, nên hãy chạy lệnh
+khi đang đứng trong thư mục phát hành.
 
-Vß╗¢i Visual Studio / CLion: mß╗ƒ trß╗▒c tiß║┐p `CMakeLists.txt`, IDE tß╗▒ ─æß╗ìc cß║Ñu h├¼nh;
-h├úy ─æß║╖t `CMAKE_PREFIX_PATH` trß╗Å tß╗¢i th╞░ mß╗Ñc c├ái Qt 6 nß║┐u IDE kh├┤ng tß╗▒ t├¼m thß║Ñy Qt.
+Với Visual Studio / CLion: mở trực tiếp `CMakeLists.txt`, IDE tự đọc cấu hình;
+hãy đặt `CMAKE_PREFIX_PATH` trỏ tới thư mục cài Qt 6 nếu IDE không tự tìm thấy Qt.
 
-## Cß║Ñu tr├║c th╞░ mß╗Ñc
+## Cấu trúc thư mục
 
 ```
 trongdongpalace/
-Γö£ΓöÇΓöÇ include/            # C├íc file khai b├ío lß╗¢p (.h)
-Γöé   Γö£ΓöÇΓöÇ Event.h             # Lß╗¢p TRß╗¬U T╞»ß╗óNG cha cß╗ºa mß╗ìi loß║íi sß╗▒ kiß╗çn
-Γöé   Γö£ΓöÇΓöÇ WeddingEvent.h      # Lß╗¢p con Tiß╗çc c╞░ß╗¢i (kß║┐ thß╗½a Event)
-Γöé   Γö£ΓöÇΓöÇ ConferenceEvent.h   # Lß╗¢p con Hß╗Öi nghß╗ï (kß║┐ thß╗½a Event)
-Γöé   Γö£ΓöÇΓöÇ BirthdayEvent.h     # Lß╗¢p con Sinh nhß║¡t (kß║┐ thß╗½a Event)
-Γöé   Γö£ΓöÇΓöÇ Hall.h              # Lß╗¢p sß║únh
-Γöé   Γö£ΓöÇΓöÇ BookingRequest.h    # Lß╗¢p y├¬u cß║ºu ─æß║╖t lß╗ïch (has-a Hall*, has-a Event*)
-Γöé   Γö£ΓöÇΓöÇ HeThongDatLich.h    # Lß╗¢p trung t├óm ─æiß╗üu phß╗æi nghiß╗çp vß╗Ñ
-Γöé   Γö£ΓöÇΓöÇ Exceptions.h        # C├íc lß╗¢p ngoß║íi lß╗ç kß║┐ thß╗½a std::exception
-Γöé   ΓööΓöÇΓöÇ Utils.h             # ThoiDiem + tiß╗çn ├¡ch nhß║¡p liß╗çu, in bß║úng, m├án h├¼nh
-Γö£ΓöÇΓöÇ src/                # C├ái ─æß║╖t (.cpp) t╞░╞íng ß╗⌐ng tß╗½ng header
-Γöé   ΓööΓöÇΓöÇ main.cpp            # Menu console, bß║»t exception hiß╗ân thß╗ï (FR-11)
-Γö£ΓöÇΓöÇ docs/               # T├ái liß╗çu FR
-Γö£ΓöÇΓöÇ data/               # File dß╗» liß╗çu txt sinh ra khi chß║íy (kh├┤ng commit)
-Γö£ΓöÇΓöÇ build/              # Th╞░ mß╗Ñc build CMake (kh├┤ng commit)
-Γö£ΓöÇΓöÇ CMakeLists.txt
-ΓööΓöÇΓöÇ README.md
+├── include/            # Các file khai báo lớp (.h)
+│   ├── Event.h             # Lớp TRỪU TƯỢNG cha của mọi loại sự kiện
+│   ├── WeddingEvent.h      # Lớp con Tiệc cưới (kế thừa Event)
+│   ├── ConferenceEvent.h   # Lớp con Hội nghị (kế thừa Event)
+│   ├── BirthdayEvent.h     # Lớp con Sinh nhật (kế thừa Event)
+│   ├── Hall.h              # Lớp sảnh
+│   ├── BookingRequest.h    # Lớp yêu cầu đặt lịch (has-a Hall*, has-a Event*)
+│   ├── HeThongDatLich.h    # Lớp trung tâm điều phối nghiệp vụ
+│   ├── Exceptions.h        # Các lớp ngoại lệ kế thừa std::exception
+│   └── Utils.h             # ThoiDiem + tiện ích nhập liệu, in bảng, màn hình
+├── src/                # Cài đặt (.cpp) tương ứng từng header
+│   └── main.cpp            # Menu console, bắt exception hiển thị (FR-11)
+├── docs/               # Tài liệu FR
+├── data/               # File dữ liệu txt sinh ra khi chạy (không commit)
+├── build/              # Thư mục build CMake (không commit)
+├── CMakeLists.txt
+└── README.md
 ```
 
-## L╞░u trß╗» dß╗» liß╗çu
+## Lưu trữ dữ liệu
 
-To├án bß╗Ö dß╗» liß╗çu (sß║únh + booking) ─æ╞░ß╗úc **tß╗▒ ─æß╗Öng l╞░u ra file txt** trong th╞░ mß╗Ñc
-`data/` nß║▒m cß║ính ch╞░╞íng tr├¼nh chß║íy, n├¬n dß╗» liß╗çu **kh├┤ng bß╗ï mß║Ñt khi tß║»t rß╗ôi chß║íy lß║íi**.
+Toàn bộ dữ liệu (sảnh + booking) được **tự động lưu ra file txt** trong thư mục
+`data/` nằm cạnh chương trình chạy, nên dữ liệu **không bị mất khi tắt rồi chạy lại**.
 
-> ─É╞░ß╗¥ng dß║½n `data/` l├á **t╞░╞íng ─æß╗æi theo th╞░ mß╗Ñc l├ám viß╗çc**. Nß║┐u chß║íy
-> `build/trongdongpalace.exe` tß╗½ trong `build/` th├¼ dß╗» liß╗çu nß║▒m ß╗ƒ `build/data/`.
+> Đường dẫn `data/` là **tương đối theo thư mục làm việc**. Nếu chạy
+> `build/trongdongpalace.exe` từ trong `build/` thì dữ liệu nằm ở `build/data/`.
 
-| File | Nß╗Öi dung | ─Éß╗ïnh dß║íng mß╗ùi d├▓ng |
+| File | Nội dung | Định dạng mỗi dòng |
 |------|----------|--------------------|
-| `data/sanh.txt` | Danh mß╗Ñc sß║únh | `maSanh\|ten\|sucChua\|dangHoatDong(0/1)` |
-| `data/booking.txt` | Danh s├ích booking | `maBooking\|maSanh\|loaiSuKien\|maSuKien\|tenSuKien\|soKhach\|gioBatDau\|gioKetThuc\|trangThai\|lyDoTuChoi\|ngayTao` |
+| `data/sanh.txt` | Danh mục sảnh | `maSanh\|ten\|sucChua\|dangHoatDong(0/1)` |
+| `data/booking.txt` | Danh sách booking | `maBooking\|maSanh\|loaiSuKien\|maSuKien\|tenSuKien\|soKhach\|gioBatDau\|gioKetThuc\|trangThai\|lyDoTuChoi\|ngayTao` |
 
-**─Éß║ºu mß╗ùi file ─æß╗üu c├│ header** gi├║p ng╞░ß╗¥i ─æß╗ìc hiß╗âu cß║Ñu tr├║c: c├íc d├▓ng ch├║ th├¡ch
-bß║»t ─æß║ºu bß║▒ng `#` (giß║úi th├¡ch ├╜ ngh─⌐a tß╗½ng cß╗Öt, c├íc quy ╞░ß╗¢c gi├í trß╗ï) v├á mß╗Öt d├▓ng
-t├¬n cß╗Öt (v├¡ dß╗Ñ `MaSanh|TenSanh|SucChua|DangHoatDong`). Khi nß║íp dß╗» liß╗çu, c├íc d├▓ng
-n├áy ─æ╞░ß╗úc **tß╗▒ ─æß╗Öng bß╗Å qua**, n├¬n file c┼⌐ (kh├┤ng c├│ header) vß║½n ─æß╗ìc b├¼nh th╞░ß╗¥ng.
-Tß║Ñt cß║ú dß╗» liß╗çu ΓÇö tß╗½ dß╗» liß╗çu mß║½u cho ─æß║┐n dß╗» liß╗çu ng╞░ß╗¥i d├╣ng tß║ío sau n├áy ΓÇö ─æß╗üu
-─æ╞░ß╗úc ghi v├áo file txt theo c├╣ng mß╗Öt ─æß╗ïnh dß║íng.
+**Đầu mỗi file đều có header** giúp người đọc hiểu cấu trúc: các dòng chú thích
+bắt đầu bằng `#` (giải thích ý nghĩa từng cột, các quy ước giá trị) và một dòng
+tên cột (ví dụ `MaSanh|TenSanh|SucChua|DangHoatDong`). Khi nạp dữ liệu, các dòng
+này được **tự động bỏ qua**, nên file cũ (không có header) vẫn đọc bình thường.
+Tất cả dữ liệu — từ dữ liệu mẫu cho đến dữ liệu người dùng tạo sau này — đều
+được ghi vào file txt theo cùng một định dạng.
 
-Quy ╞░ß╗¢c gi├í trß╗ï:
+Quy ước giá trị:
 
-- `loaiSuKien`: `1` = Tiß╗çc c╞░ß╗¢i, `2` = Hß╗Öi nghß╗ï, `3` = Sinh nhß║¡t
-  (lß║Ñy qua h├ám ß║úo `Event::maLoai()` ΓÇö thß╗â hiß╗çn t├¡nh ─æa h├¼nh).
+- `loaiSuKien`: `1` = Tiệc cưới, `2` = Hội nghị, `3` = Sinh nhật
+  (lấy qua hàm ảo `Event::maLoai()` — thể hiện tính đa hình).
 - `trangThai`: `0` = Pending, `1` = Approved, `2` = Rejected, `3` = Cancelled.
-- Thß╗¥i ─æiß╗âm ghi ß╗ƒ dß║íng `dd/mm/yyyy hh:mm`.
+- Thời điểm ghi ở dạng `dd/mm/yyyy hh:mm`.
 
-C╞í chß║┐ hoß║ít ─æß╗Öng:
+Cơ chế hoạt động:
 
-- **Khi khß╗ƒi ─æß╗Öng**: `main()` gß╗ìi `ht.docDuLieuTuFile()` ─æß╗â nß║íp dß╗» liß╗çu ─æ├ú l╞░u;
-  chß╗ë khi hß╗ç thß╗æng c├▓n rß╗ùng mß╗¢i sinh dß╗» liß╗çu mß║½u (`khoiTaoDuLieuMau()`).
-- **Khi c├│ thay ─æß╗òi**: mß╗ùi thao t├íc th├¬m/sß╗¡a/x├│a sß║únh v├á tß║ío/duyß╗çt/tß╗½ chß╗æi/hß╗ºy/─æß╗òi
-  lß╗ïch ─æß╗üu gß╗ìi `ghiDuLieuRaFile()` ─æß╗â l╞░u ngay (chß╗æng mß║Ñt dß╗» liß╗çu khi tß║»t ─æß╗Öt ngß╗Öt);
-  destructor cß╗ºa `HeThongDatLich` c┼⌐ng l╞░u lß║ºn cuß╗æi.
-- **Bß╗Ö ─æß║┐m m├ú**: sau khi nß║íp, `capNhatSoThuTu()` qu├⌐t m├ú `SK###`/`BK###` lß╗¢n nhß║Ñt
-  ─æß╗â c├íc m├ú sinh ra tiß║┐p theo **kh├┤ng bß╗ï tr├╣ng** vß╗¢i dß╗» liß╗çu c┼⌐.
-- **Dß╗» liß╗çu hß╗Ång**: tß╗½ng d├▓ng sai ─æß╗ïnh dß║íng ─æ╞░ß╗úc bß╗Å qua k├¿m cß║únh b├ío, kh├┤ng l├ám chß║┐t
-  ch╞░╞íng tr├¼nh; k├╜ tß╗▒ ph├ón c├ích `|` do ng╞░ß╗¥i d├╣ng nhß║¡p ─æ╞░ß╗úc thay bß║▒ng khoß║úng trß║»ng.
+- **Khi khởi động**: `main()` gọi `ht.docDuLieuTuFile()` để nạp dữ liệu đã lưu;
+  chỉ khi hệ thống còn rỗng mới sinh dữ liệu mẫu (`khoiTaoDuLieuMau()`).
+- **Khi có thay đổi**: mỗi thao tác thêm/sửa/xóa sảnh và tạo/duyệt/từ chối/hủy/đổi
+  lịch đều gọi `ghiDuLieuRaFile()` để lưu ngay (chống mất dữ liệu khi tắt đột ngột);
+  destructor của `HeThongDatLich` cũng lưu lần cuối.
+- **Bộ đếm mã**: sau khi nạp, `capNhatSoThuTu()` quét mã `SK###`/`BK###` lớn nhất
+  để các mã sinh ra tiếp theo **không bị trùng** với dữ liệu cũ.
+- **Dữ liệu hỏng**: từng dòng sai định dạng được bỏ qua kèm cảnh báo, không làm chết
+  chương trình; ký tự phân cách `|` do người dùng nhập được thay bằng khoảng trắng.
 
-## Chß╗⌐c n─âng (theo FR)
+## Chức năng (theo FR)
 
-| FR  | Chß╗⌐c n─âng | Menu |
+| FR  | Chức năng | Menu |
 |-----|-----------|------|
-| FR-01 | Quß║ún l├╜ danh mß╗Ñc sß║únh (th├¬m/sß╗¡a/x├│a/xem) | Quß║ún l├╜ sß║únh ΓåÆ 1 |
-| FR-02 | 3 loß║íi sß╗▒ kiß╗çn (C╞░ß╗¢i/Hß╗Öi nghß╗ï/Sinh nhß║¡t) | Chß╗ìn khi tß║ío booking |
-| FR-03 | Xem lß╗ïch trß╗æng cß╗ºa sß║únh theo ng├áy | Ng╞░ß╗¥i y├¬u cß║ºu ΓåÆ 2 |
-| FR-04 | Tß║ío y├¬u cß║ºu ─æß║╖t lß╗ïch (trß║íng th├íi Pending) | Ng╞░ß╗¥i y├¬u cß║ºu ΓåÆ 3 |
-| FR-05 | Kiß╗âm tra tr├╣ng lß╗ïch (khung giß╗¥ mß╗ƒ rß╗Öng) | Tß╗▒ ─æß╗Öng khi tß║ío/duyß╗çt/─æß╗òi lß╗ïch |
-| FR-06 | Duyß╗çt y├¬u cß║ºu | Quß║ún l├╜ sß║únh ΓåÆ 2 |
-| FR-07 | Tß╗½ chß╗æi y├¬u cß║ºu | Quß║ún l├╜ sß║únh ΓåÆ 3 |
-| FR-08 | Hß╗ºy lß╗ïch ─æ├ú duyß╗çt (hß║ín hß╗ºy 48 giß╗¥) | Ng╞░ß╗¥i y├¬u cß║ºu ΓåÆ 4 |
-| FR-09 | ─Éß╗òi lß╗ïch (giß╗» nguy├¬n m├ú booking) | Ng╞░ß╗¥i y├¬u cß║ºu ΓåÆ 5 |
-| FR-10 | Tra cß╗⌐u theo trß║íng th├íi/sß║únh/khoß║úng ng├áy | Cß║ú hai ΓåÆ mß╗Ñc tra cß╗⌐u |
-| FR-11 | Xß╗¡ l├╜ ngoß║íi lß╗ç to├án hß╗ç thß╗æng | Bß╗ìc try/catch ß╗ƒ mß╗ìi thao t├íc |
+| FR-01 | Quản lý danh mục sảnh (thêm/sửa/xóa/xem) | Quản lý sảnh → 1 |
+| FR-02 | 3 loại sự kiện (Cưới/Hội nghị/Sinh nhật) | Chọn khi tạo booking |
+| FR-03 | Xem lịch trống của sảnh theo ngày | Người yêu cầu → 2 |
+| FR-04 | Tạo yêu cầu đặt lịch (trạng thái Pending) | Người yêu cầu → 3 |
+| FR-05 | Kiểm tra trùng lịch (khung giờ mở rộng) | Tự động khi tạo/duyệt/đổi lịch |
+| FR-06 | Duyệt yêu cầu | Quản lý sảnh → 2 |
+| FR-07 | Từ chối yêu cầu | Quản lý sảnh → 3 |
+| FR-08 | Hủy lịch đã duyệt (hạn hủy 48 giờ) | Người yêu cầu → 4 |
+| FR-09 | Đổi lịch (giữ nguyên mã booking) | Người yêu cầu → 5 |
+| FR-10 | Tra cứu theo trạng thái/sảnh/khoảng ngày | Cả hai → mục tra cứu |
+| FR-11 | Xử lý ngoại lệ toàn hệ thống | Bọc try/catch ở mọi thao tác |
 
-## ├üp dß╗Ñng nguy├¬n l├╜ OOP (bß║úng ├ính xß║í Mß╗Ñc 9)
+## Áp dụng nguyên lý OOP (bảng ánh xạ Mục 9)
 
-- **Thiß║┐t kß║┐ lß╗¢p & ─æß╗æi t╞░ß╗úng**: `Event`, `Hall`, `BookingRequest`, `HeThongDatLich`.
-- **Kß║┐ thß╗½a**: `WeddingEvent`/`ConferenceEvent`/`BirthdayEvent` kß║┐ thß╗½a `Event`;
-  c├íc exception kß║┐ thß╗½a `std::exception` (qua `BaseException`).
-- **─Éa h├¼nh**: khi tß║ío/duyß╗çt booking, hß╗ç thß╗æng chß╗ë giß╗» `Event*` v├á gß╗ìi
-  `thoiGianChuanBi()`, `thoiGianDonDep()`, `kiemTraDieuKienRieng()` ΓÇö
-  phi├¬n bß║ún cß╗ºa lß╗¢p con t╞░╞íng ß╗⌐ng ─æ╞░ß╗úc chß║íy l├║c runtime.
-- **Xß╗¡ l├╜ ngoß║íi lß╗ç**: 8 lß╗¢p exception t├╣y chß╗ënh theo Mß╗Ñc 7, mß╗ìi thao t├íc
-  nhß║¡p liß╗çu ─æß╗üu ─æ╞░ß╗úc bß╗ìc `try/catch`.
+- **Thiết kế lớp & đối tượng**: `Event`, `Hall`, `BookingRequest`, `HeThongDatLich`.
+- **Kế thừa**: `WeddingEvent`/`ConferenceEvent`/`BirthdayEvent` kế thừa `Event`;
+  các exception kế thừa `std::exception` (qua `BaseException`).
+- **Đa hình**: khi tạo/duyệt booking, hệ thống chỉ giữ `Event*` và gọi
+  `thoiGianChuanBi()`, `thoiGianDonDep()`, `kiemTraDieuKienRieng()` —
+  phiên bản của lớp con tương ứng được chạy lúc runtime.
+- **Xử lý ngoại lệ**: 8 lớp exception tùy chỉnh theo Mục 7, mọi thao tác
+  nhập liệu đều được bọc `try/catch`.
 
-## Ghi ch├║ nh├│m
+## Ghi chú nhóm
 
-- Khi th├¬m lß╗¢p sß╗▒ kiß╗çn mß╗¢i: tß║ío `.h`/`.cpp`, th├¬m t├¬n file `.cpp` v├áo
+- Khi thêm lớp sự kiện mới: tạo `.h`/`.cpp`, thêm tên file `.cpp` vào
   `add_executable(...)` trong `CMakeLists.txt`.
-- `build/` ─æ├ú nß║▒m trong `.gitignore` ΓÇö kh├┤ng commit file build l├¬n Git.
+- `build/` đã nằm trong `.gitignore` — không commit file build lên Git.

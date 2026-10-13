@@ -34,7 +34,7 @@ public:
     explicit PalaceService(JsonStorage& storage);
 
     OpResult login(const string& username, const string& password);
-    // ─É─âng k├╜ t├ái khoß║ún mß╗¢i tß╗½ m├án h├¼nh ─æ─âng nhß║¡p: kh├┤ng cß║ºn ─æ─âng nhß║¡p tr╞░ß╗¢c.
+    // Đăng ký tài khoản mới từ màn hình đăng nhập: không cần đăng nhập trước.
     OpResult registerUser(const string& username, const string& password, const string& confirmPassword,
                           const string& fullName, Role role);
     void logout();

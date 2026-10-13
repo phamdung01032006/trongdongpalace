@@ -33,7 +33,7 @@ struct OpResult {
     string message;
     string id;
 
-    static OpResult success(const string& message = "Th├ánh c├┤ng", const string& id = "");
+    static OpResult success(const string& message = "Thành công", const string& id = "");
     static OpResult fail(const string& message);
 };
 

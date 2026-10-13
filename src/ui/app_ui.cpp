@@ -130,22 +130,22 @@ struct NavigationEntry {
 const vector<NavigationEntry>& navigationEntries()
 {
     static const vector<NavigationEntry> entries{
-        {Action::ManageCustomers, "Kh├ích h├áng", "customers"},
-        {Action::ManageRequests, "Y├¬u cß║ºu sß╗▒ kiß╗çn", "requests"},
-        {Action::ManageVenues, "Trung t├óm", "centers"},
-        {Action::ManageVenues, "Sß║únh", "halls"},
-        {Action::ManageVenues, "Dß╗ïch vß╗Ñ", "services"},
-        {Action::LookupHalls, "Tra cß╗⌐u sß║únh trß╗æng", "lookup"},
-        {Action::ManageQuotations, "B├ío gi├í", "quotations"},
+        {Action::ManageCustomers, "Khách hàng", "customers"},
+        {Action::ManageRequests, "Yêu cầu sự kiện", "requests"},
+        {Action::ManageVenues, "Trung tâm", "centers"},
+        {Action::ManageVenues, "Sảnh", "halls"},
+        {Action::ManageVenues, "Dịch vụ", "services"},
+        {Action::LookupHalls, "Tra cứu sảnh trống", "lookup"},
+        {Action::ManageQuotations, "Báo giá", "quotations"},
         {Action::ManageBookings, "Booking", "bookings"},
-        {Action::ManageContracts, "Hß╗úp ─æß╗ông", "contracts"},
-        {Action::ManagePayments, "Thanh to├ín", "payments"},
-        {Action::ManageOperations, "Sß╗▒ kiß╗çn vß║¡n h├ánh", "events"},
-        {Action::ManageOperations, "Nhiß╗çm vß╗Ñ", "tasks"},
-        {Action::ManageOperations, "Sß╗▒ cß╗æ", "incidents"},
-        {Action::ViewReports, "B├ío c├ío", "reports"},
-        {Action::ViewAudit, "Nhß║¡t k├╜ hß╗ç thß╗æng", "audit"},
-        {Action::ManageUsers, "Ng╞░ß╗¥i d├╣ng", "users"},
+        {Action::ManageContracts, "Hợp đồng", "contracts"},
+        {Action::ManagePayments, "Thanh toán", "payments"},
+        {Action::ManageOperations, "Sự kiện vận hành", "events"},
+        {Action::ManageOperations, "Nhiệm vụ", "tasks"},
+        {Action::ManageOperations, "Sự cố", "incidents"},
+        {Action::ViewReports, "Báo cáo", "reports"},
+        {Action::ViewAudit, "Nhật ký hệ thống", "audit"},
+        {Action::ManageUsers, "Người dùng", "users"},
     };
     return entries;
 }
@@ -155,7 +155,7 @@ public:
     explicit MainWindow(PalaceService& service)
         : service_(service)
     {
-        setWindowTitle("Trß╗æng ─Éß╗ông Palace | Quß║ún l├╜ sß╗▒ kiß╗çn");
+        setWindowTitle("Trống Đồng Palace | Quản lý sự kiện");
         resize(1280, 780);
         setMinimumSize(980, 620);
 
@@ -166,7 +166,7 @@ public:
         root_->addWidget(loginPage_);
         root_->addWidget(workspacePage_);
         root_->setCurrentWidget(loginPage_);
-        statusBar()->showMessage("Ch├áo mß╗½ng bß║ín ─æß║┐n vß╗¢i Trß╗æng ─Éß╗ông Palace");
+        statusBar()->showMessage("Chào mừng bạn đến với Trống Đồng Palace");
     }
 
 private:
@@ -195,7 +195,7 @@ private:
 
     void showError(const QString& message)
     {
-        QMessageBox::warning(this, "Dß╗» liß╗çu ch╞░a hß╗úp lß╗ç", message);
+        QMessageBox::warning(this, "Dữ liệu chưa hợp lệ", message);
     }
 
     QString selectedValue(int column = 0) const
@@ -212,7 +212,7 @@ private:
         const auto parsedStart = DateTime::parse(startText.toStdString());
         const auto parsedEnd = DateTime::parse(endText.toStdString());
         if (!parsedStart || !parsedEnd) {
-            showError("Thß╗¥i gian kh├┤ng hß╗úp lß╗ç. D├╣ng ─æß╗ïnh dß║íng YYYY-MM-DD HH:MM.");
+            showError("Thời gian không hợp lệ. Dùng định dạng YYYY-MM-DD HH:MM.");
             return false;
         }
         start = *parsedStart;
@@ -236,25 +236,25 @@ private:
         cardLayout->setContentsMargins(30, 28, 30, 28);
         cardLayout->setSpacing(14);
 
-        auto* title = new QLabel("TRß╗ÉNG ─Éß╗ÆNG PALACE", card);
+        auto* title = new QLabel("TRỐNG ĐỒNG PALACE", card);
         title->setAlignment(Qt::AlignCenter);
         title->setStyleSheet("font-size: 22px; font-weight: 700; color: #25364a;");
-        auto* subtitle = new QLabel("Hß╗ç thß╗æng quß║ún l├╜ sß╗▒ kiß╗çn", card);
+        auto* subtitle = new QLabel("Hệ thống quản lý sự kiện", card);
         subtitle->setAlignment(Qt::AlignCenter);
         subtitle->setStyleSheet("color: #718096; font-size: 14px;");
         auto* username = new QLineEdit(card);
-        username->setPlaceholderText("T├¬n ─æ─âng nhß║¡p");
+        username->setPlaceholderText("Tên đăng nhập");
         auto* password = new QLineEdit(card);
-        password->setPlaceholderText("Mß║¡t khß║⌐u");
+        password->setPlaceholderText("Mật khẩu");
         password->setEchoMode(QLineEdit::Password);
         auto* status = new QLabel(card);
         status->setWordWrap(true);
         status->setStyleSheet("color: #b42318;");
 
-        auto* login = new QPushButton("─É─âng nhß║¡p", card);
+        auto* login = new QPushButton("Đăng nhập", card);
         login->setDefault(true);
-        auto* registerButton = new QPushButton("─É─âng k├╜ t├ái khoß║ún mß╗¢i", card);
-        auto* quit = new QPushButton("Tho├ít", card);
+        auto* registerButton = new QPushButton("Đăng ký tài khoản mới", card);
+        auto* quit = new QPushButton("Thoát", card);
         login->setMinimumHeight(40);
         registerButton->setMinimumHeight(40);
         quit->setMinimumHeight(40);
@@ -290,13 +290,13 @@ private:
         connect(password, &QLineEdit::returnPressed, this, doLogin);
         connect(registerButton, &QPushButton::clicked, this, [this, username, status]() {
             const auto fields = promptFields(
-                this, "─É─âng k├╜ t├ái khoß║ún",
-                {"T├¬n ─æ─âng nhß║¡p", "Hß╗ì v├á t├¬n", "Mß║¡t khß║⌐u (├¡t nhß║Ñt 4 k├╜ tß╗▒)",
-                 "Nhß║¡p lß║íi mß║¡t khß║⌐u", "Vai tr├▓"},
+                this, "Đăng ký tài khoản",
+                {"Tên đăng nhập", "Họ và tên", "Mật khẩu (ít nhất 4 ký tự)",
+                 "Nhập lại mật khẩu", "Vai trò"},
                 {"", "", "", "", "Sales"}, {2, 3});
             if (!fields) return;
             if (!isOneOf((*fields)[4], {"Sales", "Accountant", "Coordinator", "Admin"})) {
-                status->setText("Vai tr├▓ kh├┤ng hß╗úp lß╗ç.");
+                status->setText("Vai trò không hợp lệ.");
                 return;
             }
             const Role role = roleFromString((*fields)[4].toStdString());
@@ -325,14 +325,14 @@ private:
         layout->setSpacing(14);
 
         auto* top = new QHBoxLayout;
-        auto* brand = new QLabel("TRß╗ÉNG ─Éß╗ÆNG PALACE", page);
+        auto* brand = new QLabel("TRỐNG ĐỒNG PALACE", page);
         brand->setStyleSheet("font-size: 19px; font-weight: 700; color: #25364a;");
         navigation_ = new QComboBox(page);
         navigation_->setMinimumWidth(230);
         userLabel_ = new QLabel(page);
         userLabel_->setStyleSheet("color: #526174;");
-        auto* logout = new QPushButton("─É─âng xuß║Ñt", page);
-        auto* quit = new QPushButton("Tho├ít", page);
+        auto* logout = new QPushButton("Đăng xuất", page);
+        auto* quit = new QPushButton("Thoát", page);
         top->addWidget(brand);
         top->addStretch();
         top->addWidget(navigation_);
@@ -347,8 +347,8 @@ private:
 
         auto* controls = new QHBoxLayout;
         search_ = new QLineEdit(page);
-        search_->setPlaceholderText("T├¼m kh├ích h├áng theo t├¬n hoß║╖c sß╗æ ─æiß╗çn thoß║íi");
-        auto* refresh = new QPushButton("L├ám mß╗¢i", page);
+        search_->setPlaceholderText("Tìm khách hàng theo tên hoặc số điện thoại");
+        auto* refresh = new QPushButton("Làm mới", page);
         controls->addWidget(search_, 1);
         controls->addWidget(refresh);
         layout->addLayout(controls);
@@ -357,15 +357,15 @@ private:
         auto* reportControls = new QHBoxLayout(reportControlsWidget_);
         reportControls->setContentsMargins(0, 0, 0, 0);
         reportType_ = new QComboBox(page);
-        reportType_->addItems({"Sß╗▒ kiß╗çn theo ng├áy v├á trß║íng th├íi", "Sß╗▒ kiß╗çn sß║»p diß╗àn ra",
-                               "T├¼nh trß║íng sß╗¡ dß╗Ñng sß║únh", "Tß╗òng hß╗úp t├ái ch├¡nh",
-                               "C├┤ng nß╗ú phß║úi thu", "Nhiß╗çm vß╗Ñ v├á sß╗▒ cß╗æ"});
+        reportType_->addItems({"Sự kiện theo ngày và trạng thái", "Sự kiện sắp diễn ra",
+                               "Tình trạng sử dụng sảnh", "Tổng hợp tài chính",
+                               "Công nợ phải thu", "Nhiệm vụ và sự cố"});
         reportFrom_ = new QLineEdit("2026-01-01 00:00", page);
         reportTo_ = new QLineEdit("2026-12-31 23:59", page);
         reportStatus_ = new QLineEdit("TatCa", page);
-        reportFrom_->setPlaceholderText("Tß╗½ ng├áy YYYY-MM-DD HH:MM");
-        reportTo_->setPlaceholderText("─Éß║┐n ng├áy YYYY-MM-DD HH:MM");
-        reportStatus_->setPlaceholderText("Trß║íng th├íi (hoß║╖c TatCa)");
+        reportFrom_->setPlaceholderText("Từ ngày YYYY-MM-DD HH:MM");
+        reportTo_->setPlaceholderText("Đến ngày YYYY-MM-DD HH:MM");
+        reportStatus_->setPlaceholderText("Trạng thái (hoặc TatCa)");
         reportControls->addWidget(reportType_);
         reportControls->addWidget(reportFrom_);
         reportControls->addWidget(reportTo_);
@@ -388,7 +388,7 @@ private:
             service_.logout();
             root_->setCurrentWidget(loginPage_);
             navigation_->clear();
-            statusBar()->showMessage("─É├ú ─æ─âng xuß║Ñt");
+            statusBar()->showMessage("Đã đăng xuất");
         });
         connect(quit, &QPushButton::clicked, qApp, &QApplication::quit);
         setStyleSheet(
@@ -412,7 +412,7 @@ private:
             }
         }
         const User* user = service_.currentUser();
-        userLabel_->setText(user ? qstr(user->fullName() + " ┬╖ " + toString(user->role())) : QString{});
+        userLabel_->setText(user ? qstr(user->fullName() + " · " + toString(user->role())) : QString{});
         navigation_->blockSignals(false);
     }
 
@@ -434,31 +434,31 @@ private:
 
     QStringList tableHeaders() const
     {
-        if (screen_ == "customers") return {"M├ú", "T├¬n", "─Éiß╗çn thoß║íi", "Email", "─Éß╗ïa chß╗ë"};
-        if (screen_ == "requests") return {"M├ú", "Kh├ích h├áng", "Loß║íi", "Ti├¬u ─æß╗ü", "Bß║»t ─æß║ºu", "Sß╗æ kh├ích", "Trß║íng th├íi"};
-        if (screen_ == "centers") return {"M├ú trung t├óm", "T├¬n trung t├óm", "─Éß╗ïa chß╗ë", "Hoß║ít ─æß╗Öng"};
-        if (screen_ == "halls") return {"M├ú sß║únh", "T├¬n sß║únh", "M├ú trung t├óm", "Sß╗⌐c chß╗⌐a", "Hoß║ít ─æß╗Öng"};
-        if (screen_ == "services") return {"M├ú dß╗ïch vß╗Ñ", "T├¬n dß╗ïch vß╗Ñ", "─É╞ín vß╗ï", "─É╞ín gi├í", "Nh├│m", "Hoß║ít ─æß╗Öng"};
-        if (screen_ == "lookup") return {"M├ú sß║únh", "T├¬n sß║únh", "Trung t├óm", "Sß╗⌐c chß╗⌐a"};
-        if (screen_ == "quotations") return {"M├ú", "Y├¬u cß║ºu", "Tß║ím t├¡nh", "Chiß║┐t khß║Ñu", "Tß╗òng", "Trß║íng th├íi"};
-        if (screen_ == "bookings") return {"M├ú", "Sß║únh", "Bß║»t ─æß║ºu", "Kß║┐t th├║c", "Sß╗æ kh├ích", "Trß║íng th├íi"};
-        if (screen_ == "contracts") return {"M├ú", "Sß╗æ hß╗úp ─æß╗ông", "Booking", "Gi├í trß╗ï", "─É├ú thu", "C├▓n lß║íi", "Trß║íng th├íi"};
-        if (screen_ == "payments") return {"M├ú", "Hß╗úp ─æß╗ông", "Sß╗æ tiß╗ün", "Thß╗¥i ─æiß╗âm", "H├¼nh thß╗⌐c", "Ghi ch├║"};
-        if (screen_ == "events") return {"M├ú sß╗▒ kiß╗çn", "Booking", "Sß║únh", "Kh├ích h├áng", "Bß║»t ─æß║ºu", "Kß║┐t th├║c", "Trß║íng th├íi", "Ghi ch├║"};
-        if (screen_ == "tasks") return {"M├ú nhiß╗çm vß╗Ñ", "Sß╗▒ kiß╗çn", "Ti├¬u ─æß╗ü", "Phß╗Ñ tr├ích", "Hß║ín ho├án th├ánh", "Trß║íng th├íi", "Ghi ch├║"};
-        if (screen_ == "incidents") return {"M├ú sß╗▒ cß╗æ", "Sß╗▒ kiß╗çn", "M├┤ tß║ú", "Trß║íng th├íi", "C├ích xß╗¡ l├╜", "Ghi nhß║¡n"};
+        if (screen_ == "customers") return {"Mã", "Tên", "Điện thoại", "Email", "Địa chỉ"};
+        if (screen_ == "requests") return {"Mã", "Khách hàng", "Loại", "Tiêu đề", "Bắt đầu", "Số khách", "Trạng thái"};
+        if (screen_ == "centers") return {"Mã trung tâm", "Tên trung tâm", "Địa chỉ", "Hoạt động"};
+        if (screen_ == "halls") return {"Mã sảnh", "Tên sảnh", "Mã trung tâm", "Sức chứa", "Hoạt động"};
+        if (screen_ == "services") return {"Mã dịch vụ", "Tên dịch vụ", "Đơn vị", "Đơn giá", "Nhóm", "Hoạt động"};
+        if (screen_ == "lookup") return {"Mã sảnh", "Tên sảnh", "Trung tâm", "Sức chứa"};
+        if (screen_ == "quotations") return {"Mã", "Yêu cầu", "Tạm tính", "Chiết khấu", "Tổng", "Trạng thái"};
+        if (screen_ == "bookings") return {"Mã", "Sảnh", "Bắt đầu", "Kết thúc", "Số khách", "Trạng thái"};
+        if (screen_ == "contracts") return {"Mã", "Số hợp đồng", "Booking", "Giá trị", "Đã thu", "Còn lại", "Trạng thái"};
+        if (screen_ == "payments") return {"Mã", "Hợp đồng", "Số tiền", "Thời điểm", "Hình thức", "Ghi chú"};
+        if (screen_ == "events") return {"Mã sự kiện", "Booking", "Sảnh", "Khách hàng", "Bắt đầu", "Kết thúc", "Trạng thái", "Ghi chú"};
+        if (screen_ == "tasks") return {"Mã nhiệm vụ", "Sự kiện", "Tiêu đề", "Phụ trách", "Hạn hoàn thành", "Trạng thái", "Ghi chú"};
+        if (screen_ == "incidents") return {"Mã sự cố", "Sự kiện", "Mô tả", "Trạng thái", "Cách xử lý", "Ghi nhận"};
         if (screen_ == "reports") {
             switch (reportType_->currentIndex()) {
-                case 0: return {"M├ú sß╗▒ kiß╗çn", "Bß║»t ─æß║ºu", "Kh├ích h├áng", "Sß║únh", "Trß║íng th├íi"};
-                case 1: return {"M├ú sß╗▒ kiß╗çn", "Bß║»t ─æß║ºu", "Kh├ích h├áng", "Trß║íng th├íi"};
-                case 2: return {"M├ú sß║únh", "T├¬n sß║únh", "Sß╗⌐c chß╗⌐a", "Trß║íng th├íi", "Booking hiß╗çu lß╗▒c", "─É├ú hß╗ºy"};
-                case 3: return {"Sß╗æ hß╗úp ─æß╗ông", "Gi├í trß╗ï", "─É├ú thu", "C├▓n lß║íi", "Trß║íng th├íi"};
-                case 4: return {"Sß╗æ hß╗úp ─æß╗ông", "Kh├ích h├áng", "C├▓n nß╗ú"};
-                default: return {"M├ú sß╗▒ kiß╗çn", "Trß║íng th├íi", "Cß║ºn l├ám", "─Éang l├ám", "Ho├án th├ánh", "Sß╗▒ cß╗æ mß╗ƒ"};
+                case 0: return {"Mã sự kiện", "Bắt đầu", "Khách hàng", "Sảnh", "Trạng thái"};
+                case 1: return {"Mã sự kiện", "Bắt đầu", "Khách hàng", "Trạng thái"};
+                case 2: return {"Mã sảnh", "Tên sảnh", "Sức chứa", "Trạng thái", "Booking hiệu lực", "Đã hủy"};
+                case 3: return {"Số hợp đồng", "Giá trị", "Đã thu", "Còn lại", "Trạng thái"};
+                case 4: return {"Số hợp đồng", "Khách hàng", "Còn nợ"};
+                default: return {"Mã sự kiện", "Trạng thái", "Cần làm", "Đang làm", "Hoàn thành", "Sự cố mở"};
             }
         }
-        if (screen_ == "audit") return {"Thß╗¥i ─æiß╗âm", "Ng╞░ß╗¥i d├╣ng", "H├ánh ─æß╗Öng", "Chi tiß║┐t"};
-        if (screen_ == "users") return {"M├ú", "T├ái khoß║ún", "Hß╗ì t├¬n", "Vai tr├▓", "Hoß║ít ─æß╗Öng"};
+        if (screen_ == "audit") return {"Thời điểm", "Người dùng", "Hành động", "Chi tiết"};
+        if (screen_ == "users") return {"Mã", "Tài khoản", "Họ tên", "Vai trò", "Hoạt động"};
         return {};
     }
 
@@ -479,17 +479,17 @@ private:
             }
         } else if (screen_ == "centers") {
             for (const Center& center : db.centers) {
-                appendRow(rows, {center.id(), center.name(), center.address(), center.active() ? "C├│" : "Kh├┤ng"});
+                appendRow(rows, {center.id(), center.name(), center.address(), center.active() ? "Có" : "Không"});
             }
         } else if (screen_ == "halls") {
             for (const Hall& hall : db.halls) {
                 appendRow(rows, {hall.id(), hall.name(), hall.centerId(),
-                                 to_string(hall.capacity()), hall.active() ? "C├│" : "Kh├┤ng"});
+                                 to_string(hall.capacity()), hall.active() ? "Có" : "Không"});
             }
         } else if (screen_ == "services") {
             for (const ServiceItem& item : db.services) {
                 appendRow(rows, {item.id(), item.name(), item.unit(), formatMoney(item.unitPrice()),
-                                 item.category(), item.active() ? "C├│" : "Kh├┤ng"});
+                                 item.category(), item.active() ? "Có" : "Không"});
             }
         } else if (screen_ == "lookup") {
             // Results are populated only after an explicit availability search.
@@ -556,7 +556,7 @@ private:
         } else if (screen_ == "users") {
             for (const User& user : db.users) {
                 appendRow(rows, {user.id(), user.username(), user.fullName(), toString(user.role()),
-                                 user.active() ? "C├│" : "Kh├┤ng"});
+                                 user.active() ? "Có" : "Không"});
             }
         }
         return rows;
@@ -568,13 +568,13 @@ private:
         if (screen_ == "reports" && reportType_->currentIndex() == 0) {
             if (!DateTime::parse(reportFrom_->text().toStdString()) ||
                 !DateTime::parse(reportTo_->text().toStdString())) {
-                showError("Khoß║úng thß╗¥i gian b├ío c├ío kh├┤ng hß╗úp lß╗ç. D├╣ng ─æß╗ïnh dß║íng YYYY-MM-DD HH:MM.");
+                showError("Khoảng thời gian báo cáo không hợp lệ. Dùng định dạng YYYY-MM-DD HH:MM.");
                 return;
             }
             const QString status = reportStatus_->text();
             if (!status.isEmpty() &&
                 !isOneOf(status, {"TatCa", "ChuanBi", "DangDienRa", "HoanTat", "Huy"})) {
-                showError("Trß║íng th├íi b├ío c├ío kh├┤ng hß╗úp lß╗ç.");
+                showError("Trạng thái báo cáo không hợp lệ.");
                 return;
             }
         }
@@ -602,61 +602,61 @@ private:
             delete item;
         }
         if (screen_ == "customers") {
-            addActionButton(layout, "Th├¬m kh├ích h├áng", [this]() { addCustomer(); });
-            addActionButton(layout, "Sß╗¡a kh├ích h├áng", [this]() { editCustomer(); });
+            addActionButton(layout, "Thêm khách hàng", [this]() { addCustomer(); });
+            addActionButton(layout, "Sửa khách hàng", [this]() { editCustomer(); });
         } else if (screen_ == "requests") {
-            addActionButton(layout, "Tiß║┐p nhß║¡n y├¬u cß║ºu", [this]() { addRequest(); });
-            addActionButton(layout, "─É├ính dß║Ñu ─æ├ú b├ío gi├í", [this]() { setRequestStatus(RequestStatus::DaBaoGia); });
-            addActionButton(layout, "Hß╗ºy y├¬u cß║ºu", [this]() { setRequestStatus(RequestStatus::Huy); });
+            addActionButton(layout, "Tiếp nhận yêu cầu", [this]() { addRequest(); });
+            addActionButton(layout, "Đánh dấu đã báo giá", [this]() { setRequestStatus(RequestStatus::DaBaoGia); });
+            addActionButton(layout, "Hủy yêu cầu", [this]() { setRequestStatus(RequestStatus::Huy); });
         } else if (screen_ == "centers") {
-            addActionButton(layout, "Th├¬m trung t├óm", [this]() { addCenter(); });
-            addActionButton(layout, "Sß╗¡a trung t├óm", [this]() { editCenter(); });
-            addActionButton(layout, "Bß║¡t / tß║»t trung t├óm", [this]() { toggleCenter(); });
+            addActionButton(layout, "Thêm trung tâm", [this]() { addCenter(); });
+            addActionButton(layout, "Sửa trung tâm", [this]() { editCenter(); });
+            addActionButton(layout, "Bật / tắt trung tâm", [this]() { toggleCenter(); });
         } else if (screen_ == "halls") {
-            addActionButton(layout, "Th├¬m sß║únh", [this]() { addHall(); });
-            addActionButton(layout, "Sß╗¡a sß║únh", [this]() { editHall(); });
-            addActionButton(layout, "Bß║¡t / tß║»t sß║únh", [this]() { toggleHall(); });
+            addActionButton(layout, "Thêm sảnh", [this]() { addHall(); });
+            addActionButton(layout, "Sửa sảnh", [this]() { editHall(); });
+            addActionButton(layout, "Bật / tắt sảnh", [this]() { toggleHall(); });
         } else if (screen_ == "services") {
-            addActionButton(layout, "Th├¬m dß╗ïch vß╗Ñ", [this]() { addService(); });
-            addActionButton(layout, "Sß╗¡a dß╗ïch vß╗Ñ", [this]() { editService(); });
-            addActionButton(layout, "Bß║¡t / tß║»t dß╗ïch vß╗Ñ", [this]() { toggleService(); });
+            addActionButton(layout, "Thêm dịch vụ", [this]() { addService(); });
+            addActionButton(layout, "Sửa dịch vụ", [this]() { editService(); });
+            addActionButton(layout, "Bật / tắt dịch vụ", [this]() { toggleService(); });
         } else if (screen_ == "lookup") {
-            addActionButton(layout, "Tra cß╗⌐u theo thß╗¥i gian", [this]() { lookupHalls(); });
+            addActionButton(layout, "Tra cứu theo thời gian", [this]() { lookupHalls(); });
         } else if (screen_ == "quotations") {
-            addActionButton(layout, "Tß║ío b├ío gi├í", [this]() { createQuotation(); });
-            addActionButton(layout, "Th├¬m dß╗ïch vß╗Ñ v├áo b├ío gi├í ─æ├ú chß╗ìn", [this]() { addQuotationLine(); });
-            addActionButton(layout, "Gß╗¡i b├ío gi├í ─æ├ú chß╗ìn", [this]() { setQuotationStatus(QuotationStatus::DaGui); });
-            addActionButton(layout, "Kh├ích chß║Ñp nhß║¡n b├ío gi├í", [this]() { setQuotationStatus(QuotationStatus::DaChapNhan); });
+            addActionButton(layout, "Tạo báo giá", [this]() { createQuotation(); });
+            addActionButton(layout, "Thêm dịch vụ vào báo giá đã chọn", [this]() { addQuotationLine(); });
+            addActionButton(layout, "Gửi báo giá đã chọn", [this]() { setQuotationStatus(QuotationStatus::DaGui); });
+            addActionButton(layout, "Khách chấp nhận báo giá", [this]() { setQuotationStatus(QuotationStatus::DaChapNhan); });
         } else if (screen_ == "bookings") {
-            addActionButton(layout, "Tß║ío booking", [this]() { createBooking(); });
-            addActionButton(layout, "X├íc nhß║¡n booking", [this]() { changeBookingStatus(true); });
-            addActionButton(layout, "Hß╗ºy booking", [this]() { changeBookingStatus(false); });
+            addActionButton(layout, "Tạo booking", [this]() { createBooking(); });
+            addActionButton(layout, "Xác nhận booking", [this]() { changeBookingStatus(true); });
+            addActionButton(layout, "Hủy booking", [this]() { changeBookingStatus(false); });
         } else if (screen_ == "contracts") {
-            addActionButton(layout, "Lß║¡p hß╗úp ─æß╗ông tß╗½ booking", [this]() { createContract(); });
+            addActionButton(layout, "Lập hợp đồng từ booking", [this]() { createContract(); });
         } else if (screen_ == "payments") {
-            addActionButton(layout, "Ghi nhß║¡n thanh to├ín", [this]() { recordPayment(); });
+            addActionButton(layout, "Ghi nhận thanh toán", [this]() { recordPayment(); });
         } else if (screen_ == "events") {
-            addActionButton(layout, "Cß║¡p nhß║¡t sß╗▒ kiß╗çn", [this]() { operateOnSelection(); });
+            addActionButton(layout, "Cập nhật sự kiện", [this]() { operateOnSelection(); });
         } else if (screen_ == "tasks") {
-            addActionButton(layout, "Cß║¡p nhß║¡t nhiß╗çm vß╗Ñ", [this]() { operateOnSelection(); });
-            addActionButton(layout, "Th├¬m nhiß╗çm vß╗Ñ", [this]() { addTask(); });
+            addActionButton(layout, "Cập nhật nhiệm vụ", [this]() { operateOnSelection(); });
+            addActionButton(layout, "Thêm nhiệm vụ", [this]() { addTask(); });
         } else if (screen_ == "incidents") {
-            addActionButton(layout, "Xß╗¡ l├╜ sß╗▒ cß╗æ", [this]() { operateOnSelection(); });
-            addActionButton(layout, "Ghi nhß║¡n sß╗▒ cß╗æ", [this]() { addIncident(); });
+            addActionButton(layout, "Xử lý sự cố", [this]() { operateOnSelection(); });
+            addActionButton(layout, "Ghi nhận sự cố", [this]() { addIncident(); });
         } else if (screen_ == "reports") {
-            addActionButton(layout, "Cß║¡p nhß║¡t b├ío c├ío", [this]() { refreshTable(); });
+            addActionButton(layout, "Cập nhật báo cáo", [this]() { refreshTable(); });
         } else if (screen_ == "users") {
-            addActionButton(layout, "Tß║ío ng╞░ß╗¥i d├╣ng", [this]() { createUser(); });
-            addActionButton(layout, "Kh├│a / mß╗ƒ kh├│a", [this]() { toggleUser(); });
-            addActionButton(layout, "─Éß╗òi mß║¡t khß║⌐u", [this]() { changePassword(); });
+            addActionButton(layout, "Tạo người dùng", [this]() { createUser(); });
+            addActionButton(layout, "Khóa / mở khóa", [this]() { toggleUser(); });
+            addActionButton(layout, "Đổi mật khẩu", [this]() { changePassword(); });
         }
         layout->addStretch();
     }
 
     void addCustomer()
     {
-        const auto values = promptFields(this, "Th├¬m kh├ích h├áng",
-            {"Hß╗ì t├¬n / T├¬n c├┤ng ty", "Sß╗æ ─æiß╗çn thoß║íi", "Email", "─Éß╗ïa chß╗ë", "Ghi ch├║"});
+        const auto values = promptFields(this, "Thêm khách hàng",
+            {"Họ tên / Tên công ty", "Số điện thoại", "Email", "Địa chỉ", "Ghi chú"});
         if (!values) return;
         notify(service_.addCustomer((*values)[0].toStdString(), (*values)[1].toStdString(),
                                     (*values)[2].toStdString(), (*values)[3].toStdString(),
@@ -667,9 +667,9 @@ private:
     {
         const QString id = selectedValue();
         const Customer* customer = service_.findCustomer(id.toStdString());
-        if (!customer) { showError("H├úy chß╗ìn mß╗Öt kh├ích h├áng trong bß║úng."); return; }
-        const auto values = promptFields(this, "Sß╗¡a kh├ích h├áng",
-            {"Hß╗ì t├¬n / T├¬n c├┤ng ty", "Sß╗æ ─æiß╗çn thoß║íi", "Email", "─Éß╗ïa chß╗ë", "Ghi ch├║"},
+        if (!customer) { showError("Hãy chọn một khách hàng trong bảng."); return; }
+        const auto values = promptFields(this, "Sửa khách hàng",
+            {"Họ tên / Tên công ty", "Số điện thoại", "Email", "Địa chỉ", "Ghi chú"},
             {qstr(customer->name()), qstr(customer->phone()), qstr(customer->email()),
              qstr(customer->address()), qstr(customer->notes())});
         if (!values) return;
@@ -680,20 +680,20 @@ private:
 
     void addRequest()
     {
-        const auto values = promptFields(this, "Tiß║┐p nhß║¡n y├¬u cß║ºu sß╗▒ kiß╗çn",
-            {"M├ú kh├ích h├áng", "Loß║íi (TiecCuoi/HoiNghi/SinhNhat/SuKienDoanhNghiep/Khac)",
-             "Ti├¬u ─æß╗ü", "Bß║»t ─æß║ºu (YYYY-MM-DD HH:MM)", "Kß║┐t th├║c (YYYY-MM-DD HH:MM)",
-             "Sß╗æ l╞░ß╗úng kh├ích", "Y├¬u cß║ºu ─æß║╖c biß╗çt"},
+        const auto values = promptFields(this, "Tiếp nhận yêu cầu sự kiện",
+            {"Mã khách hàng", "Loại (TiecCuoi/HoiNghi/SinhNhat/SuKienDoanhNghiep/Khac)",
+             "Tiêu đề", "Bắt đầu (YYYY-MM-DD HH:MM)", "Kết thúc (YYYY-MM-DD HH:MM)",
+             "Số lượng khách", "Yêu cầu đặc biệt"},
             {"", "TiecCuoi", "", "2026-12-20 18:00", "2026-12-20 22:00", "100", ""});
         if (!values) return;
         if (!isOneOf((*values)[1], {"TiecCuoi", "HoiNghi", "SinhNhat", "SuKienDoanhNghiep", "Khac"})) {
-            showError("Loß║íi sß╗▒ kiß╗çn kh├┤ng hß╗úp lß╗ç.");
+            showError("Loại sự kiện không hợp lệ.");
             return;
         }
         DateTime start, end;
         if (!parseDateFields((*values)[3], (*values)[4], start, end)) return;
         const auto guests = parseInt((*values)[5].toStdString());
-        if (!guests) { showError("Sß╗æ l╞░ß╗úng kh├ích kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!guests) { showError("Số lượng khách không hợp lệ."); return; }
         notify(service_.addRequest((*values)[0].toStdString(),
             eventTypeFromString((*values)[1].toStdString()), (*values)[2].toStdString(),
             start, end, *guests, (*values)[6].toStdString()));
@@ -702,35 +702,35 @@ private:
     void setRequestStatus(RequestStatus status)
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) { showError("H├úy chß╗ìn mß╗Öt y├¬u cß║ºu trong bß║úng."); return; }
+        if (id.isEmpty()) { showError("Hãy chọn một yêu cầu trong bảng."); return; }
         notify(service_.updateRequestStatus(id.toStdString(), status));
     }
 
     void addCenter()
     {
-        const auto values = promptFields(this, "Th├¬m trung t├óm", {"T├¬n trung t├óm", "─Éß╗ïa chß╗ë"});
+        const auto values = promptFields(this, "Thêm trung tâm", {"Tên trung tâm", "Địa chỉ"});
         if (!values) return;
         notify(service_.addCenter((*values)[0].toStdString(), (*values)[1].toStdString()));
     }
 
     void addHall()
     {
-        const auto values = promptFields(this, "Th├¬m sß║únh", {"M├ú trung t├óm", "T├¬n sß║únh", "Sß╗⌐c chß╗⌐a"},
+        const auto values = promptFields(this, "Thêm sảnh", {"Mã trung tâm", "Tên sảnh", "Sức chứa"},
                                          {"CTR-0001", "", "200"});
         if (!values) return;
         const auto capacity = parseInt((*values)[2].toStdString());
-        if (!capacity) { showError("Sß╗⌐c chß╗⌐a kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!capacity) { showError("Sức chứa không hợp lệ."); return; }
         notify(service_.addHall((*values)[0].toStdString(), (*values)[1].toStdString(), *capacity));
     }
 
     void addService()
     {
-        const auto values = promptFields(this, "Th├¬m dß╗ïch vß╗Ñ",
-            {"T├¬n dß╗ïch vß╗Ñ", "─É╞ín vß╗ï", "─É╞ín gi├í (VND)", "Nh├│m"},
-            {"", "g├│i", "1000000", "Dß╗ïch vß╗Ñ"});
+        const auto values = promptFields(this, "Thêm dịch vụ",
+            {"Tên dịch vụ", "Đơn vị", "Đơn giá (VND)", "Nhóm"},
+            {"", "gói", "1000000", "Dịch vụ"});
         if (!values) return;
         const auto price = parseMoney((*values)[2].toStdString());
-        if (!price) { showError("─É╞ín gi├í kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!price) { showError("Đơn giá không hợp lệ."); return; }
         notify(service_.addService((*values)[0].toStdString(), (*values)[1].toStdString(),
                                    *price, (*values)[3].toStdString()));
     }
@@ -742,8 +742,8 @@ private:
         for (const Center& center : service_.db().centers) {
             if (center.id() == id.toStdString()) { selected = &center; break; }
         }
-        if (!selected) { showError("H├úy chß╗ìn trung t├óm trong bß║úng."); return; }
-        const auto values = promptFields(this, "Cß║¡p nhß║¡t trung t├óm", {"T├¬n trung t├óm", "─Éß╗ïa chß╗ë"},
+        if (!selected) { showError("Hãy chọn trung tâm trong bảng."); return; }
+        const auto values = promptFields(this, "Cập nhật trung tâm", {"Tên trung tâm", "Địa chỉ"},
                                          {qstr(selected->name()), qstr(selected->address())});
         if (!values) return;
         notify(service_.updateCenter(selected->id(), (*values)[0].toStdString(),
@@ -754,13 +754,13 @@ private:
     {
         const QString id = selectedValue();
         const Hall* hall = service_.findHall(id.toStdString());
-        if (!hall) { showError("H├úy chß╗ìn sß║únh trong bß║úng."); return; }
-        const auto values = promptFields(this, "Cß║¡p nhß║¡t sß║únh",
-            {"T├¬n sß║únh", "Sß╗⌐c chß╗⌐a"},
+        if (!hall) { showError("Hãy chọn sảnh trong bảng."); return; }
+        const auto values = promptFields(this, "Cập nhật sảnh",
+            {"Tên sảnh", "Sức chứa"},
             {qstr(hall->name()), QString::number(hall->capacity())});
         if (!values) return;
         const auto capacity = parseInt((*values)[1].toStdString());
-        if (!capacity) { showError("Sß╗⌐c chß╗⌐a kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!capacity) { showError("Sức chứa không hợp lệ."); return; }
         notify(service_.updateHall(hall->id(), (*values)[0].toStdString(), *capacity, hall->active()));
     }
 
@@ -768,14 +768,14 @@ private:
     {
         const QString id = selectedValue();
         const ServiceItem* item = service_.findService(id.toStdString());
-        if (!item) { showError("H├úy chß╗ìn dß╗ïch vß╗Ñ trong bß║úng."); return; }
-        const auto values = promptFields(this, "Cß║¡p nhß║¡t dß╗ïch vß╗Ñ",
-            {"T├¬n dß╗ïch vß╗Ñ", "─É╞ín vß╗ï", "─É╞ín gi├í (VND)", "Nh├│m"},
+        if (!item) { showError("Hãy chọn dịch vụ trong bảng."); return; }
+        const auto values = promptFields(this, "Cập nhật dịch vụ",
+            {"Tên dịch vụ", "Đơn vị", "Đơn giá (VND)", "Nhóm"},
             {qstr(item->name()), qstr(item->unit()), QString::number(item->unitPrice()),
              qstr(item->category())});
         if (!values) return;
         const auto price = parseMoney((*values)[2].toStdString());
-        if (!price) { showError("─É╞ín gi├í kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!price) { showError("Đơn giá không hợp lệ."); return; }
         notify(service_.updateService(item->id(), (*values)[0].toStdString(),
                                       (*values)[1].toStdString(), *price,
                                       (*values)[3].toStdString(), item->active()));
@@ -790,14 +790,14 @@ private:
                 return;
             }
         }
-        showError("H├úy chß╗ìn trung t├óm trong bß║úng.");
+        showError("Hãy chọn trung tâm trong bảng.");
     }
 
     void toggleHall()
     {
         const QString id = selectedValue();
         const Hall* hall = service_.findHall(id.toStdString());
-        if (!hall) { showError("H├úy chß╗ìn sß║únh trong bß║úng."); return; }
+        if (!hall) { showError("Hãy chọn sảnh trong bảng."); return; }
         notify(service_.updateHall(hall->id(), hall->name(), hall->capacity(), !hall->active()));
     }
 
@@ -805,21 +805,21 @@ private:
     {
         const QString id = selectedValue();
         const ServiceItem* item = service_.findService(id.toStdString());
-        if (!item) { showError("H├úy chß╗ìn dß╗ïch vß╗Ñ trong bß║úng."); return; }
+        if (!item) { showError("Hãy chọn dịch vụ trong bảng."); return; }
         notify(service_.updateService(item->id(), item->name(), item->unit(), item->unitPrice(),
                                       item->category(), !item->active()));
     }
 
     void lookupHalls()
     {
-        const auto values = promptFields(this, "Tra cß╗⌐u sß║únh trß╗æng",
-            {"Bß║»t ─æß║ºu (YYYY-MM-DD HH:MM)", "Kß║┐t th├║c (YYYY-MM-DD HH:MM)", "Sß╗æ l╞░ß╗úng kh├ích"},
+        const auto values = promptFields(this, "Tra cứu sảnh trống",
+            {"Bắt đầu (YYYY-MM-DD HH:MM)", "Kết thúc (YYYY-MM-DD HH:MM)", "Số lượng khách"},
             {"2026-12-20 18:00", "2026-12-20 22:00", "200"});
         if (!values) return;
         DateTime start, end;
         if (!parseDateFields((*values)[0], (*values)[1], start, end)) return;
         const auto guests = parseInt((*values)[2].toStdString());
-        if (!guests) { showError("Sß╗æ l╞░ß╗úng kh├ích kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!guests) { showError("Số lượng khách không hợp lệ."); return; }
         Rows rows;
         for (const Hall& hall : service_.findAvailableHalls(start, end, *guests, "")) {
             string centerName = hall.centerId();
@@ -833,12 +833,12 @@ private:
         layout->replaceWidget(table_, replacement);
         table_->deleteLater();
         table_ = replacement;
-        statusBar()->showMessage(QString("T├¼m thß║Ñy %1 sß║únh ph├╣ hß╗úp").arg(rows.size()), 5000);
+        statusBar()->showMessage(QString("Tìm thấy %1 sảnh phù hợp").arg(rows.size()), 5000);
     }
 
     void createQuotation()
     {
-        const auto values = promptFields(this, "Tß║ío b├ío gi├í", {"M├ú y├¬u cß║ºu", "Ghi ch├║"});
+        const auto values = promptFields(this, "Tạo báo giá", {"Mã yêu cầu", "Ghi chú"});
         if (!values) return;
         notify(service_.createQuotation((*values)[0].toStdString(), (*values)[1].toStdString()));
     }
@@ -846,33 +846,33 @@ private:
     void addQuotationLine()
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) { showError("H├úy chß╗ìn b├ío gi├í cß║ºn cß║¡p nhß║¡t."); return; }
-        const auto values = promptFields(this, "Th├¬m d├▓ng dß╗ïch vß╗Ñ",
-                                         {"M├ú dß╗ïch vß╗Ñ", "Sß╗æ l╞░ß╗úng"}, {"", "1"});
+        if (id.isEmpty()) { showError("Hãy chọn báo giá cần cập nhật."); return; }
+        const auto values = promptFields(this, "Thêm dòng dịch vụ",
+                                         {"Mã dịch vụ", "Số lượng"}, {"", "1"});
         if (!values) return;
         const auto quantity = parseInt((*values)[1].toStdString());
-        if (!quantity) { showError("Sß╗æ l╞░ß╗úng kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!quantity) { showError("Số lượng không hợp lệ."); return; }
         notify(service_.addQuotationLine(id.toStdString(), (*values)[0].toStdString(), *quantity));
     }
 
     void setQuotationStatus(QuotationStatus status)
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) { showError("H├úy chß╗ìn b├ío gi├í trong bß║úng."); return; }
+        if (id.isEmpty()) { showError("Hãy chọn báo giá trong bảng."); return; }
         notify(service_.setQuotationStatus(id.toStdString(), status));
     }
 
     void createBooking()
     {
-        const auto values = promptFields(this, "Tß║ío booking",
-            {"M├ú b├ío gi├í", "M├ú sß║únh", "Bß║»t ─æß║ºu (YYYY-MM-DD HH:MM)",
-             "Kß║┐t th├║c (YYYY-MM-DD HH:MM)", "Sß╗æ l╞░ß╗úng kh├ích"},
+        const auto values = promptFields(this, "Tạo booking",
+            {"Mã báo giá", "Mã sảnh", "Bắt đầu (YYYY-MM-DD HH:MM)",
+             "Kết thúc (YYYY-MM-DD HH:MM)", "Số lượng khách"},
             {"", "", "2026-12-20 18:00", "2026-12-20 22:00", "100"});
         if (!values) return;
         DateTime start, end;
         if (!parseDateFields((*values)[2], (*values)[3], start, end)) return;
         const auto guests = parseInt((*values)[4].toStdString());
-        if (!guests) { showError("Sß╗æ l╞░ß╗úng kh├ích kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!guests) { showError("Số lượng khách không hợp lệ."); return; }
         notify(service_.createBooking((*values)[0].toStdString(), (*values)[1].toStdString(),
                                       start, end, *guests));
     }
@@ -880,35 +880,35 @@ private:
     void changeBookingStatus(bool confirm)
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) { showError("H├úy chß╗ìn booking trong bß║úng."); return; }
+        if (id.isEmpty()) { showError("Hãy chọn booking trong bảng."); return; }
         if (confirm) {
             notify(service_.confirmBooking(id.toStdString()));
             return;
         }
-        const auto values = promptFields(this, "Hß╗ºy booking", {"L├╜ do"}, {"Hß╗ºy tß╗½ m├án h├¼nh booking"});
+        const auto values = promptFields(this, "Hủy booking", {"Lý do"}, {"Hủy từ màn hình booking"});
         if (!values) return;
         notify(service_.cancelBooking(id.toStdString(), (*values)[0].toStdString()));
     }
 
     void createContract()
     {
-        const auto values = promptFields(this, "Lß║¡p hß╗úp ─æß╗ông", {"M├ú booking"});
+        const auto values = promptFields(this, "Lập hợp đồng", {"Mã booking"});
         if (!values) return;
         notify(service_.createContract((*values)[0].toStdString()));
     }
 
     void recordPayment()
     {
-        const auto values = promptFields(this, "Ghi nhß║¡n thanh to├ín",
-            {"M├ú hß╗úp ─æß╗ông", "Sß╗æ tiß╗ün (VND)", "H├¼nh thß╗⌐c (TienMat/ChuyenKhoan/The)", "Ghi ch├║"},
+        const auto values = promptFields(this, "Ghi nhận thanh toán",
+            {"Mã hợp đồng", "Số tiền (VND)", "Hình thức (TienMat/ChuyenKhoan/The)", "Ghi chú"},
             {"", "1000000", "ChuyenKhoan", ""});
         if (!values) return;
         if (!isOneOf((*values)[2], {"TienMat", "ChuyenKhoan", "The"})) {
-            showError("H├¼nh thß╗⌐c thanh to├ín kh├┤ng hß╗úp lß╗ç.");
+            showError("Hình thức thanh toán không hợp lệ.");
             return;
         }
         const auto amount = parseMoney((*values)[1].toStdString());
-        if (!amount) { showError("Sß╗æ tiß╗ün kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!amount) { showError("Số tiền không hợp lệ."); return; }
         notify(service_.recordPayment((*values)[0].toStdString(), *amount,
             paymentMethodFromString((*values)[2].toStdString()), (*values)[3].toStdString()));
     }
@@ -916,15 +916,15 @@ private:
     void operateOnSelection()
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) { showError("H├úy chß╗ìn mß╗Öt mß╗Ñc trong bß║úng."); return; }
+        if (id.isEmpty()) { showError("Hãy chọn một mục trong bảng."); return; }
         if (screen_ == "events") {
-            const auto values = promptFields(this, "Cß║¡p nhß║¡t sß╗▒ kiß╗çn",
-                {"Trß║íng th├íi (ChuanBi/DangDienRa/HoanTat/Huy)", "Ghi ch├║"},
+            const auto values = promptFields(this, "Cập nhật sự kiện",
+                {"Trạng thái (ChuanBi/DangDienRa/HoanTat/Huy)", "Ghi chú"},
                 {"DangDienRa", ""});
             if (!values) return;
             const string status = (*values)[0].toStdString();
             if (!isOneOf((*values)[0], {"ChuanBi", "DangDienRa", "HoanTat", "Huy"})) {
-                showError("Trß║íng th├íi sß╗▒ kiß╗çn kh├┤ng hß╗úp lß╗ç.");
+                showError("Trạng thái sự kiện không hợp lệ.");
                 return;
             }
             OpResult result = status == "HoanTat"
@@ -935,18 +935,18 @@ private:
             }
             notify(result);
         } else if (screen_ == "tasks") {
-            const auto values = promptFields(this, "Cß║¡p nhß║¡t nhiß╗çm vß╗Ñ",
-                {"Trß║íng th├íi (CanLam/DangLam/HoanThanh)", "Ghi ch├║"},
+            const auto values = promptFields(this, "Cập nhật nhiệm vụ",
+                {"Trạng thái (CanLam/DangLam/HoanThanh)", "Ghi chú"},
                 {"DangLam", ""});
             if (!values) return;
             if (!isOneOf((*values)[0], {"CanLam", "DangLam", "HoanThanh"})) {
-                showError("Trß║íng th├íi nhiß╗çm vß╗Ñ kh├┤ng hß╗úp lß╗ç.");
+                showError("Trạng thái nhiệm vụ không hợp lệ.");
                 return;
             }
             notify(service_.updateTaskStatus(id.toStdString(),
                 taskStatusFromString((*values)[0].toStdString()), (*values)[1].toStdString()));
         } else if (screen_ == "incidents") {
-            const auto values = promptFields(this, "Xß╗¡ l├╜ sß╗▒ cß╗æ", {"C├ích xß╗¡ l├╜"});
+            const auto values = promptFields(this, "Xử lý sự cố", {"Cách xử lý"});
             if (!values) return;
             notify(service_.resolveIncident(id.toStdString(), (*values)[0].toStdString(),
                                              IncidentStatus::DaXuLy));
@@ -955,32 +955,32 @@ private:
 
     void addTask()
     {
-        const auto values = promptFields(this, "Th├¬m nhiß╗çm vß╗Ñ",
-            {"M├ú sß╗▒ kiß╗çn", "Ti├¬u ─æß╗ü", "Ng╞░ß╗¥i phß╗Ñ tr├ích", "Hß║ín ho├án th├ánh (YYYY-MM-DD HH:MM)"},
+        const auto values = promptFields(this, "Thêm nhiệm vụ",
+            {"Mã sự kiện", "Tiêu đề", "Người phụ trách", "Hạn hoàn thành (YYYY-MM-DD HH:MM)"},
             {"", "", "", "2026-12-19 17:00"});
         if (!values) return;
         const auto due = DateTime::parse((*values)[3].toStdString());
-        if (!due) { showError("Hß║ín ho├án th├ánh kh├┤ng hß╗úp lß╗ç."); return; }
+        if (!due) { showError("Hạn hoàn thành không hợp lệ."); return; }
         notify(service_.addTask((*values)[0].toStdString(), (*values)[1].toStdString(),
                                 (*values)[2].toStdString(), *due));
     }
 
     void addIncident()
     {
-        const auto values = promptFields(this, "Ghi nhß║¡n sß╗▒ cß╗æ",
-                                         {"M├ú sß╗▒ kiß╗çn", "M├┤ tß║ú sß╗▒ cß╗æ"});
+        const auto values = promptFields(this, "Ghi nhận sự cố",
+                                         {"Mã sự kiện", "Mô tả sự cố"});
         if (!values) return;
         notify(service_.addIncident((*values)[0].toStdString(), (*values)[1].toStdString()));
     }
 
     void createUser()
     {
-        const auto values = promptFields(this, "Tß║ío ng╞░ß╗¥i d├╣ng",
-            {"T├¬n ─æ─âng nhß║¡p", "Mß║¡t khß║⌐u", "Hß╗ì t├¬n", "Vai tr├▓ (Admin/Sales/Accountant/Coordinator)"},
+        const auto values = promptFields(this, "Tạo người dùng",
+            {"Tên đăng nhập", "Mật khẩu", "Họ tên", "Vai trò (Admin/Sales/Accountant/Coordinator)"},
             {"", "", "", "Sales"}, {1});
         if (!values) return;
         if (!isOneOf((*values)[3], {"Admin", "Sales", "Accountant", "Coordinator"})) {
-            showError("Vai tr├▓ kh├┤ng hß╗úp lß╗ç.");
+            showError("Vai trò không hợp lệ.");
             return;
         }
         notify(service_.createUser((*values)[0].toStdString(), (*values)[1].toStdString(),
@@ -991,21 +991,21 @@ private:
     void toggleUser()
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) { showError("H├úy chß╗ìn ng╞░ß╗¥i d├╣ng trong bß║úng."); return; }
+        if (id.isEmpty()) { showError("Hãy chọn người dùng trong bảng."); return; }
         for (const User& user : service_.db().users) {
             if (user.id() == id.toStdString()) {
                 notify(service_.setUserActive(user.id(), !user.active()));
                 return;
             }
         }
-        showError("Kh├┤ng t├¼m thß║Ñy ng╞░ß╗¥i d├╣ng.");
+        showError("Không tìm thấy người dùng.");
     }
 
     void changePassword()
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) { showError("H├úy chß╗ìn ng╞░ß╗¥i d├╣ng trong bß║úng."); return; }
-        const auto values = promptFields(this, "─Éß╗òi mß║¡t khß║⌐u", {"Mß║¡t khß║⌐u mß╗¢i"}, {}, {0});
+        if (id.isEmpty()) { showError("Hãy chọn người dùng trong bảng."); return; }
+        const auto values = promptFields(this, "Đổi mật khẩu", {"Mật khẩu mới"}, {}, {0});
         if (!values) return;
         notify(service_.changePassword(id.toStdString(), (*values)[0].toStdString()));
     }

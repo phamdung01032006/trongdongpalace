@@ -19,7 +19,7 @@ nlohmann::json ServiceItem::toJson() const {
 }
 
 ServiceItem ServiceItem::fromJson(const nlohmann::json& j) {
-    return ServiceItem(j.at("id").get<string>(), j.at("name").get<string>(), j.value("unit", "lß║ºn"),
+    return ServiceItem(j.at("id").get<string>(), j.at("name").get<string>(), j.value("unit", "lần"),
                        j.value("unitPrice", 0), j.value("category", "Khac"), j.value("active", true));
 }
 

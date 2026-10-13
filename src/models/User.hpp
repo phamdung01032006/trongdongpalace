@@ -22,7 +22,7 @@ public:
     const string& fullName() const { return fullName_; }
     Role role() const { return role_; }
     bool active() const { return active_; }
-    // Mß║¡t khß║⌐u dß║íng r├╡ chß╗ë phß╗Ñc vß╗Ñ demo; ─æ─âng nhß║¡p vß║½n kiß╗âm tra bß║▒ng salt + hash.
+    // Mật khẩu dạng rõ chỉ phục vụ demo; đăng nhập vẫn kiểm tra bằng salt + hash.
     const string& demoPassword() const { return demoPassword_; }
 
     void setFullName(const string& v) { fullName_ = v; }
@@ -43,7 +43,7 @@ private:
     string salt_;
     string passwordHash_;
     string fullName_;
-    string demoPassword_;  // ghi r├╡ trong JSON ─æß╗â thuß║¡n tiß╗çn demo
+    string demoPassword_;  // ghi rõ trong JSON để thuận tiện demo
     Role role_ = Role::Sales;
     bool active_ = true;
 };

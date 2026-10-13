@@ -146,7 +146,7 @@ string formatMoney(int64_t amount) {
         ++cnt;
     }
     reverse(grouped.begin(), grouped.end());
-    return (neg ? "-" : "") + grouped + " ─æ";
+    return (neg ? "-" : "") + grouped + " đ";
 }
 
 optional<int64_t> parseMoney(const string& s) {
@@ -213,7 +213,7 @@ bool looksLikeEmail(const string& email) {
 }
 
 int discountPercentForSubtotal(int64_t subtotal) {
-    // Giß║ú ─æß╗ïnh thiß║┐t kß║┐ (PDF kh├┤ng c├│ trong repo): chiß║┐t khß║Ñu theo tß╗òng tr╞░ß╗¢c CK.
+    // Giả định thiết kế (PDF không có trong repo): chiết khấu theo tổng trước CK.
     if (subtotal >= 100000000) return 8;
     if (subtotal >= 50000000) return 5;
     if (subtotal >= 20000000) return 3;

@@ -45,13 +45,13 @@ fs::path JsonStorage::filePath(const string& name) const { return dataDir_ / nam
 
 nlohmann::json JsonStorage::readJsonFile(const fs::path& path) const {
     ifstream in(path);
-    if (!in) throw StorageError("Kh├┤ng ─æß╗ìc ─æ╞░ß╗úc file: " + path.string());
+    if (!in) throw StorageError("Không đọc được file: " + path.string());
     try {
         nlohmann::json j;
         in >> j;
         return j;
     } catch (const exception& ex) {
-        throw StorageError("JSON sai ─æß╗ïnh dß║íng ß╗ƒ " + path.string() + ": " + ex.what());
+        throw StorageError("JSON sai định dạng ở " + path.string() + ": " + ex.what());
     }
 }
 
@@ -60,17 +60,17 @@ void JsonStorage::writeJsonAtomic(const fs::path& path, const nlohmann::json& j)
     tmp += ".tmp";
     {
         ofstream out(tmp, ios::binary | ios::trunc);
-        if (!out) throw StorageError("Kh├┤ng ghi ─æ╞░ß╗úc file tß║ím: " + tmp.string());
+        if (!out) throw StorageError("Không ghi được file tạm: " + tmp.string());
         out << setw(2) << j << '\n';
         out.flush();
-        if (!out) throw StorageError("Ghi file tß║ím thß║Ñt bß║íi: " + tmp.string());
+        if (!out) throw StorageError("Ghi file tạm thất bại: " + tmp.string());
     }
     error_code ec;
     fs::rename(tmp, path, ec);
     if (ec) {
         fs::remove(path, ec);
         fs::rename(tmp, path, ec);
-        if (ec) throw StorageError("Kh├┤ng thay thß║┐ ─æ╞░ß╗úc file ch├¡nh: " + path.string());
+        if (ec) throw StorageError("Không thay thế được file chính: " + path.string());
     }
 }
 
@@ -135,33 +135,33 @@ void JsonStorage::save() {
 void JsonStorage::seedIfEmpty() {
     if (!db_.users.empty()) return;
 
-    addUser(db_, "USR-0001", "admin", "Quß║ún trß╗ï vi├¬n hß╗ç thß╗æng", Role::Admin);
-    addUser(db_, "USR-0002", "kinhdoanh", "Nguyß╗àn V─ân Kinh Doanh", Role::Sales);
-    addUser(db_, "USR-0003", "ketoan", "Trß║ºn Thß╗ï Kß║┐ To├ín", Role::Accountant);
-    addUser(db_, "USR-0004", "dieuphoi", "L├¬ V─ân ─Éiß╗üu Phß╗æi", Role::Coordinator);
+    addUser(db_, "USR-0001", "admin", "Quản trị viên hệ thống", Role::Admin);
+    addUser(db_, "USR-0002", "kinhdoanh", "Nguyễn Văn Kinh Doanh", Role::Sales);
+    addUser(db_, "USR-0003", "ketoan", "Trần Thị Kế Toán", Role::Accountant);
+    addUser(db_, "USR-0004", "dieuphoi", "Lê Văn Điều Phối", Role::Coordinator);
 
-    db_.centers.push_back(Center("CTR-0001", "Trß╗æng ─Éß╗ông Palace Trß║ºn ─É─âng Ninh", "72 Trß║ºn ─É─âng Ninh, Cß║ºu Giß║Ñy, H├á Nß╗Öi", true));
-    db_.centers.push_back(Center("CTR-0002", "Trß╗æng ─Éß╗ông Palace H├áng C├│t", "40 H├áng C├│t, Ho├án Kiß║┐m, H├á Nß╗Öi", true));
-    db_.centers.push_back(Center("CTR-0003", "Trß╗æng ─Éß╗ông Palace Cß║únh Hß╗ô", "H├á Nß╗Öi", true));
+    db_.centers.push_back(Center("CTR-0001", "Trống Đồng Palace Trần Đăng Ninh", "72 Trần Đăng Ninh, Cầu Giấy, Hà Nội", true));
+    db_.centers.push_back(Center("CTR-0002", "Trống Đồng Palace Hàng Cót", "40 Hàng Cót, Hoàn Kiếm, Hà Nội", true));
+    db_.centers.push_back(Center("CTR-0003", "Trống Đồng Palace Cảnh Hồ", "Hà Nội", true));
 
-    db_.halls.push_back(Hall("HAL-0001", "CTR-0001", "Sß║únh Ruby", 250, true));
-    db_.halls.push_back(Hall("HAL-0002", "CTR-0001", "Sß║únh Sapphire", 400, true));
-    db_.halls.push_back(Hall("HAL-0003", "CTR-0002", "Sß║únh Jade", 180, true));
+    db_.halls.push_back(Hall("HAL-0001", "CTR-0001", "Sảnh Ruby", 250, true));
+    db_.halls.push_back(Hall("HAL-0002", "CTR-0001", "Sảnh Sapphire", 400, true));
+    db_.halls.push_back(Hall("HAL-0003", "CTR-0002", "Sảnh Jade", 180, true));
     db_.halls.push_back(Hall("HAL-0004", "CTR-0003", "King 1+2", 800, true));
     db_.halls.push_back(Hall("HAL-0005", "CTR-0003", "Queen 1", 280, true));
 
-    db_.services.push_back(ServiceItem("SVC-0001", "Thu├¬ sß║únh buß╗òi tß╗æi", "buß╗òi", 25000000, "Sß║únh", true));
-    db_.services.push_back(ServiceItem("SVC-0002", "Thß╗▒c ─æ╞ín tiß╗çc c╞░ß╗¢i", "kh├ích", 450000, "ß║¿m thß╗▒c", true));
-    db_.services.push_back(ServiceItem("SVC-0003", "Thß╗▒c ─æ╞ín hß╗Öi nghß╗ï", "kh├ích", 320000, "ß║¿m thß╗▒c", true));
-    db_.services.push_back(ServiceItem("SVC-0004", "├ém thanh ├ính s├íng", "g├│i", 8000000, "Kß╗╣ thuß║¡t", true));
-    db_.services.push_back(ServiceItem("SVC-0005", "M├án h├¼nh LED", "g├│i", 12000000, "Kß╗╣ thuß║¡t", true));
-    db_.services.push_back(ServiceItem("SVC-0006", "Trang tr├¡ kh├┤ng gian", "g├│i", 15000000, "Trang tr├¡", true));
-    db_.services.push_back(ServiceItem("SVC-0007", "MC sß╗▒ kiß╗çn", "buß╗òi", 5000000, "Nh├ón sß╗▒", true));
+    db_.services.push_back(ServiceItem("SVC-0001", "Thuê sảnh buổi tối", "buổi", 25000000, "Sảnh", true));
+    db_.services.push_back(ServiceItem("SVC-0002", "Thực đơn tiệc cưới", "khách", 450000, "Ẩm thực", true));
+    db_.services.push_back(ServiceItem("SVC-0003", "Thực đơn hội nghị", "khách", 320000, "Ẩm thực", true));
+    db_.services.push_back(ServiceItem("SVC-0004", "Âm thanh ánh sáng", "gói", 8000000, "Kỹ thuật", true));
+    db_.services.push_back(ServiceItem("SVC-0005", "Màn hình LED", "gói", 12000000, "Kỹ thuật", true));
+    db_.services.push_back(ServiceItem("SVC-0006", "Trang trí không gian", "gói", 15000000, "Trang trí", true));
+    db_.services.push_back(ServiceItem("SVC-0007", "MC sự kiện", "buổi", 5000000, "Nhân sự", true));
 
-    db_.customers.push_back(Customer("CUS-0001", "C├┤ng ty ├ünh D╞░╞íng", "0912345678", "anhduong@example.com",
-                                     "Cß║ºu Giß║Ñy, H├á Nß╗Öi", "Kh├ích doanh nghiß╗çp", DateTime::now()));
-    db_.customers.push_back(Customer("CUS-0002", "Nguyß╗àn V─ân An", "0987654321", "nguyenvanan@example.com",
-                                     "Ho├án Kiß║┐m, H├á Nß╗Öi", "Tiß╗çc c╞░ß╗¢i", DateTime::now()));
+    db_.customers.push_back(Customer("CUS-0001", "Công ty Ánh Dương", "0912345678", "anhduong@example.com",
+                                     "Cầu Giấy, Hà Nội", "Khách doanh nghiệp", DateTime::now()));
+    db_.customers.push_back(Customer("CUS-0002", "Nguyễn Văn An", "0987654321", "nguyenvanan@example.com",
+                                     "Hoàn Kiếm, Hà Nội", "Tiệc cưới", DateTime::now()));
 }
 
 void JsonStorage::load() {
@@ -206,7 +206,7 @@ void JsonStorage::load() {
     } catch (const StorageError&) {
         throw;
     } catch (const exception& ex) {
-        throw StorageError(string("Kh├┤ng nß║íp ─æ╞░ß╗úc dß╗» liß╗çu (giß╗» nguy├¬n file c┼⌐): ") + ex.what());
+        throw StorageError(string("Không nạp được dữ liệu (giữ nguyên file cũ): ") + ex.what());
     }
 }
 
