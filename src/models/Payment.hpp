@@ -14,11 +14,11 @@ namespace tdp {
 class Payment {
 public:
     Payment() = default;
-    Payment(string id, string contractId, int64_t amount, DateTime paidAt, PaymentMethod method,
+    Payment(string id, string bookingId, int64_t amount, DateTime paidAt, PaymentMethod method,
             string note, string recordedBy);
 
     const string& id() const { return id_; }
-    const string& contractId() const { return contractId_; }
+    const string& bookingId() const { return bookingId_; }
     int64_t amount() const { return amount_; }
     DateTime paidAt() const { return paidAt_; }
     PaymentMethod method() const { return method_; }
@@ -29,7 +29,7 @@ public:
     static Payment fromJson(const nlohmann::json& j);
 
 private:
-    string id_, contractId_, note_, recordedBy_;
+    string id_, bookingId_, note_, recordedBy_;
     int64_t amount_ = 0;
     DateTime paidAt_;
     PaymentMethod method_ = PaymentMethod::ChuyenKhoan;

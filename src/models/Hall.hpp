@@ -10,9 +10,8 @@ namespace tdp {
 class Hall {
 public:
     Hall() = default;
-    Hall(string id, string centerId, string name, int capacity, bool active);
+    Hall(string id, string name, int capacity, bool active);
     const string& id() const { return id_; }
-    const string& centerId() const { return centerId_; }
     const string& name() const { return name_; }
     int capacity() const { return capacity_; }
     bool active() const { return active_; }
@@ -23,7 +22,7 @@ public:
     static Hall fromJson(const nlohmann::json& j);
 
 private:
-    string id_, centerId_, name_;
+    string id_, name_;
     int capacity_ = 0;
     bool active_ = true;
 };

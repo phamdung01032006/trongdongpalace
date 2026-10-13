@@ -1,4 +1,5 @@
 // Kiểm thử lõi nghiệp vụ TrongDongPalace (không cần Qt Widgets).
+// Luồng chuẩn theo đặc tả: Yêu cầu -> Booking -> Thanh toán -> Sự kiện.
 #include "services/palace_service.hpp"
 #include "storage/json_storage.hpp"
 #include "utils/helpers.hpp"
@@ -36,10 +37,10 @@ static fs::path makeTempDir(const string& tag) {
 
 static DateTime dt(const string& s) { return *DateTime::parse(s); }
 
-// Quy trình đầy đủ: khách hàng -> yêu cầu -> báo giá -> booking -> hợp đồng ->
-// thanh toán -> vận hành -> hoàn tất. Trả về các id để test tái sử dụng.
+// Quy trình đầy đủ: khách hàng -> yêu cầu -> booking -> xác nhận ->
+// thanh toán -> sự kiện tự tạo -> hoàn tất. Trả về các id để test tái sử dụng.
 struct Flow {
-    string customerId, requestId, quotationId, bookingId, contractId, eventId;
+    string customerId, requestId, bookingId, eventId;
 };
 
 static Flow runFullFlow(PalaceService& svc, const string& tag, const string& hallId,
@@ -53,16 +54,12 @@ static Flow runFullFlow(PalaceService& svc, const string& tag, const string& hal
     CHECK(!f.customerId.empty());
     f.requestId = svc.addRequest(f.customerId, EventType::TiecCuoi, "Tiệc " + tag, s, e, 200, "").id;
     CHECK(!f.requestId.empty());
-    f.quotationId = svc.createQuotation(f.requestId, "").id;
-    CHECK(!f.quotationId.empty());
-    CHECK(svc.addQuotationLine(f.quotationId, "SVC-0002", 200).ok);  // 200 * 450000 = 90,000,000
-    CHECK(svc.setQuotationStatus(f.quotationId, QuotationStatus::DaGui).ok);
-    CHECK(svc.setQuotationStatus(f.quotationId, QuotationStatus::DaChapNhan).ok);
-    f.bookingId = svc.createBooking(f.quotationId, hallId, s, e, 200).id;
+    f.bookingId = svc.createBooking(f.requestId, hallId, s, e, 200).id;
     CHECK(!f.bookingId.empty());
     CHECK(svc.confirmBooking(f.bookingId).ok);
-    f.contractId = svc.createContract(f.bookingId).id;
-    CHECK(!f.contractId.empty());
+    const Event* ev = svc.findEventByBooking(f.bookingId);
+    CHECK(ev != nullptr);
+    if (ev) f.eventId = ev->id();
     return f;
 }
 
@@ -83,9 +80,7 @@ int main() {
         PalaceService svc2(storage2);
         CHECK(svc2.findCustomer(f.customerId) != nullptr);
         CHECK(svc2.findRequest(f.requestId) != nullptr);
-        CHECK(svc2.findQuotation(f.quotationId) != nullptr);
         CHECK(svc2.findBooking(f.bookingId) != nullptr);
-        CHECK(svc2.findContract(f.contractId) != nullptr);
         CHECK(svc2.findEventByBooking(f.bookingId) != nullptr);
         CHECK(fs::exists(dir / "data" / "users.json"));
         CHECK(fs::exists(dir / "data" / "customers.json"));
@@ -130,65 +125,63 @@ int main() {
         // Cùng sảnh, cùng giờ -> phải thất bại.
         auto r = svc.addRequest(b1.customerId, EventType::HoiNghi, "Trùng", s, e, 50, "");
         CHECK(r.ok);
-        auto q = svc.createQuotation(r.id, "");
-        CHECK(q.ok);
-        CHECK(svc.addQuotationLine(q.id, "SVC-0003", 50).ok);
-        auto bk = svc.createBooking(q.id, "HAL-0001", s, e, 50);
+        auto bk = svc.createBooking(r.id, "HAL-0001", s, e, 50);
         CHECK(!bk.ok);
         // Sảnh khác thì được.
-        auto bk2 = svc.createBooking(q.id, "HAL-0002", s, e, 50);
+        auto bk2 = svc.createBooking(r.id, "HAL-0002", s, e, 50);
         CHECK(bk2.ok);
         // Hủy booking 1 thì sảnh 1 lại trống.
         CHECK(svc.cancelBooking(b1.bookingId, "test").ok);
-        auto bk3 = svc.createBooking(q.id, "HAL-0001", s, e, 50);
+        auto bk3 = svc.createBooking(r.id, "HAL-0001", s, e, 50);
         CHECK(bk3.ok);
     }
 
-    cout << "== 5. Tính toán báo giá và chiết khấu ==\n";
+    cout << "== 5. Ràng buộc sảnh và yêu cầu khi tạo booking ==\n";
     {
-        auto dir = makeTempDir("quote");
+        auto dir = makeTempDir("validate");
         JsonStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
+        svc.login("admin", "123456");
+        CHECK(!svc.addHall("", 100).ok);        // tên sảnh bắt buộc
+        CHECK(!svc.addHall("Sảnh X", 0).ok);    // sức chứa > 0
+        string hall = svc.addHall("Sảnh Test", 100).id;
+        CHECK(!hall.empty());
+        svc.logout();
         svc.login("kinhdoanh", "123456");
         string cus = svc.addCustomer("C", "0933111222", "", "", "").id;
         string req = svc.addRequest(cus, EventType::TiecCuoi, "T", dt("2027-08-01 18:00"),
-                                         dt("2027-08-01 22:00"), 250, "").id;
-        string q = svc.createQuotation(req, "").id;
-        CHECK(svc.addQuotationLine(q, "SVC-0001", 1).ok);   // 25,000,000
-        CHECK(svc.addQuotationLine(q, "SVC-0002", 250).ok); // 112,500,000
-        const Quotation* quo = svc.findQuotation(q);
-        CHECK(quo != nullptr);
-        CHECK(quo->subtotal() == 137500000);
-        int expectDisc = discountPercentForSubtotal(137500000);
-        CHECK(quo->discountPercent() == expectDisc);
-        int64_t expectTotal = quo->subtotal() - quo->discountAmount();
-        CHECK(quo->total() == expectTotal);
-        // Cập nhật số lượng phải tính lại tổng.
-        CHECK(svc.updateQuotationLine(q, 1, 200).ok);
-        quo = svc.findQuotation(q);
-        CHECK(quo->subtotal() == 25'000'000 + 90'000'000);
+                                    dt("2027-08-01 22:00"), 80, "").id;
+        CHECK(!svc.createBooking("REQ-KHONG-TON-TAI", hall,
+                                 dt("2027-08-01 18:00"), dt("2027-08-01 22:00"), 80).ok);
+        CHECK(!svc.createBooking(req, hall,
+                                 dt("2027-08-01 18:00"), dt("2027-08-01 22:00"), 150).ok);  // vượt sức chứa
+        CHECK(!svc.createBooking(req, "HAL-KHONG-TON-TAI",
+                                 dt("2027-08-01 18:00"), dt("2027-08-01 22:00"), 80).ok);
+        // Yêu cầu đã hủy thì không tạo được booking.
+        CHECK(svc.updateRequestStatus(req, RequestStatus::Huy).ok);
+        CHECK(!svc.createBooking(req, hall,
+                                 dt("2027-08-01 18:00"), dt("2027-08-01 22:00"), 80).ok);
     }
 
-    cout << "== 6. Thanh toán vượt công nợ bị từ chối ==\n";
+    cout << "== 6. Ghi nhận thanh toán trên booking ==\n";
     {
         auto dir = makeTempDir("pay");
         JsonStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         auto f = runFullFlow(svc, "PAY", "HAL-0001");
-        svc.logout();
-        CHECK(svc.login("ketoan", "123456").ok);
-        const Contract* c = svc.findContract(f.contractId);
-        CHECK(c != nullptr);
-        CHECK(svc.recordPayment(f.contractId, c->totalAmount(), PaymentMethod::ChuyenKhoan, "").ok);
-        CHECK(!svc.recordPayment(f.contractId, 1, PaymentMethod::TienMat, "").ok);  // vượt số dư
-        CHECK(svc.paidAmount(f.contractId) == c->totalAmount());
-        CHECK(svc.outstanding(f.contractId) == 0);
-        // Số tiền <= 0 bị từ chối.
-        string c2 = runFullFlow(svc, "PAY2", "HAL-0002").contractId;
-        CHECK(!svc.recordPayment(c2, 0, PaymentMethod::TienMat, "").ok);
-        CHECK(!svc.recordPayment(c2, -5000, PaymentMethod::TienMat, "").ok);
+        // Ghi chú là bắt buộc.
+        CHECK(!svc.recordPayment(f.bookingId, 1000000, PaymentMethod::ChuyenKhoan, "").ok);
+        CHECK(!svc.recordPayment(f.bookingId, 0, PaymentMethod::TienMat, "Cọc").ok);
+        CHECK(!svc.recordPayment(f.bookingId, -5000, PaymentMethod::TienMat, "Cọc").ok);
+        CHECK(svc.recordPayment(f.bookingId, 10000000, PaymentMethod::ChuyenKhoan, "Đặt cọc lần 1").ok);
+        CHECK(svc.recordPayment(f.bookingId, 5000000, PaymentMethod::TienMat, "Đặt cọc lần 2").ok);
+        CHECK(svc.paidAmount(f.bookingId) == 15000000);
+        CHECK(svc.paymentsOf(f.bookingId).size() == 2);
+        // Booking đã hủy thì không thu tiền.
+        CHECK(svc.cancelBooking(f.bookingId, "test").ok);
+        CHECK(!svc.recordPayment(f.bookingId, 1000000, PaymentMethod::TienMat, "Thu thêm").ok);
     }
 
     cout << "== 7. Chuyển trạng thái nghiệp vụ ==\n";
@@ -198,22 +191,19 @@ int main() {
         storage.load();
         PalaceService svc(storage);
         auto f = runFullFlow(svc, "ST", "HAL-0001");
-        // Hợp đồng từ booking đã hủy phải thất bại.
+        // Xác nhận 2 lần phải thất bại; hủy rồi xác nhận cũng thất bại.
+        CHECK(!svc.confirmBooking(f.bookingId).ok);
+        CHECK(svc.cancelBooking(f.bookingId, "khách đổi ý").ok);
+        CHECK(!svc.confirmBooking(f.bookingId).ok);
+        // Hủy booking thì sự kiện vận hành cũng bị hủy theo.
+        const Event* ev = svc.findEventByBooking(f.bookingId);
+        CHECK(ev != nullptr && ev->status() == EventStatus::Huy);
+        // Booking nháp (chưa xác nhận) vẫn hủy được.
         string req2 = svc.addRequest(f.customerId, EventType::Khac, "T2", dt("2027-09-01 18:00"),
-                                          dt("2027-09-01 22:00"), 100, "").id;
-        string q2 = svc.createQuotation(req2, "").id;
-        CHECK(svc.addQuotationLine(q2, "SVC-0001", 1).ok);
-        auto bk2 = svc.createBooking(q2, "HAL-0002", dt("2027-09-01 18:00"), dt("2027-09-01 22:00"), 100);
+                                     dt("2027-09-01 22:00"), 100, "").id;
+        auto bk2 = svc.createBooking(req2, "HAL-0002", dt("2027-09-01 18:00"), dt("2027-09-01 22:00"), 100);
         CHECK(bk2.ok);
         CHECK(svc.cancelBooking(bk2.id, "khách đổi ý").ok);
-        CHECK(!svc.createContract(bk2.id).ok);
-        // Booking chưa xác nhận thì không lập được hợp đồng.
-        auto bk3 = svc.createBooking(q2, "HAL-0003", dt("2027-09-02 18:00"), dt("2027-09-02 22:00"), 100);
-        if (bk3.ok) {
-            CHECK(!svc.createContract(bk3.id).ok);  // chưa xác nhận
-            CHECK(svc.confirmBooking(bk3.id).ok);
-            CHECK(svc.createContract(bk3.id).ok);
-        }
     }
 
     cout << "== 8. Phân quyền ==\n";
@@ -225,7 +215,7 @@ int main() {
         CHECK(!svc.can(Action::ManageCustomers));  // chưa đăng nhập
         CHECK(svc.login("kinhdoanh", "123456").ok);
         CHECK(svc.can(Action::ManageCustomers));
-        CHECK(!svc.can(Action::ManagePayments));
+        CHECK(svc.can(Action::ManagePayments));  // sales ghi nhận thanh toán (đặc tả B.3)
         CHECK(!svc.can(Action::ManageUsers));
         CHECK(svc.addCustomer("X", "0988123456", "", "", "").ok);  // kinhdoanh được phép
         svc.logout();
@@ -234,6 +224,8 @@ int main() {
         CHECK(svc.can(Action::ManagePayments));
         CHECK(!svc.addCustomer("Y", "0988123457", "", "", "").ok);  // kế toán không được thêm khách
         CHECK(svc.login("dieuphoi", "123456").ok);
+        CHECK(svc.can(Action::ManageOperations));
+        CHECK(!svc.can(Action::ManageBookings));
         svc.logout();
         CHECK(!svc.can(Action::ManagePayments));
         CHECK(!svc.login("dieuphoi", "saimatkhau").ok);
@@ -241,7 +233,7 @@ int main() {
         CHECK(svc.require(Action::ManagePayments).ok == false);
     }
 
-    cout << "== 9. Hoàn tất sự kiện khi còn sự cố ==\n";
+    cout << "== 9. Vận hành sự kiện ==\n";
     {
         auto dir = makeTempDir("ops");
         JsonStorage storage(dir / "data", dir / "backup");
@@ -252,13 +244,10 @@ int main() {
         CHECK(svc.login("dieuphoi", "123456").ok);
         const Event* ev = svc.findEventByBooking(f.bookingId);
         CHECK(ev != nullptr);
-        string taskId = svc.addTask(ev->id(), "Chuẩn bị sảnh", "Anh Bình", dt("2027-03-19 17:00")).id;
-        CHECK(!taskId.empty());
-        string inc = svc.addIncident(ev->id(), "Mất điện thử nghiệm").id;
-        CHECK(!inc.empty());
-        CHECK(!svc.completeEvent(ev->id()).ok);  // còn sự cố mở
-        CHECK(svc.resolveIncident(inc, "Đã chuyển điện dự phòng", IncidentStatus::DaXuLy).ok);
+        CHECK(svc.updateEventStatus(ev->id(), EventStatus::DangDienRa).ok);
+        CHECK(svc.setEventNotes(ev->id(), "Âm thanh ánh sáng OK").ok);
         CHECK(svc.completeEvent(ev->id()).ok);
+        CHECK(svc.findEvent(ev->id())->status() == EventStatus::HoanTat);
     }
 
     cout << "== 10. JSON sai định dạng không làm mất dữ liệu ==\n";

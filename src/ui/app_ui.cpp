@@ -132,19 +132,12 @@ const vector<NavigationEntry>& navigationEntries()
     static const vector<NavigationEntry> entries{
         {Action::ManageCustomers, "Khách hàng", "customers"},
         {Action::ManageRequests, "Yêu cầu sự kiện", "requests"},
-        {Action::ManageVenues, "Trung tâm", "centers"},
         {Action::ManageVenues, "Sảnh", "halls"},
         {Action::ManageVenues, "Dịch vụ", "services"},
         {Action::LookupHalls, "Tra cứu sảnh trống", "lookup"},
-        {Action::ManageQuotations, "Báo giá", "quotations"},
         {Action::ManageBookings, "Booking", "bookings"},
-        {Action::ManageContracts, "Hợp đồng", "contracts"},
         {Action::ManagePayments, "Thanh toán", "payments"},
         {Action::ManageOperations, "Sự kiện vận hành", "events"},
-        {Action::ManageOperations, "Nhiệm vụ", "tasks"},
-        {Action::ManageOperations, "Sự cố", "incidents"},
-        {Action::ViewReports, "Báo cáo", "reports"},
-        {Action::ViewAudit, "Nhật ký hệ thống", "audit"},
         {Action::ManageUsers, "Người dùng", "users"},
     };
     return entries;
@@ -178,11 +171,6 @@ private:
     QLabel* userLabel_ = nullptr;
     QLabel* pageTitle_ = nullptr;
     QLineEdit* search_ = nullptr;
-    QWidget* reportControlsWidget_ = nullptr;
-    QComboBox* reportType_ = nullptr;
-    QLineEdit* reportFrom_ = nullptr;
-    QLineEdit* reportTo_ = nullptr;
-    QLineEdit* reportStatus_ = nullptr;
     QTableWidget* table_ = nullptr;
     QHBoxLayout* actionLayout_ = nullptr;
     QString screen_;
@@ -353,25 +341,6 @@ private:
         controls->addWidget(refresh);
         layout->addLayout(controls);
 
-        reportControlsWidget_ = new QWidget(page);
-        auto* reportControls = new QHBoxLayout(reportControlsWidget_);
-        reportControls->setContentsMargins(0, 0, 0, 0);
-        reportType_ = new QComboBox(page);
-        reportType_->addItems({"Sự kiện theo ngày và trạng thái", "Sự kiện sắp diễn ra",
-                               "Tình trạng sử dụng sảnh", "Tổng hợp tài chính",
-                               "Công nợ phải thu", "Nhiệm vụ và sự cố"});
-        reportFrom_ = new QLineEdit("2026-01-01 00:00", page);
-        reportTo_ = new QLineEdit("2026-12-31 23:59", page);
-        reportStatus_ = new QLineEdit("TatCa", page);
-        reportFrom_->setPlaceholderText("Từ ngày YYYY-MM-DD HH:MM");
-        reportTo_->setPlaceholderText("Đến ngày YYYY-MM-DD HH:MM");
-        reportStatus_->setPlaceholderText("Trạng thái (hoặc TatCa)");
-        reportControls->addWidget(reportType_);
-        reportControls->addWidget(reportFrom_);
-        reportControls->addWidget(reportTo_);
-        reportControls->addWidget(reportStatus_);
-        layout->addWidget(reportControlsWidget_);
-
         table_ = makeTable({}, {}, page);
         layout->addWidget(table_, 1);
         actionLayout_ = new QHBoxLayout;
@@ -382,8 +351,6 @@ private:
                 this, [this](int index) { setScreen(index); });
         connect(refresh, &QPushButton::clicked, this, [this]() { refreshTable(); });
         connect(search_, &QLineEdit::returnPressed, this, [this]() { refreshTable(); });
-        connect(reportType_, qOverload<int>(&QComboBox::currentIndexChanged),
-                this, [this](int) { if (screen_ == "reports") refreshTable(); });
         connect(logout, &QPushButton::clicked, this, [this]() {
             service_.logout();
             root_->setCurrentWidget(loginPage_);
@@ -427,7 +394,6 @@ private:
         screen_ = navigation_->itemData(index).toString();
         pageTitle_->setText(navigation_->currentText());
         search_->setVisible(screen_ == "customers");
-        reportControlsWidget_->setVisible(screen_ == "reports");
         refreshTable();
         addActions();
     }
@@ -436,28 +402,12 @@ private:
     {
         if (screen_ == "customers") return {"Mã", "Tên", "Điện thoại", "Email", "Địa chỉ"};
         if (screen_ == "requests") return {"Mã", "Khách hàng", "Loại", "Tiêu đề", "Bắt đầu", "Số khách", "Trạng thái"};
-        if (screen_ == "centers") return {"Mã trung tâm", "Tên trung tâm", "Địa chỉ", "Hoạt động"};
-        if (screen_ == "halls") return {"Mã sảnh", "Tên sảnh", "Mã trung tâm", "Sức chứa", "Hoạt động"};
+        if (screen_ == "halls") return {"Mã sảnh", "Tên sảnh", "Sức chứa", "Hoạt động"};
         if (screen_ == "services") return {"Mã dịch vụ", "Tên dịch vụ", "Đơn vị", "Đơn giá", "Nhóm", "Hoạt động"};
-        if (screen_ == "lookup") return {"Mã sảnh", "Tên sảnh", "Trung tâm", "Sức chứa"};
-        if (screen_ == "quotations") return {"Mã", "Yêu cầu", "Tạm tính", "Chiết khấu", "Tổng", "Trạng thái"};
+        if (screen_ == "lookup") return {"Mã sảnh", "Tên sảnh", "Sức chứa"};
         if (screen_ == "bookings") return {"Mã", "Sảnh", "Bắt đầu", "Kết thúc", "Số khách", "Trạng thái"};
-        if (screen_ == "contracts") return {"Mã", "Số hợp đồng", "Booking", "Giá trị", "Đã thu", "Còn lại", "Trạng thái"};
-        if (screen_ == "payments") return {"Mã", "Hợp đồng", "Số tiền", "Thời điểm", "Hình thức", "Ghi chú"};
+        if (screen_ == "payments") return {"Mã", "Booking", "Số tiền", "Thời điểm", "Hình thức", "Ghi chú"};
         if (screen_ == "events") return {"Mã sự kiện", "Booking", "Sảnh", "Khách hàng", "Bắt đầu", "Kết thúc", "Trạng thái", "Ghi chú"};
-        if (screen_ == "tasks") return {"Mã nhiệm vụ", "Sự kiện", "Tiêu đề", "Phụ trách", "Hạn hoàn thành", "Trạng thái", "Ghi chú"};
-        if (screen_ == "incidents") return {"Mã sự cố", "Sự kiện", "Mô tả", "Trạng thái", "Cách xử lý", "Ghi nhận"};
-        if (screen_ == "reports") {
-            switch (reportType_->currentIndex()) {
-                case 0: return {"Mã sự kiện", "Bắt đầu", "Khách hàng", "Sảnh", "Trạng thái"};
-                case 1: return {"Mã sự kiện", "Bắt đầu", "Khách hàng", "Trạng thái"};
-                case 2: return {"Mã sảnh", "Tên sảnh", "Sức chứa", "Trạng thái", "Booking hiệu lực", "Đã hủy"};
-                case 3: return {"Số hợp đồng", "Giá trị", "Đã thu", "Còn lại", "Trạng thái"};
-                case 4: return {"Số hợp đồng", "Khách hàng", "Còn nợ"};
-                default: return {"Mã sự kiện", "Trạng thái", "Cần làm", "Đang làm", "Hoàn thành", "Sự cố mở"};
-            }
-        }
-        if (screen_ == "audit") return {"Thời điểm", "Người dùng", "Hành động", "Chi tiết"};
         if (screen_ == "users") return {"Mã", "Tài khoản", "Họ tên", "Vai trò", "Hoạt động"};
         return {};
     }
@@ -477,13 +427,9 @@ private:
                                  toString(request.type()), request.title(), request.start().toString(),
                                  to_string(request.guestCount()), toString(request.status())});
             }
-        } else if (screen_ == "centers") {
-            for (const Center& center : db.centers) {
-                appendRow(rows, {center.id(), center.name(), center.address(), center.active() ? "Có" : "Không"});
-            }
         } else if (screen_ == "halls") {
             for (const Hall& hall : db.halls) {
-                appendRow(rows, {hall.id(), hall.name(), hall.centerId(),
+                appendRow(rows, {hall.id(), hall.name(),
                                  to_string(hall.capacity()), hall.active() ? "Có" : "Không"});
             }
         } else if (screen_ == "services") {
@@ -493,26 +439,14 @@ private:
             }
         } else if (screen_ == "lookup") {
             // Results are populated only after an explicit availability search.
-        } else if (screen_ == "quotations") {
-            for (const Quotation& quotation : db.quotations) {
-                appendRow(rows, {quotation.id(), quotation.requestId(), formatMoney(quotation.subtotal()),
-                                 to_string(quotation.discountPercent()) + "% (-" + formatMoney(quotation.discountAmount()) + ")",
-                                 formatMoney(quotation.total()), toString(quotation.status())});
-            }
         } else if (screen_ == "bookings") {
             for (const Booking& booking : db.bookings) {
                 appendRow(rows, {booking.id(), booking.hallId(), booking.start().toString(), booking.end().toString(),
                                  to_string(booking.guestCount()), toString(booking.status())});
             }
-        } else if (screen_ == "contracts") {
-            for (const Contract& contract : db.contracts) {
-                appendRow(rows, {contract.id(), contract.contractNo(), contract.bookingId(),
-                                 formatMoney(contract.totalAmount()), formatMoney(service_.paidAmount(contract.id())),
-                                 formatMoney(service_.outstanding(contract.id())), toString(contract.status())});
-            }
         } else if (screen_ == "payments") {
             for (const Payment& payment : db.payments) {
-                appendRow(rows, {payment.id(), payment.contractId(), formatMoney(payment.amount()),
+                appendRow(rows, {payment.id(), payment.bookingId(), formatMoney(payment.amount()),
                                  payment.paidAt().toString(), toString(payment.method()), payment.note()});
             }
         } else if (screen_ == "events") {
@@ -522,36 +456,6 @@ private:
                                  customer ? customer->name() : event.customerId(),
                                  event.start().toString(), event.end().toString(),
                                  toString(event.status()), event.specialNotes()});
-            }
-        } else if (screen_ == "tasks") {
-            for (const OperationTask& task : db.tasks) {
-                appendRow(rows, {task.id(), task.eventId(), task.title(), task.assignee(),
-                                 task.due().toString(), toString(task.status()), task.note()});
-            }
-        } else if (screen_ == "incidents") {
-            for (const Incident& incident : db.incidents) {
-                appendRow(rows, {incident.id(), incident.eventId(), incident.description(),
-                                 toString(incident.status()), incident.resolution(),
-                                 incident.createdAt().toString()});
-            }
-        } else if (screen_ == "reports") {
-            vector<ReportRow> report;
-            switch (reportType_->currentIndex()) {
-                case 0: report = service_.reportEventsByDateStatus(
-                            reportFrom_->text().toStdString(), reportTo_->text().toStdString(),
-                            reportStatus_->text() == "TatCa"
-                                ? string{}
-                                : reportStatus_->text().toStdString()); break;
-                case 1: report = service_.reportUpcoming(); break;
-                case 2: report = service_.reportHallUsage(); break;
-                case 3: report = service_.reportFinance(); break;
-                case 4: report = service_.reportDebt(); break;
-                default: report = service_.reportOps(); break;
-            }
-            for (const ReportRow& entry : report) rows.push_back(entry.cells);
-        } else if (screen_ == "audit") {
-            for (const AuditLog& log : db.logs) {
-                appendRow(rows, {log.at().toString(), log.username(), log.action(), log.detail()});
             }
         } else if (screen_ == "users") {
             for (const User& user : db.users) {
@@ -565,19 +469,6 @@ private:
     void refreshTable()
     {
         if (!table_ || screen_.isEmpty()) return;
-        if (screen_ == "reports" && reportType_->currentIndex() == 0) {
-            if (!DateTime::parse(reportFrom_->text().toStdString()) ||
-                !DateTime::parse(reportTo_->text().toStdString())) {
-                showError("Khoảng thời gian báo cáo không hợp lệ. Dùng định dạng YYYY-MM-DD HH:MM.");
-                return;
-            }
-            const QString status = reportStatus_->text();
-            if (!status.isEmpty() &&
-                !isOneOf(status, {"TatCa", "ChuanBi", "DangDienRa", "HoanTat", "Huy"})) {
-                showError("Trạng thái báo cáo không hợp lệ.");
-                return;
-            }
-        }
         const Rows rows = getRows();
         QTableWidget* replacement = makeTable(tableHeaders(), rows, workspacePage_);
         auto* layout = qobject_cast<QVBoxLayout*>(workspacePage_->layout());
@@ -608,10 +499,6 @@ private:
             addActionButton(layout, "Tiếp nhận yêu cầu", [this]() { addRequest(); });
             addActionButton(layout, "Đánh dấu đã báo giá", [this]() { setRequestStatus(RequestStatus::DaBaoGia); });
             addActionButton(layout, "Hủy yêu cầu", [this]() { setRequestStatus(RequestStatus::Huy); });
-        } else if (screen_ == "centers") {
-            addActionButton(layout, "Thêm trung tâm", [this]() { addCenter(); });
-            addActionButton(layout, "Sửa trung tâm", [this]() { editCenter(); });
-            addActionButton(layout, "Bật / tắt trung tâm", [this]() { toggleCenter(); });
         } else if (screen_ == "halls") {
             addActionButton(layout, "Thêm sảnh", [this]() { addHall(); });
             addActionButton(layout, "Sửa sảnh", [this]() { editHall(); });
@@ -622,29 +509,14 @@ private:
             addActionButton(layout, "Bật / tắt dịch vụ", [this]() { toggleService(); });
         } else if (screen_ == "lookup") {
             addActionButton(layout, "Tra cứu theo thời gian", [this]() { lookupHalls(); });
-        } else if (screen_ == "quotations") {
-            addActionButton(layout, "Tạo báo giá", [this]() { createQuotation(); });
-            addActionButton(layout, "Thêm dịch vụ vào báo giá đã chọn", [this]() { addQuotationLine(); });
-            addActionButton(layout, "Gửi báo giá đã chọn", [this]() { setQuotationStatus(QuotationStatus::DaGui); });
-            addActionButton(layout, "Khách chấp nhận báo giá", [this]() { setQuotationStatus(QuotationStatus::DaChapNhan); });
         } else if (screen_ == "bookings") {
             addActionButton(layout, "Tạo booking", [this]() { createBooking(); });
             addActionButton(layout, "Xác nhận booking", [this]() { changeBookingStatus(true); });
             addActionButton(layout, "Hủy booking", [this]() { changeBookingStatus(false); });
-        } else if (screen_ == "contracts") {
-            addActionButton(layout, "Lập hợp đồng từ booking", [this]() { createContract(); });
         } else if (screen_ == "payments") {
             addActionButton(layout, "Ghi nhận thanh toán", [this]() { recordPayment(); });
         } else if (screen_ == "events") {
             addActionButton(layout, "Cập nhật sự kiện", [this]() { operateOnSelection(); });
-        } else if (screen_ == "tasks") {
-            addActionButton(layout, "Cập nhật nhiệm vụ", [this]() { operateOnSelection(); });
-            addActionButton(layout, "Thêm nhiệm vụ", [this]() { addTask(); });
-        } else if (screen_ == "incidents") {
-            addActionButton(layout, "Xử lý sự cố", [this]() { operateOnSelection(); });
-            addActionButton(layout, "Ghi nhận sự cố", [this]() { addIncident(); });
-        } else if (screen_ == "reports") {
-            addActionButton(layout, "Cập nhật báo cáo", [this]() { refreshTable(); });
         } else if (screen_ == "users") {
             addActionButton(layout, "Tạo người dùng", [this]() { createUser(); });
             addActionButton(layout, "Khóa / mở khóa", [this]() { toggleUser(); });
@@ -706,21 +578,14 @@ private:
         notify(service_.updateRequestStatus(id.toStdString(), status));
     }
 
-    void addCenter()
-    {
-        const auto values = promptFields(this, "Thêm trung tâm", {"Tên trung tâm", "Địa chỉ"});
-        if (!values) return;
-        notify(service_.addCenter((*values)[0].toStdString(), (*values)[1].toStdString()));
-    }
-
     void addHall()
     {
-        const auto values = promptFields(this, "Thêm sảnh", {"Mã trung tâm", "Tên sảnh", "Sức chứa"},
-                                         {"CTR-0001", "", "200"});
+        const auto values = promptFields(this, "Thêm sảnh", {"Tên sảnh", "Sức chứa"},
+                                         {"", "200"});
         if (!values) return;
-        const auto capacity = parseInt((*values)[2].toStdString());
+        const auto capacity = parseInt((*values)[1].toStdString());
         if (!capacity) { showError("Sức chứa không hợp lệ."); return; }
-        notify(service_.addHall((*values)[0].toStdString(), (*values)[1].toStdString(), *capacity));
+        notify(service_.addHall((*values)[0].toStdString(), *capacity));
     }
 
     void addService()
@@ -733,21 +598,6 @@ private:
         if (!price) { showError("Đơn giá không hợp lệ."); return; }
         notify(service_.addService((*values)[0].toStdString(), (*values)[1].toStdString(),
                                    *price, (*values)[3].toStdString()));
-    }
-
-    void editCenter()
-    {
-        const QString id = selectedValue();
-        const Center* selected = nullptr;
-        for (const Center& center : service_.db().centers) {
-            if (center.id() == id.toStdString()) { selected = &center; break; }
-        }
-        if (!selected) { showError("Hãy chọn trung tâm trong bảng."); return; }
-        const auto values = promptFields(this, "Cập nhật trung tâm", {"Tên trung tâm", "Địa chỉ"},
-                                         {qstr(selected->name()), qstr(selected->address())});
-        if (!values) return;
-        notify(service_.updateCenter(selected->id(), (*values)[0].toStdString(),
-                                     (*values)[1].toStdString(), selected->active()));
     }
 
     void editHall()
@@ -781,18 +631,6 @@ private:
                                       (*values)[3].toStdString(), item->active()));
     }
 
-    void toggleCenter()
-    {
-        const QString id = selectedValue();
-        for (const Center& center : service_.db().centers) {
-            if (center.id() == id.toStdString()) {
-                notify(service_.updateCenter(center.id(), center.name(), center.address(), !center.active()));
-                return;
-            }
-        }
-        showError("Hãy chọn trung tâm trong bảng.");
-    }
-
     void toggleHall()
     {
         const QString id = selectedValue();
@@ -822,11 +660,7 @@ private:
         if (!guests) { showError("Số lượng khách không hợp lệ."); return; }
         Rows rows;
         for (const Hall& hall : service_.findAvailableHalls(start, end, *guests, "")) {
-            string centerName = hall.centerId();
-            for (const Center& center : service_.db().centers) {
-                if (center.id() == hall.centerId()) { centerName = center.name(); break; }
-            }
-            appendRow(rows, {hall.id(), hall.name(), centerName, to_string(hall.capacity())});
+            appendRow(rows, {hall.id(), hall.name(), to_string(hall.capacity())});
         }
         QTableWidget* replacement = makeTable(tableHeaders(), rows, workspacePage_);
         auto* layout = qobject_cast<QVBoxLayout*>(workspacePage_->layout());
@@ -836,36 +670,10 @@ private:
         statusBar()->showMessage(QString("Tìm thấy %1 sảnh phù hợp").arg(rows.size()), 5000);
     }
 
-    void createQuotation()
-    {
-        const auto values = promptFields(this, "Tạo báo giá", {"Mã yêu cầu", "Ghi chú"});
-        if (!values) return;
-        notify(service_.createQuotation((*values)[0].toStdString(), (*values)[1].toStdString()));
-    }
-
-    void addQuotationLine()
-    {
-        const QString id = selectedValue();
-        if (id.isEmpty()) { showError("Hãy chọn báo giá cần cập nhật."); return; }
-        const auto values = promptFields(this, "Thêm dòng dịch vụ",
-                                         {"Mã dịch vụ", "Số lượng"}, {"", "1"});
-        if (!values) return;
-        const auto quantity = parseInt((*values)[1].toStdString());
-        if (!quantity) { showError("Số lượng không hợp lệ."); return; }
-        notify(service_.addQuotationLine(id.toStdString(), (*values)[0].toStdString(), *quantity));
-    }
-
-    void setQuotationStatus(QuotationStatus status)
-    {
-        const QString id = selectedValue();
-        if (id.isEmpty()) { showError("Hãy chọn báo giá trong bảng."); return; }
-        notify(service_.setQuotationStatus(id.toStdString(), status));
-    }
-
     void createBooking()
     {
-        const auto values = promptFields(this, "Tạo booking",
-            {"Mã báo giá", "Mã sảnh", "Bắt đầu (YYYY-MM-DD HH:MM)",
+        const auto values = promptFields(this, "Tạo booking từ yêu cầu",
+            {"Mã yêu cầu", "Mã sảnh", "Bắt đầu (YYYY-MM-DD HH:MM)",
              "Kết thúc (YYYY-MM-DD HH:MM)", "Số lượng khách"},
             {"", "", "2026-12-20 18:00", "2026-12-20 22:00", "100"});
         if (!values) return;
@@ -890,17 +698,10 @@ private:
         notify(service_.cancelBooking(id.toStdString(), (*values)[0].toStdString()));
     }
 
-    void createContract()
-    {
-        const auto values = promptFields(this, "Lập hợp đồng", {"Mã booking"});
-        if (!values) return;
-        notify(service_.createContract((*values)[0].toStdString()));
-    }
-
     void recordPayment()
     {
         const auto values = promptFields(this, "Ghi nhận thanh toán",
-            {"Mã hợp đồng", "Số tiền (VND)", "Hình thức (TienMat/ChuyenKhoan/The)", "Ghi chú"},
+            {"Mã booking", "Số tiền (VND)", "Hình thức (TienMat/ChuyenKhoan/The)", "Ghi chú"},
             {"", "1000000", "ChuyenKhoan", ""});
         if (!values) return;
         if (!isOneOf((*values)[2], {"TienMat", "ChuyenKhoan", "The"})) {
@@ -934,43 +735,7 @@ private:
                 result = service_.setEventNotes(id.toStdString(), (*values)[1].toStdString());
             }
             notify(result);
-        } else if (screen_ == "tasks") {
-            const auto values = promptFields(this, "Cập nhật nhiệm vụ",
-                {"Trạng thái (CanLam/DangLam/HoanThanh)", "Ghi chú"},
-                {"DangLam", ""});
-            if (!values) return;
-            if (!isOneOf((*values)[0], {"CanLam", "DangLam", "HoanThanh"})) {
-                showError("Trạng thái nhiệm vụ không hợp lệ.");
-                return;
-            }
-            notify(service_.updateTaskStatus(id.toStdString(),
-                taskStatusFromString((*values)[0].toStdString()), (*values)[1].toStdString()));
-        } else if (screen_ == "incidents") {
-            const auto values = promptFields(this, "Xử lý sự cố", {"Cách xử lý"});
-            if (!values) return;
-            notify(service_.resolveIncident(id.toStdString(), (*values)[0].toStdString(),
-                                             IncidentStatus::DaXuLy));
         }
-    }
-
-    void addTask()
-    {
-        const auto values = promptFields(this, "Thêm nhiệm vụ",
-            {"Mã sự kiện", "Tiêu đề", "Người phụ trách", "Hạn hoàn thành (YYYY-MM-DD HH:MM)"},
-            {"", "", "", "2026-12-19 17:00"});
-        if (!values) return;
-        const auto due = DateTime::parse((*values)[3].toStdString());
-        if (!due) { showError("Hạn hoàn thành không hợp lệ."); return; }
-        notify(service_.addTask((*values)[0].toStdString(), (*values)[1].toStdString(),
-                                (*values)[2].toStdString(), *due));
-    }
-
-    void addIncident()
-    {
-        const auto values = promptFields(this, "Ghi nhận sự cố",
-                                         {"Mã sự kiện", "Mô tả sự cố"});
-        if (!values) return;
-        notify(service_.addIncident((*values)[0].toStdString(), (*values)[1].toStdString()));
     }
 
     void createUser()

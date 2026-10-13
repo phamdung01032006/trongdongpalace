@@ -36,16 +36,6 @@ string toString(RequestStatus v) {
     return "TiepNhan";
 }
 
-string toString(QuotationStatus v) {
-    switch (v) {
-        case QuotationStatus::Nhat: return "Nhat";
-        case QuotationStatus::DaGui: return "DaGui";
-        case QuotationStatus::DaChapNhan: return "DaChapNhan";
-        case QuotationStatus::TuChoi: return "TuChoi";
-    }
-    return "Nhat";
-}
-
 string toString(BookingStatus v) {
     switch (v) {
         case BookingStatus::Nhat: return "Nhat";
@@ -53,15 +43,6 @@ string toString(BookingStatus v) {
         case BookingStatus::DaHuy: return "DaHuy";
     }
     return "Nhat";
-}
-
-string toString(ContractStatus v) {
-    switch (v) {
-        case ContractStatus::HieuLuc: return "HieuLuc";
-        case ContractStatus::HoanTat: return "HoanTat";
-        case ContractStatus::Huy: return "Huy";
-    }
-    return "HieuLuc";
 }
 
 string toString(EventStatus v) {
@@ -72,24 +53,6 @@ string toString(EventStatus v) {
         case EventStatus::Huy: return "Huy";
     }
     return "ChuanBi";
-}
-
-string toString(TaskStatus v) {
-    switch (v) {
-        case TaskStatus::CanLam: return "CanLam";
-        case TaskStatus::DangLam: return "DangLam";
-        case TaskStatus::HoanThanh: return "HoanThanh";
-    }
-    return "CanLam";
-}
-
-string toString(IncidentStatus v) {
-    switch (v) {
-        case IncidentStatus::Mo: return "Mo";
-        case IncidentStatus::DangXuLy: return "DangXuLy";
-        case IncidentStatus::DaXuLy: return "DaXuLy";
-    }
-    return "Mo";
 }
 
 string toString(PaymentMethod v) {
@@ -124,23 +87,10 @@ RequestStatus requestStatusFromString(const string& s) {
     return RequestStatus::TiepNhan;
 }
 
-QuotationStatus quotationStatusFromString(const string& s) {
-    if (s == "DaGui") return QuotationStatus::DaGui;
-    if (s == "DaChapNhan") return QuotationStatus::DaChapNhan;
-    if (s == "TuChoi") return QuotationStatus::TuChoi;
-    return QuotationStatus::Nhat;
-}
-
 BookingStatus bookingStatusFromString(const string& s) {
     if (s == "DaXacNhan") return BookingStatus::DaXacNhan;
     if (s == "DaHuy") return BookingStatus::DaHuy;
     return BookingStatus::Nhat;
-}
-
-ContractStatus contractStatusFromString(const string& s) {
-    if (s == "HoanTat") return ContractStatus::HoanTat;
-    if (s == "Huy") return ContractStatus::Huy;
-    return ContractStatus::HieuLuc;
 }
 
 EventStatus eventStatusFromString(const string& s) {
@@ -148,18 +98,6 @@ EventStatus eventStatusFromString(const string& s) {
     if (s == "HoanTat") return EventStatus::HoanTat;
     if (s == "Huy") return EventStatus::Huy;
     return EventStatus::ChuanBi;
-}
-
-TaskStatus taskStatusFromString(const string& s) {
-    if (s == "DangLam") return TaskStatus::DangLam;
-    if (s == "HoanThanh") return TaskStatus::HoanThanh;
-    return TaskStatus::CanLam;
-}
-
-IncidentStatus incidentStatusFromString(const string& s) {
-    if (s == "DangXuLy") return IncidentStatus::DangXuLy;
-    if (s == "DaXuLy") return IncidentStatus::DaXuLy;
-    return IncidentStatus::Mo;
 }
 
 PaymentMethod paymentMethodFromString(const string& s) {

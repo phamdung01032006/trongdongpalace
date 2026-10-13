@@ -100,18 +100,13 @@ void JsonStorage::backupCurrentFiles() const {
 
 void JsonStorage::writeAllFiles(const Database& data) const {
     fs::create_directories(dataDir_);
-    nlohmann::json users = {{"users", dumpArray(data.users)}, {"logs", dumpArray(data.logs)}};
+    nlohmann::json users = {{"users", dumpArray(data.users)}};
     nlohmann::json customers = {{"customers", dumpArray(data.customers)}, {"requests", dumpArray(data.requests)}};
-    nlohmann::json venues = {{"centers", dumpArray(data.centers)},
-                             {"halls", dumpArray(data.halls)},
+    nlohmann::json venues = {{"halls", dumpArray(data.halls)},
                              {"services", dumpArray(data.services)}};
-    nlohmann::json transactions = {{"quotations", dumpArray(data.quotations)},
-                                   {"bookings", dumpArray(data.bookings)},
-                                   {"contracts", dumpArray(data.contracts)},
+    nlohmann::json transactions = {{"bookings", dumpArray(data.bookings)},
                                    {"payments", dumpArray(data.payments)}};
-    nlohmann::json events = {{"events", dumpArray(data.events)},
-                             {"tasks", dumpArray(data.tasks)},
-                             {"incidents", dumpArray(data.incidents)}};
+    nlohmann::json events = {{"events", dumpArray(data.events)}};
 
     writeJsonAtomic(filePath("users.json"), users);
     writeJsonAtomic(filePath("customers.json"), customers);
@@ -140,15 +135,11 @@ void JsonStorage::seedIfEmpty() {
     addUser(db_, "USR-0003", "ketoan", "Trần Thị Kế Toán", Role::Accountant);
     addUser(db_, "USR-0004", "dieuphoi", "Lê Văn Điều Phối", Role::Coordinator);
 
-    db_.centers.push_back(Center("CTR-0001", "Trống Đồng Palace Trần Đăng Ninh", "72 Trần Đăng Ninh, Cầu Giấy, Hà Nội", true));
-    db_.centers.push_back(Center("CTR-0002", "Trống Đồng Palace Hàng Cót", "40 Hàng Cót, Hoàn Kiếm, Hà Nội", true));
-    db_.centers.push_back(Center("CTR-0003", "Trống Đồng Palace Cảnh Hồ", "Hà Nội", true));
-
-    db_.halls.push_back(Hall("HAL-0001", "CTR-0001", "Sảnh Ruby", 250, true));
-    db_.halls.push_back(Hall("HAL-0002", "CTR-0001", "Sảnh Sapphire", 400, true));
-    db_.halls.push_back(Hall("HAL-0003", "CTR-0002", "Sảnh Jade", 180, true));
-    db_.halls.push_back(Hall("HAL-0004", "CTR-0003", "King 1+2", 800, true));
-    db_.halls.push_back(Hall("HAL-0005", "CTR-0003", "Queen 1", 280, true));
+    db_.halls.push_back(Hall("HAL-0001", "Sảnh Ruby", 250, true));
+    db_.halls.push_back(Hall("HAL-0002", "Sảnh Sapphire", 400, true));
+    db_.halls.push_back(Hall("HAL-0003", "Sảnh Jade", 180, true));
+    db_.halls.push_back(Hall("HAL-0004", "King 1+2", 800, true));
+    db_.halls.push_back(Hall("HAL-0005", "Queen 1", 280, true));
 
     db_.services.push_back(ServiceItem("SVC-0001", "Thuê sảnh buổi tối", "buổi", 25000000, "Sảnh", true));
     db_.services.push_back(ServiceItem("SVC-0002", "Thực đơn tiệc cưới", "khách", 450000, "Ẩm thực", true));
@@ -190,17 +181,11 @@ void JsonStorage::load() {
         loaded.users = loadArray<User>(users, "users");
         loaded.customers = loadArray<Customer>(customers, "customers");
         loaded.requests = loadArray<EventRequest>(customers, "requests");
-        loaded.centers = loadArray<Center>(venues, "centers");
         loaded.halls = loadArray<Hall>(venues, "halls");
         loaded.services = loadArray<ServiceItem>(venues, "services");
-        loaded.quotations = loadArray<Quotation>(transactions, "quotations");
         loaded.bookings = loadArray<Booking>(transactions, "bookings");
-        loaded.contracts = loadArray<Contract>(transactions, "contracts");
         loaded.payments = loadArray<Payment>(transactions, "payments");
         loaded.events = loadArray<Event>(events, "events");
-        loaded.tasks = loadArray<OperationTask>(events, "tasks");
-        loaded.incidents = loadArray<Incident>(events, "incidents");
-        loaded.logs = loadArray<AuditLog>(users, "logs");
         db_ = move(loaded);
         lastError_.clear();
     } catch (const StorageError&) {

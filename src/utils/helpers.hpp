@@ -47,6 +47,4 @@ string nextId(const string& prefix, const vector<string>& existingIds);
 bool looksLikePhone(const string& phone);
 bool looksLikeEmail(const string& email);
 
-int discountPercentForSubtotal(int64_t subtotal);
-
 }  // namespace tdp

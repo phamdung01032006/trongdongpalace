@@ -212,12 +212,4 @@ bool looksLikeEmail(const string& email) {
     return regex_match(email, re);
 }
 
-int discountPercentForSubtotal(int64_t subtotal) {
-    // Giả định thiết kế (PDF không có trong repo): chiết khấu theo tổng trước CK.
-    if (subtotal >= 100000000) return 8;
-    if (subtotal >= 50000000) return 5;
-    if (subtotal >= 20000000) return 3;
-    return 0;
-}
-
 }  // namespace tdp

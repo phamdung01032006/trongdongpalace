@@ -13,11 +13,10 @@ namespace tdp {
 class Booking {
 public:
     Booking() = default;
-    Booking(string id, string quotationId, string requestId, string customerId,
+    Booking(string id, string requestId, string customerId,
             string hallId, DateTime start, DateTime end, int guestCount, BookingStatus status);
 
     const string& id() const { return id_; }
-    const string& quotationId() const { return quotationId_; }
     const string& requestId() const { return requestId_; }
     const string& customerId() const { return customerId_; }
     const string& hallId() const { return hallId_; }
@@ -40,7 +39,7 @@ public:
     static Booking fromJson(const nlohmann::json& j);
 
 private:
-    string id_, quotationId_, requestId_, customerId_, hallId_, cancelReason_;
+    string id_, requestId_, customerId_, hallId_, cancelReason_;
     DateTime start_, end_;
     int guestCount_ = 0;
     BookingStatus status_ = BookingStatus::Nhat;

@@ -4,10 +4,9 @@ using namespace std;
 
 namespace tdp {
 
-Booking::Booking(string id, string quotationId, string requestId, string customerId,
+Booking::Booking(string id, string requestId, string customerId,
                  string hallId, DateTime start, DateTime end, int guestCount, BookingStatus status)
     : id_(move(id)),
-      quotationId_(move(quotationId)),
       requestId_(move(requestId)),
       customerId_(move(customerId)),
       hallId_(move(hallId)),
@@ -18,7 +17,6 @@ Booking::Booking(string id, string quotationId, string requestId, string custome
 
 nlohmann::json Booking::toJson() const {
     return {{"id", id_},
-            {"quotationId", quotationId_},
             {"requestId", requestId_},
             {"customerId", customerId_},
             {"hallId", hallId_},
@@ -30,7 +28,7 @@ nlohmann::json Booking::toJson() const {
 }
 
 Booking Booking::fromJson(const nlohmann::json& j) {
-    Booking b(j.at("id").get<string>(), j.at("quotationId").get<string>(), j.at("requestId").get<string>(),
+    Booking b(j.at("id").get<string>(), j.value("requestId", ""),
               j.at("customerId").get<string>(), j.at("hallId").get<string>(), dateFromJson(j.at("start")),
               dateFromJson(j.at("end")), j.value("guestCount", 0), bookingStatusFromString(j.value("status", "Nhat")));
     b.setCancelReason(j.value("cancelReason", ""));

@@ -4,10 +4,10 @@ using namespace std;
 
 namespace tdp {
 
-Payment::Payment(string id, string contractId, int64_t amount, DateTime paidAt, PaymentMethod method,
+Payment::Payment(string id, string bookingId, int64_t amount, DateTime paidAt, PaymentMethod method,
                  string note, string recordedBy)
     : id_(move(id)),
-      contractId_(move(contractId)),
+      bookingId_(move(bookingId)),
       note_(move(note)),
       recordedBy_(move(recordedBy)),
       amount_(amount),
@@ -16,7 +16,7 @@ Payment::Payment(string id, string contractId, int64_t amount, DateTime paidAt, 
 
 nlohmann::json Payment::toJson() const {
     return {{"id", id_},
-            {"contractId", contractId_},
+            {"bookingId", bookingId_},
             {"amount", amount_},
             {"paidAt", dateToJson(paidAt_)},
             {"method", toString(method_)},
@@ -25,7 +25,10 @@ nlohmann::json Payment::toJson() const {
 }
 
 Payment Payment::fromJson(const nlohmann::json& j) {
-    return Payment(j.at("id").get<string>(), j.at("contractId").get<string>(), j.at("amount").get<int64_t>(),
+    // Tuong thich du lieu cu: chap nhan ca "bookingId" va "contractId".
+    string bookingId = j.value("bookingId", "");
+    if (bookingId.empty()) bookingId = j.value("contractId", "");
+    return Payment(j.at("id").get<string>(), bookingId, j.value("amount", int64_t(0)),
                    dateFromJson(j.at("paidAt")), paymentMethodFromString(j.value("method", "ChuyenKhoan")),
                    j.value("note", ""), j.value("recordedBy", ""));
 }

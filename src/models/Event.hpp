@@ -13,19 +13,17 @@ namespace tdp {
 class Event {
 public:
     Event() = default;
-    Event(string id, string bookingId, string contractId, string customerId, string hallId,
+    Event(string id, string bookingId, string customerId, string hallId,
           DateTime start, DateTime end, EventStatus status, string specialNotes);
 
     const string& id() const { return id_; }
     const string& bookingId() const { return bookingId_; }
-    const string& contractId() const { return contractId_; }
     const string& customerId() const { return customerId_; }
     const string& hallId() const { return hallId_; }
     DateTime start() const { return start_; }
     DateTime end() const { return end_; }
     EventStatus status() const { return status_; }
     const string& specialNotes() const { return specialNotes_; }
-    void setContractId(string v) { contractId_ = move(v); }
     void setStatus(EventStatus v) { status_ = v; }
     void setSpecialNotes(string v) { specialNotes_ = move(v); }
 
@@ -33,7 +31,7 @@ public:
     static Event fromJson(const nlohmann::json& j);
 
 private:
-    string id_, bookingId_, contractId_, customerId_, hallId_, specialNotes_;
+    string id_, bookingId_, customerId_, hallId_, specialNotes_;
     DateTime start_, end_;
     EventStatus status_ = EventStatus::ChuanBi;
 };

@@ -1,18 +1,12 @@
 #pragma once
 
-#include "models/AuditLog.hpp"
 #include "models/Booking.hpp"
-#include "models/Center.hpp"
-#include "models/Contract.hpp"
 #include "models/Customer.hpp"
 #include "models/Database.hpp"
 #include "models/Enums.hpp"
 #include "models/Event.hpp"
 #include "models/EventRequest.hpp"
 #include "models/Hall.hpp"
-#include "models/Incident.hpp"
-#include "models/OperationTask.hpp"
 #include "models/Payment.hpp"
-#include "models/Quotation.hpp"
 #include "models/ServiceItem.hpp"
 #include "models/User.hpp"
