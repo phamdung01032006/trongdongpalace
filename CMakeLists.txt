@@ -1,27 +1,76 @@
-cmake_minimum_required(VERSION 3.10)
-project(EventScheduling)
+cmake_minimum_required(VERSION 3.16)
+project(TrongDongPalace LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-include_directories(include)
+if(MSVC)
+    add_compile_options(/utf-8 /W4)
+else()
+    add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-add_executable(event_scheduling
-    src/main.cpp
-    src/Event.cpp
-    src/WeddingEvent.cpp
-    src/ConferenceEvent.cpp
-    src/BirthdayEvent.cpp
-    src/Hall.cpp
-    src/BookingRequest.cpp
-    src/HeThongDatLich.cpp
-    src/Utils.cpp
-    src/User.cpp
+find_package(nlohmann_json 3.11.3 CONFIG QUIET)
+if(NOT nlohmann_json_FOUND)
+    include(FetchContent)
+
+    FetchContent_Declare(
+        nlohmann_json
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_TAG        v3.11.3
+    )
+    FetchContent_MakeAvailable(nlohmann_json)
+endif()
+
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+
+set(TDP_CORE_SOURCES
+    src/utils/sha256.cpp
+    src/utils/helpers.cpp
+    src/models/Enums.cpp
+    src/models/User.cpp
+    src/models/Customer.cpp
+    src/models/EventRequest.cpp
+    src/models/Center.cpp
+    src/models/Hall.cpp
+    src/models/ServiceItem.cpp
+    src/models/Quotation.cpp
+    src/models/Booking.cpp
+    src/models/Contract.cpp
+    src/models/Payment.cpp
+    src/models/Event.cpp
+    src/models/OperationTask.cpp
+    src/models/Incident.cpp
+    src/models/AuditLog.cpp
+    src/storage/json_storage.cpp
+    src/services/palace_service.cpp
 )
 
-# Make the MinGW executable easier to distribute to Windows machines.
-if (MINGW)
-    set_target_properties(event_scheduling PROPERTIES
-        LINK_FLAGS "-static -static-libgcc -static-libstdc++"
-    )
+add_executable(trongdongpalace
+    src/main.cpp
+    src/ui/app_ui.cpp
+    ${TDP_CORE_SOURCES}
+)
+
+target_include_directories(trongdongpalace PRIVATE src)
+target_link_libraries(trongdongpalace PRIVATE
+    Qt6::Widgets
+    nlohmann_json::nlohmann_json
+)
+
+add_executable(tdp_tests
+    tests/test_core.cpp
+    ${TDP_CORE_SOURCES}
+)
+target_include_directories(tdp_tests PRIVATE src)
+target_link_libraries(tdp_tests PRIVATE nlohmann_json::nlohmann_json)
+
+if(MINGW)
+    foreach(tgt trongdongpalace tdp_tests)
+        set_target_properties(${tgt} PROPERTIES
+            LINK_FLAGS "-static -static-libgcc -static-libstdc++"
+        )
+    endforeach()
 endif()

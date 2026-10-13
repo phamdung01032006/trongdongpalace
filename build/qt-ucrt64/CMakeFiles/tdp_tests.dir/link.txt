@@ -1,0 +1,3 @@
+C:\msys64\ucrt64\bin\cmake.exe -E rm -f CMakeFiles\tdp_tests.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\tdp_tests.dir/objects.a @CMakeFiles\tdp_tests.dir\objects1.rsp
+C:\msys64\ucrt64\bin\c++.exe -static -static-libgcc -static-libstdc++ -Wl,--whole-archive CMakeFiles\tdp_tests.dir/objects.a -Wl,--no-whole-archive -o tdp_tests.exe -Wl,--out-implib,libtdp_tests.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\tdp_tests.dir\linkLibs.rsp

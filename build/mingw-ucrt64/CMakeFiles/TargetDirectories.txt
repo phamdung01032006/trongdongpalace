@@ -1,3 +1,0 @@
-C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/event_scheduling.dir
-C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/edit_cache.dir
-C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace/build/mingw-ucrt64/CMakeFiles/rebuild_cache.dir

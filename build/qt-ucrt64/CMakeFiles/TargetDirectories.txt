@@ -1,0 +1,4 @@
+C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64/CMakeFiles/trongdongpalace.dir
+C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64/CMakeFiles/tdp_tests.dir
+C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64/CMakeFiles/edit_cache.dir
+C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,23 @@
+{
+  "customers": [
+    {
+      "address": "Cầu Giấy, Hà Nội",
+      "createdAt": "13/10/2026 08:23",
+      "email": "anhduong@example.com",
+      "id": "CUS-0001",
+      "name": "Công ty Ánh Dương",
+      "notes": "Khách doanh nghiệp",
+      "phone": "0912345678"
+    },
+    {
+      "address": "Hoàn Kiếm, Hà Nội",
+      "createdAt": "13/10/2026 08:23",
+      "email": "nguyenvanan@example.com",
+      "id": "CUS-0002",
+      "name": "Nguyễn Văn An",
+      "notes": "Tiệc cưới",
+      "phone": "0987654321"
+    }
+  ],
+  "requests": []
+}

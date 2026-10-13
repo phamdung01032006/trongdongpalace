@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\event_scheduling.dir/objects.a
-C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\event_scheduling.dir/objects.a @CMakeFiles\event_scheduling.dir\objects1.rsp
-C:\msys64\mingw64\bin\g++.exe -g -static -static-libgcc -static-libstdc++ -Wl,--whole-archive CMakeFiles\event_scheduling.dir/objects.a -Wl,--no-whole-archive -o event_scheduling.exe -Wl,--out-implib,libevent_scheduling.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\event_scheduling.dir\linkLibs.rsp

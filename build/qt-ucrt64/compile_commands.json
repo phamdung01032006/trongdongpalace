@@ -1,0 +1,248 @@
+[
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\main.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\main.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/main.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\ui\\app_ui.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\ui\\app_ui.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/ui/app_ui.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/ui/app_ui.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\utils\\sha256.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\utils\\sha256.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/utils/sha256.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/utils/sha256.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\utils\\helpers.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\utils\\helpers.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/utils/helpers.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/utils/helpers.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Enums.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Enums.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Enums.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Enums.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\User.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\User.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/User.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/User.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Customer.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Customer.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Customer.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Customer.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\EventRequest.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\EventRequest.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/EventRequest.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/EventRequest.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Center.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Center.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Center.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Center.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Hall.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Hall.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Hall.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Hall.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\ServiceItem.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\ServiceItem.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/ServiceItem.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/ServiceItem.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Quotation.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Quotation.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Quotation.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Quotation.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Booking.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Booking.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Booking.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Booking.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Contract.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Contract.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Contract.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Contract.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Payment.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Payment.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Payment.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Payment.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Event.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Event.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Event.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Event.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\OperationTask.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\OperationTask.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/OperationTask.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/OperationTask.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\Incident.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Incident.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Incident.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/Incident.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\models\\AuditLog.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\AuditLog.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/AuditLog.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/models/AuditLog.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\storage\\json_storage.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\storage\\json_storage.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/storage/json_storage.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/storage/json_storage.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\trongdongpalace.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\trongdongpalace.dir\\src\\services\\palace_service.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\services\\palace_service.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/services/palace_service.cpp",
+  "output": "CMakeFiles/trongdongpalace.dir/src/services/palace_service.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\tests\\test_core.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\tests\\test_core.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/tests/test_core.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/tests/test_core.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\utils\\sha256.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\utils\\sha256.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/utils/sha256.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/utils/sha256.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\utils\\helpers.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\utils\\helpers.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/utils/helpers.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/utils/helpers.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Enums.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Enums.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Enums.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Enums.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\User.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\User.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/User.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/User.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Customer.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Customer.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Customer.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Customer.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\EventRequest.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\EventRequest.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/EventRequest.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/EventRequest.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Center.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Center.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Center.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Center.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Hall.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Hall.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Hall.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Hall.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\ServiceItem.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\ServiceItem.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/ServiceItem.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/ServiceItem.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Quotation.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Quotation.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Quotation.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Quotation.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Booking.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Booking.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Booking.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Booking.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Contract.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Contract.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Contract.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Contract.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Payment.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Payment.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Payment.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Payment.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Event.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Event.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Event.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Event.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\OperationTask.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\OperationTask.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/OperationTask.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/OperationTask.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\Incident.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\Incident.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/Incident.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/Incident.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\models\\AuditLog.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\models\\AuditLog.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/models/AuditLog.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/models/AuditLog.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\storage\\json_storage.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\storage\\json_storage.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/storage/json_storage.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/storage/json_storage.cpp.obj"
+},
+{
+  "directory": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/build/qt-ucrt64",
+  "command": "C:\\msys64\\ucrt64\\bin\\c++.exe  @CMakeFiles\\tdp_tests.dir\\includes_CXX.rsp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles\\tdp_tests.dir\\src\\services\\palace_service.cpp.obj -c C:\\Users\\Hotaru\\Downloads\\NEU\\nam3\\K1N3\\OOP\\Btnhom\\trongdongpalace-anhduy\\src\\services\\palace_service.cpp",
+  "file": "C:/Users/Hotaru/Downloads/NEU/nam3/K1N3/OOP/Btnhom/trongdongpalace-anhduy/src/services/palace_service.cpp",
+  "output": "CMakeFiles/tdp_tests.dir/src/services/palace_service.cpp.obj"
+}
+]
