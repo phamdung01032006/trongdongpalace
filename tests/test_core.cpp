@@ -361,6 +361,52 @@ int main() {
         CHECK(!svc.importCatalog().ok);
     }
 
+    cout << "== 13. Xóa an toàn + cập nhật qua ô trạng thái ==" << endl;
+    {
+        auto dir = makeTempDir("delete");
+        JsonStorage storage(dir / "data", dir / "backup");
+        storage.load();
+        PalaceService svc(storage);
+        CHECK(svc.login("admin", "123456").ok);
+        // Xoa user: khong tu xoa, khong xoa quan ly cuoi.
+        string u2 = svc.createUser("nv2", "123456", "NV Hai", Role::Sales).id;
+        CHECK(!svc.deleteUser("USR-0001").ok);  // dang dung admin
+        CHECK(svc.deleteUser(u2).ok);
+        CHECK(!svc.updateUserRole("USR-0001", Role::Sales).ok);  // quan ly cuoi
+        // Xoa dich vu dang dung -> tu choi; xoa dich vu thua -> duoc.
+        string svcTmp = svc.addService("TMP01", "DV tạm", "VNĐ/gói", 1000, "Ẩm thực").id;
+        CHECK(svc.deleteService(svcTmp).ok);
+        string cus = svc.addCustomer("E", "0936111222", "", "", "").id;
+        string req = svc.addRequest(cus, EventType::TiecCuoi, "T", "E", "0936111222", "", dt("2027-08-03 18:00"),
+                                    dt("2027-08-03 22:00"), 50, "", {}).id;
+        CHECK(!svc.deleteCustomer(cus).ok);  // da co yeu cau
+        CHECK(!svc.deleteRequest("REQ-KHONG-CO").ok);
+        string bk = svc.createBooking(req, "HAL-0004", dt("2027-08-03 18:00"), dt("2027-08-03 22:00"),
+                                      200, 0, 0)
+                        .id;
+        CHECK(!svc.deleteRequest(req).ok);  // da chot booking
+        // Sua giam gia qua o cap nhat + xoa booking nhap (keo theo khoan tu tao).
+        CHECK(svc.updateBookingDiscount(bk, 5, 0).ok);
+        CHECK(svc.deleteBooking(bk).ok);
+        CHECK(svc.paymentsOf(bk).empty() && svc.findEventByBooking(bk) == nullptr);
+        // Xoa khoan chua thu duoc, da thu thi khong.
+        string req2 = svc.addRequest(cus, EventType::TiecCuoi, "T2", "E", "0936111222", "",
+                                     dt("2027-08-04 18:00"), dt("2027-08-04 22:00"), 50, "", {}).id;
+        string bk2 = svc.createBooking(req2, "HAL-0004", dt("2027-08-04 18:00"), dt("2027-08-04 22:00"),
+                                       100, 0, 0)
+                         .id;
+        string unpaid = svc.paymentsOf(bk2).front().id();
+        CHECK(svc.deletePayment(unpaid).ok);
+        CHECK(svc.recordPayment(bk2, PaymentType::DatCoc1, 3000000, PaymentMethod::TienMat,
+                                DateTime::now(), "Cọc")
+                  .ok);
+        string paid = svc.paymentsOf(bk2).front().id();
+        CHECK(!svc.deletePayment(paid).ok);
+        CHECK(!svc.deleteBooking(bk2).ok);  // da coc -> phai Huy
+        // Xoa sanh dang co booking -> tu choi.
+        CHECK(!svc.deleteHall("HAL-0004").ok);
+    }
+
     cout << "\n========================================\n";
     cout << "Tổng: " << g_total << " | Đạt: " << (g_total - g_failed) << " | Lỗi: " << g_failed << "\n";
     cout << "========================================\n";

@@ -49,6 +49,8 @@ public:
     const Database& db() const { return storage_.db(); }
 
     OpResult createUser(const string& username, const string& password, const string& fullName, Role role);
+    OpResult updateUserRole(const string& userId, Role role);
+    OpResult deleteUser(const string& userId);
     OpResult setUserActive(const string& userId, bool active);
     OpResult changePassword(const string& userId, const string& newPassword);
 
@@ -56,6 +58,7 @@ public:
                          const string& address, const string& notes);
     OpResult updateCustomer(const string& id, const string& name, const string& phone,
                             const string& email, const string& address, const string& notes);
+    OpResult deleteCustomer(const string& id);
     vector<Customer> searchCustomers(const string& keyword) const;
     const Customer* findCustomer(const string& id) const;
 
@@ -72,6 +75,7 @@ public:
     OpResult updateRequestStatus(const string& id, RequestStatus status);
     // Khach hang tu huy yeu cau cua minh.
     OpResult cancelOwnRequest(const string& id);
+    OpResult deleteRequest(const string& id);
     const EventRequest* findRequest(const string& id) const;
     // Chi phi du kien = tien thue sanh + tong dich vu (dac ta A.2).
     int64_t estimateRequest(const EventRequest& req) const;
@@ -84,10 +88,12 @@ public:
     OpResult addHall(const string& name, int capacity, int64_t rentalPrice);
     OpResult updateHall(const string& id, const string& name, int capacity, int64_t rentalPrice,
                         HallStatus status);
+    OpResult deleteHall(const string& id);
     OpResult addService(const string& code, const string& name, const string& unit, int64_t price,
                         const string& category);
     OpResult updateService(const string& id, const string& code, const string& name, const string& unit,
                            int64_t price, const string& category, bool active);
+    OpResult deleteService(const string& id);
     // Quan ly nap bo sung danh muc mau dac ta (khong xoa du lieu hien co).
     OpResult importCatalog();
     const Hall* findHall(const string& id) const;
@@ -105,6 +111,8 @@ public:
                            int guestCount, int discountPercent, int64_t discountAmount);
     OpResult setBookingStatus(const string& bookingId, BookingStatus status);
     OpResult cancelBooking(const string& bookingId, const string& reason);
+    OpResult deleteBooking(const string& bookingId);
+    OpResult updateBookingDiscount(const string& bookingId, int discountPercent, int64_t discountAmount);
     OpResult approveDiscount(const string& bookingId);
     const Booking* findBooking(const string& id) const;
     vector<Booking> bookingsForCustomer(const string& customerId) const;
@@ -116,6 +124,7 @@ public:
     // Form 3: dien khoan da tu tao (amount 0) hoac tao moi, danh dau DaThanhToan.
     OpResult recordPayment(const string& bookingId, PaymentType type, int64_t amount, PaymentMethod method,
                            DateTime paidAt, const string& note);
+    OpResult deletePayment(const string& id);
     int64_t paidAmount(const string& bookingId) const;
     vector<Payment> paymentsOf(const string& bookingId) const;
     const Payment* findPayment(const string& id) const;

@@ -150,6 +150,40 @@ OpResult PalaceService::createUser(const string& username, const string& passwor
     return persist("Đã tạo tài khoản " + id, id);
 }
 
+static bool isLastActiveManager(const Database& data, const string& exceptId) {
+    int n = 0;
+    for (const auto& x : data.users) {
+        if (x.id() != exceptId && x.active() && x.role() == Role::Manager) ++n;
+    }
+    return n == 0;
+}
+
+OpResult PalaceService::updateUserRole(const string& userId, Role role) {
+    auto r = require(Action::ManageUsers);
+    if (!r.ok) return r;
+    auto* u = findById(mut().users, userId);
+    if (!u) return OpResult::fail("Không tìm thấy tài khoản.");
+    if (u->role() == Role::Manager && role != Role::Manager && u->active() &&
+        isLastActiveManager(data(), userId))
+        return OpResult::fail("Không thể hạ quyền quản lý cuối cùng.");
+    u->setRole(role);
+    return persist("Đã cập nhật vai trò.", userId);
+}
+
+OpResult PalaceService::deleteUser(const string& userId) {
+    auto r = require(Action::ManageUsers);
+    if (!r.ok) return r;
+    auto* u = findById(mut().users, userId);
+    if (!u) return OpResult::fail("Không tìm thấy tài khoản.");
+    if (currentUserId_ == userId) return OpResult::fail("Không thể xóa tài khoản đang dùng.");
+    if (u->role() == Role::Manager && u->active() && isLastActiveManager(data(), userId))
+        return OpResult::fail("Không thể xóa quản lý cuối cùng.");
+    auto& items = mut().users;
+    items.erase(remove_if(items.begin(), items.end(), [&](const User& x) { return x.id() == userId; }),
+                items.end());
+    return persist("Đã xóa tài khoản.", userId);
+}
+
 OpResult PalaceService::setUserActive(const string& userId, bool active) {
     auto r = require(Action::ManageUsers);
     if (!r.ok) return r;
@@ -234,6 +268,23 @@ OpResult PalaceService::updateCustomer(const string& id, const string& name, con
     c->setAddress(trim(address));
     c->setNotes(trim(notes));
     return persist("Đã cập nhật khách hàng.", id);
+}
+
+OpResult PalaceService::deleteCustomer(const string& id) {
+    auto r = require(Action::ManageCustomers);
+    if (!r.ok) return r;
+    if (!findById(mut().customers, id)) return OpResult::fail("Không tìm thấy khách hàng.");
+    for (const auto& q : data().requests)
+        if (q.customerId() == id) return OpResult::fail("Khách hàng đã có yêu cầu, không thể xóa.");
+    for (const auto& b : data().bookings)
+        if (b.customerId() == id) return OpResult::fail("Khách hàng đã có booking, không thể xóa.");
+    for (const auto& u : data().users)
+        if (u.customerId() == id) return OpResult::fail("Khách hàng đang gắn tài khoản, không thể xóa.");
+    auto& items = mut().customers;
+    items.erase(remove_if(items.begin(), items.end(),
+                          [&](const Customer& c) { return c.id() == id; }),
+                items.end());
+    return persist("Đã xóa khách hàng.", id);
 }
 
 vector<Customer> PalaceService::searchCustomers(const string& keyword) const {
@@ -355,6 +406,9 @@ OpResult PalaceService::updateRequest(const string& id, EventType type, const st
     if (!r.ok) return r;
     auto* req = findById(mut().requests, id);
     if (!req) return OpResult::fail("Không tìm thấy yêu cầu.");
+    const User* actor = currentUser();
+    if (actor && actor->role() == Role::Customer && req->customerId() != actor->customerId())
+        return OpResult::fail("Bạn chỉ sửa yêu cầu của mình.");
     if (req->status() == RequestStatus::DaChot || req->status() == RequestStatus::BiHuy)
         return OpResult::fail("Yêu cầu đã chốt/hủy, không cập nhật.");
     if (trim(title).empty()) return OpResult::fail("Tên sự kiện là bắt buộc.");
@@ -425,6 +479,25 @@ OpResult PalaceService::cancelOwnRequest(const string& id) {
     return updateRequestStatus(id, RequestStatus::BiHuy);
 }
 
+OpResult PalaceService::deleteRequest(const string& id) {
+    auto r = require(Action::ManageRequests);
+    if (!r.ok) return r;
+    auto* req = findById(mut().requests, id);
+    if (!req) return OpResult::fail("Không tìm thấy yêu cầu.");
+    const User* u = currentUser();
+    if (u && u->role() == Role::Customer && req->customerId() != u->customerId())
+        return OpResult::fail("Bạn chỉ xóa yêu cầu của mình.");
+    if (req->status() == RequestStatus::DaChot)
+        return OpResult::fail("Yêu cầu đã chốt booking, không thể xóa (hãy Hủy booking).");
+    for (const auto& b : data().bookings)
+        if (b.requestId() == id) return OpResult::fail("Yêu cầu đã có booking, không thể xóa.");
+    auto& items = mut().requests;
+    items.erase(remove_if(items.begin(), items.end(),
+                          [&](const EventRequest& x) { return x.id() == id; }),
+                items.end());
+    return persist("Đã xóa yêu cầu.", id);
+}
+
 int64_t PalaceService::estimateRequest(const EventRequest& req) const {
     int64_t total = req.servicesTotal();
     if (!req.hallId().empty()) {
@@ -492,6 +565,20 @@ OpResult PalaceService::updateHall(const string& id, const string& name, int cap
     return persist("Đã cập nhật sảnh.", id);
 }
 
+OpResult PalaceService::deleteHall(const string& id) {
+    auto r = require(Action::ManageVenues);
+    if (!r.ok) return r;
+    if (!findById(mut().halls, id)) return OpResult::fail("Không tìm thấy sảnh.");
+    for (const auto& b : data().bookings)
+        if (b.hallId() == id) return OpResult::fail("Sảnh đã có booking, không thể xóa.");
+    for (const auto& q : data().requests)
+        if (q.hallId() == id) return OpResult::fail("Sảnh đang được yêu cầu chọn, không thể xóa.");
+    auto& items = mut().halls;
+    items.erase(remove_if(items.begin(), items.end(), [&](const Hall& x) { return x.id() == id; }),
+                items.end());
+    return persist("Đã xóa sảnh.", id);
+}
+
 OpResult PalaceService::addService(const string& code, const string& name, const string& unit, int64_t price,
                                    const string& category) {
     auto r = require(Action::ManageVenues);
@@ -521,6 +608,26 @@ OpResult PalaceService::updateService(const string& id, const string& code, cons
     s->setCategory(trim(category));
     s->setActive(active);
     return persist("Đã cập nhật dịch vụ (đơn đã chốt vẫn giữ đơn giá cũ).", id);
+}
+
+OpResult PalaceService::deleteService(const string& id) {
+    auto r = require(Action::ManageVenues);
+    if (!r.ok) return r;
+    const ServiceItem* target = findService(id);
+    if (!target) target = findServiceByCode(id);
+    if (!target) return OpResult::fail("Không tìm thấy dịch vụ.");
+    const string realId = target->id();
+    for (const auto& q : data().requests) {
+        for (const auto& l : q.lines()) {
+            if (l.serviceId() == realId)
+                return OpResult::fail("Dịch vụ đang dùng trong yêu cầu " + q.id() + ", không thể xóa.");
+        }
+    }
+    auto& items = mut().services;
+    items.erase(remove_if(items.begin(), items.end(),
+                          [&](const ServiceItem& x) { return x.id() == realId; }),
+                items.end());
+    return persist("Đã xóa dịch vụ.", realId);
 }
 
 OpResult PalaceService::importCatalog() {
@@ -699,6 +806,65 @@ OpResult PalaceService::approveDiscount(const string& bookingId) {
     return persist("Quản lý đã duyệt chiết khấu cho booking " + bookingId + ".", bookingId);
 }
 
+OpResult PalaceService::updateBookingDiscount(const string& bookingId, int discountPercent,
+                                              int64_t discountAmount) {
+    auto r = require(Action::ManageBookings);
+    if (!r.ok) return r;
+    auto* b = findById(mut().bookings, bookingId);
+    if (!b) return OpResult::fail("Không tìm thấy booking.");
+    if (b->status() != BookingStatus::ChoCoc)
+        return OpResult::fail("Chỉ sửa giảm giá khi booking đang chờ cọc.");
+    if (discountPercent < 0 || discountAmount < 0) return OpResult::fail("Chiết khấu không âm.");
+    if (discountPercent > 100) return OpResult::fail("Chiết khấu % tối đa 100.");
+    if (discountAmount > b->estimatedTotal()) return OpResult::fail("Giảm giá vượt tổng chi phí.");
+    const User* actor = currentUser();
+    bool needsApproval = (discountPercent > kDiscountApprovalPercent ||
+                           discountAmount > discountLimitFor(b->estimatedTotal())) &&
+                          !(actor && actor->role() == Role::Manager);
+    b->setDiscount(discountPercent, discountAmount, needsApproval);
+    if (needsApproval)
+        return persist("Đã cập nhật giảm giá. Vượt " + to_string(kDiscountApprovalPercent) +
+                           "% cần Quản lý duyệt (bấm vào ô Giảm giá).",
+                       bookingId);
+    return persist("Đã cập nhật giảm giá.", bookingId);
+}
+
+OpResult PalaceService::deleteBooking(const string& bookingId) {
+    auto r = require(Action::ManageBookings);
+    if (!r.ok) return r;
+    auto* b = findById(mut().bookings, bookingId);
+    if (!b) return OpResult::fail("Không tìm thấy booking.");
+    if (b->status() == BookingStatus::DaCoc || b->status() == BookingStatus::HoanTat)
+        return OpResult::fail("Booking đã cọc/hoàn tất, hãy dùng Hủy booking thay vì xóa.");
+    for (const auto& p : data().payments) {
+        if (p.bookingId() == bookingId && p.status() == PaymentStatus::DaThanhToan)
+            return OpResult::fail("Booking đã có khoản thu, hãy dùng Hủy booking thay vì xóa.");
+    }
+    // Xoa keo theo khoan tu tao chua thu + su kien cua rieng booking nay.
+    {
+        auto& pays = mut().payments;
+        pays.erase(remove_if(pays.begin(), pays.end(),
+                             [&](const Payment& p) {
+                                 return p.bookingId() == bookingId &&
+                                        p.status() == PaymentStatus::ChuaThanhToan;
+                             }),
+                   pays.end());
+    }
+    {
+        auto& evs = mut().events;
+        evs.erase(remove_if(evs.begin(), evs.end(),
+                            [&](const Event& e) { return e.bookingId() == bookingId; }),
+                  evs.end());
+    }
+    {
+        auto& items = mut().bookings;
+        items.erase(remove_if(items.begin(), items.end(),
+                              [&](const Booking& x) { return x.id() == bookingId; }),
+                    items.end());
+    }
+    return persist("Đã xóa booking.", bookingId);
+}
+
 vector<Booking> PalaceService::bookingsForCustomer(const string& customerId) const {
     vector<Booking> out;
     for (const auto& b : data().bookings)
@@ -795,6 +961,19 @@ OpResult PalaceService::recordPayment(const string& bookingId, PaymentType type,
     return persist("Đã ghi nhận " + toString(type) + " " + formatMoney(amount) + " cho booking " + bookingId +
                        ".",
                    id);
+}
+
+OpResult PalaceService::deletePayment(const string& id) {
+    auto r = require(Action::ManagePayments);
+    if (!r.ok) return r;
+    auto* p = findById(mut().payments, id);
+    if (!p) return OpResult::fail("Không tìm thấy khoản thanh toán.");
+    if (p->status() == PaymentStatus::DaThanhToan)
+        return OpResult::fail("Khoản đã thanh toán không được xóa.");
+    auto& items = mut().payments;
+    items.erase(remove_if(items.begin(), items.end(), [&](const Payment& x) { return x.id() == id; }),
+                items.end());
+    return persist("Đã xóa khoản thanh toán.", id);
 }
 
 int64_t PalaceService::paidAmount(const string& bookingId) const {

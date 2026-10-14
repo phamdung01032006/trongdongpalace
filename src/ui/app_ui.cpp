@@ -627,6 +627,21 @@ private:
         content_->deleteLater();
         table_ = replacement;
         content_ = table_;
+        connectTableSignals();
+    }
+
+    void connectTableSignals()
+    {
+        if (!table_) return;
+        // Bam truc tiep vao o trang thai de doi (dropdown tai cho).
+        connect(table_, &QTableWidget::clicked, this, [this](const QModelIndex& idx) {
+            statusCellClicked(idx.row(), idx.column());
+        });
+        // Double-click vao dong thanh toan / dat lich de xem phieu thu.
+        connect(table_, &QTableWidget::doubleClicked, this, [this](const QModelIndex& idx) {
+            if (screen_ == "payments" || screen_ == "mybookings") viewReceipts();
+            (void)idx;
+        });
     }
 
     // 7 tab danh muc theo dac ta 2.9 (tab ngang).
@@ -659,7 +674,7 @@ private:
     {
         if (index == 0) return {"Mã", "Loại sự kiện", "Quy mô tham khảo", "Ngân sách tổ chức"};
         if (index == 5) return {"Mã", "Tên sảnh", "Sức chứa", "Giá thuê", "Trạng thái"};
-        return {"Mã", "Tên dịch vụ", "Đơn vị", "Đơn giá"};
+        return {"Mã", "Tên dịch vụ", "Đơn vị", "Đơn giá", "Cung cấp"};
     }
 
     Rows serviceRows(int index) const
@@ -681,8 +696,8 @@ private:
             for (const ServiceItem& item : db.services) {
                 if (item.category() != category) continue;
                 if (!item.active() && !isManager()) continue;
-                appendRow(rows, {item.code(), item.name(), item.unit(),
-                                 formatMoney(item.unitPrice())});
+                appendRow(rows, {item.code(), item.name(), item.unit(), formatMoney(item.unitPrice()),
+                                 item.active() ? "Có" : "Không"});
             }
         }
         return rows;
@@ -707,6 +722,175 @@ private:
         content_->deleteLater();
         content_ = tabs;
         serviceTabs_ = tabs;
+        connectTableSignals();
+    }
+
+    // Bam vao o trang thai trong bang de cap nhat truc tiep.
+    void statusCellClicked(int row, int column)
+    {
+        if (!table_) return;
+        QTableWidgetItem* cell0 = table_->item(row, 0);
+        if (!cell0) return;
+        const QString id = cell0->text();
+        if (screen_ == "requests") {
+            if (isCustomer()) {
+                if (column == 6) customerRequestStatusCell(id);
+            } else if (column == 8) {
+                salesRequestStatusCell(id);
+            }
+        } else if (screen_ == "bookings") {
+            if (column == 6)
+                bookingStatusCell(id);
+            else if (column == 5)
+                discountCell(id);
+        } else if (screen_ == "halls") {
+            if (column == 4 && isManager()) hallStatusCell(id);
+        } else if (screen_ == "services") {
+            if (column == 4 && isManager() && !serviceTabCategory(serviceTab_).empty())
+                serviceActiveCell(id);
+        } else if (screen_ == "users") {
+            if (!isManager()) return;
+            if (column == 3)
+                userRoleCell(id);
+            else if (column == 4)
+                userActiveCell(id);
+        }
+    }
+
+    void salesRequestStatusCell(const QString& id)
+    {
+        const EventRequest* req = service_.findRequest(id.toStdString());
+        if (!req) return;
+        const auto picked = promptCombo(this, "Cập nhật trạng thái yêu cầu", "Trạng thái",
+                                        {"Chờ", "Đang tư vấn", "Hoàn thành", "Bị hủy"},
+                                        qstr(toString(req->status())));
+        if (!picked) return;
+        notify(service_.updateRequestStatus(id.toStdString(),
+                                            requestStatusFromString(picked->toStdString())));
+    }
+
+    void customerRequestStatusCell(const QString& id)
+    {
+        const EventRequest* req = service_.findRequest(id.toStdString());
+        if (!req) return;
+        const QString current = qstr(customerViewOfRequest(req->status()));
+        if (current == "Bị hủy" || current == "Hoàn thành") {
+            showInfo("Trạng thái", "Yêu cầu đã kết thúc, không đổi được nữa.");
+            return;
+        }
+        const auto picked =
+            promptCombo(this, "Hủy yêu cầu", "Chọn Bị hủy để tự hủy yêu cầu này",
+                        {current, "Bị hủy"}, current);
+        if (!picked || *picked != "Bị hủy") return;
+        notify(service_.cancelOwnRequest(id.toStdString()));
+    }
+
+    void bookingStatusCell(const QString& id)
+    {
+        const Booking* b = service_.findBooking(id.toStdString());
+        if (!b) return;
+        const QString current = qstr(toString(b->status()));
+        if (current == "Bị hủy" || current == "Hoàn tất") {
+            showInfo("Trạng thái", "Booking đã kết thúc, không đổi được nữa.");
+            return;
+        }
+        const auto picked = promptCombo(this, "Cập nhật trạng thái booking", "Trạng thái",
+                                        {current, "Hoàn tất", "Bị hủy"}, current);
+        if (!picked || *picked == current) return;
+        if (*picked == "Bị hủy") {
+            const auto reason =
+                promptFields(this, "Hủy booking", {"Lý do"}, {"Hủy từ màn hình booking"});
+            if (!reason) return;
+            notify(service_.cancelBooking(id.toStdString(), (*reason)[0].toStdString()));
+        } else {
+            notify(service_.setBookingStatus(id.toStdString(), BookingStatus::HoanTat));
+        }
+    }
+
+    void discountCell(const QString& id)
+    {
+        const Booking* b = service_.findBooking(id.toStdString());
+        if (!b) return;
+        if (b->discountNeedsApproval() && !b->discountApproved()) {
+            if (!isManager()) {
+                showInfo("Chiết khấu", "Mức giảm vượt 10% đang chờ Quản lý duyệt.");
+                return;
+            }
+            const auto picked = promptCombo(this, "Duyệt chiết khấu",
+                                            "Duyệt mức giảm cho booking " + id, {"Duyệt", "Để sau"},
+                                            "Để sau");
+            if (picked && *picked == "Duyệt") notify(service_.approveDiscount(id.toStdString()));
+            return;
+        }
+        showInfo("Chiết khấu",
+                 qstr("Giảm " + to_string(b->discountPercent()) + "% (-" +
+                      formatMoney(b->discountAmount()) + "). Bấm Cập nhật giảm giá để sửa."));
+    }
+
+    void hallStatusCell(const QString& id)
+    {
+        const Hall* hall = service_.findHall(id.toStdString());
+        if (!hall) return;
+        const auto picked =
+            promptCombo(this, "Trạng thái sảnh", "Trạng thái", {"Khả dụng", "Bảo trì", "Không khả dụng"},
+                        qstr(toString(hall->status())));
+        if (!picked) return;
+        notify(service_.updateHall(hall->id(), hall->name(), hall->capacity(), hall->rentalPrice(),
+                                   hallStatusFromString(picked->toStdString())));
+    }
+
+    void serviceActiveCell(const QString& code)
+    {
+        const ServiceItem* found = nullptr;
+        for (const ServiceItem& s : service_.db().services) {
+            if (s.code() == code.toStdString() || s.id() == code.toStdString()) {
+                found = &s;
+                break;
+            }
+        }
+        if (!found) return;
+        const ServiceItem item = *found;
+        const auto picked =
+            promptCombo(this, "Cung cấp dịch vụ", "Đang cung cấp", {"Có", "Không"},
+                        item.active() ? "Có" : "Không");
+        if (!picked) return;
+        notify(service_.updateService(item.id(), item.code(), item.name(), item.unit(),
+                                      item.unitPrice(), item.category(), *picked == "Có"));
+    }
+
+    void userRoleCell(const QString& id)
+    {
+        const User* target = nullptr;
+        for (const User& x : service_.db().users) {
+            if (x.id() == id.toStdString()) {
+                target = &x;
+                break;
+            }
+        }
+        if (!target) return;
+        const auto picked =
+            promptCombo(this, "Vai trò người dùng", "Vai trò",
+                        {"Khách hàng", "Nhân viên kinh doanh", "Quản lý", "Vận hành"},
+                        qstr(toString(target->role())));
+        if (!picked) return;
+        notify(service_.updateUserRole(id.toStdString(), roleFromString(picked->toStdString())));
+    }
+
+    void userActiveCell(const QString& id)
+    {
+        const User* target = nullptr;
+        for (const User& x : service_.db().users) {
+            if (x.id() == id.toStdString()) {
+                target = &x;
+                break;
+            }
+        }
+        if (!target) return;
+        const auto picked =
+            promptCombo(this, "Khóa / mở tài khoản", "Hoạt động", {"Có", "Không"},
+                        target->active() ? "Có" : "Không");
+        if (!picked) return;
+        notify(service_.setUserActive(id.toStdString(), *picked == "Có"));
     }
 
     void addActionButton(QHBoxLayout* layout, const QString& text, const function<void()>& action)
@@ -724,34 +908,29 @@ private:
             delete item;
         }
         if (screen_ == "customers") {
-            addActionButton(layout, "Thêm khách hàng", [this]() { addCustomer(); });
-            addActionButton(layout, "Sửa khách hàng", [this]() { editCustomer(); });
+            addActionButton(layout, "Tạo mới", [this]() { addCustomer(); });
+            addActionButton(layout, "Cập nhật", [this]() { editCustomer(); });
+            addActionButton(layout, "Xóa", [this]() { deleteSelected(); });
         } else if (screen_ == "requests") {
-            addActionButton(layout, "Tạo yêu cầu", [this]() { addRequest(); });
+            addActionButton(layout, "Tạo mới", [this]() { addRequest(); });
+            addActionButton(layout, "Cập nhật", [this]() { editRequest(); });
             if (!isCustomer()) {
-                addActionButton(layout, "Sửa yêu cầu", [this]() { editRequest(); });
-                addActionButton(layout, "Chờ", [this]() { setRequestStatus(RequestStatus::Cho); });
-                addActionButton(layout, "Đang tư vấn",
-                                [this]() { setRequestStatus(RequestStatus::DangTuVan); });
-                addActionButton(layout, "Hoàn thành → Booking",
-                                [this]() { setRequestStatus(RequestStatus::HoanThanh); });
                 addActionButton(layout, "Tạo Booking", [this]() { createBooking(); });
-                addActionButton(layout, "Hủy yêu cầu",
-                                [this]() { setRequestStatus(RequestStatus::BiHuy); });
-            } else {
-                addActionButton(layout, "Hủy yêu cầu", [this]() { cancelOwnRequest(); });
+                addActionButton(layout, "Xóa", [this]() { deleteSelected(); });
             }
         } else if (screen_ == "mybookings") {
-            addActionButton(layout, "Xem phiếu thu", [this]() { viewReceipts(); });
+            // Chi xem + double-click de xem phieu thu.
         } else if (screen_ == "halls") {
             if (isManager()) {
-                addActionButton(layout, "Thêm sảnh", [this]() { addHall(); });
-                addActionButton(layout, "Sửa sảnh", [this]() { editHall(); });
+                addActionButton(layout, "Tạo mới", [this]() { addHall(); });
+                addActionButton(layout, "Cập nhật", [this]() { editHall(); });
+                addActionButton(layout, "Xóa", [this]() { deleteSelected(); });
             }
         } else if (screen_ == "services") {
             if (isManager() && !serviceTabCategory(serviceTab_).empty()) {
-                addActionButton(layout, "Thêm dịch vụ", [this]() { addService(); });
-                addActionButton(layout, "Sửa dịch vụ", [this]() { editService(); });
+                addActionButton(layout, "Tạo mới", [this]() { addService(); });
+                addActionButton(layout, "Cập nhật", [this]() { editService(); });
+                addActionButton(layout, "Xóa", [this]() { deleteSelected(); });
             }
             if (isManager()) {
                 addActionButton(layout, "Nạp danh mục mẫu", [this]() { importCatalog(); });
@@ -759,21 +938,41 @@ private:
         } else if (screen_ == "lookup") {
             addActionButton(layout, "Tra cứu theo thời gian", [this]() { lookupHalls(); });
         } else if (screen_ == "bookings") {
-            addActionButton(layout, "Tạo booking", [this]() { createBooking(); });
-            addActionButton(layout, "Hoàn tất booking", [this]() { changeBookingStatus(true); });
-            addActionButton(layout, "Hủy booking", [this]() { changeBookingStatus(false); });
-            if (isManager()) {
-                addActionButton(layout, "Duyệt chiết khấu", [this]() { approveDiscount(); });
-            }
+            addActionButton(layout, "Tạo mới", [this]() { createBooking(); });
+            addActionButton(layout, "Cập nhật giảm giá", [this]() { editBookingDiscount(); });
         } else if (screen_ == "payments") {
-            addActionButton(layout, "Ghi nhận thanh toán", [this]() { recordPayment(); });
-            addActionButton(layout, "Xem / in phiếu thu", [this]() { viewReceipts(); });
+            addActionButton(layout, "Tạo mới", [this]() { recordPayment(); });
+            addActionButton(layout, "Xóa khoản chưa thu", [this]() { deleteSelected(); });
         } else if (screen_ == "users") {
-            addActionButton(layout, "Tạo người dùng", [this]() { createUser(); });
-            addActionButton(layout, "Khóa / mở khóa", [this]() { toggleUser(); });
-            addActionButton(layout, "Đổi mật khẩu", [this]() { changePassword(); });
+            addActionButton(layout, "Tạo mới", [this]() { createUser(); });
+            addActionButton(layout, "Cập nhật (đổi mật khẩu)", [this]() { changePassword(); });
+            addActionButton(layout, "Xóa", [this]() { deleteSelected(); });
         }
         layout->addStretch();
+    }
+
+    // Xoa dong dang chon (tuy man hinh).
+    void deleteSelected()
+    {
+        const QString id = selectedValue();
+        if (id.isEmpty()) {
+            showError("Hãy chọn một dòng trong bảng.");
+            return;
+        }
+        OpResult result = OpResult::fail("Màn hình này không xóa được.");
+        if (screen_ == "customers")
+            result = service_.deleteCustomer(id.toStdString());
+        else if (screen_ == "requests")
+            result = service_.deleteRequest(id.toStdString());
+        else if (screen_ == "halls")
+            result = service_.deleteHall(id.toStdString());
+        else if (screen_ == "services")
+            result = service_.deleteService(id.toStdString());
+        else if (screen_ == "payments")
+            result = service_.deletePayment(id.toStdString());
+        else if (screen_ == "users")
+            result = service_.deleteUser(id.toStdString());
+        notify(result);
     }
 
     // ---- Form 1: tao yeu cau (dropdown loai/sanh, date-picker, dich vu tich chon) ----
@@ -940,6 +1139,18 @@ private:
             showError("Hãy chọn một yêu cầu trong bảng.");
             return;
         }
+        const User* u = service_.currentUser();
+        const bool customer = u && u->role() == Role::Customer;
+        if (customer) {
+            if (req->customerId() != u->customerId()) {
+                showError("Bạn chỉ sửa yêu cầu của mình.");
+                return;
+            }
+            if (req->status() != RequestStatus::Cho && req->status() != RequestStatus::DangTuVan) {
+                showError("Chỉ sửa được yêu cầu đang xét duyệt.");
+                return;
+            }
+        }
         RequestFormResult preset;
         preset.customerId = req->customerId();
         preset.type = req->type();
@@ -952,33 +1163,13 @@ private:
         preset.guestCount = req->guestCount();
         preset.notes = req->notes();
         for (const auto& l : req->lines()) preset.serviceIds.push_back(l.serviceId());
-        const auto form = promptRequestForm("Sửa yêu cầu " + id, preset, true);
+        const auto form = promptRequestForm("Sửa yêu cầu " + id, preset, !customer);
         if (!form) return;
         vector<ServiceLineInput> lines;
         for (const string& sid : form->serviceIds) lines.push_back({sid, 0});
         notify(service_.updateRequest(id.toStdString(), form->type, form->title, form->customerName,
                                       form->customerPhone, form->hallId, form->start, form->end,
                                       form->guestCount, form->notes, lines));
-    }
-
-    void setRequestStatus(RequestStatus status)
-    {
-        const QString id = selectedValue();
-        if (id.isEmpty()) {
-            showError("Hãy chọn một yêu cầu trong bảng.");
-            return;
-        }
-        notify(service_.updateRequestStatus(id.toStdString(), status));
-    }
-
-    void cancelOwnRequest()
-    {
-        const QString id = selectedValue();
-        if (id.isEmpty()) {
-            showError("Hãy chọn một yêu cầu trong bảng.");
-            return;
-        }
-        notify(service_.cancelOwnRequest(id.toStdString()));
     }
 
     // ---- Form 2: booking ----
@@ -1052,30 +1243,26 @@ private:
         return out;
     }
 
-    void changeBookingStatus(bool complete)
+    void editBookingDiscount()
     {
         const QString id = selectedValue();
-        if (id.isEmpty()) {
+        const Booking* b = service_.findBooking(id.toStdString());
+        if (!b) {
             showError("Hãy chọn booking trong bảng.");
             return;
         }
-        if (complete) {
-            notify(service_.setBookingStatus(id.toStdString(), BookingStatus::HoanTat));
-            return;
-        }
-        const auto values = promptFields(this, "Hủy booking", {"Lý do"}, {"Hủy từ màn hình booking"});
+        const auto values = promptFields(this, "Cập nhật giảm giá " + id,
+                                         {"Chiết khấu %", "Giảm giá VNĐ"},
+                                         {QString::number(b->discountPercent()),
+                                          QString::number(b->discountAmount())});
         if (!values) return;
-        notify(service_.cancelBooking(id.toStdString(), (*values)[0].toStdString()));
-    }
-
-    void approveDiscount()
-    {
-        const QString id = selectedValue();
-        if (id.isEmpty()) {
-            showError("Hãy chọn booking trong bảng.");
+        const auto pct = parseInt((*values)[0].toStdString());
+        const auto amt = parseMoney((*values)[1].toStdString());
+        if (!pct || !amt) {
+            showError("Chiết khấu không hợp lệ.");
             return;
         }
-        notify(service_.approveDiscount(id.toStdString()));
+        notify(service_.updateBookingDiscount(id.toStdString(), *pct, *amt));
     }
 
     // ---- Form 3: thanh toan ----
@@ -1327,22 +1514,6 @@ private:
         notify(service_.createUser((*values)[0].toStdString(), (*values)[1].toStdString(),
                                    (*values)[2].toStdString(),
                                    roleFromString(rolePicked->toStdString())));
-    }
-
-    void toggleUser()
-    {
-        const QString id = selectedValue();
-        if (id.isEmpty()) {
-            showError("Hãy chọn người dùng trong bảng.");
-            return;
-        }
-        for (const User& user : service_.db().users) {
-            if (user.id() == id.toStdString()) {
-                notify(service_.setUserActive(user.id(), !user.active()));
-                return;
-            }
-        }
-        showError("Không tìm thấy người dùng.");
     }
 
     void changePassword()
