@@ -1054,24 +1054,33 @@ private:
         guestsSpin->setValue(preset.guestCount);
         form->addRow("Số lượng khách", guestsSpin);
 
-        auto* serviceList = new QListWidget(&dialog);
-        serviceList->setSelectionMode(QAbstractItemView::NoSelection);
-        serviceList->setMinimumHeight(180);
-        for (const ServiceItem& s : service_.db().services) {
-            if (!s.active()) continue;
-            auto* item = new QListWidgetItem(
-                qstr(s.code() + " - " + s.name() + " (" + formatMoney(s.unitPrice()) + " " + s.unit() +
-                     ") [" + s.category() + "]"),
-                serviceList);
-            item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-            const bool checked = std::find(preset.serviceIds.begin(), preset.serviceIds.end(), s.id()) !=
-                                 preset.serviceIds.end();
-            item->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
-            item->setData(Qt::UserRole, qstr(s.id()));
+        // Dich vu tich chon theo tung tab, giong thiet ke danh muc (dac ta 2.9).
+        auto* serviceTabs = new QTabWidget(&dialog);
+        serviceTabs->setMinimumHeight(200);
+        for (const QString& category :
+             QStringList({"Ẩm thực", "Trang trí", "Chụp ảnh & quay phim", "Âm thanh & ánh sáng",
+                          "Nhân sự & dịch vụ bổ sung"})) {
+            auto* list = new QListWidget(serviceTabs);
+            list->setSelectionMode(QAbstractItemView::NoSelection);
+            for (const ServiceItem& s : service_.db().services) {
+                if (!s.active()) continue;
+                if (qstr(s.category()) != category) continue;
+                auto* item = new QListWidgetItem(
+                    qstr(s.code() + " - " + s.name() + " (" + formatMoney(s.unitPrice()) + " " +
+                         s.unit() + ")"),
+                    list);
+                item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+                const bool checked =
+                    std::find(preset.serviceIds.begin(), preset.serviceIds.end(), s.id()) !=
+                    preset.serviceIds.end();
+                item->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
+                item->setData(Qt::UserRole, qstr(s.id()));
+            }
+            serviceTabs->addTab(list, category);
         }
         layout->addLayout(form);
-        layout->addWidget(new QLabel("Dịch vụ (tích chọn):", &dialog));
-        layout->addWidget(serviceList, 1);
+        layout->addWidget(new QLabel("Dịch vụ (tích chọn theo từng tab):", &dialog));
+        layout->addWidget(serviceTabs, 1);
 
         auto* notesEdit = new QTextEdit(qstr(preset.notes), &dialog);
         notesEdit->setPlaceholderText("Ghi chú thêm");
@@ -1098,10 +1107,14 @@ private:
         out.end = {qe.date().year(), qe.date().month(), qe.date().day(), qe.time().hour(),
                    qe.time().minute()};
         out.guestCount = guestsSpin->value();
-        for (int i = 0; i < serviceList->count(); ++i) {
-            QListWidgetItem* item = serviceList->item(i);
-            if (item->checkState() == Qt::Checked) {
-                out.serviceIds.push_back(item->data(Qt::UserRole).toString().toStdString());
+        for (int t = 0; t < serviceTabs->count(); ++t) {
+            auto* list = qobject_cast<QListWidget*>(serviceTabs->widget(t));
+            if (!list) continue;
+            for (int i = 0; i < list->count(); ++i) {
+                QListWidgetItem* item = list->item(i);
+                if (item->checkState() == Qt::Checked) {
+                    out.serviceIds.push_back(item->data(Qt::UserRole).toString().toStdString());
+                }
             }
         }
         out.notes = notesEdit->toPlainText().toStdString();
