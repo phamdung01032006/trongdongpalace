@@ -225,11 +225,13 @@ private:
 
     void notify(const OpResult& result)
     {
-        statusBar()->showMessage(qstr(result.message), result.ok ? 5000 : 10000);
-        if (result.ok) {
-            loadNavigation();
-            refreshTable();
+        if (!result.ok) {
+            QMessageBox::warning(this, "Không lưu được", qstr(result.message));
+            return;
         }
+        statusBar()->showMessage(qstr(result.message), 5000);
+        loadNavigation();
+        refreshTable();
     }
 
     void showError(const QString& message)
@@ -449,6 +451,7 @@ private:
 
     void loadNavigation()
     {
+        const QString keepScreen = screen_;
         navigation_->blockSignals(true);
         navigation_->clear();
         for (const NavigationEntry& entry : navigationEntries()) {
@@ -465,6 +468,13 @@ private:
         const User* user = service_.currentUser();
         userLabel_->setText(user ? qstr(user->fullName() + " · " + toString(user->role())) : QString{});
         navigation_->blockSignals(false);
+        // Giu dung man hinh dang xem sau khi luu (khong bat ve tab dau).
+        for (int i = 0; i < navigation_->count(); ++i) {
+            if (navigation_->itemData(i).toString() == keepScreen) {
+                if (navigation_->currentIndex() != i) navigation_->setCurrentIndex(i);
+                break;
+            }
+        }
     }
 
     void selectInitialScreen()
@@ -739,6 +749,9 @@ private:
             if (isManager() && !serviceTabCategory(serviceTab_).empty()) {
                 addActionButton(layout, "Thêm dịch vụ", [this]() { addService(); });
                 addActionButton(layout, "Sửa dịch vụ", [this]() { editService(); });
+            }
+            if (isManager()) {
+                addActionButton(layout, "Nạp danh mục mẫu", [this]() { importCatalog(); });
             }
         } else if (screen_ == "lookup") {
             addActionButton(layout, "Tra cứu theo thời gian", [this]() { lookupHalls(); });
@@ -1202,6 +1215,11 @@ private:
         if (!statusPicked) return;
         notify(service_.updateHall(hall->id(), (*values)[0].toStdString(), *capacity, *price,
                                    hallStatusFromString(statusPicked->toStdString())));
+    }
+
+    void importCatalog()
+    {
+        notify(service_.importCatalog());
     }
 
     void addService()

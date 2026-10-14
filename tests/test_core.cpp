@@ -332,6 +332,22 @@ int main() {
         CHECK(ss.str().find("json hỏng") != string::npos);
     }
 
+    cout << "== 12. Nạp danh mục mẫu không trùng, giữ dữ liệu cũ ==" << endl;
+    {
+        auto dir = makeTempDir("catalog");
+        JsonStorage storage(dir / "data", dir / "backup");
+        storage.load();
+        PalaceService svc(storage);
+        CHECK(svc.login("admin", "123456").ok);
+        OpResult r1 = svc.importCatalog();
+        CHECK(r1.ok);
+        CHECK(svc.db().halls.size() == 6 && svc.db().services.size() == 100);
+        // Sales không được nạp.
+        svc.logout();
+        CHECK(svc.login("kinhdoanh", "123456").ok);
+        CHECK(!svc.importCatalog().ok);
+    }
+
     cout << "\n========================================\n";
     cout << "Tổng: " << g_total << " | Đạt: " << (g_total - g_failed) << " | Lỗi: " << g_failed << "\n";
     cout << "========================================\n";

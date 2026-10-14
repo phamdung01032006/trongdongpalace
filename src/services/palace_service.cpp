@@ -1,5 +1,6 @@
 #include "services/palace_service.hpp"
 
+#include "storage/catalog_seed.hpp"
 #include "utils/sha256.hpp"
 
 #include <algorithm>
@@ -500,8 +501,19 @@ OpResult PalaceService::updateService(const string& id, const string& code, cons
     return persist("Đã cập nhật dịch vụ (đơn đã chốt vẫn giữ đơn giá cũ).", id);
 }
 
-vector<string> PalaceService::serviceCategories() const {
-    vector<string> cats;
+OpResult PalaceService::importCatalog() {
+    auto r = require(Action::ManageVenues);
+    if (!r.ok) return r;
+    size_t hallsBefore = mut().halls.size(), svcBefore = mut().services.size();
+    seedCatalog(mut());
+    size_t addedHalls = mut().halls.size() - hallsBefore;
+    size_t addedSvc = mut().services.size() - svcBefore;
+    return persist("Đã nạp danh mục mẫu: +" + to_string(addedHalls) + " sảnh, +" +
+                       to_string(addedSvc) + " dịch vụ (giữ nguyên dữ liệu cũ).",
+                   "");
+}
+
+vector<string> PalaceService::serviceCategories() const {    vector<string> cats;
     for (const auto& s : data().services) {
         if (find(cats.begin(), cats.end(), s.category()) == cats.end()) cats.push_back(s.category());
     }
