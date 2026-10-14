@@ -217,6 +217,9 @@ private:
     QLabel* pageTitle_ = nullptr;
     QLineEdit* search_ = nullptr;
     QTableWidget* table_ = nullptr;
+    QWidget* content_ = nullptr;
+    QTabWidget* serviceTabs_ = nullptr;
+    int serviceTab_ = 0;
     QHBoxLayout* actionLayout_ = nullptr;
     QString screen_;
 
@@ -387,7 +390,8 @@ private:
         layout->addLayout(controls);
 
         table_ = makeTable({}, {}, page);
-        layout->addWidget(table_, 1);
+        content_ = table_;
+        layout->addWidget(content_, 1);
         actionLayout_ = new QHBoxLayout;
         actionLayout_->setSpacing(8);
         layout->addLayout(actionLayout_);
@@ -432,7 +436,7 @@ private:
             {Action::ManageBookings, "Booking", "bookings"},
             {Action::ManagePayments, "Thanh toán", "payments"},
             {Action::ManageVenues, "Sảnh & địa điểm", "halls"},
-            {Action::ManageVenues, "Dịch vụ", "services"},
+            {Action::ManageVenues, "Danh mục dịch vụ", "services"},
             {Action::LookupHalls, "Tra cứu sảnh trống", "lookup"},
             {Action::ManageCustomers, "Khách hàng", "customers"},
             {Action::ManageEvents, "Sự kiện", "events"},
@@ -491,7 +495,7 @@ private:
         if (screen_ == "mybookings")
             return {"Mã", "Sảnh", "Bắt đầu", "Kết thúc", "Tổng booking", "Đã thu", "Trạng thái"};
         if (screen_ == "halls") return {"Mã", "Tên sảnh", "Sức chứa", "Giá thuê", "Trạng thái"};
-        if (screen_ == "services") return {"Mã", "Tên dịch vụ", "Đơn vị", "Đơn giá", "Nhóm"};
+        if (screen_ == "services") return serviceHeaders(serviceTab_);
         if (screen_ == "lookup") return {"Mã sảnh", "Tên sảnh", "Giá thuê", "Sức chứa"};
         if (screen_ == "bookings")
             return {"Mã", "Yêu cầu", "Sảnh", "Bắt đầu", "Tổng", "Giảm giá", "Trạng thái", "NV phụ trách"};
@@ -555,11 +559,7 @@ private:
                                  formatMoney(hall.rentalPrice()), toString(hall.status())});
             }
         } else if (screen_ == "services") {
-            for (const ServiceItem& item : db.services) {
-                if (!item.active() && !isManager()) continue;
-                appendRow(rows, {item.code(), item.name(), item.unit(), formatMoney(item.unitPrice()),
-                                 item.category()});
-            }
+            rows = serviceRows(serviceTab_);
         } else if (screen_ == "lookup") {
             // Results are populated only after an explicit availability search.
         } else if (screen_ == "bookings") {
@@ -600,14 +600,100 @@ private:
 
     void refreshTable()
     {
-        if (!table_ || screen_.isEmpty()) return;
-        const Rows rows = getRows();
-        QTableWidget* replacement = makeTable(tableHeaders(), rows, workspacePage_);
+        if (screen_.isEmpty()) return;
         auto* layout = qobject_cast<QVBoxLayout*>(workspacePage_->layout());
         if (!layout) return;
-        layout->replaceWidget(table_, replacement);
-        table_->deleteLater();
+        if (screen_ == "services") {
+            refreshServiceTabs(layout);
+            return;
+        }
+        if (!table_) return;
+        const Rows rows = getRows();
+        QTableWidget* replacement = makeTable(tableHeaders(), rows, workspacePage_);
+        layout->replaceWidget(content_, replacement);
+        content_->deleteLater();
         table_ = replacement;
+        content_ = table_;
+    }
+
+    // 7 tab danh muc theo dac ta 2.9 (tab ngang).
+    static QString serviceTabName(int index)
+    {
+        switch (index) {
+            case 0: return "Loại sự kiện";
+            case 1: return "Ẩm thực";
+            case 2: return "Trang trí";
+            case 3: return "Chụp ảnh & quay phim";
+            case 4: return "Âm thanh & ánh sáng";
+            case 5: return "Sảnh & địa điểm";
+            default: return "Nhân sự & dịch vụ bổ sung";
+        }
+    }
+
+    static string serviceTabCategory(int index)
+    {
+        switch (index) {
+            case 1: return "Ẩm thực";
+            case 2: return "Trang trí";
+            case 3: return "Chụp ảnh & quay phim";
+            case 4: return "Âm thanh & ánh sáng";
+            case 6: return "Nhân sự & dịch vụ bổ sung";
+            default: return "";
+        }
+    }
+
+    QStringList serviceHeaders(int index) const
+    {
+        if (index == 0) return {"Mã", "Loại sự kiện", "Quy mô tham khảo", "Ngân sách tổ chức"};
+        if (index == 5) return {"Mã", "Tên sảnh", "Sức chứa", "Giá thuê", "Trạng thái"};
+        return {"Mã", "Tên dịch vụ", "Đơn vị", "Đơn giá"};
+    }
+
+    Rows serviceRows(int index) const
+    {
+        Rows rows;
+        const Database& db = service_.db();
+        if (index == 0) {
+            for (int i = 0; i <= static_cast<int>(EventType::VanHoa); ++i) {
+                const EventTypeMeta meta = eventTypeMeta(static_cast<EventType>(i));
+                appendRow(rows, {meta.code, meta.name, meta.scale, meta.budget});
+            }
+        } else if (index == 5) {
+            for (const Hall& hall : db.halls) {
+                appendRow(rows, {hall.id(), hall.name(), to_string(hall.capacity()),
+                                 formatMoney(hall.rentalPrice()), toString(hall.status())});
+            }
+        } else {
+            const string category = serviceTabCategory(index);
+            for (const ServiceItem& item : db.services) {
+                if (item.category() != category) continue;
+                if (!item.active() && !isManager()) continue;
+                appendRow(rows, {item.code(), item.name(), item.unit(),
+                                 formatMoney(item.unitPrice())});
+            }
+        }
+        return rows;
+    }
+
+    void refreshServiceTabs(QVBoxLayout* layout)
+    {
+        auto* tabs = new QTabWidget(workspacePage_);
+        for (int i = 0; i < 7; ++i) {
+            QTableWidget* page = makeTable(serviceHeaders(i), serviceRows(i), tabs);
+            tabs->addTab(page, serviceTabName(i));
+        }
+        if (serviceTab_ < 0 || serviceTab_ >= tabs->count()) serviceTab_ = 0;
+        tabs->setCurrentIndex(serviceTab_);
+        table_ = qobject_cast<QTableWidget*>(tabs->currentWidget());
+        connect(tabs, &QTabWidget::currentChanged, this, [this](int index) {
+            serviceTab_ = index;
+            if (serviceTabs_) table_ = qobject_cast<QTableWidget*>(serviceTabs_->widget(index));
+            addActions();
+        });
+        layout->replaceWidget(content_, tabs);
+        content_->deleteLater();
+        content_ = tabs;
+        serviceTabs_ = tabs;
     }
 
     void addActionButton(QHBoxLayout* layout, const QString& text, const function<void()>& action)
@@ -650,7 +736,7 @@ private:
                 addActionButton(layout, "Sửa sảnh", [this]() { editHall(); });
             }
         } else if (screen_ == "services") {
-            if (isManager()) {
+            if (isManager() && !serviceTabCategory(serviceTab_).empty()) {
                 addActionButton(layout, "Thêm dịch vụ", [this]() { addService(); });
                 addActionButton(layout, "Sửa dịch vụ", [this]() { editService(); });
             }
@@ -1132,7 +1218,9 @@ private:
         const auto catPicked = promptCombo(this, "Thêm dịch vụ", "Tab danh mục",
                                            {"Ẩm thực", "Trang trí", "Chụp ảnh & quay phim",
                                             "Âm thanh & ánh sáng", "Nhân sự & dịch vụ bổ sung"},
-                                           "Ẩm thực");
+                                           qstr(serviceTabCategory(serviceTab_).empty()
+                                                    ? "Ẩm thực"
+                                                    : serviceTabCategory(serviceTab_)));
         if (!catPicked) return;
         notify(service_.addService((*values)[0].toStdString(), (*values)[1].toStdString(),
                                    (*values)[2].toStdString(), *price,
