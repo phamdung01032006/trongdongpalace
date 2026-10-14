@@ -99,18 +99,29 @@ OpResult PalaceService::login(const string& username, const string& password) {
 void PalaceService::logout() { currentUserId_.clear(); }
 
 OpResult PalaceService::registerUser(const string& username, const string& password,
-                                     const string& confirmPassword, const string& fullName) {
+                                     const string& confirmPassword, const string& fullName,
+                                     const string& phone, const string& email, const string& address) {
     if (trim(username).empty()) return OpResult::fail("Tên đăng nhập không được để trống.");
     if (password.size() < 4) return OpResult::fail("Mật khẩu tối thiểu 4 ký tự.");
     if (password != confirmPassword) return OpResult::fail("Mật khẩu nhập lại không khớp.");
     if (!uniqueUsername(trim(username), "")) return OpResult::fail("Tên đăng nhập đã tồn tại.");
+    if (trim(fullName).empty()) return OpResult::fail("Họ tên là bắt buộc.");
+    if (!looksLikePhone(trim(phone))) return OpResult::fail("Số điện thoại không hợp lệ (9-12 chữ số).");
+    if (!uniquePhone(trim(phone), "")) return OpResult::fail("Số điện thoại đã được dùng cho hồ sơ khác.");
+    if (trim(email).empty() || !looksLikeEmail(trim(email)))
+        return OpResult::fail("Email là bắt buộc và phải đúng định dạng.");
+    // Tu dong tao ho so khach hang lien ket tai khoan.
+    string cusId = nextId("CUS-", customerIds());
+    mut().customers.push_back(Customer(cusId, trim(fullName), trim(phone), trim(email), trim(address),
+                                       "Tự đăng ký tài khoản", DateTime::now()));
     string id = nextId("USR-", userIds());
     string salt = randomSaltHex();
-    User u(id, trim(username), salt, hashPassword(password, salt),
-           trim(fullName).empty() ? trim(username) : trim(fullName), Role::Customer, true);
+    User u(id, trim(username), salt, hashPassword(password, salt), trim(fullName), Role::Customer, true);
     u.setDemoPassword(password);
+    u.setCustomerId(cusId);
     mut().users.push_back(move(u));
-    return persist("Đã tạo tài khoản khách hàng " + id + ". Bạn có thể đăng nhập ngay.", id);
+    return persist("Đăng ký thành công. Hồ sơ khách hàng " + cusId + " đã được tạo, bạn có thể đăng nhập.",
+                   id);
 }
 
 bool PalaceService::uniqueUsername(const string& username, const string& exceptId) const {
@@ -313,6 +324,17 @@ OpResult PalaceService::addRequest(const string& customerId, EventType type, con
     vector<RequestServiceLine> lines;
     OpResult rl = buildLines(guestCount, services, lines);
     if (!rl.ok) return rl;
+    // Khach sua ten/SDT tren form -> dong bo nguoc ve ho so cua chinh ho.
+    if (u && u->role() == Role::Customer) {
+        if (auto* self = findById(mut().customers, cid)) {
+            if (cname != self->name() || cphone != self->phone()) {
+                if (!uniquePhone(cphone, cid))
+                    return OpResult::fail("Số điện thoại đã được dùng cho hồ sơ khác.");
+                self->setName(cname);
+                self->setPhone(cphone);
+            }
+        }
+    }
     vector<string> ids;
     for (const auto& x : data().requests) ids.push_back(x.id());
     string id = nextId("REQ-", ids);

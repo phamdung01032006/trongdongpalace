@@ -335,12 +335,15 @@ private:
         connect(registerButton, &QPushButton::clicked, this, [this, username, status]() {
             const auto fields = promptFields(
                 this, "Đăng ký tài khoản khách hàng",
-                {"Tên đăng nhập", "Họ và tên", "Mật khẩu (ít nhất 4 ký tự)", "Nhập lại mật khẩu"},
-                {"", "", "", ""}, {2, 3});
+                {"Tên đăng nhập", "Họ và tên", "Số điện thoại", "Email", "Địa chỉ",
+                 "Mật khẩu (ít nhất 4 ký tự)", "Nhập lại mật khẩu"},
+                {"", "", "", "", "", "", ""}, {5, 6});
             if (!fields) return;
             const OpResult result = service_.registerUser(
-                (*fields)[0].toStdString(), (*fields)[2].toStdString(),
-                (*fields)[3].toStdString(), (*fields)[1].toStdString());
+                (*fields)[0].toStdString(), (*fields)[5].toStdString(),
+                (*fields)[6].toStdString(), (*fields)[1].toStdString(),
+                (*fields)[2].toStdString(), (*fields)[3].toStdString(),
+                (*fields)[4].toStdString());
             status->setText(qstr(result.message));
             if (result.ok) username->setText((*fields)[0]);
         });

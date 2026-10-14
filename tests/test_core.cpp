@@ -279,11 +279,24 @@ int main() {
         CHECK(svc.requestsForCustomer("CUS-0002").size() == 1);
         CHECK(svc.cancelOwnRequest(req).ok);
         CHECK(customerViewOfRequest(svc.findRequest(req)->status()) == "Bị hủy");
-        // Đăng ký mới chỉ tạo được tài khoản Customer.
+        // Đăng ký mới: đủ hồ sơ -> tự tạo Customer liên kết; thiếu/SĐT trùng bị từ chối.
         svc.logout();
-        CHECK(svc.registerUser("khachmoi", "123456", "123456", "Khách Mới").ok);
+        CHECK(!svc.registerUser("thieu", "123456", "123456", "", "0900111333", "t@t.com", "").ok);
+        CHECK(!svc.registerUser("trung", "123456", "123456", "Trùng", "0987654321", "t@t.com", "").ok);
+        CHECK(svc.registerUser("khachmoi", "123456", "123456", "Khách Mới", "0900111333",
+                               "moi@test.com", "Hà Nội")
+                  .ok);
         CHECK(svc.login("khachmoi", "123456").ok);
         CHECK(svc.currentUser()->role() == Role::Customer);
+        const Customer* prof = svc.findCustomer(svc.currentUser()->customerId());
+        CHECK(prof != nullptr && prof->phone() == "0900111333" && prof->email() == "moi@test.com");
+        // Khách sửa SĐT trên form yêu cầu -> đồng bộ ngược về hồ sơ.
+        string req2 =
+            svc.addRequest("", EventType::TiecCuoi, "T2", "Khách Mới", "0900111444", "", dt("2027-11-02 18:00"),
+                           dt("2027-11-02 22:00"), 50, "", {})
+                .id;
+        CHECK(!req2.empty());
+        CHECK(svc.findCustomer(svc.currentUser()->customerId())->phone() == "0900111444");
     }
 
     cout << "== 10. Sảnh Bảo trì + trạng thái sự kiện theo thời gian ==\n";

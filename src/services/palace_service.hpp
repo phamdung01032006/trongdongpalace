@@ -36,9 +36,10 @@ public:
     explicit PalaceService(JsonStorage& storage);
 
     OpResult login(const string& username, const string& password);
-    // Tu dang ky: chi duoc tao tai khoan Customer (tranh leo thang quyen).
+    // Tu dang ky tai khoan Customer: nhap du ho so -> tu tao Customer lien ket.
     OpResult registerUser(const string& username, const string& password, const string& confirmPassword,
-                          const string& fullName);
+                          const string& fullName, const string& phone, const string& email,
+                          const string& address);
     void logout();
     bool isLoggedIn() const { return !currentUserId_.empty(); }
     const User* currentUser() const;
