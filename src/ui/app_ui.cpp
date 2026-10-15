@@ -220,6 +220,16 @@ private:
     QWidget* content_ = nullptr;
     QTabWidget* serviceTabs_ = nullptr;
     int serviceTab_ = 0;
+    // Khung loc tra cuu sanh (hien + loc chung 1 khung).
+    QWidget* lookupControls_ = nullptr;
+    QDateTimeEdit* fStart_ = nullptr;
+    QDateTimeEdit* fEnd_ = nullptr;
+    QSpinBox* fGuests_ = nullptr;
+    QLineEdit* fMaxPrice_ = nullptr;
+    bool lookupActive_ = false;
+    DateTime lStart_, lEnd_;
+    int lGuests_ = 0;
+    int64_t lMaxPrice_ = 0;
     QHBoxLayout* actionLayout_ = nullptr;
     QString screen_;
 
@@ -394,6 +404,46 @@ private:
         controls->addWidget(refresh);
         layout->addLayout(controls);
 
+        // Khung loc tra cuu: suc chua + thoi gian + gia tien (chi hien o tab tra cuu).
+        lookupControls_ = new QWidget(page);
+        auto* filter = new QHBoxLayout(lookupControls_);
+        filter->setContentsMargins(0, 0, 0, 0);
+        DateTime defStart = DateTime::now().plusHours(24);
+        fStart_ = new QDateTimeEdit(page);
+        fStart_->setDisplayFormat("yyyy-MM-dd HH:mm");
+        fStart_->setCalendarPopup(true);
+        fStart_->setDateTime(QDateTime(QDate(defStart.year, defStart.month, defStart.day),
+                                       QTime(defStart.hour, defStart.minute)));
+        fEnd_ = new QDateTimeEdit(page);
+        fEnd_->setDisplayFormat("yyyy-MM-dd HH:mm");
+        fEnd_->setCalendarPopup(true);
+        DateTime defEnd = defStart.plusHours(4);
+        fEnd_->setDateTime(QDateTime(QDate(defEnd.year, defEnd.month, defEnd.day),
+                                     QTime(defEnd.hour, defEnd.minute)));
+        fGuests_ = new QSpinBox(page);
+        fGuests_->setRange(10, 800);
+        fGuests_->setValue(100);
+        fGuests_->setPrefix("Khách: ");
+        fMaxPrice_ = new QLineEdit(page);
+        fMaxPrice_->setPlaceholderText("Giá thuê tối đa (trống = không giới hạn)");
+        auto* doLookup = new QPushButton("Tra cứu", page);
+        auto* showAll = new QPushButton("Hiện tất cả", page);
+        filter->addWidget(new QLabel("Từ:", page));
+        filter->addWidget(fStart_);
+        filter->addWidget(new QLabel("Đến:", page));
+        filter->addWidget(fEnd_);
+        filter->addWidget(fGuests_);
+        filter->addWidget(fMaxPrice_, 1);
+        filter->addWidget(doLookup);
+        filter->addWidget(showAll);
+        lookupControls_->setVisible(false);
+        layout->addWidget(lookupControls_);
+        connect(doLookup, &QPushButton::clicked, this, [this]() { lookupHalls(); });
+        connect(showAll, &QPushButton::clicked, this, [this]() {
+            lookupActive_ = false;
+            refreshTable();
+        });
+
         table_ = makeTable({}, {}, page);
         content_ = table_;
         layout->addWidget(content_, 1);
@@ -491,6 +541,7 @@ private:
         screen_ = navigation_->itemData(index).toString();
         pageTitle_->setText(navigation_->currentText());
         search_->setVisible(screen_ == "customers");
+        lookupControls_->setVisible(screen_ == "lookup");
         refreshTable();
         addActions();
     }
@@ -509,7 +560,8 @@ private:
             return {"Mã", "Sảnh", "Bắt đầu", "Kết thúc", "Tổng booking", "Đã thu", "Trạng thái"};
         if (screen_ == "halls") return {"Mã", "Tên sảnh", "Sức chứa", "Giá thuê", "Trạng thái"};
         if (screen_ == "services") return serviceHeaders(serviceTab_);
-        if (screen_ == "lookup") return {"Mã sảnh", "Tên sảnh", "Giá thuê", "Sức chứa"};
+        if (screen_ == "lookup")
+            return {"Mã sảnh", "Tên sảnh", "Sức chứa", "Giá thuê", "Trạng thái sảnh", "Hiện tại"};
         if (screen_ == "bookings")
             return {"Mã", "Yêu cầu", "Sảnh", "Bắt đầu", "Tổng", "Giảm giá", "Trạng thái", "NV phụ trách"};
         if (screen_ == "payments")
@@ -574,7 +626,33 @@ private:
         } else if (screen_ == "services") {
             rows = serviceRows(serviceTab_);
         } else if (screen_ == "lookup") {
-            // Results are populated only after an explicit availability search.
+            const DateTime now = DateTime::now();
+            if (!lookupActive_) {
+                // Mac dinh: hien tat ca sanh kem trang thai o thoi diem hien tai.
+                for (const Hall& hall : db.halls) {
+                    string present = "—";
+                    if (hall.status() == HallStatus::KhaDung) {
+                        bool busy = false;
+                        for (const Booking& b : db.bookings) {
+                            if (b.hallId() != hall.id() || !b.occupiesHall()) continue;
+                            if (!(now < b.start()) && !(b.end() < now)) {
+                                busy = true;
+                                break;
+                            }
+                        }
+                        present = busy ? "Đang có tiệc" : "Trống";
+                    }
+                    appendRow(rows, {hall.id(), hall.name(), to_string(hall.capacity()),
+                                     formatMoney(hall.rentalPrice()), toString(hall.status()), present});
+                }
+            } else {
+                for (const Hall& hall :
+                     service_.filterHalls(lStart_, lEnd_, lGuests_, lMaxPrice_, "")) {
+                    appendRow(rows, {hall.id(), hall.name(), to_string(hall.capacity()),
+                                     formatMoney(hall.rentalPrice()), toString(hall.status()),
+                                     "Trống (khung đã chọn)"});
+                }
+            }
         } else if (screen_ == "bookings") {
             for (const Booking& booking : db.bookings) {
                 string discount = "-";
@@ -936,12 +1014,13 @@ private:
                 addActionButton(layout, "Nạp danh mục mẫu", [this]() { importCatalog(); });
             }
         } else if (screen_ == "lookup") {
-            addActionButton(layout, "Tra cứu theo thời gian", [this]() { lookupHalls(); });
+            // Nut Tra cuu / Hien tat ca nam ngay tren khung loc.
         } else if (screen_ == "bookings") {
             addActionButton(layout, "Tạo mới", [this]() { createBooking(); });
             addActionButton(layout, "Cập nhật giảm giá", [this]() { editBookingDiscount(); });
         } else if (screen_ == "payments") {
             addActionButton(layout, "Tạo mới", [this]() { recordPayment(); });
+            addActionButton(layout, "Cập nhật", [this]() { editPayment(); });
             addActionButton(layout, "Xóa khoản chưa thu", [this]() { deleteSelected(); });
         } else if (screen_ == "users") {
             addActionButton(layout, "Tạo mới", [this]() { createUser(); });
@@ -1280,6 +1359,42 @@ private:
 
     // ---- Form 3: thanh toan ----
 
+    void editPayment()
+    {
+        const QString id = selectedValue();
+        const Payment* payment = service_.findPayment(id.toStdString());
+        if (!payment) {
+            showError("Hãy chọn khoản thanh toán trong bảng.");
+            return;
+        }
+        const Payment item = *payment;
+        const auto typePicked =
+            promptCombo(this, "Cập nhật thanh toán", "Loại thanh toán",
+                        {"Đặt cọc lần 1", "Đặt cọc lần 2", "Tất toán"},
+                        qstr(toString(item.type())));
+        if (!typePicked) return;
+        const auto fields = promptFields(this, "Cập nhật thanh toán " + id,
+                                         {"Số tiền (VND)", "Ghi chú (bắt buộc)"},
+                                         {QString::number(item.amount()), qstr(item.note())});
+        if (!fields) return;
+        const auto amount = parseMoney((*fields)[0].toStdString());
+        if (!amount) {
+            showError("Số tiền không hợp lệ.");
+            return;
+        }
+        const auto methodPicked = promptCombo(this, "Cập nhật thanh toán", "Phương thức",
+                                              {"Tiền mặt", "Chuyển khoản", "Thẻ tín dụng"},
+                                              qstr(toString(item.method())));
+        if (!methodPicked) return;
+        const auto paidAt =
+            promptDateTime(this, "Cập nhật thanh toán", "Ngày thanh toán", item.paidAt());
+        if (!paidAt) return;
+        notify(service_.updatePayment(
+            id.toStdString(), paymentTypeFromString(typePicked->toStdString()), *amount,
+            paymentMethodFromString(methodPicked->toStdString()), *paidAt,
+            (*fields)[1].toStdString()));
+    }
+
     void recordPayment()
     {
         QString bookingId;
@@ -1488,30 +1603,31 @@ private:
 
     void lookupHalls()
     {
-        const auto startPicked =
-            promptDateTime(this, "Tra cứu sảnh trống", "Bắt đầu", DateTime::now().plusHours(24));
-        if (!startPicked) return;
-        const auto endPicked =
-            promptDateTime(this, "Tra cứu sảnh trống", "Kết thúc", startPicked->plusHours(4));
-        if (!endPicked) return;
-        const auto guestsStr = promptFields(this, "Tra cứu sảnh trống", {"Số lượng khách"}, {"200"});
-        if (!guestsStr) return;
-        const auto guests = parseInt((*guestsStr)[0].toStdString());
-        if (!guests) {
-            showError("Số lượng khách không hợp lệ.");
+        const QDateTime qs = fStart_->dateTime(), qe = fEnd_->dateTime();
+        lStart_ = {qs.date().year(), qs.date().month(), qs.date().day(), qs.time().hour(),
+                   qs.time().minute()};
+        lEnd_ = {qe.date().year(), qe.date().month(), qe.date().day(), qe.time().hour(),
+                 qe.time().minute()};
+        lGuests_ = fGuests_->value();
+        const string maxText = fMaxPrice_->text().trimmed().toStdString();
+        if (maxText.empty()) {
+            lMaxPrice_ = 0;
+        } else {
+            const auto parsed = parseMoney(maxText);
+            if (!parsed) {
+                showError("Giá thuê tối đa không hợp lệ.");
+                return;
+            }
+            lMaxPrice_ = *parsed;
+        }
+        if (!(lStart_ < lEnd_)) {
+            showError("Thời gian bắt đầu phải sớm hơn kết thúc.");
             return;
         }
-        Rows rows;
-        for (const Hall& hall : service_.findAvailableHalls(*startPicked, *endPicked, *guests, "")) {
-            appendRow(rows, {hall.id(), hall.name(), formatMoney(hall.rentalPrice()),
-                             to_string(hall.capacity())});
-        }
-        QTableWidget* replacement = makeTable(tableHeaders(), rows, workspacePage_);
-        auto* layout = qobject_cast<QVBoxLayout*>(workspacePage_->layout());
-        layout->replaceWidget(table_, replacement);
-        table_->deleteLater();
-        table_ = replacement;
-        statusBar()->showMessage(QString("Tìm thấy %1 sảnh phù hợp").arg(rows.size()), 5000);
+        lookupActive_ = true;
+        refreshTable();
+        size_t count = service_.filterHalls(lStart_, lEnd_, lGuests_, lMaxPrice_, "").size();
+        statusBar()->showMessage(QString("Tìm thấy %1 sảnh phù hợp").arg(count), 5000);
     }
 
     void createUser()

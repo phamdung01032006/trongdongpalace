@@ -688,6 +688,16 @@ vector<Hall> PalaceService::findAvailableHalls(DateTime start, DateTime end, int
     return out;
 }
 
+vector<Hall> PalaceService::filterHalls(DateTime start, DateTime end, int guestCount,
+                                          int64_t maxPrice, const string& ignoreBookingId) const {
+    vector<Hall> out;
+    for (const Hall& h : findAvailableHalls(start, end, guestCount, ignoreBookingId)) {
+        if (maxPrice > 0 && h.rentalPrice() > maxPrice) continue;
+        out.push_back(h);
+    }
+    return out;
+}
+
 // ---- Booking ----
 
 OpResult PalaceService::applyBookingFromRequest(const string& requestId, const string& hallId, DateTime start,
@@ -732,19 +742,13 @@ OpResult PalaceService::applyBookingFromRequest(const string& requestId, const s
     req->setStatus(RequestStatus::DaChot);
 
     // Khoan dat coc tu dong tao, gia tri de trong (dac ta B.3).
+    // Su kien se tu tao khi thu coc xong (khong tao o day).
     vector<string> pids;
     for (const auto& x : data().payments) pids.push_back(x.id());
     string pid = nextId("PAY-", pids);
     mut().payments.push_back(Payment(pid, id, PaymentType::DatCoc1, 0, now, PaymentMethod::ChuyenKhoan,
                                      PaymentStatus::ChuaThanhToan, "Tiền đặt cọc giữ chỗ",
                                      actor ? actor->username() : ""));
-
-    // Su kien tu dong tao tu Booking (dac ta D).
-    vector<string> eids;
-    for (const auto& x : data().events) eids.push_back(x.id());
-    string eid = nextId("EVT-", eids);
-    mut().events.push_back(Event(eid, id, req->customerId(), hallId, start, end, EventStatus::SapDienRa,
-                                 req->notes()));
     bookingId = id;
     if (needsApproval)
         return persist("Đã tạo booking " + id + " (giữ chỗ " + to_string(kHoldHours) +
@@ -948,19 +952,51 @@ OpResult PalaceService::recordPayment(const string& bookingId, PaymentType type,
                                          PaymentStatus::DaThanhToan, trim(note),
                                          actor ? actor->username() : ""));
     }
-    // Booking chuyen Da coc khi tien coc hoan thanh (dac ta B.2 + 3.3).
-    if (auto* bb = findById(mut().bookings, bookingId)) {
-        if ((type == PaymentType::DatCoc1 || type == PaymentType::DatCoc2) &&
-            bb->status() == BookingStatus::ChoCoc) {
-            bb->setStatus(BookingStatus::DaCoc);
-        }
-        if (type == PaymentType::TatToan && bb->status() == BookingStatus::DaCoc) {
-            bb->setStatus(BookingStatus::HoanTat);
-        }
-    }
+    applyPaymentCompleted(bookingId, type);
     return persist("Đã ghi nhận " + toString(type) + " " + formatMoney(amount) + " cho booking " + bookingId +
                        ".",
                    id);
+}
+
+OpResult PalaceService::updatePayment(const string& id, PaymentType type, int64_t amount,
+                                      PaymentMethod method, DateTime paidAt, const string& note) {
+    auto r = require(Action::ManagePayments);
+    if (!r.ok) return r;
+    auto* p = findById(mut().payments, id);
+    if (!p) return OpResult::fail("Không tìm thấy khoản thanh toán.");
+    if (amount <= 0) return OpResult::fail("Nhân viên phải nhập giá trị khoản thanh toán (> 0).");
+    if (trim(note).empty()) return OpResult::fail("Ghi chú thanh toán là bắt buộc.");
+    if (!paidAt.valid()) return OpResult::fail("Ngày thanh toán không hợp lệ.");
+    if (DateTime::now() < paidAt)
+        return OpResult::fail("Ngày thanh toán không được trong tương lai.");
+    p->setType(type);
+    p->setAmount(amount);
+    p->setMethod(method);
+    p->setPaidAt(paidAt);
+    p->setNote(trim(note));
+    p->setStatus(PaymentStatus::DaThanhToan);
+    applyPaymentCompleted(p->bookingId(), type);
+    return persist("Đã cập nhật khoản thanh toán " + id + ".", id);
+}
+
+void PalaceService::applyPaymentCompleted(const string& bookingId, PaymentType type) {
+    auto* bb = findById(mut().bookings, bookingId);
+    if (!bb || bb->status() == BookingStatus::DaHuy) return;
+    if ((type == PaymentType::DatCoc1 || type == PaymentType::DatCoc2) &&
+        bb->status() == BookingStatus::ChoCoc) {
+        bb->setStatus(BookingStatus::DaCoc);
+    }
+    if (type == PaymentType::TatToan && bb->status() != BookingStatus::HoanTat) {
+        bb->setStatus(BookingStatus::HoanTat);
+    }
+    // Thu coc/tat toan xong -> tu dong tao su kien tuong ung.
+    if (findEventByBooking(bookingId)) return;
+    vector<string> eids;
+    for (const auto& x : data().events) eids.push_back(x.id());
+    string eid = nextId("EVT-", eids);
+    const EventRequest* req = findRequest(bb->requestId());
+    mut().events.push_back(Event(eid, bookingId, bb->customerId(), bb->hallId(), bb->start(), bb->end(),
+                                 EventStatus::SapDienRa, req ? req->notes() : ""));
 }
 
 OpResult PalaceService::deletePayment(const string& id) {

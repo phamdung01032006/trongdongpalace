@@ -102,6 +102,9 @@ public:
     vector<string> serviceCategories() const;
     vector<Hall> findAvailableHalls(DateTime start, DateTime end, int guestCount,
                                     const string& ignoreBookingId) const;
+    // Loc sanh kha dung theo nhieu tieu chi (tab tra cuu): gia thue toi da 0 = khong gioi han.
+    vector<Hall> filterHalls(DateTime start, DateTime end, int guestCount, int64_t maxPrice,
+                             const string& ignoreBookingId) const;
     bool hallAvailable(const string& hallId, DateTime start, DateTime end, const string& ignoreBookingId,
                        string& reason) const;
     int maxHallCapacity() const;
@@ -123,6 +126,9 @@ public:
 
     // Form 3: dien khoan da tu tao (amount 0) hoac tao moi, danh dau DaThanhToan.
     OpResult recordPayment(const string& bookingId, PaymentType type, int64_t amount, PaymentMethod method,
+                           DateTime paidAt, const string& note);
+    // Sua khoan thu (dien khoan tu tao hoac sua chua). Len DaThanhToan -> keo booking.
+    OpResult updatePayment(const string& id, PaymentType type, int64_t amount, PaymentMethod method,
                            DateTime paidAt, const string& note);
     OpResult deletePayment(const string& id);
     int64_t paidAmount(const string& bookingId) const;
@@ -159,6 +165,8 @@ private:
     OpResult applyBookingFromRequest(const string& requestId, const string& hallId, DateTime start,
                                      DateTime end, int guestCount, int discountPercent,
                                      int64_t discountAmount, string& bookingId);
+    // Booking doi trang thai theo khoan thu + tu tao su kien khi thu coc xong.
+    void applyPaymentCompleted(const string& bookingId, PaymentType type);
 };
 
 }  // namespace tdp

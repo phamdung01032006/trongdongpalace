@@ -63,6 +63,8 @@ static Flow runFullFlow(PalaceService& svc, const string& tag, const string& hal
     CHECK(!f.bookingId.empty());
     // Khoản đặt cọc tự động tạo, giá trị để trống.
     CHECK(svc.paymentsOf(f.bookingId).size() == 1);
+    // Chua thu coc -> chua co su kien.
+    CHECK(svc.findEventByBooking(f.bookingId) == nullptr);
     CHECK(svc.recordPayment(f.bookingId, PaymentType::DatCoc1, 20000000, PaymentMethod::ChuyenKhoan,
                             DateTime::now(), "Đặt cọc giữ chỗ")
               .ok);
@@ -405,6 +407,41 @@ int main() {
         CHECK(!svc.deleteBooking(bk2).ok);  // da coc -> phai Huy
         // Xoa sanh dang co booking -> tu choi.
         CHECK(!svc.deleteHall("HAL-0004").ok);
+    }
+
+    cout << "== 14. Sự kiện sinh khi thu cọc + sửa thanh toán + lọc sảnh ==" << endl;
+    {
+        auto dir = makeTempDir("evpay");
+        JsonStorage storage(dir / "data", dir / "backup");
+        storage.load();
+        PalaceService svc(storage);
+        svc.login("kinhdoanh", "123456");
+        string cus = svc.addCustomer("F", "0937111222", "", "", "").id;
+        string req = svc.addRequest(cus, EventType::TiecCuoi, "T", "F", "0937111222", "HAL-0004",
+                                    dt("2027-08-05 18:00"), dt("2027-08-05 22:00"), 200, "", {}).id;
+        string bk = svc.createBooking(req, "HAL-0004", dt("2027-08-05 18:00"), dt("2027-08-05 22:00"),
+                                      200, 0, 0)
+                        .id;
+        // Cap nhat khoan tu tao (dien gia tri) -> booking Da coc + sinh su kien.
+        string autoId = svc.paymentsOf(bk).front().id();
+        CHECK(svc.updatePayment(autoId, PaymentType::DatCoc1, 20000000, PaymentMethod::TienMat,
+                                DateTime::now(), "Cọc tiền mặt")
+                  .ok);
+        CHECK(svc.findBooking(bk)->status() == BookingStatus::DaCoc);
+        CHECK(svc.findEventByBooking(bk) != nullptr);
+        // Sua lai khoan da thu van duoc.
+        CHECK(svc.updatePayment(autoId, PaymentType::DatCoc1, 25000000, PaymentMethod::TienMat,
+                                DateTime::now(), "Cọc bổ sung")
+                  .ok);
+        CHECK(svc.paidAmount(bk) == 25000000);
+        // Loc sanh: suc chua + thoi gian + gia.
+        DateTime s = dt("2027-09-05 18:00"), e = dt("2027-09-05 22:00");
+        auto all = svc.filterHalls(s, e, 50, 0, "");
+        CHECK(all.size() == 6);
+        auto cheap = svc.filterHalls(s, e, 50, 8000000, "");
+        CHECK(cheap.size() == 2);  // Mini 5M + Small 8M
+        auto big = svc.filterHalls(s, e, 600, 0, "");
+        CHECK(big.size() == 1 && big.front().id() == "HAL-0006");
     }
 
     cout << "\n========================================\n";
