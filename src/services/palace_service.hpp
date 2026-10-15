@@ -168,4 +168,18 @@ private:
     void applyPaymentCompleted(const string& bookingId, PaymentType type);
 };
 
+template <typename T>
+T* PalaceService::findById(vector<T>& items, const string& id) {
+    for (auto& item : items)
+        if (item.id() == id) return &item;
+    return nullptr;
+}
+
+template <typename T>
+const T* PalaceService::findById(const vector<T>& items, const string& id) const {
+    for (const auto& item : items)
+        if (item.id() == id) return &item;
+    return nullptr;
+}
+
 }  // namespace tdp

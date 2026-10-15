@@ -35,7 +35,8 @@ trongdongpalace/
 │   ├── models/                 # User, Customer, EventRequest, Hall, ServiceItem,
 │   │                           # Booking, Payment, Event, Enums, Database
 │   ├── storage/                # JSON load/save + seed danh mục đặc tả
-│   ├── services/               # PalaceService: nghiệp vụ, RBAC, trùng lịch, hết hạn giữ chỗ
+│   ├── services/               # PalaceService chia 4 file: auth, requests,
+│   │                           # bookings, payments (RBAC, trùng lịch, giữ chỗ)
 │   ├── ui/                     # Qt Widgets theo actor
 │   └── utils/                  # DateTime, SHA-256, tiền tệ VND
 └── tests/

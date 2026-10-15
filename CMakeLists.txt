@@ -39,7 +39,10 @@ set(TDP_CORE_SOURCES
     src/models/Payment.cpp
     src/models/Event.cpp
     src/storage/json_storage.cpp
-    src/services/palace_service.cpp
+    src/services/palace_auth.cpp
+    src/services/palace_requests.cpp
+    src/services/palace_bookings.cpp
+    src/services/palace_payments.cpp
 )
 
 add_executable(trongdongpalace
