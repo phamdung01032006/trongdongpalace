@@ -202,7 +202,9 @@ Nguồn: `src/models/Booking.cpp`.
 ```
 
 `finalTotal() = estimatedTotal_ - discountAmount_`.
-`occupiesHall()` đúng khi trạng thái `ChoCoc` hoặc `DaCoc`.
+`occupiesHall()` đúng khi trạng thái `ChoCoc`, `DaCoc` hoặc `DaThanhToan`.
+`DaThanhToan` nghĩa là đã thu đủ tiền, vẫn giữ lịch. `HoanTat` là hoàn tất nghiệp vụ.
+`recordPayment()` cập nhật trạng thái theo tổng thu so với `finalTotal()`, không theo nhãn khoản thu.
 
 ### Payment
 
@@ -290,7 +292,7 @@ Role: Customer, Sales, Manager, Operation
 EventType: TiecCuoi, SinhNhat, GalaDinner, HoiNghiKhachHang, HoiThao,
            RaMatSanPham, KyNiemThanhLap, TiecTatNien, LeTotNghiep, VanHoa
 RequestStatus: Cho, DangTuVan, HoanThanh, BiHuy, DaChot
-BookingStatus: ChoCoc, DaCoc, HoanTat, DaHuy
+BookingStatus: ChoCoc, DaCoc, HoanTat, DaHuy, DaThanhToan
 HallStatus: KhaDung, BaoTri, KhongKhaDung
 PaymentType: DatCoc1, DatCoc2, TatToan
 PaymentStatus: ChuaThanhToan, DaThanhToan

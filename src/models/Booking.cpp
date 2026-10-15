@@ -65,8 +65,11 @@ public:
     void setSalesUsername(const string& value) { salesUsername_ = value; }
     void setCancelReason(const string& value) { cancelReason_ = value; }
 
-    // Chiem sanh khi Dang giu cho hoac Da coc (dac ta 3.2).
-    bool occupiesHall() const { return status_ == BookingStatus::ChoCoc || status_ == BookingStatus::DaCoc; }
+    // Tra du tien truoc ngay to chuc van phai giu lich sanh.
+    bool occupiesHall() const {
+        return status_ == BookingStatus::ChoCoc || status_ == BookingStatus::DaCoc ||
+               status_ == BookingStatus::DaThanhToan;
+    }
 
     vector<string> toFields() const;
     static Booking fromFields(const vector<string>& f);

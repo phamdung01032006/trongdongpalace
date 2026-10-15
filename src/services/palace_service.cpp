@@ -973,9 +973,11 @@ OpResult PalaceService::setBookingStatus(const string& bookingId, BookingStatus 
     auto* b = findById(mut().bookings, bookingId);
     if (!b) return OpResult::fail("Không tìm thấy booking.");
     if (b->status() == BookingStatus::DaHuy) return OpResult::fail("Booking đã hủy.");
-    if (status == BookingStatus::ChoCoc || status == BookingStatus::DaCoc)
-        return OpResult::fail("Trạng thái Đã đặt cọc do hệ thống tự cập nhật khi thu tiền.");
-    if (status == BookingStatus::HoanTat && b->status() != BookingStatus::DaCoc)
+    if (status == BookingStatus::ChoCoc || status == BookingStatus::DaCoc ||
+        status == BookingStatus::DaThanhToan)
+        return OpResult::fail("Trạng thái đặt cọc/thanh toán do hệ thống tự cập nhật theo tổng tiền đã thu.");
+    if (status == BookingStatus::HoanTat && b->status() != BookingStatus::DaCoc &&
+        b->status() != BookingStatus::DaThanhToan)
         return OpResult::fail("Chỉ hoàn tất booking đã đặt cọc.");
     b->setStatus(status);
     return persist("Đã cập nhật trạng thái booking.", bookingId);
@@ -1033,7 +1035,8 @@ OpResult PalaceService::deleteBooking(const string& bookingId) {
     if (!r.ok) return r;
     auto* b = findById(mut().bookings, bookingId);
     if (!b) return OpResult::fail("Không tìm thấy booking.");
-    if (b->status() == BookingStatus::DaCoc || b->status() == BookingStatus::HoanTat)
+    if (b->status() == BookingStatus::DaCoc || b->status() == BookingStatus::DaThanhToan ||
+        b->status() == BookingStatus::HoanTat)
         return OpResult::fail("Booking đã cọc/hoàn tất, hãy dùng Hủy booking thay vì xóa.");
     for (const auto& p : data().payments) {
         if (p.bookingId() == bookingId && p.status() == PaymentStatus::DaThanhToan)
@@ -1147,14 +1150,14 @@ OpResult PalaceService::recordPayment(const string& bookingId, PaymentType type,
                                          PaymentStatus::DaThanhToan, trim(note),
                                          actor ? actor->username() : ""));
     }
-    // Booking chuyen Da coc khi tien coc hoan thanh (dac ta B.2 + 3.3).
+    // Nhan khoan thu chi de phan loai. Trang thai dua tren tong tien thuc thu.
+    // HoanTat la trang thai ket thuc nghiep vu, khong phai thanh toan du.
     if (auto* bb = findById(mut().bookings, bookingId)) {
-        if ((type == PaymentType::DatCoc1 || type == PaymentType::DatCoc2) &&
-            bb->status() == BookingStatus::ChoCoc) {
-            bb->setStatus(BookingStatus::DaCoc);
-        }
-        if (type == PaymentType::TatToan && bb->status() == BookingStatus::DaCoc) {
-            bb->setStatus(BookingStatus::HoanTat);
+        if (bb->status() != BookingStatus::HoanTat) {
+            int64_t paid = paidAmount(bookingId);
+            if (paid >= bb->finalTotal()) bb->setStatus(BookingStatus::DaThanhToan);
+            else if (paid > 0) bb->setStatus(BookingStatus::DaCoc);
+            else bb->setStatus(BookingStatus::ChoCoc);
         }
     }
     return persist("Đã ghi nhận " + toString(type) + " " + formatMoney(amount) + " cho booking " + bookingId +

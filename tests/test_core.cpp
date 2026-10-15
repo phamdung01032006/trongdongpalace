@@ -219,7 +219,13 @@ int main() {
         CHECK(svc.recordPayment(f.bookingId, PaymentType::TatToan, 50000000, PaymentMethod::TienMat,
                                 DateTime::now(), "Tất toán đợt cuối")
                   .ok);
-        CHECK(svc.findBooking(f.bookingId)->status() == BookingStatus::HoanTat);
+        CHECK(svc.findBooking(f.bookingId)->status() == BookingStatus::DaCoc);
+        // Chon nhan TatToan nhung tong thu chua du thi van chi la DaCoc.
+        int64_t remaining = svc.findBooking(f.bookingId)->finalTotal() - svc.paidAmount(f.bookingId);
+        CHECK(remaining > 0);
+        CHECK(svc.recordPayment(f.bookingId, PaymentType::TatToan, remaining, PaymentMethod::TienMat,
+                                DateTime::now(), "Thu đủ phần còn lại").ok);
+        CHECK(svc.findBooking(f.bookingId)->status() == BookingStatus::DaThanhToan);
         string receipt = svc.paymentReceipt(svc.paymentsOf(f.bookingId).back().id());
         CHECK(receipt.find("PHIẾU THU") != string::npos);
         CHECK(receipt.find("Tất toán") != string::npos);
@@ -564,6 +570,75 @@ int main() {
         reloaded.load();
         CHECK(reloaded.db().customers.size() + 1 == storage.db().customers.size());
         CHECK(reloaded.db().events.front()->preparationGuide() == storage.db().events.front()->preparationGuide());
+    }
+
+    cout << "== 18. Trang thai booking theo tong tien thuc thu ==\n";
+    {
+        auto dir = makeTempDir("payment_status");
+        TextStorage storage(dir / "data", dir / "backup");
+        storage.load();
+        PalaceService svc(storage);
+        CHECK(svc.login("admin", "123456").ok);
+        auto customer = svc.addCustomer("Khach thanh toan", "0900999123", "", "", "");
+        CHECK(customer.ok);
+        auto create = [&](int day, int64_t discount) {
+            DateTime start = dt("2028-06-01 18:00").plusHours(day * 24);
+            DateTime end = start.plusHours(4);
+            auto request = svc.addRequest(customer.id, EventType::TiecCuoi, "Test thanh toan",
+                "Khach thanh toan", "0900999123", "HAL-0004", start, end, 100, "", {});
+            CHECK(request.ok);
+            auto booking = svc.createBooking(request.id, "HAL-0004", start, end, 100, 0, discount);
+            CHECK(booking.ok);
+            return booking.id;
+        };
+        string partial = create(0, 1000);
+        int64_t total = svc.findBooking(partial)->finalTotal();
+        CHECK(total > 1);
+        CHECK(svc.findBooking(partial)->status() == BookingStatus::ChoCoc);
+        CHECK(svc.paidAmount(partial) == 0); // Khoan cho thu khong tinh vao tong.
+        CHECK(!svc.recordPayment(partial, PaymentType::TatToan, -1, PaymentMethod::TienMat,
+                                DateTime::now(), "Sai").ok);
+        CHECK(svc.findBooking(partial)->status() == BookingStatus::ChoCoc);
+        CHECK(svc.recordPayment(partial, PaymentType::TatToan, 1, PaymentMethod::TienMat,
+                               DateTime::now(), "Nhan tat toan nhung chua du tien").ok);
+        CHECK(svc.findBooking(partial)->status() == BookingStatus::DaCoc);
+        CHECK(svc.recordPayment(partial, PaymentType::DatCoc2, total - 1, PaymentMethod::TienMat,
+                               DateTime::now(), "Du tien duoi nhan dat coc").ok);
+        CHECK(svc.paidAmount(partial) == total);
+        CHECK(svc.findBooking(partial)->status() == BookingStatus::DaThanhToan);
+        CHECK(svc.findBooking(partial)->occupiesHall());
+        string reason;
+        CHECK(!svc.hallAvailable("HAL-0004", svc.findBooking(partial)->start(),
+                                svc.findBooking(partial)->end(), "", reason));
+        CHECK(svc.sweepExpiredHolds(DateTime::now().plusHours(100)) == 0);
+        CHECK(!svc.deleteBooking(partial).ok);
+        CHECK(!svc.setBookingStatus(partial, BookingStatus::DaThanhToan).ok);
+
+        string upfront = create(1, 0);
+        CHECK(svc.recordPayment(upfront, PaymentType::TatToan, svc.findBooking(upfront)->finalTotal(),
+                               PaymentMethod::TienMat, DateTime::now(), "Tra du ngay lan dau").ok);
+        CHECK(svc.findBooking(upfront)->status() == BookingStatus::DaThanhToan);
+        string overpaid = create(2, 0);
+        CHECK(svc.recordPayment(overpaid, PaymentType::DatCoc1, svc.findBooking(overpaid)->finalTotal() + 1,
+                               PaymentMethod::TienMat, DateTime::now(), "Thu vuot tong").ok);
+        CHECK(svc.findBooking(overpaid)->status() == BookingStatus::DaThanhToan);
+
+        TextStorage reloaded(dir / "data", dir / "backup");
+        reloaded.load();
+        PalaceService next(reloaded);
+        for (const string& id : {partial, upfront, overpaid}) {
+            CHECK(next.findBooking(id)->status() == BookingStatus::DaThanhToan);
+            CHECK(next.findBooking(id)->occupiesHall());
+            CHECK(next.paidAmount(id) >= next.findBooking(id)->finalTotal());
+        }
+        CHECK(svc.setBookingStatus(upfront, BookingStatus::HoanTat).ok);
+        CHECK(svc.recordPayment(upfront, PaymentType::TatToan, 1, PaymentMethod::TienMat,
+                               DateTime::now(), "Thu bo sung sau hoan tat").ok);
+        CHECK(svc.findBooking(upfront)->status() == BookingStatus::HoanTat);
+        CHECK(svc.cancelBooking(overpaid, "Khach huy").ok);
+        CHECK(!svc.recordPayment(overpaid, PaymentType::TatToan, 1, PaymentMethod::TienMat,
+                                DateTime::now(), "Khong thu cho booking huy").ok);
+        CHECK(svc.findBooking(overpaid)->status() == BookingStatus::DaHuy);
     }
 
     cout << "\n========================================\n";

@@ -37,7 +37,40 @@ Kết quả kiểm tra sau refactor ngày 15/10/2026:
 
 - Build thành công ứng dụng Qt và hai executable kiểm thử.
 - CTest: `core` và `guest_ui` đều đạt, 2/2 bộ test.
-- `tdp_tests`: 211/211 kiểm tra đạt, không có lỗi.
+- Lần refactor phong cách OOP: `tdp_tests` đạt 211/211 kiểm tra.
+
+## Sửa trạng thái booking sau thanh toán
+
+Mục tiêu: tự cập nhật trạng thái theo tổng tiền thực thu, kể cả trả đủ ngay lần
+đầu hoặc chọn nhãn khoản thu không khớp số tiền; thanh toán đủ vẫn giữ lịch sảnh.
+
+File sửa và code: `src/services/palace_service.cpp` (`recordPayment`, cho phép
+hoàn tất booking đã trả đủ), `src/models/Enums.cpp` (thêm `DaThanhToan` và đọc/ghi
+nhãn TXT), `src/models/Booking.cpp` (`occupiesHall`), `tests/test_core.cpp` mục 6/18.
+Giữ nguyên các cột TXT, bổ sung giá trị trạng thái “Đã thanh toán đủ”; các giá trị
+cũ vẫn đọc được. Không tự chuyển các bản ghi cũ mang trạng thái `HoanTat`, vì
+không thể phân biệt đã tổ chức xong hay từng bị tất toán nhầm chỉ từ trạng thái.
+
+| Test case | Expected result |
+| --- | --- |
+| Chưa thu tiền, chỉ có khoản chờ thu | `ChoCoc`, Paid = 0 |
+| Khoản “Tất toán” chỉ trả một phần | `DaCoc`, không tự hoàn tất |
+| Cộng dồn đủ tiền bằng khoản “Đặt cọc lần 2” | `DaThanhToan` |
+| Trả đủ ngay lần đầu bằng “Tất toán” | `DaThanhToan` |
+| Thu vượt tổng dưới nhãn “Đặt cọc lần 1” | `DaThanhToan` |
+| Booking có giảm giá | So sánh Paid với `finalTotal()`, không dùng giá trước giảm |
+| Đã trả đủ trước ngày tổ chức | Vẫn chiếm lịch, từ chối booking overlap, không bị quét hết hạn cọc |
+| Save/load booking đã trả đủ | Giữ trạng thái, tổng thu và khả năng chiếm sảnh |
+| Thu số tiền âm | Từ chối, trạng thái không đổi |
+| Thu bổ sung cho booking đã hoàn tất | Giữ `HoanTat` |
+| Thu cho booking đã hủy | Từ chối, giữ `DaHuy` |
+
+Cách chạy: dùng lệnh build/CTest ở trên. Acceptance criteria: các ca trên đạt,
+hai bộ test cũ vẫn đạt và bảng Qt hiển thị “Đã đặt cọc”/“Đã thanh toán đủ” theo
+kết quả service; thu đủ tiền không giải phóng sảnh trước khi hoàn tất nghiệp vụ.
+
+Kết quả sau sửa: build thành công; CTest đạt 2/2 bộ test (`core`, `guest_ui`);
+kiểm thử nghiệp vụ đạt 256/256 kiểm tra.
 
 ## Test cases và expected result
 

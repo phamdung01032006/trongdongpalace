@@ -61,14 +61,16 @@ không phải đợi thu cọc mới tạo đối tượng `Event`.
   ```
 
   Hai ca tiếp giáp, ví dụ 18:00–22:00 và 22:00–23:00, không overlap.
-- Booking chờ cọc hoặc đã cọc chiếm lịch sảnh; booking hủy/hoàn tất không chiếm lịch theo mô hình hiện tại.
+- Booking chờ cọc, đã cọc hoặc đã thanh toán đủ vẫn chiếm lịch sảnh; booking hủy/hoàn tất không chiếm lịch theo mô hình hiện tại.
 - Sảnh phải khả dụng; số khách khi chốt booking phải dương và không vượt sức chứa.
 - Giữ sảnh chờ cọc 72 giờ; hàm quét hết hạn hủy booking chưa cọc và sự kiện tương ứng.
 - Dự toán = tiền thuê sảnh + tổng số lượng × đơn giá dịch vụ. Dòng dịch vụ giữ giá/tên tại thời điểm chọn.
 - Giá cuối booking = dự toán − số tiền giảm. Phần trăm và số tiền giảm là hai trường riêng trong code hiện tại.
 - Chiết khấu vượt ngưỡng 10% do kinh doanh lập cần quản lý duyệt.
 - Khoản chờ thu có giá trị 0; thanh toán thực tế phải lớn hơn 0, có ghi chú và ngày thu hợp lệ.
-- Tổng đã thu chỉ cộng `Payment` đã thanh toán. Công nợ có thể tính bằng `finalTotal() - paidAmount(id)`; chưa có enum trạng thái công nợ cho cả booking.
+- Tổng đã thu chỉ cộng `Payment` đã thanh toán. Công nợ tính bằng `finalTotal() - paidAmount(id)`.
+- Sau khi thu tiền, booking tự chuyển `DaCoc` nếu `0 < Paid < Total`, hoặc `DaThanhToan` (Đã thanh toán đủ) nếu `Paid >= Total`, dùng tổng sau giảm giá. Nhãn Đặt cọc/Tất toán không quyết định trạng thái.
+- `HoanTat` là trạng thái hoàn tất nghiệp vụ do người dùng xác nhận; trả đủ tiền trước ngày tổ chức không tự chuyển sang `HoanTat` và không giải phóng lịch sảnh. Thu bổ sung không mở lại booking đã hoàn tất; booking đã hủy không được thu tiền.
 - Không xóa khách hàng/sảnh/dịch vụ đang được tham chiếu theo các kiểm tra của service.
 - Liên kết đối tượng bằng ID, không ghi địa chỉ con trỏ C++ vào file.
 

@@ -26,7 +26,7 @@ enum class EventType {
 // (customerViewOfRequest): Cho/DangTuVan -> "Dang xet duyet".
 enum class RequestStatus { Cho, DangTuVan, HoanThanh, BiHuy, DaChot };
 // Trang thai booking theo dac ta B.2 + Form 2.
-enum class BookingStatus { ChoCoc, DaCoc, HoanTat, DaHuy };
+enum class BookingStatus { ChoCoc, DaCoc, HoanTat, DaHuy, DaThanhToan };
 // Trang thai sanh theo dac ta C: Kha dung / Bao tri / Khong kha dung.
 enum class HallStatus { KhaDung, BaoTri, KhongKhaDung };
 // Loai thanh toan theo Form 3.
@@ -110,6 +110,7 @@ string toString(BookingStatus v) {
     switch (v) {
         case BookingStatus::ChoCoc: return "Đang chờ đặt cọc";
         case BookingStatus::DaCoc: return "Đã đặt cọc";
+        case BookingStatus::DaThanhToan: return "Đã thanh toán đủ";
         case BookingStatus::HoanTat: return "Hoàn tất";
         case BookingStatus::DaHuy: return "Bị hủy";
     }
@@ -193,6 +194,7 @@ RequestStatus requestStatusFromString(const string& s) {
 }
 
 BookingStatus bookingStatusFromString(const string& s) {
+    if (s == "Đã thanh toán đủ" || s == "DaThanhToan") return BookingStatus::DaThanhToan;
     if (s == "Đã đặt cọc" || s == "DaCoc" || s == "DaXacNhan") return BookingStatus::DaCoc;
     if (s == "Hoàn tất" || s == "HoanTat") return BookingStatus::HoanTat;
     if (s == "Bị hủy" || s == "DaHuy") return BookingStatus::DaHuy;
