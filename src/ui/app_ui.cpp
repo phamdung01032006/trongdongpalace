@@ -1,6 +1,6 @@
 #include "ui/app_ui.hpp"
 
-#include "models/entities.hpp"
+#include "models/Database.hpp"
 #include "services/palace_service.hpp"
 #include "utils/helpers.hpp"
 

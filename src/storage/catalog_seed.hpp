@@ -3,7 +3,7 @@
 // Bang danh muc mau theo dac ta muc 2 (EVT/FOD/DEC/MED/AV/VEN/HR/EXT).
 // Dung chung cho seed lan dau va nut "Nap danh muc mau" cua Quan ly.
 
-#include "models/entities.hpp"
+#include "models/Database.hpp"
 
 #include <algorithm>
 #include <cstdint>

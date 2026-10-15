@@ -1,6 +1,6 @@
 #pragma once
 
-#include "models/entities.hpp"
+#include "models/Database.hpp"
 
 #include <filesystem>
 #include <stdexcept>
