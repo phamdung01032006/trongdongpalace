@@ -1,19 +1,182 @@
-#include "services/palace_service.hpp"
+#ifndef TDP_SERVICES_PALACE_SERVICE_CPP
+#define TDP_SERVICES_PALACE_SERVICE_CPP
 
-#include "storage/catalog_seed.hpp"
-#include "utils/sha256.hpp"
+#include "storage/text_storage.cpp"
 
-#include <algorithm>
+#include <optional>
+#include <string>
+#include <vector>
 
 using namespace std;
 
-namespace tdp {
+enum class Action {
+    SubmitRequest,
+    ManageUsers,
+    ManageCustomers,
+    ManageRequests,
+    ManageVenues,
+    LookupHalls,
+    ManageBookings,
+    ManagePayments,
+    ManageEvents
+};
 
-namespace {
+// So gio giu cho sanh cho khach dat coc (dac ta B.2: 72 gio).
+constexpr int kHoldHours = 72;
+// Nguong chiet khau can Quan ly duyet (Form 2).
+constexpr int kDiscountApprovalPercent = 10;
+
+struct ServiceLineInput {
+    string serviceId;
+    int quantity = 0;  // <= 0: tu tinh theo don vi (ban/khach/goi)
+};
+
+class PalaceService {
+public:
+    explicit PalaceService(TextStorage& storage);
+
+    OpResult login(const string& username, const string& password);
+    // Tu dang ky tai khoan Customer: nhap du ho so -> tu tao Customer lien ket.
+    OpResult registerUser(const string& username, const string& password, const string& confirmPassword,
+                          const string& fullName, const string& phone, const string& email,
+                          const string& address);
+    void logout();
+    bool isLoggedIn() const { return !currentUserId_.empty(); }
+    const User* currentUser() const;
+    bool can(Action action) const;
+    OpResult require(Action action) const;
+
+    const Database& db() const { return storage_.db(); }
+
+    OpResult createUser(const string& username, const string& password, const string& fullName, Role role);
+    OpResult updateUserRole(const string& userId, Role role);
+    OpResult deleteUser(const string& userId);
+    OpResult setUserActive(const string& userId, bool active);
+    OpResult changePassword(const string& userId, const string& newPassword);
+
+    OpResult addCustomer(const string& name, const string& phone, const string& email,
+                         const string& address, const string& notes);
+    OpResult updateCustomer(const string& id, const string& name, const string& phone,
+                            const string& email, const string& address, const string& notes);
+    OpResult deleteCustomer(const string& id);
+    vector<Customer> searchCustomers(const string& keyword) const;
+    const Customer* findCustomer(const string& id) const;
+
+    // Form 1: tao yeu cau (khach hang hoac sales nhap ho).
+    OpResult addRequest(const string& customerId, EventType type, const string& title,
+                        const string& customerName, const string& customerPhone, const string& hallId,
+                        DateTime start, DateTime end, int guestCount, const string& notes,
+                        const vector<ServiceLineInput>& services, int customerAge = 0);
+    // Sales cap nhat toan bo sau trao doi (dac ta B.1).
+    OpResult updateRequest(const string& id, EventType type, const string& title,
+                           const string& customerName, const string& customerPhone, const string& hallId,
+                           DateTime start, DateTime end, int guestCount, const string& notes,
+                           const vector<ServiceLineInput>& services);
+    OpResult updateRequestStatus(const string& id, RequestStatus status);
+    // Khach hang tu huy yeu cau cua minh.
+    OpResult cancelOwnRequest(const string& id);
+    OpResult deleteRequest(const string& id);
+    const EventRequest* findRequest(const string& id) const;
+    // Chi phi du kien = tien thue sanh + tong dich vu (dac ta A.2).
+    int64_t estimateRequest(const EventRequest& req) const;
+    // Lich su 10 yeu cau gan nhat da huy/hoan thanh/chot (dac ta B.1).
+    vector<EventRequest> requestHistory(size_t limit = 10) const;
+    // So yeu cau moi (Cho) de bao sales (dac ta B.1).
+    size_t countNewRequests() const;
+    vector<EventRequest> requestsForCustomer(const string& customerId) const;
+
+    OpResult addHall(const string& name, int capacity, int64_t rentalPrice);
+    OpResult updateHall(const string& id, const string& name, int capacity, int64_t rentalPrice,
+                        HallStatus status);
+    OpResult deleteHall(const string& id);
+    OpResult addService(const string& code, const string& name, const string& unit, int64_t price,
+                        const string& category);
+    OpResult updateService(const string& id, const string& code, const string& name, const string& unit,
+                           int64_t price, const string& category, bool active);
+    OpResult deleteService(const string& id);
+    // Quan ly nap bo sung danh muc mau dac ta (khong xoa du lieu hien co).
+    OpResult importCatalog();
+    const Hall* findHall(const string& id) const;
+    const ServiceItem* findService(const string& id) const;
+    const ServiceItem* findServiceByCode(const string& code) const;
+    vector<string> serviceCategories() const;
+    vector<Hall> findAvailableHalls(DateTime start, DateTime end, int guestCount,
+                                    const string& ignoreBookingId) const;
+    bool hallAvailable(const string& hallId, DateTime start, DateTime end, const string& ignoreBookingId,
+                       string& reason) const;
+    // Ham nghiep vu throw; ham hallAvailable doi loi thanh thong bao cho Qt.
+    void validateBookingSlot(const string& hallId, DateTime start, DateTime end,
+                             const string& ignoreBookingId = "") const;
+    int maxHallCapacity() const;
+
+    // Dac ta 3.1: nut Tao Booking -> copy thong tin, request DaChot.
+    OpResult createBooking(const string& requestId, const string& hallId, DateTime start, DateTime end,
+                           int guestCount, int discountPercent, int64_t discountAmount);
+    OpResult setBookingStatus(const string& bookingId, BookingStatus status);
+    OpResult cancelBooking(const string& bookingId, const string& reason);
+    OpResult deleteBooking(const string& bookingId);
+    OpResult updateBookingDiscount(const string& bookingId, int discountPercent, int64_t discountAmount);
+    OpResult approveDiscount(const string& bookingId);
+    const Booking* findBooking(const string& id) const;
+    vector<Booking> bookingsForCustomer(const string& customerId) const;
+    // Quet het han giu cho (dac ta 3.3): tra ve so booking bi huy.
+    int sweepExpiredHolds(DateTime now);
+    // Lam moi trang thai su kien theo thoi gian (dac ta D).
+    int refreshEventStatuses(DateTime now);
+
+    // Form 3: dien khoan da tu tao (amount 0) hoac tao moi, danh dau DaThanhToan.
+    OpResult recordPayment(const string& bookingId, PaymentType type, int64_t amount, PaymentMethod method,
+                           DateTime paidAt, const string& note);
+    OpResult deletePayment(const string& id);
+    int64_t paidAmount(const string& bookingId) const;
+    vector<Payment> paymentsOf(const string& bookingId) const;
+    const Payment* findPayment(const string& id) const;
+    string paymentReceipt(const string& paymentId) const;
+
+    const Event* findEvent(const string& id) const;
+    const Event* findEventByBooking(const string& bookingId) const;
+    vector<shared_ptr<Event>> allEvents() const;
+    vector<EventRequest> guestRequests() const;
+
+    vector<string> userIds() const;
+    vector<string> customerIds() const;
+
+private:
+    TextStorage& storage_;
+    string currentUserId_;
+    vector<string> guestRequestIds_;
+
+    Database& mut() { return storage_.db(); }
+    const Database& data() const { return storage_.db(); }
+
+    template <typename T>
+    T* findById(vector<T>& items, const string& id);
+    template <typename T>
+    const T* findById(const vector<T>& items, const string& id) const;
+
+    OpResult persist(const string& successMessage, const string& id);
+    const User& authenticate(const string& username, const string& password) const;
+    bool uniqueUsername(const string& username, const string& exceptId) const;
+    bool uniquePhone(const string& phone, const string& exceptId) const;
+    // Dung dich vu theo don vi: /ban -> so ban, /khach -> so khach, con lai 1.
+    int resolveQuantity(const ServiceItem& svc, int guestCount, int qty) const;
+    OpResult buildLines(int guestCount, const vector<ServiceLineInput>& in,
+                        vector<RequestServiceLine>& out) const;
+    OpResult applyBookingFromRequest(const string& requestId, const string& hallId, DateTime start,
+                                     DateTime end, int guestCount, int discountPercent,
+                                     int64_t discountAmount, string& bookingId);
+};
+
+#include "storage/catalog_seed.cpp"
+#include "utils/sha256.cpp"
+
+#include <algorithm>
 
 bool roleAllows(Role role, Action action) {
+    if (action == Action::SubmitRequest) return role != Role::Operation;
     if (role == Role::Manager) return true;
     switch (action) {
+        case Action::SubmitRequest: return true;
         case Action::ManageUsers:
         case Action::ManageVenues:
             return false;
@@ -34,9 +197,7 @@ bool roleAllows(Role role, Action action) {
 
 int64_t discountLimitFor(int64_t total) { return total * kDiscountApprovalPercent / 100; }
 
-}  // namespace
-
-PalaceService::PalaceService(JsonStorage& storage) : storage_(storage) {}
+PalaceService::PalaceService(TextStorage& storage) : storage_(storage) {}
 
 const User* PalaceService::currentUser() const {
     if (currentUserId_.empty()) return nullptr;
@@ -58,13 +219,14 @@ const T* PalaceService::findById(const vector<T>& items, const string& id) const
 
 bool PalaceService::can(Action action) const {
     const User* u = currentUser();
-    if (!u || !u->active()) return false;
+    if (!u) return action == Action::SubmitRequest || action == Action::LookupHalls;
+    if (!u->active()) return false;
     return roleAllows(u->role(), action);
 }
 
 OpResult PalaceService::require(Action action) const {
     const User* u = currentUser();
-    if (!u) return OpResult::fail("Chưa đăng nhập.");
+    if (!u) return can(action) ? OpResult::success() : OpResult::fail("Chưa đăng nhập.");
     if (!u->active()) return OpResult::fail("Tài khoản đã bị khóa.");
     if (!can(action)) return OpResult::fail("Bạn không có quyền thực hiện thao tác này.");
     return OpResult::success();
@@ -79,11 +241,20 @@ OpResult PalaceService::persist(const string& successMessage, const string& id) 
     }
 }
 
-OpResult PalaceService::login(const string& username, const string& password) {
+const User& PalaceService::authenticate(const string& username, const string& password) const {
     for (const auto& user : data().users) {
         if (toLower(user.username()) != toLower(trim(username))) continue;
-        if (!user.active()) return OpResult::fail("Tài khoản đã bị khóa.");
-        if (!verifyPassword(password, user.salt(), user.passwordHash())) return OpResult::fail("Sai mật khẩu.");
+        if (!user.active()) throw AuthenticationException("Tài khoản đã bị khóa.");
+        if (!verifyPassword(password, user.salt(), user.passwordHash()))
+            throw AuthenticationException("Sai mật khẩu.");
+        return user;
+    }
+    throw AuthenticationException("Không tìm thấy tài khoản.");
+}
+
+OpResult PalaceService::login(const string& username, const string& password) {
+    try {
+        const User& user = authenticate(username, password);
         currentUserId_ = user.id();
         sweepExpiredHolds(DateTime::now());
         refreshEventStatuses(DateTime::now());
@@ -93,10 +264,12 @@ OpResult PalaceService::login(const string& username, const string& password) {
         }
         return OpResult::success("Xin chào " + user.fullName(), user.id());
     }
-    return OpResult::fail("Không tìm thấy tài khoản.");
+    catch (const AuthenticationException& ex) {
+        return OpResult::fail(ex.what());
+    }
 }
 
-void PalaceService::logout() { currentUserId_.clear(); }
+void PalaceService::logout() { currentUserId_.clear(); guestRequestIds_.clear(); }
 
 OpResult PalaceService::registerUser(const string& username, const string& password,
                                      const string& confirmPassword, const string& fullName,
@@ -218,12 +391,15 @@ const ServiceItem* PalaceService::findServiceByCode(const string& code) const {
     return nullptr;
 }
 const Booking* PalaceService::findBooking(const string& id) const { return findById(data().bookings, id); }
-const Event* PalaceService::findEvent(const string& id) const { return findById(data().events, id); }
+const Event* PalaceService::findEvent(const string& id) const {
+    for (const auto& e : data().events) if (e->id() == id) return e.get();
+    return nullptr;
+}
 const Payment* PalaceService::findPayment(const string& id) const { return findById(data().payments, id); }
 
 const Event* PalaceService::findEventByBooking(const string& bookingId) const {
     for (const auto& e : data().events)
-        if (e.bookingId() == bookingId) return &e;
+        if (e->bookingId() == bookingId) return e.get();
     return nullptr;
 }
 
@@ -350,8 +526,8 @@ static bool validRequestWindow(DateTime start, DateTime end, int guestCount, int
 OpResult PalaceService::addRequest(const string& customerId, EventType type, const string& title,
                                    const string& customerName, const string& customerPhone,
                                    const string& hallId, DateTime start, DateTime end, int guestCount,
-                                   const string& notes, const vector<ServiceLineInput>& services) {
-    auto r = require(Action::ManageRequests);
+                                   const string& notes, const vector<ServiceLineInput>& services, int customerAge) {
+    auto r = require(Action::SubmitRequest);
     if (!r.ok) return r;
     // Khach hang chi tao yeu cau cho chinh minh; ten/SDT tu dien tu ho so (Form 1).
     const User* u = currentUser();
@@ -365,7 +541,7 @@ OpResult PalaceService::addRequest(const string& customerId, EventType type, con
             if (cphone.empty()) cphone = self->phone();
         }
     }
-    if (!findCustomer(cid)) return OpResult::fail("Khách hàng không tồn tại.");
+    if (u && !findCustomer(cid)) return OpResult::fail("Khách hàng không tồn tại.");
     if (trim(title).empty()) return OpResult::fail("Tên sự kiện là bắt buộc.");
     if (cname.empty()) return OpResult::fail("Họ tên khách hàng là bắt buộc.");
     if (!looksLikePhone(cphone)) return OpResult::fail("Số điện thoại không hợp lệ.");
@@ -386,6 +562,24 @@ OpResult PalaceService::addRequest(const string& customerId, EventType type, con
             }
         }
     }
+    // Khach vang lai tu nhap ho so, khong duoc chon ID cua nguoi khac.
+    if (!u) {
+        if (!customerId.empty()) return OpResult::fail("Khách vãng lai không được chọn hồ sơ có sẵn.");
+        if (customerAge < 1 || customerAge > 120) return OpResult::fail("Tuổi phải từ 1 đến 120.");
+        // Chi tai su dung ho so trung SDT va ten, khong sua ho so da co.
+        for (const auto& c : data().customers) {
+            if (c.phone() != cphone) continue;
+            if (toLower(c.name()) != toLower(cname))
+                return OpResult::fail("Số điện thoại đã được dùng cho tên khác. Vui lòng liên hệ nhân viên.");
+            cid = c.id();
+        }
+        if (cid.empty()) {
+            cid = nextId("CUS-", customerIds());
+            Customer c(cid, cname, cphone, "", "", "Khách vãng lai", DateTime::now());
+            c.setAge(customerAge);
+            mut().customers.push_back(c);
+        }
+    }
     vector<string> ids;
     for (const auto& x : data().requests) ids.push_back(x.id());
     string id = nextId("REQ-", ids);
@@ -394,6 +588,7 @@ OpResult PalaceService::addRequest(const string& customerId, EventType type, con
     req.lines() = move(lines);
     req.setCreatedAt(DateTime::now());
     mut().requests.push_back(move(req));
+    if (!u) guestRequestIds_.push_back(id);
     return persist("Đã gửi yêu cầu " + id + ". Chi phí dự kiến: " + formatMoney(estimateRequest(*findRequest(id))),
                    id);
 }
@@ -651,30 +846,34 @@ vector<string> PalaceService::serviceCategories() const {    vector<string> cats
 
 bool PalaceService::hallAvailable(const string& hallId, DateTime start, DateTime end,
                                   const string& ignoreBookingId, string& reason) const {
+    try {
+        validateBookingSlot(hallId, start, end, ignoreBookingId);
+        reason.clear();
+        return true;
+    } catch (const AppException& ex) {
+        reason = ex.what();
+        return false;
+    }
+}
+
+void PalaceService::validateBookingSlot(const string& hallId, DateTime start, DateTime end,
+                                       const string& ignoreBookingId) const {
     const Hall* hall = findHall(hallId);
-    if (!hall) {
-        reason = "Sảnh không tồn tại.";
-        return false;
-    }
+    if (!hall) throw NotFoundException("Sảnh không tồn tại.");
     if (hall->status() != HallStatus::KhaDung) {
-        reason = "Sảnh '" + hall->name() + "' hiện ở trạng thái " + toString(hall->status()) + ".";
-        return false;
+        throw ValidationException("Sảnh '" + hall->name() + "' hiện ở trạng thái " + toString(hall->status()) + ".");
     }
-    if (!(start < end)) {
-        reason = "Thời gian bắt đầu phải sớm hơn kết thúc.";
-        return false;
-    }
+    if (!start.valid() || !end.valid() || !(start < end))
+        throw ValidationException("Thời gian bắt đầu phải hợp lệ và sớm hơn kết thúc.");
     for (const auto& b : data().bookings) {
         if (!b.occupiesHall()) continue;
         if (b.id() == ignoreBookingId) continue;
         if (b.hallId() != hallId) continue;
         if (timeOverlaps(start, end, b.start(), b.end())) {
-            reason = "Sảnh bị trùng lịch với booking " + b.id() + " (" + b.start().toString() + " - " +
-                     b.end().toString() + ").";
-            return false;
+            throw BookingConflictException("Sảnh bị trùng lịch với booking " + b.id() + " (" +
+                b.start().toString() + " - " + b.end().toString() + ").");
         }
     }
-    return true;
 }
 
 vector<Hall> PalaceService::findAvailableHalls(DateTime start, DateTime end, int guestCount,
@@ -741,9 +940,9 @@ OpResult PalaceService::applyBookingFromRequest(const string& requestId, const s
 
     // Su kien tu dong tao tu Booking (dac ta D).
     vector<string> eids;
-    for (const auto& x : data().events) eids.push_back(x.id());
+    for (const auto& x : data().events) eids.push_back(x->id());
     string eid = nextId("EVT-", eids);
-    mut().events.push_back(Event(eid, id, req->customerId(), hallId, start, end, EventStatus::SapDienRa,
+    mut().events.push_back(makeEvent(req->type(), eid, id, req->customerId(), hallId, start, end, EventStatus::SapDienRa,
                                  req->notes()));
     bookingId = id;
     if (needsApproval)
@@ -791,7 +990,7 @@ OpResult PalaceService::cancelBooking(const string& bookingId, const string& rea
     b->setStatus(BookingStatus::DaHuy);
     b->setCancelReason(trim(reason));
     for (auto& ev : mut().events) {
-        if (ev.bookingId() == bookingId) ev.setStatus(EventStatus::Huy);
+        if (ev->bookingId() == bookingId) ev->setStatus(EventStatus::Huy);
     }
     return persist("Đã hủy booking. Sảnh được giải phóng lịch.", bookingId);
 }
@@ -853,7 +1052,7 @@ OpResult PalaceService::deleteBooking(const string& bookingId) {
     {
         auto& evs = mut().events;
         evs.erase(remove_if(evs.begin(), evs.end(),
-                            [&](const Event& e) { return e.bookingId() == bookingId; }),
+                            [&](const shared_ptr<Event>& e) { return e->bookingId() == bookingId; }),
                   evs.end());
     }
     {
@@ -889,7 +1088,7 @@ int PalaceService::sweepExpiredHolds(DateTime now) {
             b.setStatus(BookingStatus::DaHuy);
             b.setCancelReason("Quá hạn giữ chỗ " + to_string(kHoldHours) + "h chưa đặt cọc.");
             for (auto& ev : mut().events) {
-                if (ev.bookingId() == b.id()) ev.setStatus(EventStatus::Huy);
+                if (ev->bookingId() == b.id()) ev->setStatus(EventStatus::Huy);
             }
             ++n;
         }
@@ -900,10 +1099,10 @@ int PalaceService::sweepExpiredHolds(DateTime now) {
 int PalaceService::refreshEventStatuses(DateTime now) {
     int n = 0;
     for (auto& e : mut().events) {
-        if (e.status() == EventStatus::Huy) continue;
-        EventStatus want = eventTimeStatus(e.start(), e.end(), now);
-        if (want != e.status()) {
-            e.setStatus(want);
+        if (e->status() == EventStatus::Huy) continue;
+        EventStatus want = eventTimeStatus(e->start(), e->end(), now);
+        if (want != e->status()) {
+            e->setStatus(want);
             ++n;
         }
     }
@@ -1015,6 +1214,13 @@ string PalaceService::paymentReceipt(const string& paymentId) const {
     return ss.str();
 }
 
-vector<Event> PalaceService::allEvents() const { return data().events; }
+vector<shared_ptr<Event>> PalaceService::allEvents() const { return data().events; }
 
-}  // namespace tdp
+vector<EventRequest> PalaceService::guestRequests() const {
+    vector<EventRequest> out;
+    for (const auto& id : guestRequestIds_)
+        if (const auto* r = findRequest(id)) out.push_back(*r);
+    return out;
+}
+
+#endif

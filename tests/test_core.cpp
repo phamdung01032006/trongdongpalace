@@ -1,20 +1,19 @@
 // Kiểm thử lõi nghiệp vụ TrongDongPalace (không cần Qt Widgets).
 // Luồng chuẩn theo đặc tả: Yêu cầu -> Booking (giữ chỗ 72h) ->
 // Thanh toán (đặt cọc) -> Sự kiện (trạng thái theo thời gian).
-#include "services/palace_service.hpp"
-#include "storage/json_storage.hpp"
-#include "utils/helpers.hpp"
+#include "services/palace_service.cpp"
+#include "storage/text_storage.cpp"
+#include "utils/helpers.cpp"
 
 #include <cassert>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <chrono>
+#include <type_traits>
 
 using namespace std;
-
-namespace fs = filesystem;
-using namespace tdp;
 
 static int g_failed = 0, g_total = 0;
 
@@ -29,10 +28,10 @@ static int g_failed = 0, g_total = 0;
         }                                                                        \
     } while (0)
 
-static fs::path makeTempDir(const string& tag) {
-    auto dir = fs::temp_directory_path() / ("tdp_test_" + tag + to_string(time(nullptr)));
-    fs::remove_all(dir);
-    fs::create_directories(dir);
+static filesystem::path makeTempDir(const string& tag) {
+    auto dir = filesystem::temp_directory_path() / ("tdp_test_" + tag +
+        to_string(chrono::steady_clock::now().time_since_epoch().count()));
+    filesystem::create_directories(dir);
     return dir;
 }
 
@@ -75,17 +74,17 @@ static Flow runFullFlow(PalaceService& svc, const string& tag, const string& hal
 }
 
 int main() {
-    cout << "== 1. Lưu và đọc lại JSON ==\n";
+    cout << "== 1. Lưu và đọc lại TXT ==\n";
     {
         auto dir = makeTempDir("persist");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         Flow f;
         {
             PalaceService svc(storage);
             f = runFullFlow(svc, "P1", "HAL-0004");
         }
-        JsonStorage storage2(dir / "data", dir / "backup");
+        TextStorage storage2(dir / "data", dir / "backup");
         storage2.load();
         PalaceService svc2(storage2);
         CHECK(svc2.findCustomer(f.customerId) != nullptr);
@@ -93,17 +92,20 @@ int main() {
         CHECK(svc2.findBooking(f.bookingId) != nullptr);
         CHECK(svc2.findEventByBooking(f.bookingId) != nullptr);
         CHECK(svc2.paymentsOf(f.bookingId).size() == 1);
-        CHECK(fs::exists(dir / "data" / "users.json"));
-        CHECK(fs::exists(dir / "data" / "customers.json"));
-        CHECK(fs::exists(dir / "data" / "venues.json"));
-        CHECK(fs::exists(dir / "data" / "events.json"));
-        CHECK(fs::exists(dir / "data" / "transactions.json"));
+        CHECK(filesystem::exists(dir / "data" / "users.txt"));
+        CHECK(filesystem::exists(dir / "data" / "customers.txt"));
+        CHECK(filesystem::exists(dir / "data" / "halls.txt"));
+        CHECK(filesystem::exists(dir / "data" / "services.txt"));
+        CHECK(filesystem::exists(dir / "data" / "requests.txt"));
+        CHECK(filesystem::exists(dir / "data" / "events.txt"));
+        CHECK(filesystem::exists(dir / "data" / "bookings.txt"));
+        CHECK(filesystem::exists(dir / "data" / "payments.txt"));
     }
 
     cout << "== 2. Seed danh mục đặc tả ==\n";
     {
         auto dir = makeTempDir("seed");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         CHECK(svc.db().services.size() == 100);
@@ -121,7 +123,7 @@ int main() {
     cout << "== 3. Chi phí dự kiến = tiền sảnh + dịch vụ ==\n";
     {
         auto dir = makeTempDir("estimate");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         svc.login("kinhdoanh", "123456");
@@ -148,7 +150,7 @@ int main() {
     cout << "== 4. Booking trùng sảnh + hết hạn giữ chỗ 72h ==\n";
     {
         auto dir = makeTempDir("overlap");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         DateTime s = dt("2027-06-01 18:00"), e = dt("2027-06-01 22:00");
@@ -158,6 +160,13 @@ int main() {
                                 "", s, e, 50, "", {});
         CHECK(r.ok);
         CHECK(!svc.createBooking(r.id, "HAL-0004", s, e, 50, 0, 0).ok);
+        // Hai khoang giap nhau khong overlap.
+        auto adjacent = svc.addRequest(b1.customerId, EventType::SinhNhat, "Giap gio", "K", "0912000000",
+                                       "", e, e.plusHours(2), 50, "", {});
+        CHECK(adjacent.ok);
+        auto adjacentBooking = svc.createBooking(adjacent.id, "HAL-0004", e, e.plusHours(2), 50, 0, 0);
+        CHECK(adjacentBooking.ok);
+        CHECK(svc.cancelBooking(adjacentBooking.id, "Ket thuc test giap gio").ok);
         // Sảnh khác thì được.
         auto bk2 = svc.createBooking(r.id, "HAL-0005", s, e, 50, 0, 0);
         CHECK(bk2.ok);
@@ -175,7 +184,7 @@ int main() {
     cout << "== 5. Chiết khấu vượt 10% cần Quản lý duyệt ==\n";
     {
         auto dir = makeTempDir("discount");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         svc.login("kinhdoanh", "123456");
@@ -197,7 +206,7 @@ int main() {
     cout << "== 6. Thanh toán: bắt buộc ghi chú, phiếu thu, tất toán ==\n";
     {
         auto dir = makeTempDir("pay");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         auto f = runFullFlow(svc, "PAY", "HAL-0004");
@@ -219,7 +228,7 @@ int main() {
     cout << "== 7. Yêu cầu Hoàn thành -> Booking, lịch sử 10 ==\n";
     {
         auto dir = makeTempDir("state");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         svc.login("kinhdoanh", "123456");
@@ -242,7 +251,7 @@ int main() {
     cout << "== 8. Phân quyền 4 actor ==\n";
     {
         auto dir = makeTempDir("perm");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         CHECK(!svc.can(Action::ManageCustomers));  // chưa đăng nhập
@@ -268,7 +277,7 @@ int main() {
     cout << "== 9. Khách hàng: tạo + hủy yêu cầu của mình ==\n";
     {
         auto dir = makeTempDir("cust");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         CHECK(svc.login("khachhang", "123456").ok);
@@ -302,7 +311,7 @@ int main() {
     cout << "== 10. Sảnh Bảo trì + trạng thái sự kiện theo thời gian ==\n";
     {
         auto dir = makeTempDir("ops");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         auto f = runFullFlow(svc, "OPS", "HAL-0004");
@@ -321,17 +330,17 @@ int main() {
         CHECK(svc.findEvent(f.eventId)->status() == EventStatus::DaKetThuc);
     }
 
-    cout << "== 11. JSON sai định dạng không làm mất dữ liệu ==\n";
+    cout << "== 11. TXT sai định dạng không làm mất dữ liệu ==\n";
     {
         auto dir = makeTempDir("corrupt");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         {
             PalaceService svc(storage);
             runFullFlow(svc, "CORRUPT", "HAL-0004");
         }
-        { ofstream out(dir / "data" / "customers.json"); out << "{ json hỏng !!!"; }
-        JsonStorage storage2(dir / "data", dir / "backup");
+        { ofstream out(dir / "data" / "customers.txt"); out << "dong|txt|hong"; }
+        TextStorage storage2(dir / "data", dir / "backup");
         bool threw = false;
         try {
             storage2.load();
@@ -339,16 +348,16 @@ int main() {
             threw = true;
         }
         CHECK(threw);
-        ifstream in(dir / "data" / "customers.json");
+        ifstream in(dir / "data" / "customers.txt");
         stringstream ss;
         ss << in.rdbuf();
-        CHECK(ss.str().find("json hỏng") != string::npos);
+        CHECK(ss.str() == "dong|txt|hong");
     }
 
     cout << "== 12. Nạp danh mục mẫu không trùng, giữ dữ liệu cũ ==" << endl;
     {
         auto dir = makeTempDir("catalog");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         CHECK(svc.login("admin", "123456").ok);
@@ -364,7 +373,7 @@ int main() {
     cout << "== 13. Xóa an toàn + cập nhật qua ô trạng thái ==" << endl;
     {
         auto dir = makeTempDir("delete");
-        JsonStorage storage(dir / "data", dir / "backup");
+        TextStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
         CHECK(svc.login("admin", "123456").ok);
@@ -405,6 +414,156 @@ int main() {
         CHECK(!svc.deleteBooking(bk2).ok);  // da coc -> phai Huy
         // Xoa sanh dang co booking -> tu choi.
         CHECK(!svc.deleteHall("HAL-0004").ok);
+    }
+
+    cout << "== 14. Khach vang lai: nhap ho so, phan quyen, luu lai ==\n";
+    {
+        auto dir = makeTempDir("guest");
+        TextStorage storage(dir / "data", dir / "backup");
+        storage.load();
+        PalaceService svc(storage);
+        const auto start = dt("2028-04-01 18:00"), end = dt("2028-04-01 22:00");
+        CHECK(!svc.isLoggedIn());
+        CHECK(svc.can(Action::SubmitRequest) && svc.can(Action::LookupHalls));
+        CHECK(!svc.can(Action::ManageRequests) && !svc.can(Action::ManageCustomers));
+        CHECK(!svc.can(Action::ManageBookings) && !svc.can(Action::ManagePayments));
+        const auto customers = svc.db().customers.size(), requests = svc.db().requests.size();
+        CHECK(!svc.addRequest("", EventType::TiecCuoi, "T", "", "0900123000", "", start, end, 50, "", {}, 25).ok);
+        CHECK(!svc.addRequest("", EventType::TiecCuoi, "T", "An", "sai", "", start, end, 50, "", {}, 25).ok);
+        CHECK(!svc.addRequest("", EventType::TiecCuoi, "T", "An", "0900123000", "", start, end, 50, "", {}, 0).ok);
+        CHECK(!svc.addRequest("", EventType::TiecCuoi, "T", "An", "0900123000", "", start, end, 50, "", {}, 121).ok);
+        CHECK(!svc.addRequest("CUS-0001", EventType::TiecCuoi, "T", "An", "0900123000", "", start, end, 50, "", {}, 25).ok);
+        CHECK(!svc.addRequest("", EventType::TiecCuoi, "T", "An", "0900123000", "missing", start, end, 50, "", {}, 25).ok);
+        CHECK(!svc.addRequest("", EventType::TiecCuoi, "T", "An", "0900123000", "", end, start, 50, "", {}, 25).ok);
+        CHECK(!svc.addRequest("", EventType::TiecCuoi, "T", "An", "0900123000", "", start, start, 50, "", {}, 25).ok);
+        CHECK(!svc.addRequest("", EventType::TiecCuoi, "T", "An", "0900123000", "", start, end, 50, "", {{"missing",1}}, 25).ok);
+        CHECK(svc.db().customers.size() == customers && svc.db().requests.size() == requests);
+        string name = "Nguyễn | An, Bình";
+        string notes = "Dong 1|ghi chu, co dau\\\nDong 2\r\nKet thuc";
+        auto r = svc.addRequest("", EventType::SinhNhat, "Sinh nhat | An", name, "0900123000", "HAL-0002",
+                                start, end, 50, notes, {{"FOD01-P",2}}, 25);
+        CHECK(r.ok);
+        string cid = svc.findRequest(r.id)->customerId();
+        CHECK(svc.findCustomer(cid)->age() == 25);
+        CHECK(svc.guestRequests().size() == 1);
+        CHECK(!svc.updateRequestStatus(r.id, RequestStatus::HoanThanh).ok);
+        CHECK(!svc.deleteRequest(r.id).ok);
+        CHECK(!svc.createBooking(r.id, "HAL-0002", start, end, 50, 0, 0).ok);
+        CHECK(!svc.addRequest("", EventType::TiecCuoi, "T", "Ten khac", "0900123000", "", start, end, 50, "", {}, 25).ok);
+        CHECK(svc.login("kinhdoanh", "123456").ok);
+        auto b = svc.createBooking(r.id, "HAL-0002", start, end, 50, 0, 0);
+        CHECK(b.ok);
+        CHECK(svc.findEventByBooking(b.id)->getEventType() == EventType::SinhNhat);
+        CHECK(!svc.recordPayment(b.id, PaymentType::DatCoc1, -1, PaymentMethod::TienMat, DateTime::now(), "Sai").ok);
+        TextStorage reloaded(dir / "data", dir / "backup");
+        reloaded.load();
+        PalaceService next(reloaded);
+        CHECK(next.findCustomer(cid)->name() == name && next.findCustomer(cid)->age() == 25);
+        CHECK(next.findRequest(r.id)->notes() == notes);
+        CHECK(next.findRequest(r.id)->lines().size() == 1 && next.findRequest(r.id)->lines()[0].quantity() == 2);
+        CHECK(next.findEventByBooking(b.id)->getEventType() == EventType::SinhNhat);
+        CHECK(next.guestRequests().empty());
+        CHECK(next.login("kinhdoanh", "123456").ok && next.findRequest(r.id) != nullptr);
+    }
+
+    cout << "== 15. Da hinh qua Event abstract va khoi phuc loai tu TXT ==\n";
+    {
+        static_assert(is_abstract<Event>::value, "Event phai la abstract class");
+        vector<shared_ptr<Event>> events;
+        for (auto type : {EventType::TiecCuoi, EventType::SinhNhat, EventType::HoiThao})
+            events.push_back(makeEvent(type, "E", "B", "C", "H", dt("2028-01-01 10:00"),
+                                      dt("2028-01-01 11:00"), EventStatus::SapDienRa, ""));
+        CHECK(events[0]->preparationGuide() != events[1]->preparationGuide());
+        CHECK(events[1]->preparationGuide() != events[2]->preparationGuide());
+        for (const auto& e : events) {
+            auto copy = Event::fromFields(splitTextFields(joinTextFields(e->toFields())));
+            CHECK(copy->getEventType() == e->getEventType());
+            CHECK(copy->preparationGuide() == e->preparationGuide());
+        }
+    }
+
+    cout << "== 16. TXT trung ID, thieu file, sai ngay/so/escape khong bi ghi de ==\n";
+    {
+        auto dir = makeTempDir("badtext");
+        TextStorage storage(dir / "data", dir / "backup");
+        storage.load();
+        auto path = dir / "data" / "users.txt";
+        ifstream input(path, ios::binary);
+        string original((istreambuf_iterator<char>(input)), istreambuf_iterator<char>());
+        input.close();
+        { ofstream out(path, ios::binary); out << original << original; }
+        bool duplicate = false;
+        try { storage.load(); } catch (const StorageError&) { duplicate = true; }
+        CHECK(duplicate);
+        CHECK(filesystem::file_size(path) == original.size() * 2);
+        { ofstream out(path, ios::binary); out << original; }
+        filesystem::rename(path, dir / "data" / "users.keep");
+        bool missing = false;
+        try { storage.load(); } catch (const StorageError&) { missing = true; }
+        CHECK(missing && !filesystem::exists(path));
+        filesystem::rename(dir / "data" / "users.keep", path);
+        int invalid = 0;
+        try { textDate("31/02/2028 10:00"); } catch (const exception&) { ++invalid; }
+        try { textMoney("12abc"); } catch (const exception&) { ++invalid; }
+        try { textMoney("-1"); } catch (const exception&) { ++invalid; }
+        try { textBool("yes"); } catch (const exception&) { ++invalid; }
+        try { splitTextFields("a|b\\"); } catch (const exception&) { ++invalid; }
+        CHECK(invalid == 5);
+        auto userFields = storage.db().users.front().toFields();
+        userFields[7] = "sai vai tro";
+        bool badRole = false;
+        try { User::fromFields(userFields); } catch (const exception&) { badRole = true; }
+        CHECK(badRole);
+        // Bo du lieu rong hop le khong tu dong tao lai tai khoan mau.
+        storage.db() = Database{};
+        storage.save();
+        storage.load();
+        CHECK(storage.db().users.empty() && storage.db().customers.empty() && storage.db().halls.empty());
+    }
+
+    cout << "== 17. Ngoai le co kieu va chuyen loi an toan cho Qt ==\n";
+    {
+        auto dir = makeTempDir("exceptions");
+        TextStorage storage(dir / "data", dir / "backup");
+        storage.load();
+        PalaceService svc(storage);
+        CHECK(!svc.login("kinhdoanh", "sai mat khau").ok);
+        CHECK(!svc.isLoggedIn());
+        Flow f = runFullFlow(svc, "EX", "HAL-0004");
+        bool missing = false, invalid = false, conflict = false;
+        try {
+            svc.validateBookingSlot("missing", dt("2027-03-20 18:00"), dt("2027-03-20 22:00"));
+        } catch (const NotFoundException&) { missing = true; }
+        try {
+            svc.validateBookingSlot("HAL-0004", dt("2027-03-20 22:00"), dt("2027-03-20 18:00"));
+        } catch (const ValidationException&) { invalid = true; }
+        try {
+            svc.validateBookingSlot("HAL-0004", dt("2027-03-20 19:00"), dt("2027-03-20 23:00"));
+        } catch (const BookingConflictException&) { conflict = true; }
+        CHECK(missing && invalid && conflict);
+        // Hai ca lien tiep cham moc 22:00 van hop le.
+        string reason = "thong bao cu";
+        CHECK(svc.hallAvailable("HAL-0004", dt("2027-03-20 22:00"), dt("2027-03-21 01:00"), "", reason));
+        CHECK(reason.empty());
+        CHECK(svc.hallAvailable("HAL-0004", dt("2027-03-20 18:00"), dt("2027-03-20 22:00"), f.bookingId, reason));
+        CHECK(!svc.hallAvailable("HAL-0004", dt("2027-03-20 19:00"), dt("2027-03-20 23:00"), "", reason));
+        CHECK(!reason.empty());
+        int validationErrors = 0;
+        for (const string& value : {string("abc"), string("-1"), string("999999999999999999999999999")}) {
+            try { textMoney(value); }
+            catch (const ValidationException&) { ++validationErrors; }
+        }
+        CHECK(validationErrors == 3);
+        storage.db().customers.push_back(storage.db().customers.front());
+        bool duplicate = false;
+        try { storage.save(); }
+        catch (const DuplicateException&) { duplicate = true; }
+        CHECK(duplicate);
+        // save that bai truoc khi ghi: du lieu tren dia van doc lai duoc.
+        TextStorage reloaded(dir / "data", dir / "backup");
+        reloaded.load();
+        CHECK(reloaded.db().customers.size() + 1 == storage.db().customers.size());
+        CHECK(reloaded.db().events.front()->preparationGuide() == storage.db().events.front()->preparationGuide());
     }
 
     cout << "\n========================================\n";

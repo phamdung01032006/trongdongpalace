@@ -1,8 +1,13 @@
-#include "ui/app_ui.hpp"
+#ifndef TDP_UI_APP_UI_CPP
+#define TDP_UI_APP_UI_CPP
 
-#include "models/entities.hpp"
-#include "services/palace_service.hpp"
-#include "utils/helpers.hpp"
+#include "services/palace_service.cpp"
+
+int runQtUi(PalaceService& service, int argc, char* argv[]);
+
+#include "models/Database.cpp"
+#include "services/palace_service.cpp"
+#include "utils/helpers.cpp"
 
 #include <QApplication>
 #include <QCheckBox>
@@ -36,9 +41,6 @@
 #include <vector>
 
 using namespace std;
-
-namespace tdp {
-namespace {
 
 using Rows = vector<vector<string>>;
 
@@ -255,7 +257,7 @@ private:
     bool isCustomer() const
     {
         const User* u = service_.currentUser();
-        return u && u->role() == Role::Customer;
+        return !u || u->role() == Role::Customer;
     }
 
     bool isManager() const
@@ -297,6 +299,8 @@ private:
 
         auto* login = new QPushButton("Đăng nhập", card);
         login->setDefault(true);
+        auto* guest = new QPushButton("Tiếp tục không đăng nhập", card);
+        guest->setObjectName("guestButton");
         auto* registerButton = new QPushButton("Đăng ký tài khoản khách hàng", card);
         auto* quit = new QPushButton("Thoát", card);
         login->setMinimumHeight(40);
@@ -312,6 +316,7 @@ private:
         loginButtons->addWidget(login);
         loginButtons->addWidget(quit);
         cardLayout->addLayout(loginButtons);
+        cardLayout->addWidget(guest);
         cardLayout->addWidget(registerButton);
         cardLayout->addWidget(status);
         outer->addWidget(card, 0, Qt::AlignHCenter);
@@ -330,6 +335,12 @@ private:
             root_->setCurrentWidget(workspacePage_);
             selectInitialScreen();
         };
+        connect(guest, &QPushButton::clicked, this, [this]() {
+            service_.logout();
+            loadNavigation();
+            root_->setCurrentWidget(workspacePage_);
+            selectInitialScreen();
+        });
         connect(login, &QPushButton::clicked, this, doLogin);
         connect(password, &QLineEdit::returnPressed, this, doLogin);
         connect(registerButton, &QPushButton::clicked, this, [this, username, status]() {
@@ -369,6 +380,7 @@ private:
         auto* brand = new QLabel("TRỐNG ĐỒNG PALACE", page);
         brand->setStyleSheet("font-size: 19px; font-weight: 700; color: #25364a;");
         navigation_ = new QComboBox(page);
+        navigation_->setObjectName("navigation");
         navigation_->setMinimumWidth(230);
         userLabel_ = new QLabel(page);
         userLabel_->setStyleSheet("color: #526174;");
@@ -427,7 +439,10 @@ private:
     vector<NavigationEntry> navigationEntries() const
     {
         const User* u = service_.currentUser();
-        if (!u) return {};
+        if (!u) return {{Action::SubmitRequest, "Đặt lịch không cần tài khoản", "requests"},
+                         {Action::LookupHalls, "Sảnh", "halls"},
+                         {Action::LookupHalls, "Dịch vụ", "services"},
+                         {Action::LookupHalls, "Tra cứu sảnh trống", "lookup"}};
         if (u->role() == Role::Customer) {
             return {{Action::ManageRequests, "Yêu cầu đã gửi", "requests"},
                     {Action::ManageRequests, "Đặt lịch của tôi", "mybookings"},
@@ -469,7 +484,7 @@ private:
             }
         }
         const User* user = service_.currentUser();
-        userLabel_->setText(user ? qstr(user->fullName() + " · " + toString(user->role())) : QString{});
+        userLabel_->setText(user ? qstr(user->fullName() + " · " + toString(user->role())) : QString("Khách vãng lai"));
         navigation_->blockSignals(false);
         // Giu dung man hinh dang xem sau khi luu (khong bat ve tab dau).
         for (int i = 0; i < navigation_->count(); ++i) {
@@ -515,7 +530,7 @@ private:
         if (screen_ == "payments")
             return {"Mã", "Booking", "Loại", "Số tiền", "Ngày thu", "Hình thức", "Trạng thái", "Ghi chú"};
         if (screen_ == "events")
-            return {"Mã sự kiện", "Booking", "Sảnh", "Khách hàng", "Bắt đầu", "Kết thúc", "Trạng thái"};
+            return {"Mã sự kiện", "Booking", "Sảnh", "Khách hàng", "Bắt đầu", "Kết thúc", "Trạng thái", "Chuẩn bị"};
         if (screen_ == "users") return {"Mã", "Tài khoản", "Họ tên", "Vai trò", "Hoạt động"};
         return {};
     }
@@ -523,7 +538,8 @@ private:
     vector<EventRequest> visibleRequests() const
     {
         const User* u = service_.currentUser();
-        if (u && u->role() == Role::Customer) return service_.requestsForCustomer(u->customerId());
+        if (!u) return service_.guestRequests();
+        if (u->role() == Role::Customer) return service_.requestsForCustomer(u->customerId());
         return vector<EventRequest>(service_.db().requests.begin(), service_.db().requests.end());
     }
 
@@ -596,11 +612,12 @@ private:
                                  toString(payment.status()), payment.note()});
             }
         } else if (screen_ == "events") {
-            for (const Event& event : service_.allEvents()) {
+            for (const auto& eventPtr : service_.allEvents()) {
+                const Event& event = *eventPtr;
                 const Customer* customer = service_.findCustomer(event.customerId());
                 appendRow(rows, {event.id(), event.bookingId(), event.hallId(),
                                  customer ? customer->name() : event.customerId(), event.start().toString(),
-                                 event.end().toString(), toString(event.status())});
+                                 event.end().toString(), toString(event.status()), event.preparationGuide()});
             }
         } else if (screen_ == "users") {
             for (const User& user : db.users) {
@@ -733,6 +750,7 @@ private:
         if (!cell0) return;
         const QString id = cell0->text();
         if (screen_ == "requests") {
+            if (!service_.isLoggedIn()) return;
             if (isCustomer()) {
                 if (column == 6) customerRequestStatusCell(id);
             } else if (column == 8) {
@@ -913,7 +931,8 @@ private:
             addActionButton(layout, "Xóa", [this]() { deleteSelected(); });
         } else if (screen_ == "requests") {
             addActionButton(layout, "Tạo mới", [this]() { addRequest(); });
-            addActionButton(layout, "Cập nhật", [this]() { editRequest(); });
+            if (service_.isLoggedIn())
+                addActionButton(layout, "Cập nhật", [this]() { editRequest(); });
             if (!isCustomer()) {
                 addActionButton(layout, "Tạo Booking", [this]() { createBooking(); });
                 addActionButton(layout, "Xóa", [this]() { deleteSelected(); });
@@ -981,6 +1000,7 @@ private:
         string customerId;
         EventType type = EventType::TiecCuoi;
         string title, customerName, customerPhone, hallId, notes;
+        int customerAge = 0;
         DateTime start, end;
         int guestCount = 100;
         vector<string> serviceIds;
@@ -1015,12 +1035,23 @@ private:
         form->addRow("Loại sự kiện", typeCombo);
 
         auto* titleEdit = new QLineEdit(qstr(preset.title), &dialog);
+        titleEdit->setObjectName("requestTitle");
         titleEdit->setPlaceholderText("Tên sự kiện");
         form->addRow("Tên sự kiện", titleEdit);
         auto* nameEdit = new QLineEdit(qstr(preset.customerName), &dialog);
+        nameEdit->setObjectName("customerName");
         nameEdit->setPlaceholderText("Họ tên khách hàng");
         form->addRow("Họ tên khách hàng", nameEdit);
+        QSpinBox* ageSpin = nullptr;
+        if (!service_.isLoggedIn()) {
+            ageSpin = new QSpinBox(&dialog);
+            ageSpin->setObjectName("customerAge");
+            ageSpin->setRange(0, 120);
+            ageSpin->setSpecialValueText("Nhập tuổi");
+            form->addRow("Tuổi", ageSpin);
+        }
         auto* phoneEdit = new QLineEdit(qstr(preset.customerPhone), &dialog);
+        phoneEdit->setObjectName("customerPhone");
         phoneEdit->setPlaceholderText("Số điện thoại");
         form->addRow("Số điện thoại", phoneEdit);
 
@@ -1098,6 +1129,7 @@ private:
         if (customerCombo) out.customerId = customerCombo->currentData().toString().toStdString();
         out.type = static_cast<EventType>(typeCombo->currentIndex());
         out.title = titleEdit->text().trimmed().toStdString();
+        out.customerAge = ageSpin ? ageSpin->value() : 0;
         out.customerName = nameEdit->text().trimmed().toStdString();
         out.customerPhone = phoneEdit->text().trimmed().toStdString();
         out.hallId = hallCombo->currentData().toString().toStdString();
@@ -1141,7 +1173,7 @@ private:
         for (const string& sid : form->serviceIds) lines.push_back({sid, 0});
         notify(service_.addRequest(form->customerId, form->type, form->title, form->customerName,
                                    form->customerPhone, form->hallId, form->start, form->end,
-                                   form->guestCount, form->notes, lines));
+                                   form->guestCount, form->notes, lines, form->customerAge));
     }
 
     void editRequest()
@@ -1542,8 +1574,6 @@ private:
     }
 };
 
-}  // namespace
-
 int runQtUi(PalaceService& service, int argc, char* argv[])
 {
     QApplication app(argc, argv);
@@ -1554,4 +1584,4 @@ int runQtUi(PalaceService& service, int argc, char* argv[])
     return app.exec();
 }
 
-}  // namespace tdp
+#endif

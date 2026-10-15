@@ -1,0 +1,6 @@
+HAL-0001|Sảnh Mini|50|5000000|Khả dụng
+HAL-0002|Sảnh Small|100|8000000|Khả dụng
+HAL-0003|Sảnh Standard|200|12000000|Khả dụng
+HAL-0004|Sảnh Large|300|18000000|Khả dụng
+HAL-0005|Sảnh Grand|500|30000000|Khả dụng
+HAL-0006|Sảnh Ballroom|800|50000000|Khả dụng

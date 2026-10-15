@@ -1,9 +1,10 @@
-#pragma once
+#ifndef TDP_STORAGE_CATALOG_SEED_CPP
+#define TDP_STORAGE_CATALOG_SEED_CPP
 
 // Bang danh muc mau theo dac ta muc 2 (EVT/FOD/DEC/MED/AV/VEN/HR/EXT).
 // Dung chung cho seed lan dau va nut "Nap danh muc mau" cua Quan ly.
 
-#include "models/entities.hpp"
+#include "models/Database.cpp"
 
 #include <algorithm>
 #include <cstdint>
@@ -11,8 +12,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-
-namespace tdp {
 
 struct SeedService {
     const char* code;
@@ -188,4 +187,4 @@ inline void seedCatalog(Database& db) {
     }
 }
 
-}  // namespace tdp
+#endif

@@ -1,14 +1,20 @@
-#include "utils/sha256.hpp"
+#ifndef TDP_UTILS_SHA256_CPP
+#define TDP_UTILS_SHA256_CPP
+
+#include <cstdint>
+#include <string>
+
+using namespace std;
+
+string sha256Hex(const string& data);
+string randomSaltHex(int bytes = 8);
+string hashPassword(const string& password, const string& saltHex);
+bool verifyPassword(const string& password, const string& saltHex, const string& expectedHash);
 
 #include <array>
 #include <iomanip>
 #include <random>
 #include <sstream>
-
-using namespace std;
-
-namespace tdp {
-namespace {
 
 uint32_t rotr(uint32_t x, uint32_t n) { return (x >> n) | (x << (32 - n)); }
 
@@ -18,8 +24,6 @@ string toHex(const uint8_t* data, size_t n) {
     for (size_t i = 0; i < n; ++i) oss << setw(2) << static_cast<int>(data[i]);
     return oss.str();
 }
-
-}  // namespace
 
 string sha256Hex(const string& data) {
     static const uint32_t K[64] = {
@@ -102,4 +106,4 @@ bool verifyPassword(const string& password, const string& saltHex, const string&
     return hashPassword(password, saltHex) == expectedHash;
 }
 
-}  // namespace tdp
+#endif

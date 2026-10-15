@@ -1,0 +1,100 @@
+SVC-0001|FOD01-S|Ẩm thực Việt Nam (Standard)|VNĐ/bàn|3000000|Ẩm thực|1
+SVC-0002|FOD01-P|Ẩm thực Việt Nam (Premium)|VNĐ/bàn|4500000|Ẩm thực|1
+SVC-0003|FOD01-L|Ẩm thực Việt Nam (Luxury)|VNĐ/bàn|6500000|Ẩm thực|1
+SVC-0004|FOD02-S|Ẩm thực Phương Tây (Standard)|VNĐ/bàn|4000000|Ẩm thực|1
+SVC-0005|FOD02-P|Ẩm thực Phương Tây (Premium)|VNĐ/bàn|6000000|Ẩm thực|1
+SVC-0006|FOD02-L|Ẩm thực Phương Tây (Luxury)|VNĐ/bàn|9000000|Ẩm thực|1
+SVC-0007|FOD03-S|Ẩm thực Nhật Bản (Standard)|VNĐ/bàn|4500000|Ẩm thực|1
+SVC-0008|FOD03-P|Ẩm thực Nhật Bản (Premium)|VNĐ/bàn|7000000|Ẩm thực|1
+SVC-0009|FOD03-L|Ẩm thực Nhật Bản (Luxury)|VNĐ/bàn|12000000|Ẩm thực|1
+SVC-0010|FOD04-S|Ẩm thực Hàn Quốc (Standard)|VNĐ/bàn|3500000|Ẩm thực|1
+SVC-0011|FOD04-P|Ẩm thực Hàn Quốc (Premium)|VNĐ/bàn|5000000|Ẩm thực|1
+SVC-0012|FOD04-L|Ẩm thực Hàn Quốc (Luxury)|VNĐ/bàn|7500000|Ẩm thực|1
+SVC-0013|FOD05-S|Ẩm thực Trung Hoa (Standard)|VNĐ/bàn|4000000|Ẩm thực|1
+SVC-0014|FOD05-P|Ẩm thực Trung Hoa (Premium)|VNĐ/bàn|6000000|Ẩm thực|1
+SVC-0015|FOD05-L|Ẩm thực Trung Hoa (Luxury)|VNĐ/bàn|9000000|Ẩm thực|1
+SVC-0016|FOD06-S|Ẩm thực Thái Lan (Standard)|VNĐ/bàn|3500000|Ẩm thực|1
+SVC-0017|FOD06-P|Ẩm thực Thái Lan (Premium)|VNĐ/bàn|5000000|Ẩm thực|1
+SVC-0018|FOD06-L|Ẩm thực Thái Lan (Luxury)|VNĐ/bàn|7000000|Ẩm thực|1
+SVC-0019|FOD07-S|Ẩm thực Fusion (Standard)|VNĐ/bàn|5000000|Ẩm thực|1
+SVC-0020|FOD07-P|Ẩm thực Fusion (Premium)|VNĐ/bàn|7500000|Ẩm thực|1
+SVC-0021|FOD07-L|Ẩm thực Fusion (Luxury)|VNĐ/bàn|12000000|Ẩm thực|1
+SVC-0022|FOD08-S|Buffet Á - Âu (Standard)|VNĐ/khách|350000|Ẩm thực|1
+SVC-0023|FOD08-P|Buffet Á - Âu (Premium)|VNĐ/khách|600000|Ẩm thực|1
+SVC-0024|FOD08-L|Buffet Á - Âu (Luxury)|VNĐ/khách|1000000|Ẩm thực|1
+SVC-0025|FOD09-S|Finger Food (Standard)|VNĐ/khách|150000|Ẩm thực|1
+SVC-0026|FOD09-P|Finger Food (Premium)|VNĐ/khách|250000|Ẩm thực|1
+SVC-0027|FOD09-L|Finger Food (Luxury)|VNĐ/khách|400000|Ẩm thực|1
+SVC-0028|FOD10-S|Thực đơn chay (Standard)|VNĐ/bàn|2500000|Ẩm thực|1
+SVC-0029|FOD10-P|Thực đơn chay (Premium)|VNĐ/bàn|3500000|Ẩm thực|1
+SVC-0030|FOD10-L|Thực đơn chay (Luxury)|VNĐ/bàn|5000000|Ẩm thực|1
+SVC-0031|DEC01-S|Trang trí Classic (Basic)|VNĐ/gói|8000000|Trang trí|1
+SVC-0032|DEC01-P|Trang trí Classic (Premium)|VNĐ/gói|20000000|Trang trí|1
+SVC-0033|DEC01-L|Trang trí Classic (Luxury)|VNĐ/gói|40000000|Trang trí|1
+SVC-0034|DEC02-S|Trang trí Luxury (Basic)|VNĐ/gói|20000000|Trang trí|1
+SVC-0035|DEC02-P|Trang trí Luxury (Premium)|VNĐ/gói|45000000|Trang trí|1
+SVC-0036|DEC02-L|Trang trí Luxury (Luxury)|VNĐ/gói|100000000|Trang trí|1
+SVC-0037|DEC03-S|Trang trí Minimalist (Basic)|VNĐ/gói|5000000|Trang trí|1
+SVC-0038|DEC03-P|Trang trí Minimalist (Premium)|VNĐ/gói|12000000|Trang trí|1
+SVC-0039|DEC03-L|Trang trí Minimalist (Luxury)|VNĐ/gói|25000000|Trang trí|1
+SVC-0040|DEC04-S|Trang trí Romantic (Basic)|VNĐ/gói|10000000|Trang trí|1
+SVC-0041|DEC04-P|Trang trí Romantic (Premium)|VNĐ/gói|25000000|Trang trí|1
+SVC-0042|DEC04-L|Trang trí Romantic (Luxury)|VNĐ/gói|50000000|Trang trí|1
+SVC-0043|DEC05-S|Trang trí Rustic (Basic)|VNĐ/gói|8000000|Trang trí|1
+SVC-0044|DEC05-P|Trang trí Rustic (Premium)|VNĐ/gói|18000000|Trang trí|1
+SVC-0045|DEC05-L|Trang trí Rustic (Luxury)|VNĐ/gói|35000000|Trang trí|1
+SVC-0046|DEC06-S|Trang trí Floral (Basic)|VNĐ/gói|12000000|Trang trí|1
+SVC-0047|DEC06-P|Trang trí Floral (Premium)|VNĐ/gói|30000000|Trang trí|1
+SVC-0048|DEC06-L|Trang trí Floral (Luxury)|VNĐ/gói|70000000|Trang trí|1
+SVC-0049|DEC07-S|Trang trí Modern (Basic)|VNĐ/gói|8000000|Trang trí|1
+SVC-0050|DEC07-P|Trang trí Modern (Premium)|VNĐ/gói|20000000|Trang trí|1
+SVC-0051|DEC07-L|Trang trí Modern (Luxury)|VNĐ/gói|45000000|Trang trí|1
+SVC-0052|DEC08-S|Trang trí Themed (Basic)|VNĐ/gói|10000000|Trang trí|1
+SVC-0053|DEC08-P|Trang trí Themed (Premium)|VNĐ/gói|30000000|Trang trí|1
+SVC-0054|DEC08-L|Trang trí Themed (Luxury)|VNĐ/gói|80000000|Trang trí|1
+SVC-0055|DEC09-S|Trang trí Royal (Basic)|VNĐ/gói|25000000|Trang trí|1
+SVC-0056|DEC09-P|Trang trí Royal (Premium)|VNĐ/gói|60000000|Trang trí|1
+SVC-0057|DEC09-L|Trang trí Royal (Luxury)|VNĐ/gói|150000000|Trang trí|1
+SVC-0058|DEC10-S|Trang trí Festive (Basic)|VNĐ/gói|8000000|Trang trí|1
+SVC-0059|DEC10-P|Trang trí Festive (Premium)|VNĐ/gói|20000000|Trang trí|1
+SVC-0060|DEC10-L|Trang trí Festive (Luxury)|VNĐ/gói|50000000|Trang trí|1
+SVC-0061|MED01|Chụp ảnh Basic Photography|VNĐ/gói|2000000|Chụp ảnh & quay phim|1
+SVC-0062|MED02|Chụp ảnh Standard Photography|VNĐ/gói|3500000|Chụp ảnh & quay phim|1
+SVC-0063|MED03|Chụp ảnh Premium Photography|VNĐ/gói|6000000|Chụp ảnh & quay phim|1
+SVC-0064|MED04|Chụp ảnh Luxury Photography|VNĐ/gói|10000000|Chụp ảnh & quay phim|1
+SVC-0065|MED05|Quay phim Basic Videography|VNĐ/gói|2500000|Chụp ảnh & quay phim|1
+SVC-0066|MED06|Quay Highlight Film|VNĐ/gói|4500000|Chụp ảnh & quay phim|1
+SVC-0067|MED07|Gói Full Package chụp + quay|VNĐ/gói|8300000|Chụp ảnh & quay phim|1
+SVC-0068|MED08|Quay Cinematic Package|VNĐ/gói|12000000|Chụp ảnh & quay phim|1
+SVC-0069|MED09|Quay Multi-Camera Package|VNĐ/gói|15000000|Chụp ảnh & quay phim|1
+SVC-0070|MED10|Gói Premium Full chụp + quay|VNĐ/gói|20000000|Chụp ảnh & quay phim|1
+SVC-0071|AV01|Âm thanh Basic Audio|VNĐ/gói|3000000|Âm thanh & ánh sáng|1
+SVC-0072|AV02|Âm thanh Standard Audio|VNĐ/gói|5000000|Âm thanh & ánh sáng|1
+SVC-0073|AV03|Âm thanh Premium Audio|VNĐ/gói|10000000|Âm thanh & ánh sáng|1
+SVC-0074|AV04|Ánh sáng Basic Lighting|VNĐ/gói|3000000|Âm thanh & ánh sáng|1
+SVC-0075|AV05|Ánh sáng Dynamic Lighting|VNĐ/gói|7000000|Âm thanh & ánh sáng|1
+SVC-0076|AV06|Ánh sáng Wedding Lighting|VNĐ/gói|8000000|Âm thanh & ánh sáng|1
+SVC-0077|AV07|Gala Standard AV|VNĐ/gói|12000000|Âm thanh & ánh sáng|1
+SVC-0078|AV08|Gala Premium AV|VNĐ/gói|25000000|Âm thanh & ánh sáng|1
+SVC-0079|AV09|Concert Package AV|VNĐ/gói|40000000|Âm thanh & ánh sáng|1
+SVC-0080|AV10|Full AV Package|VNĐ/gói|30000000|Âm thanh & ánh sáng|1
+SVC-0081|HR01|MC cơ bản|VNĐ/buổi|2000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0082|HR02|MC chuyên nghiệp|VNĐ/buổi|5000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0083|HR03|MC song ngữ|VNĐ/buổi|8000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0084|HR04|Lễ tân sự kiện|VNĐ/người/buổi|500000|Nhân sự & dịch vụ bổ sung|1
+SVC-0085|HR05|Điều phối viên|VNĐ/người/buổi|1500000|Nhân sự & dịch vụ bổ sung|1
+SVC-0086|HR06|Ca sĩ biểu diễn|VNĐ/người/buổi|5000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0087|HR07|Ban nhạc|VNĐ/buổi|10000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0088|HR08|Vũ đoàn|VNĐ/buổi|8000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0089|HR09|Phiên dịch viên|VNĐ/người/buổi|2000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0090|HR10|Kỹ thuật viên sân khấu|VNĐ/người/buổi|1000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0091|EXT01|Bánh cưới / bánh sự kiện|VNĐ/chiếc|2000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0092|EXT02|Bánh sinh nhật cao cấp|VNĐ/chiếc|800000|Nhân sự & dịch vụ bổ sung|1
+SVC-0093|EXT03|Thiệp mời|VNĐ/thiệp|15000|Nhân sự & dịch vụ bổ sung|1
+SVC-0094|EXT04|Quà tặng khách mời|VNĐ/phần|100000|Nhân sự & dịch vụ bổ sung|1
+SVC-0095|EXT05|Backdrop chụp ảnh|VNĐ/gói|5000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0096|EXT06|Màn hình LED bổ sung|VNĐ/gói|10000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0097|EXT07|Livestream sự kiện|VNĐ/gói|5000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0098|EXT08|Pháo giấy sân khấu|VNĐ/lần|2000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0099|EXT09|Xe đưa đón|VNĐ/xe/chuyến|3000000|Nhân sự & dịch vụ bổ sung|1
+SVC-0100|EXT10|In ảnh lấy liền (300 ảnh)|VNĐ/gói|6500000|Nhân sự & dịch vụ bổ sung|1

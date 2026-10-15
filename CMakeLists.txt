@@ -12,57 +12,31 @@ else()
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-find_package(nlohmann_json 3.11.3 CONFIG QUIET)
-if(NOT nlohmann_json_FOUND)
-    include(FetchContent)
-
-    FetchContent_Declare(
-        nlohmann_json
-        GIT_REPOSITORY https://github.com/nlohmann/json.git
-        GIT_TAG        v3.11.3
-    )
-    FetchContent_MakeAvailable(nlohmann_json)
-endif()
-
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
-set(TDP_CORE_SOURCES
-    src/utils/sha256.cpp
-    src/utils/helpers.cpp
-    src/models/Enums.cpp
-    src/models/User.cpp
-    src/models/Customer.cpp
-    src/models/EventRequest.cpp
-    src/models/Hall.cpp
-    src/models/ServiceItem.cpp
-    src/models/Booking.cpp
-    src/models/Payment.cpp
-    src/models/Event.cpp
-    src/storage/json_storage.cpp
-    src/services/palace_service.cpp
-)
-
-add_executable(trongdongpalace
-    src/main.cpp
-    src/ui/app_ui.cpp
-    ${TDP_CORE_SOURCES}
-)
+# Theo yeu cau chi dung .cpp: main.cpp include cay ma nguon mot lan.
+# Khong bien dich lai cac .cpp duoc include thanh translation unit rieng.
+add_executable(trongdongpalace src/main.cpp)
 
 target_include_directories(trongdongpalace PRIVATE src)
 target_link_libraries(trongdongpalace PRIVATE
     Qt6::Widgets
-    nlohmann_json::nlohmann_json
 )
+target_compile_definitions(trongdongpalace PRIVATE TDP_PROJECT_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 
-add_executable(tdp_tests
-    tests/test_core.cpp
-    ${TDP_CORE_SOURCES}
-)
+add_executable(tdp_tests tests/test_core.cpp)
 target_include_directories(tdp_tests PRIVATE src)
-target_link_libraries(tdp_tests PRIVATE nlohmann_json::nlohmann_json)
+enable_testing()
+add_test(NAME core COMMAND tdp_tests)
+
+add_executable(tdp_ui_tests tests/test_ui.cpp)
+target_include_directories(tdp_ui_tests PRIVATE src)
+target_link_libraries(tdp_ui_tests PRIVATE Qt6::Widgets)
+add_test(NAME guest_ui COMMAND tdp_ui_tests)
+set_tests_properties(guest_ui PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen" TIMEOUT 20)
 
 if(MINGW)
-    foreach(tgt trongdongpalace tdp_tests)
+    foreach(tgt trongdongpalace tdp_tests tdp_ui_tests)
         set_target_properties(${tgt} PROPERTIES
             LINK_FLAGS "-static -static-libgcc -static-libstdc++"
         )
