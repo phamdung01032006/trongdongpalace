@@ -1,86 +1,70 @@
 # PHẦN MỀM QUẢN LÝ SỰ KIỆN TRỐNG ĐỒNG PALACE (C++ OOP)
 
-Hệ thống quản lý sự kiện và đặt lịch tiệc cưới / hội nghị cho chuỗi trung tâm **Trống Đồng Palace**, được xây dựng bằng C++17 theo mô hình lập trình hướng đối tượng (OOP), giao diện desktop Qt Widgets và lưu trữ dữ liệu bền vững bằng JSON (`nlohmann/json`).
+Hệ thống quản lý sự kiện cho trung tâm **Trống Đồng Palace**, xây dựng bằng C++17
+theo mô hình hướng đối tượng (OOP), giao diện desktop Qt Widgets và lưu trữ bền
+vững bằng JSON (`nlohmann/json`). Luồng nghiệp vụ bám đặc tả: **Yêu cầu →
+Booking (giữ chỗ 72h) → Thanh toán (đặt cọc) → Sự kiện** (trạng thái tự tính
+theo thời gian).
 
 ---
 
 ## 1. Công nghệ & Thư viện sử dụng
 - **Ngôn ngữ**: C++17.
-- **Mô hình lập trình**: OOP (Đóng gói, Kế thừa, Đa hình, Trừu tượng hóa), kiến trúc phân tầng (Models, Storage, Services, UI, Utils).
-- **Giao diện**: Qt 6 Widgets (bảng dữ liệu, biểu mẫu và điều hướng theo quyền).
-- **Định dạng dữ liệu**: `nlohmann/json` v3.11.3.
-- **Hệ thống build**: CMake 3.16+.
-- **Bảo mật**: Mật khẩu mã hóa bằng Salt ngẫu nhiên + SHA-256 (không lưu plain-text khi xác thực).
+- **Mô hình**: OOP, kiến trúc phân tầng (Models, Storage, Services, UI, Utils).
+- **Giao diện**: Qt 6 Widgets (bảng dữ liệu, dropdown, date-picker, điều hướng theo vai trò).
+- **Dữ liệu**: `nlohmann/json` v3.11.3, ghi nguyên tử (atomic rename) + backup tự động.
+- **Build**: CMake 3.16+.
+- **Bảo mật**: mật khẩu Salt ngẫu nhiên + SHA-256 (không lưu plain-text).
 
 ---
 
 ## 2. Kiến trúc & Cấu trúc thư mục
 ```
 trongdongpalace/
-├── CMakeLists.txt              # Cấu hình biên dịch CMake (Qt 6 Widgets & nlohmann/json)
-├── README.md                   # Tài liệu hướng dẫn sử dụng & báo cáo kỹ thuật
-├── data/                       # Thư mục lưu trữ các file JSON thực tế
-│   ├── users.json              # Tài khoản người dùng (4 vai trò đặc tả)
-│   ├── customers.json          # Khách hàng & yêu cầu sự kiện (kèm dòng dịch vụ đã chốt giá)
-│   ├── venues.json             # Sảnh VEN (giá thuê) & danh mục dịch vụ FOD/DEC/MED/AV/HR/EXT
-│   ├── transactions.json       # Booking (giữ chỗ 72h) & lịch sử thanh toán
-│   └── events.json             # Sự kiện vận hành (trạng thái tự tính theo thời gian)
-├── backups/                    # Bản sao lưu dữ liệu tự động trước mỗi lần ghi JSON
+├── CMakeLists.txt              # CMake (Qt 6 Widgets & nlohmann/json)
+├── README.md                   # Tài liệu này
+├── data/                       # JSON runtime (tự tạo khi chạy, không commit)
+│   ├── users.json              # Tài khoản (4 vai trò đặc tả)
+│   ├── customers.json          # Khách hàng & yêu cầu (kèm dòng dịch vụ đã chốt giá)
+│   ├── venues.json             # Sảnh VEN (giá thuê) & dịch vụ FOD/DEC/MED/AV/HR/EXT
+│   ├── transactions.json       # Booking (giữ chỗ 72h) & thanh toán
+│   └── events.json             # Sự kiện (trạng thái tự tính theo thời gian)
+├── backups/                    # Backup tự động trước mỗi lần ghi
 ├── src/
-│   ├── main.cpp                # Nạp Storage và khởi chạy ứng dụng
-│   ├── models/                 # Thực thể dữ liệu C++ OOP
-│   ├── storage/                # Đọc/ghi JSON nguyên tử (atomic rename), backup & seed
-│   ├── services/               # Xử lý business logic, RBAC, kiểm tra trùng lịch
-│   ├── ui/                     # Giao diện Qt Widgets
-│   └── utils/                  # DateTime, SHA-256, format tiền tệ VND
+│   ├── main.cpp                # Nạp Storage, chạy Qt UI
+│   ├── models/                 # User, Customer, EventRequest, Hall, ServiceItem,
+│   │                           # Booking, Payment, Event, Enums, Database
+│   ├── storage/                # JSON load/save + seed danh mục đặc tả
+│   ├── services/               # PalaceService: nghiệp vụ, RBAC, trùng lịch, hết hạn giữ chỗ
+│   ├── ui/                     # Qt Widgets theo actor
+│   └── utils/                  # DateTime, SHA-256, tiền tệ VND
 └── tests/
-    └── test_core.cpp           # Bộ 10 nhóm bài kiểm thử tự động toàn diện (130 test cases)
+    └── test_core.cpp           # 14 nhóm kiểm thử (154 checks, xem mục 6)
 ```
 
 ---
 
-## 3. Danh sách tài khoản mẫu & Thay đổi thông tin
-Khi chạy lần đầu và thư mục `data/` chưa có dữ liệu, chương trình tự động tạo các tài khoản mẫu sau với mật khẩu mặc định là **`123456`**:
+## 3. Tài khoản mẫu
+Lần chạy đầu (`data/` trống) chương trình tự seed, mật khẩu mặc định **`123456`**:
 
-| Tên đăng nhập | Mật khẩu | Họ và tên | Vai trò | Quyền hạn chính |
-| :--- | :--- | :--- | :--- | :--- |
-| **`admin`** | `123456` | Quản trị viên hệ thống | **Quản lý** | Toàn quyền: sảnh, dịch vụ, booking, duyệt chiết khấu, tài khoản |
-| **`kinhdoanh`** | `123456` | Nguyễn Văn Kinh Doanh | **Nhân viên kinh doanh** | Yêu cầu, booking (giữ chỗ 72h), ghi nhận thanh toán, tra cứu sảnh |
-| **`vanhanh`** | `123456` | Lê Văn Vận Hành | **Vận hành** | Xem danh sách sự kiện (trạng thái tự tính theo thời gian) |
-| **`khachhang`** | `123456` | Nguyễn Văn An | **Khách hàng** | Chỉ tạo yêu cầu sự kiện, xem yêu cầu đã gửi và đặt lịch của mình |
+| Tên đăng nhập | Họ và tên | Vai trò | Quyền hạn chính |
+| :--- | :--- | :--- | :--- |
+| **`admin`** | Quản trị viên hệ thống | **Quản lý** | Toàn quyền: sảnh, dịch vụ, booking, duyệt chiết khấu >10%, tài khoản, nạp danh mục mẫu |
+| **`kinhdoanh`** | Nguyễn Văn Kinh Doanh | **Nhân viên kinh doanh** | Yêu cầu (Chờ→Tư vấn→Hoàn thành→Booking), booking giữ chỗ 72h, thu tiền, tra cứu sảnh |
+| **`vanhanh`** | Lê Văn Vận Hành | **Vận hành** | Xem sự kiện (Sắp/Đang diễn ra/Đã kết thúc tự tính) |
+| **`khachhang`** | Nguyễn Văn An | **Khách hàng** | Chỉ tạo yêu cầu, xem yêu cầu đã gửi + đặt lịch của mình, tự hủy yêu cầu |
 
-> **Cách thay đổi thông tin đăng nhập hoặc mật khẩu**:
-> - Đăng nhập tài khoản `admin` -> Vào mục **"Người dùng (quản trị)"** -> Chọn tài khoản -> Nhập mật khẩu mới -> Nhấn **"Đổi mật khẩu"**.
-> - Hoặc khách hàng tự bấm **"Đăng ký tài khoản khách hàng"** ngay tại màn hình đăng nhập ban đầu.
+> Đổi mật khẩu: đăng nhập `admin` → **Người dùng** → bấm vào ô Hoạt động/Vai trò để đổi tại chỗ, nút **Cập nhật** để đổi mật khẩu.
+> Khách hàng mới tự bấm **"Đăng ký tài khoản khách hàng"** ở màn hình đăng nhập
+> (nhập đủ họ tên/SĐT/email/địa chỉ) — hồ sơ khách hàng tự tạo và gắn vào tài khoản.
 
 ---
 
-# Event Scheduling — Hệ thống Đặt lịch Sự kiện
+## 4. Cách build & chạy
 
-Đồ án nhóm môn **Lập trình Hướng đối tượng (OOP)**: ứng dụng Qt Widgets quản lý
-việc đặt/duyệt/hủy/đổi lịch sử dụng sảnh cho Trung tâm Tiệc cưới & Sự kiện.
-
-## Cách build & chạy
-
-CMake chỉ dùng để **biên dịch** chương trình. Máy người dùng cuối không cần
-cài CMake nếu bạn gửi file thực thi đã build. Cần build riêng cho từng hệ điều
-hành; file `.exe` của Windows không chạy trực tiếp trên Linux/macOS.
-
-### Windows
-
-Dùng **MSYS2 UCRT64** để có C++ compiler và CMake cùng một bộ công cụ:
-
-1. Cài [MSYS2](https://www.msys2.org/), sau đó mở ứng dụng **MSYS2 UCRT64**.
-2. Cài các công cụ cần thiết bằng lệnh:
-
+### Windows (MSYS2 UCRT64)
 ```bash
 pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-make mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-nlohmann-json
-```
-
-3. Trong cửa sổ MSYS2 UCRT64, chuyển đến thư mục dự án, tức thư mục có
-  `CMakeLists.txt`, rồi chạy:
-
-```bash
 cmake -S . -B build/qt-ucrt64 -G "MinGW Makefiles" \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_CXX_COMPILER="$MINGW_PREFIX/bin/g++.exe" \
@@ -88,149 +72,73 @@ cmake -S . -B build/qt-ucrt64 -G "MinGW Makefiles" \
   -DCMAKE_PREFIX_PATH="$MINGW_PREFIX"
 cmake --build build/qt-ucrt64
 ./build/qt-ucrt64/trongdongpalace.exe
+./build/qt-ucrt64/tdp_tests.exe   # kiểm thử lõi
 ```
+Tắt app đang mở trước khi build lại (Windows khóa file `.exe` đang chạy).
+Dùng đúng thư mục `build/qt-ucrt64`; không đổi compiler trong cùng thư mục build.
 
-Qt 6 Widgets cũng cần được cài trên máy chạy ứng dụng. Khi đóng gói, dùng
-`windeployqt` của MSYS2 UCRT64 để chuẩn bị các thư viện Qt đi kèm.
-
-Dùng đúng thư mục `build/qt-ucrt64` như trên để không đụng cấu hình cũ
-trong `build/`. CMake không cho đổi compiler hoặc generator trong cùng một
-thư mục build; nếu muốn cấu hình lại, hãy chọn một thư mục build mới.
-
-#### VS Code
-
-Mở thư mục dự án bằng VS Code và chọn preset **Qt 6 Widgets (MSYS2 UCRT64)**
-nếu được hỏi. `.vscode/settings.json` sẽ yêu cầu CMake Tools cấu hình preset
-này và cung cấp compile flags cho IntelliSense, bao gồm Qt include paths.
-Preset yêu cầu CMake 3.20 trở lên và MSYS2 được cài ở `C:/msys64`.
-
-### Linux / macOS
-
-Cài Qt 6 Widgets và CMake bằng trình quản lý gói của hệ điều hành, sau đó chạy:
-
-```bash
-cmake -S . -B build
-cmake --build build --config Release
-./build/trongdongpalace
-```
-
-### Chạy chương trình trên máy Windows khác
-
-Máy nhận không cần cài CMake hay MSYS2. Trước khi gửi ứng dụng, chạy `windeployqt`
-trong MSYS2 UCRT64 để chép các thư viện Qt và plugin cần thiết vào thư mục build:
-
+### Đóng gói cho máy khác
 ```bash
 windeployqt build/qt-ucrt64/trongdongpalace.exe
 ```
+Gửi `.exe` + thư viện Qt do `windeployqt` tạo ra (+ thư mục `data/` nếu muốn giữ
+dữ liệu). Không có `data/` thì app tự seed khi khởi động.
 
-Gửi file `build/qt-ucrt64/trongdongpalace.exe` cùng các thư viện/plugin Qt
-do `windeployqt` tạo ra; nếu muốn giữ dữ liệu hiện có thì gửi kèm thư mục `data/`.
-Các thư viện GCC/C++ vẫn được liên kết tĩnh.
+### VS Code
+Mở thư mục dự án, chọn preset **Qt 6 Widgets (MSYS2 UCRT64)**. Yêu cầu CMake 3.20+
+và MSYS2 ở `C:/msys64`.
 
-Mở PowerShell trong thư mục chứa file `.exe` rồi chạy:
+---
 
-```text
-.\trongdongpalace.exe
-```
+## 5. Chức năng theo vai trò (bám đặc tả)
 
-Nếu không gửi `data/`, chương trình sẽ tạo dữ liệu mẫu khi khởi động. Dữ liệu
-mới được lưu trong `data/` theo thư mục PowerShell hiện tại, nên hãy chạy lệnh
-khi đang đứng trong thư mục phát hành.
+| Vai trò | Màn hình & thao tác chính |
+| :--- | :--- |
+| Khách hàng | **Yêu cầu đã gửi** (cột Chi phí dự kiến = tiền sảnh + dịch vụ; trạng thái 2 lớp: Đang xét duyệt/Hoàn thành/Bị hủy), **Tạo yêu cầu** (dropdown loại sự kiện/sảnh, date-picker, tích dịch vụ theo tab, số khách 10–800), **Đặt lịch của tôi** (double-click xem phiếu thu), tự hủy yêu cầu (bấm ô trạng thái) |
+| Kinh doanh | Yêu cầu (sửa toàn bộ sau trao đổi, đổi trạng thái tại ô, Hoàn thành → tự sang Booking, xem số yêu cầu mới), Booking (tạo từ yêu cầu, giảm giá, Hủy/Hoàn tất tại ô), Thanh toán (ghi nhận/sửa/xóa khoản chưa thu, phiếu thu), tra cứu sảnh trống đa tiêu chí, xem sảnh/dịch vụ/khách hàng |
+| Quản lý | Toàn bộ quyền kinh doanh + thêm/sửa/xóa sảnh (mã tự động, trạng thái Khả dụng/Bảo trì/Không khả dụng tại ô), thêm/sửa/xóa + bật/tắt dịch vụ theo 7 tab, **duyệt chiết khấu >10%** (bấm ô Giảm giá), quản lý tài khoản, **Nạp danh mục mẫu** |
+| Vận hành | Xem danh sách sự kiện, trạng thái Sắp/Đang diễn ra/Đã kết thúc tự tính theo giờ hệ thống |
 
-Với Visual Studio / CLion: mở trực tiếp `CMakeLists.txt`, IDE tự đọc cấu hình;
-hãy đặt `CMAKE_PREFIX_PATH` trỏ tới thư mục cài Qt 6 nếu IDE không tự tìm thấy Qt.
+Quy tắc lõi: Booking mới ở **Đang chờ đặt cọc** (giữ sảnh 72h); thu cọc xong →
+**Đã đặt cọc** + tự sinh sự kiện; quá 72h không cọc → tự hủy + nhả sảnh; sảnh
+trùng lịch ở trạng thái giữ chỗ/đã cọc thì chặn lưu; Tất toán → booking Hoàn tất.
 
-## Cấu trúc thư mục
+---
 
-```
-trongdongpalace/
-├── include/            # Các file khai báo lớp (.h)
-│   ├── Event.h             # Lớp TRỪU TƯỢNG cha của mọi loại sự kiện
-│   ├── WeddingEvent.h      # Lớp con Tiệc cưới (kế thừa Event)
-│   ├── ConferenceEvent.h   # Lớp con Hội nghị (kế thừa Event)
-│   ├── BirthdayEvent.h     # Lớp con Sinh nhật (kế thừa Event)
-│   ├── Hall.h              # Lớp sảnh
-│   ├── BookingRequest.h    # Lớp yêu cầu đặt lịch (has-a Hall*, has-a Event*)
-│   ├── HeThongDatLich.h    # Lớp trung tâm điều phối nghiệp vụ
-│   ├── Exceptions.h        # Các lớp ngoại lệ kế thừa std::exception
-│   └── Utils.h             # ThoiDiem + tiện ích nhập liệu, in bảng, màn hình
-├── src/                # Cài đặt (.cpp) tương ứng từng header
-│   └── main.cpp            # Menu console, bắt exception hiển thị (FR-11)
-├── docs/               # Tài liệu FR
-├── data/               # File dữ liệu txt sinh ra khi chạy (không commit)
-├── build/              # Thư mục build CMake (không commit)
-├── CMakeLists.txt
-└── README.md
-```
+## 6. Kiểm thử tự động (`tests/test_core.cpp`, 14 nhóm / 154 checks)
 
-## Lưu trữ dữ liệu
+| # | Nhóm | Điểm chính |
+|---|------|------------|
+| 1 | Lưu/đọc JSON | Roundtrip đầy đủ luồng, đủ 5 file |
+| 2 | Seed danh mục | 100 dịch vụ, 6 sảnh VEN, ánh xạ trạng thái 2 lớp |
+| 3 | Chi phí dự kiến | 20 bàn FOD01-P = 90M, chặn số khách <10 và ngày quá khứ |
+| 4 | Trùng lịch + hết hạn 72h | Chặn trùng, sweep hủy booking quá hạn, nhả sảnh |
+| 5 | Chiết khấu | >10% cần Quản lý duyệt, sales không tự duyệt được |
+| 6 | Thanh toán | Ghi chú bắt buộc, cấm ngày tương lai, phiếu thu, Tất toán → Hoàn tất |
+| 7 | Yêu cầu → Booking | Hoàn thành tự sang Booking, lịch sử gọn 10 |
+| 8 | Phân quyền | Đủ 4 actor, sai mật khẩu |
+| 9 | Khách hàng | Tự điền hồ sơ, tự hủy, đăng ký sinh hồ sơ + đồng bộ ngược SĐT |
+| 10 | Sảnh + sự kiện | Sảnh Bảo trì bị loại, trạng thái sự kiện theo thời gian |
+| 11 | JSON hỏng | Ném lỗi, giữ nguyên file |
+| 12 | Nạp danh mục | Không trùng, sales bị chặn |
+| 13 | Xóa an toàn | Chặn xóa khi còn liên kết, cascade booking nháp, giữ quản lý cuối |
+| 14 | Sự kiện theo cọc + lọc | Sự kiện chỉ sinh khi thu cọc, sửa thanh toán, lọc sảnh theo giá/sức chứa |
 
-Toàn bộ dữ liệu (sảnh + booking) được **tự động lưu ra file txt** trong thư mục
-`data/` nằm cạnh chương trình chạy, nên dữ liệu **không bị mất khi tắt rồi chạy lại**.
+---
 
-> Đường dẫn `data/` là **tương đối theo thư mục làm việc**. Nếu chạy
-> `build/trongdongpalace.exe` từ trong `build/` thì dữ liệu nằm ở `build/data/`.
+## 7. Lưu trữ dữ liệu
 
-| File | Nội dung | Định dạng mỗi dòng |
-|------|----------|--------------------|
-| `data/sanh.txt` | Danh mục sảnh | `maSanh\|ten\|sucChua\|dangHoatDong(0/1)` |
-| `data/booking.txt` | Danh sách booking | `maBooking\|maSanh\|loaiSuKien\|maSuKien\|tenSuKien\|soKhach\|gioBatDau\|gioKetThuc\|trangThai\|lyDoTuChoi\|ngayTao` |
+- `data/` nằm theo **thư mục làm việc** khi chạy exe; mỗi lần ghi đều backup
+  timestamp vào `backups/` trước (ghi nguyên tử qua file `.tmp`).
+- Đơn giá dịch vụ **snapshot tại lúc chọn** vào yêu cầu nên sửa catalog không làm
+  lệch đơn cũ; đọc file cũ thiếu trường thì dùng giá trị mặc định tương thích.
+- Mã tự động tăng (`REQ-`, `BKG-`, `PAY-`, `EVT-`, `HAL-`, `SVC-`, `CUS-`, `USR-`).
 
-**Đầu mỗi file đều có header** giúp người đọc hiểu cấu trúc: các dòng chú thích
-bắt đầu bằng `#` (giải thích ý nghĩa từng cột, các quy ước giá trị) và một dòng
-tên cột (ví dụ `MaSanh|TenSanh|SucChua|DangHoatDong`). Khi nạp dữ liệu, các dòng
-này được **tự động bỏ qua**, nên file cũ (không có header) vẫn đọc bình thường.
-Tất cả dữ liệu — từ dữ liệu mẫu cho đến dữ liệu người dùng tạo sau này — đều
-được ghi vào file txt theo cùng một định dạng.
+---
 
-Quy ước giá trị:
+## 8. Ghi chú nhóm
 
-- `loaiSuKien`: `1` = Tiệc cưới, `2` = Hội nghị, `3` = Sinh nhật
-  (lấy qua hàm ảo `Event::maLoai()` — thể hiện tính đa hình).
-- `trangThai`: `0` = Pending, `1` = Approved, `2` = Rejected, `3` = Cancelled.
-- Thời điểm ghi ở dạng `dd/mm/yyyy hh:mm`.
-
-Cơ chế hoạt động:
-
-- **Khi khởi động**: `main()` gọi `ht.docDuLieuTuFile()` để nạp dữ liệu đã lưu;
-  chỉ khi hệ thống còn rỗng mới sinh dữ liệu mẫu (`khoiTaoDuLieuMau()`).
-- **Khi có thay đổi**: mỗi thao tác thêm/sửa/xóa sảnh và tạo/duyệt/từ chối/hủy/đổi
-  lịch đều gọi `ghiDuLieuRaFile()` để lưu ngay (chống mất dữ liệu khi tắt đột ngột);
-  destructor của `HeThongDatLich` cũng lưu lần cuối.
-- **Bộ đếm mã**: sau khi nạp, `capNhatSoThuTu()` quét mã `SK###`/`BK###` lớn nhất
-  để các mã sinh ra tiếp theo **không bị trùng** với dữ liệu cũ.
-- **Dữ liệu hỏng**: từng dòng sai định dạng được bỏ qua kèm cảnh báo, không làm chết
-  chương trình; ký tự phân cách `|` do người dùng nhập được thay bằng khoảng trắng.
-
-## Chức năng (theo FR)
-
-| FR  | Chức năng | Menu |
-|-----|-----------|------|
-| FR-01 | Quản lý danh mục sảnh (thêm/sửa/xóa/xem) | Quản lý sảnh → 1 |
-| FR-02 | 3 loại sự kiện (Cưới/Hội nghị/Sinh nhật) | Chọn khi tạo booking |
-| FR-03 | Xem lịch trống của sảnh theo ngày | Người yêu cầu → 2 |
-| FR-04 | Tạo yêu cầu đặt lịch (trạng thái Pending) | Người yêu cầu → 3 |
-| FR-05 | Kiểm tra trùng lịch (khung giờ mở rộng) | Tự động khi tạo/duyệt/đổi lịch |
-| FR-06 | Duyệt yêu cầu | Quản lý sảnh → 2 |
-| FR-07 | Từ chối yêu cầu | Quản lý sảnh → 3 |
-| FR-08 | Hủy lịch đã duyệt (hạn hủy 48 giờ) | Người yêu cầu → 4 |
-| FR-09 | Đổi lịch (giữ nguyên mã booking) | Người yêu cầu → 5 |
-| FR-10 | Tra cứu theo trạng thái/sảnh/khoảng ngày | Cả hai → mục tra cứu |
-| FR-11 | Xử lý ngoại lệ toàn hệ thống | Bọc try/catch ở mọi thao tác |
-
-## Áp dụng nguyên lý OOP (bảng ánh xạ Mục 9)
-
-- **Thiết kế lớp & đối tượng**: `Event`, `Hall`, `BookingRequest`, `HeThongDatLich`.
-- **Kế thừa**: `WeddingEvent`/`ConferenceEvent`/`BirthdayEvent` kế thừa `Event`;
-  các exception kế thừa `std::exception` (qua `BaseException`).
-- **Đa hình**: khi tạo/duyệt booking, hệ thống chỉ giữ `Event*` và gọi
-  `thoiGianChuanBi()`, `thoiGianDonDep()`, `kiemTraDieuKienRieng()` —
-  phiên bản của lớp con tương ứng được chạy lúc runtime.
-- **Xử lý ngoại lệ**: 8 lớp exception tùy chỉnh theo Mục 7, mọi thao tác
-  nhập liệu đều được bọc `try/catch`.
-
-## Ghi chú nhóm
-
-- Khi thêm lớp sự kiện mới: tạo `.h`/`.cpp`, thêm tên file `.cpp` vào
-  `add_executable(...)` trong `CMakeLists.txt`.
-- `build/` đã nằm trong `.gitignore` — không commit file build lên Git.
+- `build/`, `data/*.tmp`, `backups/` đã ignores — không commit.
+- Muốn cấu hình lại compiler/generator thì dùng thư mục build mới.
+- Khi thêm actor/màn hình mới: thêm `Action` + nhánh trong `navigationEntries()`,
+  `tableHeaders()`, `getRows()`, `addActions()` ở `src/ui/app_ui.cpp`.
