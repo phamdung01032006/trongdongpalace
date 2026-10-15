@@ -642,13 +642,6 @@ OpResult PalaceService::importCatalog() {
                    "");
 }
 
-vector<string> PalaceService::serviceCategories() const {    vector<string> cats;
-    for (const auto& s : data().services) {
-        if (find(cats.begin(), cats.end(), s.category()) == cats.end()) cats.push_back(s.category());
-    }
-    return cats;
-}
-
 bool PalaceService::hallAvailable(const string& hallId, DateTime start, DateTime end,
                                   const string& ignoreBookingId, string& reason) const {
     const Hall* hall = findHall(hallId);

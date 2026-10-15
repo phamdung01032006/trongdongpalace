@@ -99,7 +99,6 @@ public:
     const Hall* findHall(const string& id) const;
     const ServiceItem* findService(const string& id) const;
     const ServiceItem* findServiceByCode(const string& code) const;
-    vector<string> serviceCategories() const;
     vector<Hall> findAvailableHalls(DateTime start, DateTime end, int guestCount,
                                     const string& ignoreBookingId) const;
     // Loc sanh kha dung theo nhieu tieu chi (tab tra cuu): gia thue toi da 0 = khong gioi han.
