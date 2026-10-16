@@ -542,6 +542,11 @@ private:
         pageTitle_->setText(navigation_->currentText());
         search_->setVisible(screen_ == "customers");
         lookupControls_->setVisible(screen_ == "lookup");
+        if (screen_ == "lookup") {
+            // Mac dinh loc ngay theo khung loc: sanh da book khong hien.
+            syncLookupFromControls();
+            lookupActive_ = true;
+        }
         refreshTable();
         addActions();
     }
@@ -1009,9 +1014,6 @@ private:
                 addActionButton(layout, "Tạo mới", [this]() { addService(); });
                 addActionButton(layout, "Cập nhật", [this]() { editService(); });
                 addActionButton(layout, "Xóa", [this]() { deleteSelected(); });
-            }
-            if (isManager()) {
-                addActionButton(layout, "Nạp danh mục mẫu", [this]() { importCatalog(); });
             }
         } else if (screen_ == "lookup") {
             // Nut Tra cuu / Hien tat ca nam ngay tren khung loc.
@@ -1535,11 +1537,6 @@ private:
                                    hallStatusFromString(statusPicked->toStdString())));
     }
 
-    void importCatalog()
-    {
-        notify(service_.importCatalog());
-    }
-
     void addService()
     {
         const auto values = promptFields(this, "Thêm dịch vụ",
@@ -1599,6 +1596,19 @@ private:
         notify(service_.updateService(item->id(), (*values)[0].toStdString(),
                                       (*values)[1].toStdString(), (*values)[2].toStdString(), *price,
                                       catPicked->toStdString(), *activePicked == "Có"));
+    }
+
+    // Doc khung loc vao state (khong popup loi khi mo tab).
+    void syncLookupFromControls()
+    {
+        const QDateTime qs = fStart_->dateTime(), qe = fEnd_->dateTime();
+        lStart_ = {qs.date().year(), qs.date().month(), qs.date().day(), qs.time().hour(),
+                   qs.time().minute()};
+        lEnd_ = {qe.date().year(), qe.date().month(), qe.date().day(), qe.time().hour(),
+                 qe.time().minute()};
+        lGuests_ = fGuests_->value();
+        const auto parsed = parseMoney(fMaxPrice_->text().trimmed().toStdString());
+        lMaxPrice_ = parsed ? *parsed : 0;
     }
 
     void lookupHalls()

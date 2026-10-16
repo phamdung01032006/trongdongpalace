@@ -347,20 +347,32 @@ int main() {
         CHECK(ss.str().find("json hỏng") != string::npos);
     }
 
-    cout << "== 12. Nạp danh mục mẫu không trùng, giữ dữ liệu cũ ==" << endl;
+    cout << "== 12. Lọc sảnh loại trừ booking đã giữ chỗ ==" << endl;
     {
-        auto dir = makeTempDir("catalog");
+        auto dir = makeTempDir("lockhall");
         JsonStorage storage(dir / "data", dir / "backup");
         storage.load();
         PalaceService svc(storage);
-        CHECK(svc.login("admin", "123456").ok);
-        OpResult r1 = svc.importCatalog();
-        CHECK(r1.ok);
-        CHECK(svc.db().halls.size() == 6 && svc.db().services.size() == 100);
-        // Sales không được nạp.
-        svc.logout();
-        CHECK(svc.login("kinhdoanh", "123456").ok);
-        CHECK(!svc.importCatalog().ok);
+        svc.login("kinhdoanh", "123456");
+        string cus = svc.addCustomer("G", "0938111222", "", "", "").id;
+        DateTime s = dt("2027-12-01 18:00"), e = dt("2027-12-01 22:00");
+        string req = svc.addRequest(cus, EventType::TiecCuoi, "T", "G", "0938111222", "HAL-0004",
+                                    s, e, 200, "", {}).id;
+        string bk = svc.createBooking(req, "HAL-0004", s, e, 200, 0, 0).id;
+        CHECK(!bk.empty());
+        // Sanh da book khong con hien trong ket qua loc cung khung gio.
+        bool shown = false;
+        for (const Hall& h : svc.filterHalls(s, e, 50, 0, "")) {
+            if (h.id() == "HAL-0004") shown = true;
+        }
+        CHECK(!shown);
+        // Huy booking -> sanh hien lai.
+        CHECK(svc.cancelBooking(bk, "test").ok);
+        shown = false;
+        for (const Hall& h : svc.filterHalls(s, e, 50, 0, "")) {
+            if (h.id() == "HAL-0004") shown = true;
+        }
+        CHECK(shown);
     }
 
     cout << "== 13. Xóa an toàn + cập nhật qua ô trạng thái ==" << endl;

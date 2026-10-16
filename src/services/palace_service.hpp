@@ -94,8 +94,6 @@ public:
     OpResult updateService(const string& id, const string& code, const string& name, const string& unit,
                            int64_t price, const string& category, bool active);
     OpResult deleteService(const string& id);
-    // Quan ly nap bo sung danh muc mau dac ta (khong xoa du lieu hien co).
-    OpResult importCatalog();
     const Hall* findHall(const string& id) const;
     const ServiceItem* findService(const string& id) const;
     const ServiceItem* findServiceByCode(const string& code) const;
