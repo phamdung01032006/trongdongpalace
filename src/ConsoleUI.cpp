@@ -339,11 +339,10 @@ void ConsoleUI::managerMenu() {
         cout << "7. Quản lý sảnh\n";
         cout << "8. Quản lý dịch vụ\n";
         cout << "9. Quản lý tài khoản\n";
-        cout << "10. Duyệt chiết khấu\n";
-        cout << "11. Nạp danh mục mẫu\n";
+        cout << "10. Danh sách sự kiện\n";
         cout << "0. Đăng xuất\n";
 
-        int choice = askInt("Chọn", 0, 0, 11);
+        int choice = askInt("Chọn", 0, 0, 10);
         try {
             switch (choice) {
                 case 0:
@@ -360,8 +359,7 @@ void ConsoleUI::managerMenu() {
                 case 7: manageHallsScreen(); break;
                 case 8: manageServicesScreen(); break;
                 case 9: manageUsersScreen(); break;
-                case 10: approveDiscountScreen(); break;
-                case 11: seedCatalogScreen(); break;
+                case 10: eventsScreen(); break;
             }
         } catch (const BusinessException& error) {
             showBusinessError(error);
@@ -1529,19 +1527,6 @@ void ConsoleUI::approveDiscountScreen() {
     pause();
 }
 
-void ConsoleUI::seedCatalogScreen() {
-    clearScreen();
-    showBanner();
-    cout << "--- NẠP DANH MỤC MẪU ---\n";
-    cout << "Chức năng chỉ thêm các sảnh/dịch vụ còn thiếu, không xóa dữ liệu cũ.\n";
-
-    if (!isYes(askText("Tiếp tục (c/k)", "k"))) return;
-
-    OpResult result = service_.seedCatalog();
-    cout << '\n' << "[OK] " << result.message << '\n';
-    pause();
-}
-
 void ConsoleUI::eventsScreen() {
     service_.refreshSystem();
     vector<Event> events = service_.allEvents();
@@ -1729,6 +1714,8 @@ int ConsoleUI::chooseHallStatus(HallStatus defaultValue) const {
 }
 
 void ConsoleUI::chooseServices(vector<ServiceLineInput>& services) const {
+    cout << "\nDanh sách dịch vụ đang cung cấp:\n";
+    printServices("", true);
     cout << "\nChọn dịch vụ (ví dụ: FOD01-P, DEC01-P, MED07, AV07, HR02, EXT01).\n";
     cout << "Nhập mã dịch vụ, Enter để kết thúc.\n";
 
@@ -1871,13 +1858,14 @@ void ConsoleUI::printHalls(const vector<Hall>& halls) const {
     printTable(headers, widths, rows);
 }
 
-void ConsoleUI::printServices(const string& keyword) const {
+void ConsoleUI::printServices(const string& keyword, bool onlyActive) const {
     vector<const Service*> services = service_.allServices();
     vector<string> headers = {"Mã", "Code", "Tên dịch vụ", "Đơn vị", "Đơn giá", "Loại"};
     vector<int> widths = {8, 12, 38, 15, 14, 10};
 
     vector<vector<string>> rows;
     for (const Service* service : services) {
+        if (onlyActive && !service->is_active()) continue;
         if (!keyword.empty() && !containsIgnoreCase(service->get_code(), keyword) &&
             !containsIgnoreCase(service->get_name(), keyword) &&
             !containsIgnoreCase(service->get_category(), keyword)) {

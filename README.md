@@ -147,7 +147,6 @@ g++ -std=c++17 -O2 -Iinclude main.cpp @src -o trongdongpalace.exe
 - Lần chạy đầu, nếu `data/users.txt` chưa tồn tại, chương trình tự tạo dữ liệu mẫu:
   4 tài khoản, 2 khách hàng, 6 sảnh và 100 dịch vụ.
 - Muốn reset toàn bộ: xóa các file trong `data/` rồi chạy lại.
-- Nếu chỉ thiếu danh mục sảnh/dịch vụ: đăng nhập `admin` → chọn **11. Nạp danh mục mẫu**.
 
 ### 3.6. Điều hướng trong chương trình
 
@@ -207,8 +206,8 @@ Gồm toàn bộ quyền của nhân viên kinh doanh, cộng thêm:
 - Quản lý sảnh: thêm, sửa, xóa, đổi trạng thái (Khả dụng / Bảo trì / Không khả dụng).
 - Quản lý dịch vụ: thêm, sửa, xóa, bật/tắt dịch vụ.
 - Quản lý tài khoản: tạo tài khoản nhân viên, đổi vai trò, khóa/mở, đổi mật khẩu.
-- Duyệt chiết khấu vượt ngưỡng 10%.
-- Nạp danh mục sảnh/dịch vụ mẫu còn thiếu.
+- Xem danh sách sự kiện.
+- Duyệt chiết khấu vượt ngưỡng 10% trong **Quản lý booking**.
 
 ### Vận hành
 
@@ -279,7 +278,7 @@ Sảnh còn trống khi:
 - Nhân viên kinh doanh nhập chiết khấu vượt ngưỡng → booking ở trạng thái
   **cần duyệt**.
 - **Chưa duyệt thì chiết khấu chưa được trừ** vào `get_finalTotal()`.
-- Quản lý vào **10. Duyệt chiết khấu** để duyệt; sau đó tổng tiền mới giảm.
+- Quản lý vào **Quản lý booking → 6. Duyệt chiết khấu** để duyệt; sau đó tổng tiền mới giảm.
 
 ### 6.6. Sự kiện
 
@@ -510,7 +509,7 @@ quyền chỉ nằm một chỗ, không rải rác trong UI.
 6. Đăng xuất, đăng nhập `vanhanh` / `123456` → **1. Danh sách sự kiện** để xem
    sự kiện vừa được tạo.
 7. Đăng nhập `admin` / `123456`:
-   - **10. Duyệt chiết khấu** nếu nhân viên đã nhập chiết khấu > 10%.
+   - **Quản lý booking → 6. Duyệt chiết khấu** nếu nhân viên đã nhập chiết khấu > 10%.
    - **7/8. Quản lý sảnh/dịch vụ**, **9. Quản lý tài khoản**.
 8. Đăng nhập `khachhang` / `123456` để xem yêu cầu và booking của mình.
 
