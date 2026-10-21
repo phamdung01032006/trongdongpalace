@@ -26,7 +26,7 @@ bool roleAllows(Role role, Action action) {
         case Action::LookupHalls:
             return role == Role::Sales || role == Role::Customer;
         case Action::ManageEvents:
-            return role == Role::Operation;
+            return role == Role::Operation || role == Role::Manager;
     }
     return false;
 }

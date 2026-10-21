@@ -35,8 +35,7 @@ struct ServiceLineInput {
 class PalaceService {
 public:
     // Du lieu dung chung cho moi doi tuong PalaceService: khai bao static.
-    static constexpr int kHoldHours = 72;                // Giu sanh 72 gio cho khach dat coc.
-    static constexpr int kDiscountApprovalPercent = 10;  // Chiet khau > 10% can Quan ly duyet.
+    static constexpr int kHoldHours = 72;  // Giu sanh 72 gio cho khach dat coc.
 
     explicit PalaceService(Store& store);
 
@@ -97,8 +96,6 @@ public:
                            const string& unit, int64_t price, const string& category,
                            bool active);
     OpResult deleteService(const string& id);
-    OpResult seedCatalog();
-
     const Hall* findHall(const string& id) const;
     // Tim theo id (SVC-0001) hoac theo ma dich vu (FOD01-P).
     const Service* findService(const string& idOrCode) const;
@@ -113,13 +110,9 @@ public:
 
     // ---------- Booking ----------
     OpResult createBooking(const string& requestId, const string& hallId, DateTime start,
-                           DateTime end, int guestCount, int discountPercent,
-                           int64_t discountAmount);
+                           DateTime end, int guestCount);
     OpResult cancelBooking(const string& bookingId, const string& reason);
     OpResult deleteBooking(const string& bookingId);
-    OpResult updateBookingDiscount(const string& bookingId, int discountPercent,
-                                   int64_t discountAmount);
-    OpResult approveDiscount(const string& bookingId);
     const Booking* findBooking(const string& id) const;
     vector<Booking> bookingsForCustomer(const string& customerId) const;
 
@@ -171,7 +164,6 @@ private:
                     vector<RequestLine>& output) const;
     OpResult applyBookingFromRequest(const string& requestId, const string& hallId,
                                      DateTime start, DateTime end, int guestCount,
-                                     int discountPercent, int64_t discountAmount,
                                      string& bookingId);
     void applyPaymentCompleted(const string& bookingId, PaymentType type);
 

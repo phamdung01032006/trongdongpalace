@@ -230,7 +230,7 @@ OpResult PalaceService::updateRequestStatus(const string& id, RequestStatus stat
         string bookingId;
         applyBookingFromRequest(
             request->get_id(), hall->get_id(), request->get_start(), request->get_end(),
-            request->get_guestCount(), 0, 0, bookingId);
+            request->get_guestCount(), bookingId);
 
         // Neu phai doi sang sanh khac, cap nhat lai sanh tren yeu cau.
         request->set_hallId(hall->get_id());

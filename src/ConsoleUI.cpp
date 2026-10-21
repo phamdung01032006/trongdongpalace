@@ -339,11 +339,10 @@ void ConsoleUI::managerMenu() {
         cout << "7. Quản lý sảnh\n";
         cout << "8. Quản lý dịch vụ\n";
         cout << "9. Quản lý tài khoản\n";
-        cout << "10. Duyệt chiết khấu\n";
-        cout << "11. Nạp danh mục mẫu\n";
+        cout << "10. Danh sách sự kiện\n";
         cout << "0. Đăng xuất\n";
 
-        int choice = askInt("Chọn", 0, 0, 11);
+        int choice = askInt("Chọn", 0, 0, 10);
         try {
             switch (choice) {
                 case 0:
@@ -360,8 +359,7 @@ void ConsoleUI::managerMenu() {
                 case 7: manageHallsScreen(); break;
                 case 8: manageServicesScreen(); break;
                 case 9: manageUsersScreen(); break;
-                case 10: approveDiscountScreen(); break;
-                case 11: seedCatalogScreen(); break;
+                case 10: eventsScreen(); break;
             }
         } catch (const BusinessException& error) {
             showBusinessError(error);
@@ -444,22 +442,19 @@ void ConsoleUI::requestMenu() {
 
 void ConsoleUI::bookingMenu() {
     while (service_.isLoggedIn()) {
-        bool canApprove = service_.can(Action::ManageVenues);
         clearScreen();
         showBanner();
         cout << "--- QUẢN LÝ BOOKING ---\n";
         cout << "1. Danh sách booking\n";
         cout << "2. Tạo booking từ yêu cầu\n";
-        cout << "3. Cập nhật giảm giá\n";
-        cout << "4. Hủy booking\n";
-        cout << "5. Xóa booking chưa cọc\n";
-        if (canApprove) cout << "6. Duyệt chiết khấu\n";
+        cout << "3. Hủy booking\n";
+        cout << "4. Xóa booking chưa cọc\n";
         cout << "0. Quay lại\n";
         cout << "9. Về menu chính\n";
 
         int choice;
         try {
-            choice = askInt("Chọn", 0, 0, 9);
+            choice = askInt("Chọn", 0, 0, 4);
         } catch (const Navigation&) {
             return;  // b/m o menu con: quay lai menu vai tro
         }
@@ -470,17 +465,8 @@ void ConsoleUI::bookingMenu() {
                 case 9: return;
                 case 1: bookingsScreen(); break;
                 case 2: createBookingScreen(); break;
-                case 3: updateDiscountScreen(); break;
-                case 4: cancelBookingScreen(); break;
-                case 5: deleteBookingScreen(); break;
-                case 6:
-                    if (!canApprove) {
-                        cout << "[LỖI] Bạn không có quyền duyệt chiết khấu.\n";
-                        pause();
-                        break;
-                    }
-                    approveDiscountScreen();
-                    break;
+                case 3: cancelBookingScreen(); break;
+                case 4: deleteBookingScreen(); break;
             }
         } catch (const BusinessException& error) {
             showBusinessError(error);
@@ -937,42 +923,8 @@ void ConsoleUI::createBookingScreen() {
     }
 
     int guestCount = askInt("Số khách", request->get_guestCount(), 1, service_.maxHallCapacity());
-    int discountPercent = askInt("Chiết khấu (%)", 0, 0, 100);
-    int64_t discountAmount = askMoney("Số tiền giảm thêm", 0);
 
-    OpResult result = service_.createBooking(requestId, hallId, start, end, guestCount,
-                                             discountPercent, discountAmount);
-    cout << '\n' << "[OK] " << result.message << '\n';
-    pause();
-}
-
-void ConsoleUI::updateDiscountScreen() {
-    vector<Booking> bookings = service_.allBookings();
-    clearScreen();
-    showBanner();
-    cout << "--- CẬP NHẬT GIẢM GIÁ BOOKING ---\n";
-
-    if (bookings.empty()) {
-        cout << "Chưa có booking nào.\n";
-        pause();
-        return;
-    }
-
-    printBookings(bookings);
-    string id = askText("Mã booking", "");
-    if (id.empty()) return;
-
-    const Booking* booking = service_.findBooking(id);
-    if (booking == nullptr) {
-        cout << "[LỖI] Không tìm thấy booking.\n";
-        pause();
-        return;
-    }
-
-    int percent = askInt("Chiết khấu (%)", booking->get_discountPercent(), 0, 100);
-    int64_t amount = askMoney("Số tiền giảm", booking->get_discountAmount());
-
-    OpResult result = service_.updateBookingDiscount(id, percent, amount);
+    OpResult result = service_.createBooking(requestId, hallId, start, end, guestCount);
     cout << '\n' << "[OK] " << result.message << '\n';
     pause();
 }
@@ -1503,45 +1455,6 @@ void ConsoleUI::manageUsersScreen() {
     }
 }
 
-void ConsoleUI::approveDiscountScreen() {
-    vector<Booking> pending;
-    for (const Booking& booking : service_.allBookings()) {
-        if (booking.get_discountNeedsApproval() && !booking.get_discountApproved())
-            pending.push_back(booking);
-    }
-
-    clearScreen();
-    showBanner();
-    cout << "--- DUYỆT CHIẾT KHẤU ---\n";
-
-    if (pending.empty()) {
-        cout << "Không có booking nào cần duyệt.\n";
-        pause();
-        return;
-    }
-
-    printBookings(pending);
-    string id = askText("Mã booking cần duyệt", "");
-    if (id.empty()) return;
-
-    OpResult result = service_.approveDiscount(id);
-    cout << '\n' << "[OK] " << result.message << '\n';
-    pause();
-}
-
-void ConsoleUI::seedCatalogScreen() {
-    clearScreen();
-    showBanner();
-    cout << "--- NẠP DANH MỤC MẪU ---\n";
-    cout << "Chức năng chỉ thêm các sảnh/dịch vụ còn thiếu, không xóa dữ liệu cũ.\n";
-
-    if (!isYes(askText("Tiếp tục (c/k)", "k"))) return;
-
-    OpResult result = service_.seedCatalog();
-    cout << '\n' << "[OK] " << result.message << '\n';
-    pause();
-}
-
 void ConsoleUI::eventsScreen() {
     service_.refreshSystem();
     vector<Event> events = service_.allEvents();
@@ -1808,7 +1721,6 @@ void ConsoleUI::printBookings(const vector<Booking>& bookings) const {
                         booking.get_start().toString(),
                         to_string(booking.get_guestCount()),
                         formatMoney(booking.get_finalTotal()),
-                        formatMoney(booking.get_discountAmount()),
                         toString(booking.get_status()),
                         booking.get_holdUntil().toString()});
     }
@@ -1980,12 +1892,6 @@ void ConsoleUI::bookingDetail(const Booking& booking) const {
     cout << "Kết thúc     : " << booking.get_end() << '\n';
     cout << "Số khách     : " << booking.get_guestCount() << '\n';
     cout << "Tổng dự kiến : " << formatMoney(booking.get_estimatedTotal()) << '\n';
-    cout << "Giảm giá     : " << booking.get_discountPercent() << "% - "
-         << formatMoney(booking.get_discountAmount()) << '\n';
-    if (booking.get_discountNeedsApproval()) {
-        cout << "Duyệt giảm   : " << (booking.get_discountApproved() ? "Đã duyệt" : "CHỜ QUẢN LÝ DUYỆT")
-             << '\n';
-    }
     cout << "Thành tiền   : " << formatMoney(booking.get_finalTotal()) << '\n';
     cout << "Đã thu       : " << formatMoney(paid) << '\n';
     cout << "Còn lại      : " << formatMoney(remaining) << '\n';

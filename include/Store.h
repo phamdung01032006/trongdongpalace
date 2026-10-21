@@ -84,8 +84,7 @@ public:
     // Ghi tat ca file. Nem FileException neu khong ghi duoc.
     void save();
 
-    // Them cac sanh/dich vu mau con thieu (khong xoa du lieu da co).
-    void seedCatalog();
+
 
     Database& get_db() { return db_; }
     const Database& get_db() const { return db_; }

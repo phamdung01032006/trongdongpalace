@@ -21,17 +21,7 @@ Booking::Booking(string id, string requestId, string customerId, string hallId,
       status_(status) {}
 
 int64_t Booking::get_finalTotal() const {
-    // Chi tru chiet khau khi da duoc duyet (hoac khong can duyet).
-    int64_t discount = discountApproved_ ? discountAmount_ : 0;
-    int64_t result = estimatedTotal_ - discount;
-    return result < 0 ? 0 : result;
-}
-
-void Booking::set_discount(int percent, int64_t amount, bool needsApproval) {
-    discountPercent_ = percent;
-    discountAmount_ = amount;
-    discountNeedsApproval_ = needsApproval;
-    discountApproved_ = !needsApproval;
+    return estimatedTotal_;
 }
 
 string Booking::toText() const {
@@ -45,10 +35,6 @@ string Booking::toText() const {
         end_.toString(),
         to_string(guestCount_),
         to_string(estimatedTotal_),
-        to_string(discountPercent_),
-        to_string(discountAmount_),
-        boolText(discountNeedsApproval_),
-        boolText(discountApproved_),
         toString(status_),
         createdAt_.toString(),
         holdUntil_.toString(),
@@ -70,12 +56,10 @@ Booking Booking::fromText(const string& line) {
                     toInt64(fieldAt(fields, 7)),
                     bookingStatusFromString(fieldAt(fields, 12)));
 
-    booking.set_discount(toInt(fieldAt(fields, 8)), toInt64(fieldAt(fields, 9)),
-                        toBool(fieldAt(fields, 10)));
-    booking.set_discountApproved(toBool(fieldAt(fields, 11), true));
-    booking.set_createdAt(parseDateOr(fieldAt(fields, 13), DateTime::now()));
-    booking.set_holdUntil(parseDateOr(fieldAt(fields, 14)));
-    booking.set_salesUsername(fieldAt(fields, 15));
-    booking.set_cancelReason(fieldAt(fields, 16));
+    booking.set_createdAt(parseDateOr(fieldAt(fields, 9), DateTime::now()));
+    booking.set_holdUntil(parseDateOr(fieldAt(fields, 10)));
+    booking.set_salesUsername(fieldAt(fields, 11));
+    booking.set_cancelReason(fieldAt(fields, 12));
+    return booking;
     return booking;
 }

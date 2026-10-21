@@ -49,7 +49,6 @@ private:
     void deleteRequestScreen();
     void bookingsScreen();
     void createBookingScreen();
-    void updateDiscountScreen();
     void cancelBookingScreen();
     void deleteBookingScreen();
     void paymentsScreen();
@@ -65,8 +64,6 @@ private:
     void manageHallsScreen();
     void manageServicesScreen();
     void manageUsersScreen();
-    void approveDiscountScreen();
-    void seedCatalogScreen();
 
     // ---------- Nghiep vu van hanh ----------
     void eventsScreen();

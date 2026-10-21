@@ -10,10 +10,6 @@ using namespace std;
 
 namespace {
 
-int64_t discountLimitFor(int64_t total) {
-    return total * PalaceService::kDiscountApprovalPercent / 100;
-}
-
 }  // namespace
 
 // ==================== SANH & DICH VU ====================
@@ -166,13 +162,6 @@ OpResult PalaceService::deleteService(const string& id) {
     return persist("Đã xóa dịch vụ.", realId);
 }
 
-OpResult PalaceService::seedCatalog() {
-    require(Action::ManageVenues);
-
-    store_.seedCatalog();
-    return persist("Đã nạp danh mục mẫu (chỉ thêm mục còn thiếu).", "");
-}
-
 bool PalaceService::hallAvailable(const string& hallId, DateTime start, DateTime end,
                                   const string& ignoreBookingId, string& reason) const {
     const Hall* hall = findHall(hallId);
@@ -231,7 +220,6 @@ const Booking* PalaceService::findBooking(const string& id) const {
 
 OpResult PalaceService::applyBookingFromRequest(const string& requestId, const string& hallId,
                                                 DateTime start, DateTime end, int guestCount,
-                                                int discountPercent, int64_t discountAmount,
                                                 string& bookingId) {
     EventRequest* request = nullptr;
     for (EventRequest& item : get_db().get_requests()) {
@@ -254,22 +242,7 @@ OpResult PalaceService::applyBookingFromRequest(const string& requestId, const s
 
     int64_t total = hall->get_rentalPrice() + request->get_servicesTotal();
 
-    bool needsApproval = false;
     const User* actor = currentUser();
-    bool isManager = actor != nullptr && actor->get_role() == Role::Manager;
-
-    if (discountPercent > 0 || discountAmount > 0) {
-        if (discountPercent < 0 || discountAmount < 0)
-            throw BusinessException("Chiết khấu không được âm.");
-        if (discountPercent > 100) throw BusinessException("Chiết khấu % tối đa 100.");
-        if (discountAmount > total) throw BusinessException("Giảm giá vượt tổng chi phí.");
-
-        if ((discountPercent > kDiscountApprovalPercent ||
-             discountAmount > discountLimitFor(total)) &&
-            !isManager) {
-            needsApproval = true;
-        }
-    }
 
     vector<string> ids;
     for (const Booking& booking : get_db().get_bookings()) ids.push_back(booking.get_id());
@@ -281,7 +254,6 @@ OpResult PalaceService::applyBookingFromRequest(const string& requestId, const s
     booking.set_createdAt(now);
     booking.set_holdUntil(now.plusHours(kHoldHours));
     booking.set_salesUsername(actor != nullptr ? actor->get_username() : "");
-    booking.set_discount(discountPercent, discountAmount, needsApproval);
     get_db().get_bookings().push_back(booking);
 
     request->set_status(RequestStatus::DaChot);
@@ -295,25 +267,17 @@ OpResult PalaceService::applyBookingFromRequest(const string& requestId, const s
                                      actor != nullptr ? actor->get_username() : ""));
 
     bookingId = id;
-    if (needsApproval) {
-        return persist("Đã tạo booking " + id + " (giữ chỗ " + to_string(kHoldHours) +
-                           " giờ). Chiết khấu vượt " + to_string(kDiscountApprovalPercent) +
-                           "% cần Quản lý duyệt.",
-                       id);
-    }
     return persist("Đã tạo booking " + id + " từ yêu cầu " + requestId + " (giữ chỗ " +
                        to_string(kHoldHours) + " giờ chờ đặt cọc).",
                    id);
 }
 
 OpResult PalaceService::createBooking(const string& requestId, const string& hallId,
-                                      DateTime start, DateTime end, int guestCount,
-                                      int discountPercent, int64_t discountAmount) {
+                                      DateTime start, DateTime end, int guestCount) {
     require(Action::ManageBookings);
 
     string bookingId;
-    return applyBookingFromRequest(requestId, hallId, start, end, guestCount, discountPercent,
-                                   discountAmount, bookingId);
+    return applyBookingFromRequest(requestId, hallId, start, end, guestCount, bookingId);
 }
 
 OpResult PalaceService::cancelBooking(const string& bookingId, const string& reason) {
@@ -376,50 +340,6 @@ OpResult PalaceService::deleteBooking(const string& bookingId) {
                    bookings.end());
 
     return persist("Đã xóa booking.", bookingId);
-}
-
-OpResult PalaceService::updateBookingDiscount(const string& bookingId, int discountPercent,
-                                              int64_t discountAmount) {
-    require(Action::ManageBookings);
-
-    for (Booking& booking : get_db().get_bookings()) {
-        if (booking.get_id() != bookingId) continue;
-        if (booking.get_status() != BookingStatus::ChoCoc)
-            throw BusinessException("Chỉ sửa giảm giá khi booking đang chờ cọc.");
-        if (discountPercent < 0 || discountAmount < 0)
-            throw BusinessException("Chiết khấu không được âm.");
-        if (discountPercent > 100) throw BusinessException("Chiết khấu % tối đa 100.");
-        if (discountAmount > booking.get_estimatedTotal())
-            throw BusinessException("Giảm giá vượt tổng chi phí.");
-
-        const User* actor = currentUser();
-        bool needsApproval =
-            (discountPercent > kDiscountApprovalPercent ||
-             discountAmount > discountLimitFor(booking.get_estimatedTotal())) &&
-            !(actor != nullptr && actor->get_role() == Role::Manager);
-
-        booking.set_discount(discountPercent, discountAmount, needsApproval);
-        if (needsApproval) {
-            return persist("Đã cập nhật giảm giá. Vượt " + to_string(kDiscountApprovalPercent) +
-                               "% cần Quản lý duyệt.",
-                           bookingId);
-        }
-        return persist("Đã cập nhật giảm giá.", bookingId);
-    }
-    throw BusinessException("Không tìm thấy booking.");
-}
-
-OpResult PalaceService::approveDiscount(const string& bookingId) {
-    require(Action::ManageVenues);
-
-    for (Booking& booking : get_db().get_bookings()) {
-        if (booking.get_id() != bookingId) continue;
-        if (!booking.get_discountNeedsApproval())
-            throw BusinessException("Booking không cần duyệt chiết khấu.");
-        booking.set_discountApproved(true);
-        return persist("Quản lý đã duyệt chiết khấu cho booking " + bookingId + ".", bookingId);
-    }
-    throw BusinessException("Không tìm thấy booking.");
 }
 
 vector<Booking> PalaceService::bookingsForCustomer(const string& customerId) const {
