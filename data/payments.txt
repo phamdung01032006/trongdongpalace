@@ -1,1 +1,1 @@
-PAY-0001|BKG-0001|Đặt cọc lần 1|0|14/10/2026 20:15|Chuyển khoản|Chưa thanh toán|Tiền đặt cọc giữ chỗ|admin
+# id|bookingId|loai|soTien|ngayThu|hinhThuc|trangThai|ghiChu|nguoiThu

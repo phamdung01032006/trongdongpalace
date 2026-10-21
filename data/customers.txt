@@ -1,2 +1,4 @@
-CUS-0001|Công ty Ánh Dương|0912345678|anhduong@example.com|Cầu Giấy, Hà Nội|Khách doanh nghiệp|14/10/2026 20:12|0
-CUS-0002|Nguyễn Văn An|0987654321|nguyenvanan@example.com|Hoàn Kiếm, Hà Nội|Tiệc cưới|14/10/2026 20:12|0
+# id|hoTen|sdt|email|diaChi|ghiChu|createdAt
+CUS-0001|Công ty Ánh Dương|0912345678|anhduong@example.com|Cầu Giấy, Hà Nội|Khách doanh nghiệp|20/10/2026 23:20
+CUS-0002|Nguyễn Văn An|0987654321|nguyenvanan@example.com|Hoàn Kiếm, Hà Nội|Khách hàng cá nhân|20/10/2026 23:20
+CUS-0003|Pham Trung Dung|0382706265|phamdung01032006@gmail.com|So 43 Ngo 139 Tan Mai, Hoang Mai, Ha Noi|Khong|21/10/2026 10:13

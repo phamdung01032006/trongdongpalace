@@ -1,3 +1,4 @@
+# id|ten|sucChua|giaThue|trangThai
 HAL-0001|Sảnh Mini|50|5000000|Khả dụng
 HAL-0002|Sảnh Small|100|8000000|Khả dụng
 HAL-0003|Sảnh Standard|200|12000000|Khả dụng

@@ -1,1 +1,1 @@
-EVT-0001|BKG-0001|CUS-0001|HAL-0002|15/10/2026 20:14|16/10/2026 00:14|Sắp diễn ra||Tiệc cưới
+# id|bookingId|customerId|hallId|batDau|ketThuc|trangThai|ghiChu

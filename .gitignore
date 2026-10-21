@@ -1,9 +1,9 @@
 build/
+build-*/
 .vscode/
-!.vscode/
-!.vscode/settings.json
 .idea/
-*.user
+*.exe
+*.o
+*.obj
 CMakeUserPresets.json
 data/*.tmp
-backups/
