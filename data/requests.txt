@@ -1,1 +1,1 @@
-REQ-0001|CUS-0001|Tiệc cưới|asdasd|asdas|0382706265||15/10/2026 20:14|16/10/2026 00:14|100||14/10/2026 20:14|Đã chốt|0
+# id|customerId|loai|ten|tenKhach|sdt|hallId|batDau|ketThuc|soKhach|ghiChu|trangThai|createdAt

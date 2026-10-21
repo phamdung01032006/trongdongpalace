@@ -1,4 +1,5 @@
-USR-0001|admin|b8ed25ec18d8c7d0|994cd873525a3834e1c197d9dbab9c17a6257f8a97e46aa33172cb2911cab8f9|123456|Quản trị viên hệ thống||Quản lý|1
-USR-0002|kinhdoanh|b739ce33b17b8e4d|8b3149ed747816b1f0f39f5163a5542686e8ad66ebe957e0aeb7a20342ccba37|123456|Nguyễn Văn Kinh Doanh||Nhân viên kinh doanh|1
-USR-0003|vanhanh|0a3686f6978804eb|2316a536780079c732df461fd8c2dfb93ee76f4ba1eebc32071141e68187c943|123456|Lê Văn Vận Hành||Vận hành|1
-USR-0004|khachhang|3dfb30d6aa7b1702|10068fcd00c194c45fecbaa75cfca199f160b2c6a1047ebcebefc6d92a4419e6|123456|Nguyễn Văn An|CUS-0002|Khách hàng|1
+# id|username|password|hoTen|sdt|email|diaChi|vaiTro|customerId|active
+USR-0001|admin|123456|Quản trị viên hệ thống||||Quản lý||1
+USR-0002|kinhdoanh|123456|Nguyễn Văn Kinh Doanh|0901111111|kinhdoanh@example.com|Hà Nội|Nhân viên kinh doanh||1
+USR-0003|vanhanh|123456|Lê Văn Vận Hành|0902222222|vanhanh@example.com|Hà Nội|Vận hành||1
+USR-0004|khachhang|123456|Nguyễn Văn An|0987654321|nguyenvanan@example.com|Hoàn Kiếm, Hà Nội|Khách hàng|CUS-0002|1

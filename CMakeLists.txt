@@ -4,41 +4,38 @@ project(TrongDongPalace LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# /utf-8 giup MSVC doc dung tieng Viet trong source code.
 if(MSVC)
     add_compile_options(/utf-8 /W4)
 else()
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
-
-# Theo yeu cau chi dung .cpp: main.cpp include cay ma nguon mot lan.
-# Khong bien dich lai cac .cpp duoc include thanh translation unit rieng.
-add_executable(trongdongpalace src/main.cpp)
-
-target_include_directories(trongdongpalace PRIVATE src)
-target_link_libraries(trongdongpalace PRIVATE
-    Qt6::Widgets
+add_executable(trongdongpalace
+    main.cpp
+    src/Utils.cpp
+    src/DateTime.cpp
+    src/Enums.cpp
+    src/Person.cpp
+    src/Customer.cpp
+    src/User.cpp
+    src/Hall.cpp
+    src/Service.cpp
+    src/EventRequest.cpp
+    src/Booking.cpp
+    src/Payment.cpp
+    src/Event.cpp
+    src/Store.cpp
+    src/PalaceService.cpp
+    src/PalaceRequest.cpp
+    src/PalaceBooking.cpp
+    src/ConsoleUI.cpp
 )
-target_compile_definitions(trongdongpalace PRIVATE TDP_PROJECT_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 
-add_executable(tdp_tests tests/test_core.cpp)
-target_include_directories(tdp_tests PRIVATE src)
-enable_testing()
-add_test(NAME core COMMAND tdp_tests)
+target_include_directories(trongdongpalace PRIVATE include)
 
-add_executable(tdp_ui_tests tests/test_ui.cpp)
-target_include_directories(tdp_ui_tests PRIVATE src)
-target_link_libraries(tdp_ui_tests PRIVATE Qt6::Widgets)
-add_test(NAME guest_ui COMMAND tdp_ui_tests)
-set_tests_properties(guest_ui PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen" TIMEOUT 20)
-
+# Tren MinGW: nhung san thu vien C++ de copy .exe sang may khac de chay.
 if(MINGW)
-    foreach(tgt trongdongpalace tdp_tests tdp_ui_tests)
-        set_target_properties(${tgt} PROPERTIES
-            LINK_FLAGS "-static -static-libgcc -static-libstdc++"
-        )
-    endforeach()
+    target_link_options(trongdongpalace PRIVATE -static -static-libgcc -static-libstdc++)
 endif()
