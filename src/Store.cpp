@@ -218,7 +218,7 @@ void Store::saveBookings() const {
     vector<string> lines;
     for (const Booking& booking : db_.get_bookings()) lines.push_back(booking.toText());
     writeTextFile(pathOf("bookings.txt"),
-                  "# id|requestId|customerId|hallId|batDau|ketThuc|soKhach|tongDuKien|chietKhauPhanTram|chietKhauTien|canDuyet|daDuyet|trangThai|createdAt|holdUntil|sales|cancelReason",
+                  "# id|requestId|customerId|hallId|batDau|ketThuc|soKhach|tongDuKien|trangThai|createdAt|holdUntil|sales|cancelReason",
                   lines);
 }
 

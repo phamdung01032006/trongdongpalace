@@ -1,1 +1,1 @@
-# id|requestId|customerId|hallId|batDau|ketThuc|soKhach|tongDuKien|chietKhauPhanTram|chietKhauTien|canDuyet|daDuyet|trangThai|createdAt|holdUntil|sales|cancelReason
+# id|requestId|customerId|hallId|batDau|ketThuc|soKhach|tongDuKien|trangThai|createdAt|holdUntil|sales|cancelReason

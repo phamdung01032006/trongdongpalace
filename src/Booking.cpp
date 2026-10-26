@@ -25,7 +25,7 @@ int64_t Booking::get_finalTotal() const {
 }
 
 string Booking::toText() const {
-    // 17 truong, xem thu tu ben duoi.
+    // 13 truong, xem thu tu ben duoi.
     vector<string> fields = {
         cleanField(id_),
         cleanField(requestId_),
@@ -46,20 +46,24 @@ string Booking::toText() const {
 
 Booking Booking::fromText(const string& line) {
     vector<string> fields = splitText(line, '|');
-    if (fields.size() < 17) {
+    if (fields.size() < 13) {
         throw FileException("Dong bookings.txt khong du truong: " + line);
     }
+
+    // Dinh dang hien tai co 13 truong. Dinh dang cu (truoc khi bo chiet khau)
+    // co 17 truong: 8..11 la chiet khau/can duyet/da duyet, trang thai o chi so 12.
+    const bool legacy = fields.size() >= 17;
+    const size_t statusIndex = legacy ? 12 : 8;
 
     Booking booking(fieldAt(fields, 0), fieldAt(fields, 1), fieldAt(fields, 2),
                     fieldAt(fields, 3), parseDateOr(fieldAt(fields, 4)),
                     parseDateOr(fieldAt(fields, 5)), toInt(fieldAt(fields, 6)),
                     toInt64(fieldAt(fields, 7)),
-                    bookingStatusFromString(fieldAt(fields, 12)));
+                    bookingStatusFromString(fieldAt(fields, statusIndex)));
 
-    booking.set_createdAt(parseDateOr(fieldAt(fields, 9), DateTime::now()));
-    booking.set_holdUntil(parseDateOr(fieldAt(fields, 10)));
-    booking.set_salesUsername(fieldAt(fields, 11));
-    booking.set_cancelReason(fieldAt(fields, 12));
-    return booking;
+    booking.set_createdAt(parseDateOr(fieldAt(fields, statusIndex + 1), DateTime::now()));
+    booking.set_holdUntil(parseDateOr(fieldAt(fields, statusIndex + 2)));
+    booking.set_salesUsername(fieldAt(fields, statusIndex + 3));
+    booking.set_cancelReason(fieldAt(fields, statusIndex + 4));
     return booking;
 }

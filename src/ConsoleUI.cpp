@@ -1711,8 +1711,8 @@ void ConsoleUI::printRequests(const vector<EventRequest>& requests, bool custome
 }
 
 void ConsoleUI::printBookings(const vector<Booking>& bookings) const {
-    vector<string> headers = {"Mã", "Sảnh", "Bắt đầu", "Khách", "Tổng", "Giảm", "Trạng thái", "Hạn giữ chỗ"};
-    vector<int> widths = {8, 10, 16, 6, 14, 13, 16, 16};
+    vector<string> headers = {"Mã", "Sảnh", "Bắt đầu", "Khách", "Tổng", "Trạng thái", "Hạn giữ chỗ"};
+    vector<int> widths = {8, 10, 16, 6, 14, 16, 16};
 
     vector<vector<string>> rows;
     for (const Booking& booking : bookings) {
@@ -1891,8 +1891,7 @@ void ConsoleUI::bookingDetail(const Booking& booking) const {
     cout << "Bắt đầu      : " << booking.get_start() << '\n';
     cout << "Kết thúc     : " << booking.get_end() << '\n';
     cout << "Số khách     : " << booking.get_guestCount() << '\n';
-    cout << "Tổng dự kiến : " << formatMoney(booking.get_estimatedTotal()) << '\n';
-    cout << "Thành tiền   : " << formatMoney(booking.get_finalTotal()) << '\n';
+    cout << "Tổng tiền    : " << formatMoney(booking.get_finalTotal()) << '\n';
     cout << "Đã thu       : " << formatMoney(paid) << '\n';
     cout << "Còn lại      : " << formatMoney(remaining) << '\n';
     cout << "Trạng thái   : " << toString(booking.get_status()) << '\n';

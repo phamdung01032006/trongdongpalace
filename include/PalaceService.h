@@ -2,7 +2,7 @@
 
 // PalaceService = lop xu ly nghiep vu (business logic).
 // Giao dien console chi goi cac ham o day, KHONG tu sua du lieu.
-// Nho vay, tat ca quy tac (phan quyen, trung lich, han giu cho, chiet khau...)
+// Nho vay, tat ca quy tac (phan quyen, trung lich, han giu cho, thanh toan...)
 // chi nam o mot noi duy nhat, de kiem tra va giai thich khi bao ve.
 
 #include "Store.h"
