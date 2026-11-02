@@ -89,7 +89,7 @@ private:
     void printPayments(const vector<Payment>& payments) const;
     void printEvents(const vector<Event>& events) const;
     void printHalls(const vector<Hall>& halls) const;
-    void printServices(const string& keyword) const;
+    void printServices(const string& keyword, bool onlyActive = false) const;
     void printCustomers(const vector<Customer>& customers) const;
     void printUsers() const;
     void requestDetail(const EventRequest& request) const;

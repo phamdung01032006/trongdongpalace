@@ -104,6 +104,9 @@ Thực hiện bằng `kinhdoanh` hoặc `admin`.
 
 Vào **1. Quản lý yêu cầu sự kiện → 2. Tạo yêu cầu**.
 
+Khi tới bước chọn dịch vụ, bảng dịch vụ đang cung cấp phải hiện trước lời nhắc nhập mã;
+gõ `?` để in lại bảng.
+
 | ID | Thao tác | Kết quả mong đợi |
 | :--- | :--- | :--- |
 | RQ-01 | Chọn khách `CUS-0001`, loại Tiệc cưới, sảnh `HAL-0004`, thời gian tương lai, 200 khách, chọn `FOD01-P` số lượng 0 | Tạo `REQ-...`, tính tiền sảnh + dịch vụ; dịch vụ tự tính theo số khách |

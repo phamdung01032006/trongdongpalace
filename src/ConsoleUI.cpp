@@ -1642,16 +1642,23 @@ int ConsoleUI::chooseHallStatus(HallStatus defaultValue) const {
 }
 
 void ConsoleUI::chooseServices(vector<ServiceLineInput>& services) const {
-    cout << "\nChọn dịch vụ (ví dụ: FOD01-P, DEC01-P, MED07, AV07, HR02, EXT01).\n";
-    cout << "Nhập mã dịch vụ, Enter để kết thúc.\n";
+    cout << "\nDanh sách dịch vụ đang cung cấp:\n";
+    printServices("", true);
+
+    cout << "\nNhập mã dịch vụ để thêm vào yêu cầu (Enter để kết thúc, ? để xem lại bảng).\n";
 
     while (true) {
         string code = askText("Mã dịch vụ", "");
         if (code.empty()) break;
+        if (code == "?") {
+            printServices("", true);
+            continue;
+        }
 
         const Service* service = service_.findService(code);
         if (service == nullptr) {
-            cout << "  -> Không tìm thấy dịch vụ.\n";
+            cout << "  -> Không tìm thấy dịch vụ. Các dịch vụ gần đúng:\n";
+            printServices(code, true);
             continue;
         }
         if (!service->is_active()) {
@@ -1783,13 +1790,16 @@ void ConsoleUI::printHalls(const vector<Hall>& halls) const {
     printTable(headers, widths, rows);
 }
 
-void ConsoleUI::printServices(const string& keyword) const {
+void ConsoleUI::printServices(const string& keyword, bool onlyActive) const {
     vector<const Service*> services = service_.allServices();
     vector<string> headers = {"Mã", "Code", "Tên dịch vụ", "Đơn vị", "Đơn giá", "Loại"};
     vector<int> widths = {8, 12, 38, 15, 14, 10};
 
     vector<vector<string>> rows;
     for (const Service* service : services) {
+        if (onlyActive && !service->is_active()) {
+            continue;
+        }
         if (!keyword.empty() && !containsIgnoreCase(service->get_code(), keyword) &&
             !containsIgnoreCase(service->get_name(), keyword) &&
             !containsIgnoreCase(service->get_category(), keyword)) {

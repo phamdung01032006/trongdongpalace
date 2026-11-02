@@ -201,7 +201,8 @@ Khách mới có thể tự đăng ký ở màn hình đăng nhập (mục **2**
 ### Khách hàng
 
 1. **Tạo yêu cầu sự kiện**: chọn loại sự kiện, nhập tên sự kiện, thời gian, số khách,
-   chọn sảnh (có thể để trống để trung tâm tư vấn), chọn dịch vụ.
+   chọn sảnh (có thể để trống để trung tâm tư vấn), chọn dịch vụ. Bảng dịch vụ đang
+   cung cấp hiện ngay trước khi nhập mã; gõ `?` để xem lại bảng.
 2. **Yêu cầu của tôi**: xem trạng thái (Chờ / Đang tư vấn / Hoàn thành / Đã chốt / Bị hủy).
 3. **Đặt lịch của tôi**: xem booking và các khoản thanh toán.
 4. **Tra cứu sảnh trống**: nhập thời gian, số khách, giá tối đa.
